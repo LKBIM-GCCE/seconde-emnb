@@ -196,3 +196,4 @@
 .duo-images figcaption { padding: 8px 12px; font-size: 14px; background: var(--carte); color: var(--doux); }
 .duo-images b { color: var(--chantier); font-family: var(--titre); margin-right: 6px; }
 @media (max-width: 600px) { .duo-images { grid-template-columns: 1fr; } }
+.verif select, .verif input { max-width: 100%; min-width: 0; width: 100%; }

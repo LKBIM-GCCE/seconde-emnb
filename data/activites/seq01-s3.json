@@ -1,0 +1,389 @@
+{
+ "id": "seq01-s3",
+ "sequence": "seq01",
+ "seance": "s3",
+ "titre": "Application croisée et résolution de problèmes",
+ "intro": "Tu vas mobiliser tout ce que tu sais sur les acteurs et les phases pour analyser des dysfonctionnements, remettre un dossier dans l'ordre et construire le tableau de synthèse de la séquence.",
+ "blocs": [
+  {
+   "id": "bugs",
+   "type": "exercice",
+   "titre": "Activité 1 — Le bug sur le chantier",
+   "duree": "25 min",
+   "consigne": "Sur le projet de la Maison des Tilleuls (projet fictif), 5 problèmes sont arrivés. Pour chacun : qui a agi trop tôt ou trop tard, quelle phase n'a pas été respectée, et quelle solution proposer ?",
+   "parties": [
+    {
+     "type": "texte",
+     "html": "<div class=\"cartes-sit\"><div class=\"carte-sit\"><b>A — Le permis manquant</b><p>Les terrassements de la Maison des Tilleuls démarrent. Un voisin s'étonne : aucun panneau de permis de construire n'est affiché. Vérification faite, le permis n'a jamais été déposé : le client a voulu gagner du temps et a demandé à l'entreprise de commencer.</p></div><div class=\"carte-sit\"><b>B — Le câble oublié</b><p>Les plaquistes ont fermé toutes les cloisons du rez-de-chaussée. L'électricien arrive ensuite : il doit tout rouvrir pour passer ses gaines. Personne n'avait organisé l'ordre de passage des entreprises.</p></div><div class=\"carte-sit\"><b>C — Le surcoût surprise</b><p>Au moment de signer les marchés, le total des offres des entreprises dépasse le budget de 25 %. Aucune estimation sérieuse du coût n'avait été faite pendant les études.</p></div><div class=\"carte-sit\"><b>D — La modification de dernière minute</b><p>Le chantier a démarré. Le client décide d'agrandir la cuisine et l'annonce directement au chef de chantier, sans passer par l'architecte. Un mur est déplacé sans plan ni calcul.</p></div><div class=\"carte-sit\"><b>E — Le choix des finitions non validé</b><p>Le carreleur pose un carrelage gris ; le client voulait du beige. Le choix des finitions n'avait jamais été validé par écrit avant la consultation des entreprises.</p></div></div>"
+    },
+    {
+     "type": "associer",
+     "titre": "1. Quel acteur est en cause ?",
+     "choix": [
+      "Maître d'ouvrage (MOA)",
+      "AMO",
+      "Architecte / MOE",
+      "BET",
+      "Économiste de la construction",
+      "OPC",
+      "CSPS",
+      "Bureau de contrôle",
+      "Entreprise"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "A — Le permis manquant",
+       "reponse": "Maître d'ouvrage (MOA)"
+      },
+      {
+       "texte": "B — Le câble oublié",
+       "reponse": "OPC"
+      },
+      {
+       "texte": "C — Le surcoût surprise",
+       "reponse": [
+        "Économiste de la construction",
+        "Architecte / MOE"
+       ]
+      },
+      {
+       "texte": "D — La modification de dernière minute",
+       "reponse": "Maître d'ouvrage (MOA)"
+      },
+      {
+       "texte": "E — Le choix des finitions non validé",
+       "reponse": "Architecte / MOE"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "2. Quelle phase n'a pas été respectée ?",
+     "choix": [
+      "Faisabilité",
+      "Programme",
+      "ESQ / APS",
+      "APD / PRO",
+      "DCE / ACT",
+      "EXE / Chantier",
+      "AOR",
+      "Réception / DOE"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "A — Le permis manquant",
+       "reponse": "APD / PRO",
+       "explication": "Le MOA a lancé le chantier trop tôt : le permis se dépose à la fin de l'APD et doit être obtenu avant les travaux."
+      },
+      {
+       "texte": "B — Le câble oublié",
+       "reponse": "EXE / Chantier",
+       "explication": "C'est le rôle de l'OPC : planifier l'ordre d'intervention des entreprises sur le chantier."
+      },
+      {
+       "texte": "C — Le surcoût surprise",
+       "reponse": [
+        "APD / PRO",
+        "ESQ / APS"
+       ],
+       "explication": "L'estimation du coût se fait pendant les études (APS puis APD) : c'est le travail de l'économiste au sein de la MOE."
+      },
+      {
+       "texte": "D — La modification de dernière minute",
+       "reponse": [
+        "APD / PRO",
+        "Programme"
+       ],
+       "explication": "Les besoins du client doivent être fixés pendant la conception (programme puis plans définitifs). Toute modification passe par la MOE."
+      },
+      {
+       "texte": "E — Le choix des finitions non validé",
+       "reponse": [
+        "APD / PRO",
+        "DCE / ACT"
+       ],
+       "explication": "La MOE doit faire valider les matériaux par le client et les décrire dans le CCTP avant d'envoyer le DCE aux entreprises."
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "titre": "3. Quelle solution concrète ?",
+     "questions": [
+      {
+       "q": "A — Le permis manquant",
+       "choix": [
+        "Continuer les travaux et déposer le permis plus tard",
+        "Arrêter le chantier, faire déposer le permis par l'architecte et attendre son obtention",
+        "Demander au voisin de ne rien dire",
+        "Laisser l'entreprise gérer le problème"
+       ],
+       "r": 1
+      },
+      {
+       "q": "B — Le câble oublié",
+       "choix": [
+        "Demander à l'électricien de passer ses câbles en apparent",
+        "Faire payer le client",
+        "Établir un planning d'intervention des corps d'état et le valider en réunion de chantier",
+        "Supprimer l'électricité du projet"
+       ],
+       "r": 2
+      },
+      {
+       "q": "C — Le surcoût surprise",
+       "choix": [
+        "Signer quand même et payer plus tard",
+        "Reprendre les études pour faire des économies (variantes), puis relancer la consultation",
+        "Choisir l'entreprise la moins chère sans vérifier",
+        "Annuler le projet sans chercher de solution"
+       ],
+       "r": 1
+      },
+      {
+       "q": "D — La modification de dernière minute",
+       "choix": [
+        "Laisser faire le chef de chantier",
+        "Passer par la MOE : plans mis à jour, vérification par le BET, coût chiffré et accord écrit du MOA",
+        "Démolir toute la maison",
+        "Ne rien dire à l'architecte"
+       ],
+       "r": 1
+      },
+      {
+       "q": "E — Le choix des finitions non validé",
+       "choix": [
+        "Faire valider les choix (échantillons) par le MOA et les décrire dans le CCTP avant le DCE",
+        "Laisser chaque entreprise choisir",
+        "Changer de carreleur",
+        "Poser du beige par-dessus le gris"
+       ],
+       "r": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dossier",
+   "type": "exercice",
+   "titre": "Activité 2 — Du besoin aux clés en main",
+   "duree": "45 min",
+   "consigne": "Le dossier du projet est arrivé en désordre. Lis les 4 documents, remets-les dans l'ordre chronologique, puis indique pour chacun qui le produit et qui l'utilise.",
+   "parties": [
+    {
+     "type": "texte",
+     "html": "<div class=\"cartes-sit\"><div class=\"carte-sit\"><b>DOC 1 — Programme des besoins</b><p>« Maison individuelle de 110 m² environ, 3 chambres, garage, budget prévisionnel 260 000 € TTC, livraison souhaitée sous 2 ans. »</p></div><div class=\"carte-sit\"><b>DOC 2 — Esquisse</b><p>Plan de masse au 1/200 et croquis de principe : implantation sur la parcelle, volumétrie, orientation du séjour au sud.</p></div><div class=\"carte-sit\"><b>DOC 3 — Plan A101 (dossier PRO)</b><p>Plan du rez-de-chaussée au 1/50, entièrement coté, avec les réservations des réseaux et les références des menuiseries.</p></div><div class=\"carte-sit\"><b>DOC 4 — PV de réception</b><p>Procès-verbal signé : « La réception est prononcée avec 3 réserves, à lever sous 30 jours. »</p></div></div>"
+    },
+    {
+     "type": "ordre",
+     "titre": "1. Remets les documents dans l'ordre chronologique",
+     "titreFrise": "Ordre chronologique",
+     "cartes": [
+      {
+       "nom": "DOC 1 — Programme des besoins"
+      },
+      {
+       "nom": "DOC 2 — Esquisse"
+      },
+      {
+       "nom": "DOC 3 — Plan A101 (dossier PRO)"
+      },
+      {
+       "nom": "DOC 4 — PV de réception"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "2. À quelle phase appartient chaque document ?",
+     "choix": [
+      "Faisabilité",
+      "Programme",
+      "ESQ / APS",
+      "APD / PRO",
+      "DCE / ACT",
+      "EXE / Chantier",
+      "AOR",
+      "Réception / DOE"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "DOC 1 — Programme des besoins",
+       "reponse": "Programme"
+      },
+      {
+       "texte": "DOC 2 — Esquisse",
+       "reponse": "ESQ / APS"
+      },
+      {
+       "texte": "DOC 3 — Plan A101 (dossier PRO)",
+       "reponse": "APD / PRO"
+      },
+      {
+       "texte": "DOC 4 — PV de réception",
+       "reponse": "Réception / DOE"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "3. Qui produit ce document ?",
+     "choix": [
+      "Maître d'ouvrage (MOA)",
+      "AMO",
+      "Architecte / MOE",
+      "BET",
+      "Économiste de la construction",
+      "OPC",
+      "CSPS",
+      "Bureau de contrôle",
+      "Entreprise"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "DOC 1 — Programme des besoins",
+       "reponse": "Maître d'ouvrage (MOA)"
+      },
+      {
+       "texte": "DOC 2 — Esquisse",
+       "reponse": "Architecte / MOE"
+      },
+      {
+       "texte": "DOC 3 — Plan A101 (dossier PRO)",
+       "reponse": "Architecte / MOE"
+      },
+      {
+       "texte": "DOC 4 — PV de réception",
+       "reponse": [
+        "Maître d'ouvrage (MOA)",
+        "Architecte / MOE"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "4. Qui le reçoit et l'utilise ?",
+     "choix": [
+      "Maître d'ouvrage (MOA)",
+      "AMO",
+      "Architecte / MOE",
+      "BET",
+      "Économiste de la construction",
+      "OPC",
+      "CSPS",
+      "Bureau de contrôle",
+      "Entreprise"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "DOC 1 — Programme des besoins",
+       "reponse": "Architecte / MOE"
+      },
+      {
+       "texte": "DOC 2 — Esquisse",
+       "reponse": "Maître d'ouvrage (MOA)"
+      },
+      {
+       "texte": "DOC 3 — Plan A101 (dossier PRO)",
+       "reponse": "Entreprise"
+      },
+      {
+       "texte": "DOC 4 — PV de réception",
+       "reponse": "Maître d'ouvrage (MOA)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tableau",
+   "type": "exercice",
+   "titre": "Activité 3 — Le grand tableau croisé acteurs × phases",
+   "duree": "50 min",
+   "consigne": "Ce tableau devient ta fiche de synthèse de la séquence. Coche les cases, puis retrouve qui fait quoi à chaque étape.",
+   "parties": [
+    {
+     "type": "grille",
+     "titre": "1. Qui intervient à chaque grande étape ?",
+     "aide": "Les interventions ponctuelles sont acceptées cochées ou non.",
+     "colonnes": [
+      "Amont / Programme",
+      "Conception (ESQ → PRO)",
+      "Réalisation",
+      "Réception"
+     ],
+     "lignes": [
+      {
+       "acteur": "MOA",
+       "cases": "●●○●"
+      },
+      {
+       "acteur": "MOE / Architecte",
+       "cases": "○●●●"
+      },
+      {
+       "acteur": "BET",
+       "cases": "○●○-"
+      },
+      {
+       "acteur": "Entreprises",
+       "cases": "--●●"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "2. Qui fait quoi ?",
+     "choix": [
+      "MOA",
+      "MOE / Architecte",
+      "BET",
+      "Entreprises"
+     ],
+     "vide": "— qui ? —",
+     "items": [
+      {
+       "texte": "Amont : définit ses besoins, son budget et ses délais.",
+       "reponse": "MOA"
+      },
+      {
+       "texte": "Conception : dessine l'esquisse puis les plans définitifs.",
+       "reponse": "MOE / Architecte"
+      },
+      {
+       "texte": "Phase PRO : calcule la structure et dimensionne les réseaux.",
+       "reponse": "BET"
+      },
+      {
+       "texte": "Conception : valide l'APS et l'APD avant de passer à la suite.",
+       "reponse": "MOA"
+      },
+      {
+       "texte": "Réalisation : construit l'ouvrage selon les plans.",
+       "reponse": "Entreprises"
+      },
+      {
+       "texte": "Réalisation : dirige le chantier et anime les réunions.",
+       "reponse": "MOE / Architecte"
+      },
+      {
+       "texte": "Réception : prend possession du bâtiment et reçoit le DOE.",
+       "reponse": "MOA"
+      },
+      {
+       "texte": "Réception : lève les réserves dans les délais.",
+       "reponse": "Entreprises"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

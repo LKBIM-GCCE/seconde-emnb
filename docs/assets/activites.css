@@ -129,3 +129,48 @@
 .verif { display: grid; gap: 12px; max-width: 480px; }
 .verif label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 14px; }
 .verif input, .verif select { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); background: var(--papier); color: var(--encre); }
+
+/* ---- parties génériques ---- */
+.partie + .partie { margin-top: 8px; }
+.mini { font-size: 15px; margin: 16px 0 8px; }
+.consigne-p { color: var(--doux); margin: -4px 0 10px; }
+.assoc-liste, .saisies { padding-left: 24px; margin: 0; }
+.assoc-liste > li, .saisies > li { margin: 6px 0; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.assoc-liste .it { flex: 1 1 260px; }
+.assoc-liste .sel { flex: 0 1 320px; }
+.assoc-liste small, .saisies small { flex-basis: 100%; }
+.saisies label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; width: 100%; }
+.saisies label b { flex: 0 0 auto; min-width: 70px; }
+.champ { font: inherit; font-size: 15px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); background: var(--papier); color: var(--encre); flex: 1 1 240px; min-width: 0; }
+.champ.court { flex: 0 0 110px; width: 110px; text-align: right; }
+.nb { display: inline-flex; align-items: center; gap: 6px; }
+.unite { color: var(--doux); font-weight: 600; }
+.zone-texte { width: 100%; resize: vertical; display: block; }
+.texte-partie p { margin: 6px 0; }
+.figure { margin: 0; border: 1px solid var(--trait); border-radius: 10px; overflow: hidden; background: #fff; }
+.figure img { display: block; width: 100%; height: auto; }
+.figure figcaption { font-size: 13px; color: var(--doux); padding: 6px 10px; background: var(--papier); }
+.zoom { display: inline-block; font-size: 13px; color: var(--accent); margin: 6px 10px; text-decoration: none; font-weight: 600; }
+.fig-wrap { margin-bottom: 12px; }
+.plan-reperes { position: relative; border: 1px solid var(--trait); border-radius: 10px; overflow: hidden; background: #fff; }
+.plan-reperes img { display: block; width: 100%; height: auto; }
+.repere { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; font-size: 14px; display: grid; place-items: center; box-shadow: 0 0 0 3px #fff, 0 2px 6px rgba(0,0,0,.35); }
+.repere.juste { background: var(--ok) !important; } .repere.faux { background: var(--ko) !important; }
+.q-img { max-width: 100%; border-radius: 8px; border: 1px solid var(--trait); margin-bottom: 8px; }
+.etiquettes { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; min-height: 10px; }
+.schema { display: grid; gap: 10px; align-items: center; }
+.case-sch { min-height: 56px; border: 2px dashed var(--trait); border-radius: 10px; background: var(--papier); color: var(--encre); font: inherit; font-weight: 700; cursor: pointer; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.case-sch.pleine { border-style: solid; border-color: var(--bleu); background: var(--bleu-doux); }
+.case-sch small { color: var(--ko); font-size: 12px; font-weight: 600; }
+.decor { text-align: center; color: var(--doux); font-size: 13px; font-weight: 600; }
+.certif-textes { text-align: left; color: var(--bleu); font-size: 14px; margin-top: 10px; }
+.certif-textes p { margin: 4px 0; }
+.cinq-temps.trois { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 700px) { .cinq-temps.trois { grid-template-columns: 1fr; } }
+.deux-liens { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 700px) { .deux-liens { grid-template-columns: 1fr; } }
+.trait { display: inline-block; width: 60px; vertical-align: middle; margin-left: 8px; border-top: 3px solid var(--encre); }
+.trait.pointille { border-top-style: dashed; }
+.cartes-sit { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.carte-sit { border: 1px solid var(--trait); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 12px; }
+.carte-sit p { margin: 4px 0 0; font-size: 14px; }

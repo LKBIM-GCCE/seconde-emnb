@@ -1,131 +1,498 @@
 {
-  "id": "seq01-s2",
-  "sequence": "seq01",
-  "seance": "s2",
-  "titre": "Les phases de l'acte de construire",
-  "intro": "Travaille dans l'ordre : lis le cours, puis fais les 4 activités. Chaque activité est corrigée tout de suite. À la fin, affiche ton certificat et fais-en une capture d'écran pour la déposer sur l'ENT.",
-  "phases": ["Faisabilité", "Programme", "ESQ / APS", "APD / PRO", "DCE / ACT", "EXE / Chantier", "AOR", "Réception / DOE"],
-  "blocs": [
+ "id": "seq01-s2",
+ "sequence": "seq01",
+ "seance": "s2",
+ "titre": "Les phases de l'acte de construire",
+ "intro": "Travaille dans l'ordre : lis le cours, puis fais les 4 activités. Chaque activité est corrigée tout de suite. À la fin, affiche ton certificat et fais-en une capture d'écran pour la déposer sur l'ENT.",
+ "blocs": [
+  {
+   "id": "cours",
+   "type": "cours",
+   "titre": "Cours 03 — Les phases d'un projet",
+   "duree": "15 min",
+   "fichier": "seq01-s2-cours.html"
+  },
+  {
+   "id": "td04",
+   "type": "exercice",
+   "titre": "TD 04 — Remets les phases dans l'ordre",
+   "duree": "25 min",
+   "consigne": "Lis chaque carte, puis clique sur les cartes dans l'ordre chronologique du projet, de la première à la dernière phase. Pour corriger une erreur avant de valider, clique sur une case de la frise pour la vider.",
+   "parties": [
     {
-      "id": "cours",
-      "type": "cours",
-      "titre": "Cours 03 — Les phases d'un projet",
-      "duree": "15 min"
-    },
-    {
-      "id": "td04",
-      "type": "ordre",
-      "titre": "TD 04 — Remets les phases dans l'ordre",
-      "duree": "25 min",
-      "consigne": "Lis chaque carte, puis clique sur les cartes dans l'ordre chronologique du projet, de la première à la dernière phase. Pour corriger une erreur avant de valider, clique sur une case de la frise pour la vider.",
-      "cartes": [
-        {"nom": "Faisabilité", "texte": "Le MOA analyse le site, étudie les besoins et vérifie si le projet est techniquement et financièrement réalisable.", "acteur": "MOA (+ AMO)"},
-        {"nom": "Programme", "texte": "Le MOA formalise ses besoins : surfaces, usages, contraintes, budget et délais. C'est le cahier des charges de l'architecte.", "acteur": "MOA"},
-        {"nom": "ESQ / APS", "texte": "Le MOE traduit le programme en premières solutions architecturales : esquisse, plan de masse au 1/200, volumétrie.", "acteur": "Architecte / MOE"},
-        {"nom": "APD / PRO", "texte": "Tous les plans et détails techniques sont finalisés. Le BET produit ses calculs définitifs, le CCTP est rédigé.", "acteur": "MOE + BET"},
-        {"nom": "DCE / ACT", "texte": "Le dossier est envoyé aux entreprises pour qu'elles remettent leurs offres chiffrées. C'est l'appel d'offres du projet.", "acteur": "MOE + MOA"},
-        {"nom": "EXE / Chantier", "texte": "Les entreprises réalisent les travaux sur site. Le MOE coordonne, l'OPC planifie, le BC contrôle, le CSPS veille à la sécurité.", "acteur": "Entreprises + MOE"},
-        {"nom": "AOR", "texte": "Le MOE assiste le MOA lors des opérations préalables à la réception : vérifications, levée des réserves.", "acteur": "MOA + MOE + Entreprises + BC"},
-        {"nom": "Réception / DOE", "texte": "Le MOA prend possession du bâtiment et reçoit le DOE. La garantie décennale démarre à la réception.", "acteur": "MOE → MOA"}
-      ]
-    },
-    {
-      "id": "td05",
-      "type": "indices",
-      "titre": "TD 05 — À quelle phase sommes-nous ?",
-      "duree": "20 min",
-      "consigne": "Pour chaque dossier, lis les 3 indices, choisis la phase correspondante et clique sur l'indice le plus déterminant (celui qui te permet d'être sûr).",
-      "dossiers": [
-        {"indices": ["Le procès-verbal de réception est signé entre le MOA et les entreprises.", "Le DOE (Dossier des Ouvrages Exécutés) est remis officiellement au maître d'ouvrage.", "Les clés du bâtiment sont remises au MOA, qui prend possession de l'ouvrage."], "reponse": "Réception / DOE"},
-        {"indices": ["L'architecte présente un premier plan de masse schématique au client.", "Le BET fournit une première estimation globale du coût de construction.", "Des plans schématiques au 1/200 sont soumis au MOA pour valider l'orientation générale."], "reponse": "ESQ / APS"},
-        {"indices": ["Le MOA remet un document listant ses besoins en surfaces, fonctions et contraintes.", "L'AMO l'aide à formuler ses exigences techniques et à estimer le budget prévisionnel.", "Aucun architecte n'a encore été recruté pour concevoir le projet."], "reponse": "Programme"},
-        {"indices": ["Les plans sont au 1/50 avec tous les détails de structure et de fluides.", "Le CCTP (Cahier des Clauses Techniques Particulières) est en cours de rédaction.", "Le dossier sera bientôt envoyé aux entreprises pour qu'elles chiffrent leur offre."], "reponse": "APD / PRO"},
-        {"indices": ["La grue est installée et les fondations sont en cours de coulée sur le site.", "Une réunion de chantier hebdomadaire réunit le MOE, l'OPC et les entreprises.", "Le conducteur de travaux tient un journal de chantier consignant l'avancement."], "reponse": "EXE / Chantier"},
-        {"indices": ["Le MOE effectue une visite de contrôle avec une liste de points à vérifier.", "Des réserves sont constatées et notifiées par écrit aux entreprises concernées.", "Les entreprises disposent de 30 jours pour corriger les défauts relevés avant livraison."], "reponse": "AOR"},
-        {"indices": ["Les entreprises reçoivent un dossier comprenant les plans, le CCTP et le DPGF.", "Le MOE analyse et compare les offres remises par les soumissionnaires.", "Le règlement de consultation fixe une date limite de remise des plis."], "reponse": "DCE / ACT"},
-        {"indices": ["Un géomètre est mandaté pour établir un plan topographique de la parcelle.", "Un bureau géotechnique réalise des sondages pour évaluer la capacité portante du sol.", "Aucun plan architectural n'a encore été dessiné ; on évalue si le projet est réalisable."], "reponse": "Faisabilité"}
-      ],
-      "documents": {
-        "titre": "Associe chaque document à la phase où il est produit",
-        "items": [
-          {"texte": "Rapport de sondage géotechnique", "reponse": "Faisabilité"},
-          {"texte": "DPGF (Décomposition du Prix Global Forfaitaire)", "reponse": "DCE / ACT"},
-          {"texte": "DOE (Dossier des Ouvrages Exécutés)", "reponse": "Réception / DOE"},
-          {"texte": "Procès-verbal de réserves", "reponse": "AOR"},
-          {"texte": "Programme des besoins", "reponse": "Programme"},
-          {"texte": "Journal de chantier", "reponse": "EXE / Chantier"},
-          {"texte": "CCTP (Cahier des Clauses Techniques)", "reponse": "APD / PRO"},
-          {"texte": "Esquisse — plan de masse au 1/200", "reponse": "ESQ / APS"}
-        ]
-      }
-    },
-    {
-      "id": "td06",
-      "type": "td06",
-      "titre": "TD 06 — Croiser acteurs et phases",
-      "duree": "20 min",
-      "consigne": "Le chef de projet te demande de récapituler qui intervient à chaque phase, afin que l'équipe sache à qui s'adresser à chaque étape.",
-      "grille": {
-        "titre": "Partie 1 — Coche chaque case où l'acteur intervient",
-        "aide": "Les cases où l'acteur n'intervient que ponctuellement sont acceptées cochées ou non.",
-        "colonnes": ["FAIS.", "PRG", "ESQ/APS", "APD/PRO", "DCE/ACT", "EXE", "AOR", "RÉC."],
-        "lignes": [
-          {"acteur": "Maître d'ouvrage (MOA)", "cases": "●●○○●○●●"},
-          {"acteur": "Architecte / MOE", "cases": "○-●●●○●●"},
-          {"acteur": "Bureau d'études (BET)", "cases": "●-○●●○--"},
-          {"acteur": "Entreprises", "cases": "----●●●●"},
-          {"acteur": "OPC", "cases": "----○●●○"},
-          {"acteur": "CSPS", "cases": "---○○●●○"},
-          {"acteur": "Bureau de contrôle (BC)", "cases": "---○-●●○"}
-        ]
+     "type": "ordre",
+     "cartes": [
+      {
+       "nom": "Faisabilité",
+       "texte": "Le MOA analyse le site, étudie les besoins et vérifie si le projet est techniquement et financièrement réalisable.",
+       "acteur": "MOA (+ AMO)"
       },
-      "phrases": {
-        "titre": "Partie 2 — Qui est-ce ?",
-        "choix": ["MOA", "AMO", "Architecte / MOE", "BET", "OPC", "Bureau de contrôle", "CSPS", "Entreprise de gros œuvre", "Entreprises de second œuvre"],
-        "items": [
-          {"texte": "… commande l'ouvrage, le finance et en définit les besoins.", "reponse": "MOA"},
-          {"texte": "… conseille le MOA sur les aspects techniques, juridiques et administratifs.", "reponse": "AMO"},
-          {"texte": "… conçoit les plans, coordonne les études et dirige l'exécution des travaux.", "reponse": "Architecte / MOE"},
-          {"texte": "… calcule la structure et dimensionne les réseaux (fluides, électricité…).", "reponse": "BET"},
-          {"texte": "… planifie les tâches du chantier, gère le planning et coordonne les intervenants.", "reponse": "OPC"},
-          {"texte": "… contrôle la conformité technique des ouvrages avec les normes en vigueur.", "reponse": "Bureau de contrôle"},
-          {"texte": "… coordonne la sécurité et la protection de la santé des travailleurs sur le chantier.", "reponse": "CSPS"},
-          {"texte": "… réalise les fondations, la structure porteuse, les façades et les dallages.", "reponse": "Entreprise de gros œuvre"},
-          {"texte": "… réalise l'électricité, la plomberie, les menuiseries, la peinture…", "reponse": "Entreprises de second œuvre"}
-        ]
+      {
+       "nom": "Programme",
+       "texte": "Le MOA formalise ses besoins : surfaces, usages, contraintes, budget et délais. C'est le cahier des charges de l'architecte.",
+       "acteur": "MOA"
       },
-      "vraifaux": {
-        "titre": "Partie 3 — Vrai ou faux ?",
-        "items": [
-          {"texte": "Le MOA conçoit lui-même les plans architecturaux de son bâtiment.", "reponse": false, "explication": "Le MOA commande ; c'est l'architecte (MOE) qui conçoit les plans."},
-          {"texte": "L'OPC coordonne le planning et pilote l'avancement du chantier.", "reponse": true, "explication": "OPC = Ordonnancement, Pilotage, Coordination."},
-          {"texte": "Le bureau de contrôle n'intervient qu'après la livraison.", "reponse": false, "explication": "Il intervient dès la conception et pendant tout le chantier."},
-          {"texte": "Le CSPS est mandaté par le MOA pour protéger les travailleurs.", "reponse": true, "explication": "C'est le MOA qui le désigne, dès la conception."},
-          {"texte": "Les entreprises remettent leur offre de prix lors de la phase EXE.", "reponse": false, "explication": "Les offres sont remises pendant la phase DCE / ACT, avant le chantier."},
-          {"texte": "Le MOE compile le DOE et le remet au MOA lors de la réception.", "reponse": true, "explication": "Le DOE rassemble les documents des ouvrages réellement exécutés."}
-        ]
+      {
+       "nom": "ESQ / APS",
+       "texte": "Le MOE traduit le programme en premières solutions architecturales : esquisse, plan de masse au 1/200, volumétrie.",
+       "acteur": "Architecte / MOE"
+      },
+      {
+       "nom": "APD / PRO",
+       "texte": "Tous les plans et détails techniques sont finalisés. Le BET produit ses calculs définitifs, le CCTP est rédigé.",
+       "acteur": "MOE + BET"
+      },
+      {
+       "nom": "DCE / ACT",
+       "texte": "Le dossier est envoyé aux entreprises pour qu'elles remettent leurs offres chiffrées. C'est l'appel d'offres du projet.",
+       "acteur": "MOE + MOA"
+      },
+      {
+       "nom": "EXE / Chantier",
+       "texte": "Les entreprises réalisent les travaux sur site. Le MOE coordonne, l'OPC planifie, le BC contrôle, le CSPS veille à la sécurité.",
+       "acteur": "Entreprises + MOE"
+      },
+      {
+       "nom": "AOR",
+       "texte": "Le MOE assiste le MOA lors des opérations préalables à la réception : vérifications, levée des réserves.",
+       "acteur": "MOA + MOE + Entreprises + BC"
+      },
+      {
+       "nom": "Réception / DOE",
+       "texte": "Le MOA prend possession du bâtiment et reçoit le DOE. La garantie décennale démarre à la réception.",
+       "acteur": "MOE → MOA"
       }
-    },
-    {
-      "id": "quiz",
-      "type": "qcm",
-      "titre": "Quiz formatif — 12 questions",
-      "duree": "15 min",
-      "consigne": "Réponds seul, sans le cours. Pas de note : c'est pour savoir où tu en es.",
-      "questions": [
-        {"q": "Que signifie MOA ?", "choix": ["Maître d'ouvrage", "Maître d'œuvre", "Mission d'organisation et d'assistance", "Maîtrise des ouvrages annexes"], "r": 0, "explication": "Le maître d'ouvrage est le client : il commande, finance et décide."},
-        {"q": "Quel acteur conçoit le projet et coordonne les études techniques ?", "choix": ["Le MOA", "Le maître d'œuvre (architecte)", "L'OPC", "L'entreprise de gros œuvre"], "r": 1, "explication": "Le MOE conçoit et coordonne ; les BET calculent pour lui."},
-        {"q": "Que signifie BET ?", "choix": ["Bâtiment et travaux", "Bureau d'études techniques", "Bureau d'exécution des travaux", "Bilan énergétique total"], "r": 1, "explication": "Exemples sur un gymnase : BET structure, BET fluides, BET acoustique."},
-        {"q": "Quel acteur est totalement indépendant des autres acteurs du projet ?", "choix": ["L'OPC", "Le BET structure", "Le bureau de contrôle", "L'AMO"], "r": 2, "explication": "Son indépendance garantit un contrôle objectif de la solidité et de la sécurité."},
-        {"q": "Que signifie OPC ?", "choix": ["Organisation, Planification, Contrôle", "Ordonnancement, Pilotage, Coordination", "Ouvrages, Plans, Chantier", "Opérateur de pilotage du chantier"], "r": 1, "explication": "L'OPC planifie et cadence les interventions des entreprises sur le chantier."},
-        {"q": "Quel est l'ordre chronologique correct ?", "choix": ["APD → APS → PRO", "APS → PRO → APD", "APS → APD → PRO", "PRO → APS → APD"], "r": 2, "explication": "Avant-projet sommaire, puis définitif, puis projet : le niveau de détail augmente."},
-        {"q": "À quelle phase le permis de construire est-il déposé ?", "choix": ["Programme", "À la fin de l'APD", "DCE", "Pendant le chantier"], "r": 1, "explication": "Le projet est assez défini à l'APD pour être soumis à la mairie."},
-        {"q": "À quoi sert la phase DCE ?", "choix": ["À diriger le chantier", "À réceptionner le bâtiment", "À consulter les entreprises pour qu'elles chiffrent les travaux", "À dessiner l'esquisse"], "r": 2, "explication": "DCE = Dossier de Consultation des Entreprises : c'est l'appel d'offres."},
-        {"q": "À quelle phase choisit-on les entreprises qui réaliseront les travaux ?", "choix": ["ESQ / APS", "DCE / ACT", "EXE", "AOR"], "r": 1, "explication": "La phase DCE marque l'entrée des entreprises dans le projet."},
-        {"q": "Qui valide l'avant-projet sommaire (APS) ?", "choix": ["L'architecte", "Le bureau de contrôle", "Le maître d'ouvrage", "L'entreprise générale"], "r": 2, "explication": "Le MOA a le dernier mot : il valide les grandes options et le budget."},
-        {"q": "Quel acteur cadence le chantier pour que les entreprises travaillent dans le bon ordre ?", "choix": ["Le CSPS", "L'OPC", "Le BET", "Le MOA"], "r": 1, "explication": "C'est le rôle du pilote du chantier : l'OPC."},
-        {"q": "Combien de grandes phases retenons-nous pour un projet de construction ?", "choix": ["4", "6", "8", "12"], "r": 2, "explication": "Faisabilité, Programme, ESQ/APS, APD/PRO, DCE/ACT, EXE, AOR, Réception."}
-      ]
+     ]
     }
-  ]
+   ]
+  },
+  {
+   "id": "td05",
+   "type": "exercice",
+   "titre": "TD 05 — À quelle phase sommes-nous ?",
+   "duree": "20 min",
+   "consigne": "Pour chaque dossier, lis les 3 indices, choisis la phase correspondante et clique sur l'indice le plus déterminant (celui qui te permet d'être sûr).",
+   "parties": [
+    {
+     "type": "indices",
+     "titre": "Exercice 1 — Les 8 dossiers",
+     "choix": [
+      "Faisabilité",
+      "Programme",
+      "ESQ / APS",
+      "APD / PRO",
+      "DCE / ACT",
+      "EXE / Chantier",
+      "AOR",
+      "Réception / DOE"
+     ],
+     "dossiers": [
+      {
+       "indices": [
+        "Le procès-verbal de réception est signé entre le MOA et les entreprises.",
+        "Le DOE (Dossier des Ouvrages Exécutés) est remis officiellement au maître d'ouvrage.",
+        "Les clés du bâtiment sont remises au MOA, qui prend possession de l'ouvrage."
+       ],
+       "reponse": "Réception / DOE"
+      },
+      {
+       "indices": [
+        "L'architecte présente un premier plan de masse schématique au client.",
+        "Le BET fournit une première estimation globale du coût de construction.",
+        "Des plans schématiques au 1/200 sont soumis au MOA pour valider l'orientation générale."
+       ],
+       "reponse": "ESQ / APS"
+      },
+      {
+       "indices": [
+        "Le MOA remet un document listant ses besoins en surfaces, fonctions et contraintes.",
+        "L'AMO l'aide à formuler ses exigences techniques et à estimer le budget prévisionnel.",
+        "Aucun architecte n'a encore été recruté pour concevoir le projet."
+       ],
+       "reponse": "Programme"
+      },
+      {
+       "indices": [
+        "Les plans sont au 1/50 avec tous les détails de structure et de fluides.",
+        "Le CCTP (Cahier des Clauses Techniques Particulières) est en cours de rédaction.",
+        "Le dossier sera bientôt envoyé aux entreprises pour qu'elles chiffrent leur offre."
+       ],
+       "reponse": "APD / PRO"
+      },
+      {
+       "indices": [
+        "La grue est installée et les fondations sont en cours de coulée sur le site.",
+        "Une réunion de chantier hebdomadaire réunit le MOE, l'OPC et les entreprises.",
+        "Le conducteur de travaux tient un journal de chantier consignant l'avancement."
+       ],
+       "reponse": "EXE / Chantier"
+      },
+      {
+       "indices": [
+        "Le MOE effectue une visite de contrôle avec une liste de points à vérifier.",
+        "Des réserves sont constatées et notifiées par écrit aux entreprises concernées.",
+        "Les entreprises disposent de 30 jours pour corriger les défauts relevés avant livraison."
+       ],
+       "reponse": "AOR"
+      },
+      {
+       "indices": [
+        "Les entreprises reçoivent un dossier comprenant les plans, le CCTP et le DPGF.",
+        "Le MOE analyse et compare les offres remises par les soumissionnaires.",
+        "Le règlement de consultation fixe une date limite de remise des plis."
+       ],
+       "reponse": "DCE / ACT"
+      },
+      {
+       "indices": [
+        "Un géomètre est mandaté pour établir un plan topographique de la parcelle.",
+        "Un bureau géotechnique réalise des sondages pour évaluer la capacité portante du sol.",
+        "Aucun plan architectural n'a encore été dessiné ; on évalue si le projet est réalisable."
+       ],
+       "reponse": "Faisabilité"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "Exercice 2 — Associe chaque document à la phase où il est produit",
+     "choix": [
+      "Faisabilité",
+      "Programme",
+      "ESQ / APS",
+      "APD / PRO",
+      "DCE / ACT",
+      "EXE / Chantier",
+      "AOR",
+      "Réception / DOE"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "Rapport de sondage géotechnique",
+       "reponse": "Faisabilité"
+      },
+      {
+       "texte": "DPGF (Décomposition du Prix Global Forfaitaire)",
+       "reponse": "DCE / ACT"
+      },
+      {
+       "texte": "DOE (Dossier des Ouvrages Exécutés)",
+       "reponse": "Réception / DOE"
+      },
+      {
+       "texte": "Procès-verbal de réserves",
+       "reponse": "AOR"
+      },
+      {
+       "texte": "Programme des besoins",
+       "reponse": "Programme"
+      },
+      {
+       "texte": "Journal de chantier",
+       "reponse": "EXE / Chantier"
+      },
+      {
+       "texte": "CCTP (Cahier des Clauses Techniques)",
+       "reponse": "APD / PRO"
+      },
+      {
+       "texte": "Esquisse — plan de masse au 1/200",
+       "reponse": "ESQ / APS"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "td06",
+   "type": "exercice",
+   "titre": "TD 06 — Croiser acteurs et phases",
+   "duree": "20 min",
+   "consigne": "Le chef de projet te demande de récapituler qui intervient à chaque phase, afin que l'équipe sache à qui s'adresser à chaque étape.",
+   "parties": [
+    {
+     "type": "grille",
+     "titre": "Partie 1 — Coche chaque case où l'acteur intervient",
+     "aide": "Les cases où l'acteur n'intervient que ponctuellement sont acceptées cochées ou non.",
+     "colonnes": [
+      "FAIS.",
+      "PRG",
+      "ESQ/APS",
+      "APD/PRO",
+      "DCE/ACT",
+      "EXE",
+      "AOR",
+      "RÉC."
+     ],
+     "lignes": [
+      {
+       "acteur": "Maître d'ouvrage (MOA)",
+       "cases": "●●○○●○●●"
+      },
+      {
+       "acteur": "Architecte / MOE",
+       "cases": "○-●●●○●●"
+      },
+      {
+       "acteur": "Bureau d'études (BET)",
+       "cases": "●-○●●○--"
+      },
+      {
+       "acteur": "Entreprises",
+       "cases": "----●●●●"
+      },
+      {
+       "acteur": "OPC",
+       "cases": "----○●●○"
+      },
+      {
+       "acteur": "CSPS",
+       "cases": "---○○●●○"
+      },
+      {
+       "acteur": "Bureau de contrôle (BC)",
+       "cases": "---○-●●○"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "Partie 2 — Qui est-ce ?",
+     "choix": [
+      "MOA",
+      "AMO",
+      "Architecte / MOE",
+      "BET",
+      "OPC",
+      "Bureau de contrôle",
+      "CSPS",
+      "Entreprise de gros œuvre",
+      "Entreprises de second œuvre"
+     ],
+     "vide": "— qui ? —",
+     "items": [
+      {
+       "texte": "… commande l'ouvrage, le finance et en définit les besoins.",
+       "reponse": "MOA"
+      },
+      {
+       "texte": "… conseille le MOA sur les aspects techniques, juridiques et administratifs.",
+       "reponse": "AMO"
+      },
+      {
+       "texte": "… conçoit les plans, coordonne les études et dirige l'exécution des travaux.",
+       "reponse": "Architecte / MOE"
+      },
+      {
+       "texte": "… calcule la structure et dimensionne les réseaux (fluides, électricité…).",
+       "reponse": "BET"
+      },
+      {
+       "texte": "… planifie les tâches du chantier, gère le planning et coordonne les intervenants.",
+       "reponse": "OPC"
+      },
+      {
+       "texte": "… contrôle la conformité technique des ouvrages avec les normes en vigueur.",
+       "reponse": "Bureau de contrôle"
+      },
+      {
+       "texte": "… coordonne la sécurité et la protection de la santé des travailleurs sur le chantier.",
+       "reponse": "CSPS"
+      },
+      {
+       "texte": "… réalise les fondations, la structure porteuse, les façades et les dallages.",
+       "reponse": "Entreprise de gros œuvre"
+      },
+      {
+       "texte": "… réalise l'électricité, la plomberie, les menuiseries, la peinture…",
+       "reponse": "Entreprises de second œuvre"
+      }
+     ]
+    },
+    {
+     "type": "vraifaux",
+     "titre": "Partie 3 — Vrai ou faux ?",
+     "items": [
+      {
+       "texte": "Le MOA conçoit lui-même les plans architecturaux de son bâtiment.",
+       "reponse": false,
+       "explication": "Le MOA commande ; c'est l'architecte (MOE) qui conçoit les plans."
+      },
+      {
+       "texte": "L'OPC coordonne le planning et pilote l'avancement du chantier.",
+       "reponse": true,
+       "explication": "OPC = Ordonnancement, Pilotage, Coordination."
+      },
+      {
+       "texte": "Le bureau de contrôle n'intervient qu'après la livraison.",
+       "reponse": false,
+       "explication": "Il intervient dès la conception et pendant tout le chantier."
+      },
+      {
+       "texte": "Le CSPS est mandaté par le MOA pour protéger les travailleurs.",
+       "reponse": true,
+       "explication": "C'est le MOA qui le désigne, dès la conception."
+      },
+      {
+       "texte": "Les entreprises remettent leur offre de prix lors de la phase EXE.",
+       "reponse": false,
+       "explication": "Les offres sont remises pendant la phase DCE / ACT, avant le chantier."
+      },
+      {
+       "texte": "Le MOE compile le DOE et le remet au MOA lors de la réception.",
+       "reponse": true,
+       "explication": "Le DOE rassemble les documents des ouvrages réellement exécutés."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "type": "exercice",
+   "titre": "Quiz formatif — 12 questions",
+   "duree": "15 min",
+   "consigne": "Réponds seul, sans le cours. Pas de note : c'est pour savoir où tu en es.",
+   "parties": [
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Que signifie MOA ?",
+       "choix": [
+        "Maître d'ouvrage",
+        "Maître d'œuvre",
+        "Mission d'organisation et d'assistance",
+        "Maîtrise des ouvrages annexes"
+       ],
+       "r": 0,
+       "explication": "Le maître d'ouvrage est le client : il commande, finance et décide."
+      },
+      {
+       "q": "Quel acteur conçoit le projet et coordonne les études techniques ?",
+       "choix": [
+        "Le MOA",
+        "Le maître d'œuvre (architecte)",
+        "L'OPC",
+        "L'entreprise de gros œuvre"
+       ],
+       "r": 1,
+       "explication": "Le MOE conçoit et coordonne ; les BET calculent pour lui."
+      },
+      {
+       "q": "Que signifie BET ?",
+       "choix": [
+        "Bâtiment et travaux",
+        "Bureau d'études techniques",
+        "Bureau d'exécution des travaux",
+        "Bilan énergétique total"
+       ],
+       "r": 1,
+       "explication": "Exemples sur un gymnase : BET structure, BET fluides, BET acoustique."
+      },
+      {
+       "q": "Quel acteur est totalement indépendant des autres acteurs du projet ?",
+       "choix": [
+        "L'OPC",
+        "Le BET structure",
+        "Le bureau de contrôle",
+        "L'AMO"
+       ],
+       "r": 2,
+       "explication": "Son indépendance garantit un contrôle objectif de la solidité et de la sécurité."
+      },
+      {
+       "q": "Que signifie OPC ?",
+       "choix": [
+        "Organisation, Planification, Contrôle",
+        "Ordonnancement, Pilotage, Coordination",
+        "Ouvrages, Plans, Chantier",
+        "Opérateur de pilotage du chantier"
+       ],
+       "r": 1,
+       "explication": "L'OPC planifie et cadence les interventions des entreprises sur le chantier."
+      },
+      {
+       "q": "Quel est l'ordre chronologique correct ?",
+       "choix": [
+        "APD → APS → PRO",
+        "APS → PRO → APD",
+        "APS → APD → PRO",
+        "PRO → APS → APD"
+       ],
+       "r": 2,
+       "explication": "Avant-projet sommaire, puis définitif, puis projet : le niveau de détail augmente."
+      },
+      {
+       "q": "À quelle phase le permis de construire est-il déposé ?",
+       "choix": [
+        "Programme",
+        "À la fin de l'APD",
+        "DCE",
+        "Pendant le chantier"
+       ],
+       "r": 1,
+       "explication": "Le projet est assez défini à l'APD pour être soumis à la mairie."
+      },
+      {
+       "q": "À quoi sert la phase DCE ?",
+       "choix": [
+        "À diriger le chantier",
+        "À réceptionner le bâtiment",
+        "À consulter les entreprises pour qu'elles chiffrent les travaux",
+        "À dessiner l'esquisse"
+       ],
+       "r": 2,
+       "explication": "DCE = Dossier de Consultation des Entreprises : c'est l'appel d'offres."
+      },
+      {
+       "q": "À quelle phase choisit-on les entreprises qui réaliseront les travaux ?",
+       "choix": [
+        "ESQ / APS",
+        "DCE / ACT",
+        "EXE",
+        "AOR"
+       ],
+       "r": 1,
+       "explication": "La phase DCE marque l'entrée des entreprises dans le projet."
+      },
+      {
+       "q": "Qui valide l'avant-projet sommaire (APS) ?",
+       "choix": [
+        "L'architecte",
+        "Le bureau de contrôle",
+        "Le maître d'ouvrage",
+        "L'entreprise générale"
+       ],
+       "r": 2,
+       "explication": "Le MOA a le dernier mot : il valide les grandes options et le budget."
+      },
+      {
+       "q": "Quel acteur cadence le chantier pour que les entreprises travaillent dans le bon ordre ?",
+       "choix": [
+        "Le CSPS",
+        "L'OPC",
+        "Le BET",
+        "Le MOA"
+       ],
+       "r": 1,
+       "explication": "C'est le rôle du pilote du chantier : l'OPC."
+      },
+      {
+       "q": "Combien de grandes phases retenons-nous pour un projet de construction ?",
+       "choix": [
+        "4",
+        "6",
+        "8",
+        "12"
+       ],
+       "r": 2,
+       "explication": "Faisabilité, Programme, ESQ/APS, APD/PRO, DCE/ACT, EXE, AOR, Réception."
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }

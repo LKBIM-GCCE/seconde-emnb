@@ -1,0 +1,451 @@
+{
+ "id": "seq01-s1",
+ "sequence": "seq01",
+ "seance": "s1",
+ "titre": "Découvrir les acteurs de la construction",
+ "intro": "Lis les deux cours et fais les 3 activités. Chaque activité est corrigée tout de suite. À la fin, télécharge ton certificat et dépose-le sur l'ENT.",
+ "blocs": [
+  {
+   "id": "cours01",
+   "type": "cours",
+   "titre": "Cours 01 — Les acteurs de la construction",
+   "duree": "15 min",
+   "fichier": "seq01-s1-cours01.html"
+  },
+  {
+   "id": "td01",
+   "type": "exercice",
+   "titre": "TD 01 — Qui suis-je ?",
+   "duree": "25 min",
+   "consigne": "Le secteur du bâtiment fait intervenir de nombreux acteurs aux rôles bien distincts. À partir des indices de chaque carte (et d'internet si besoin), retrouve l'acteur qui parle.",
+   "parties": [
+    {
+     "type": "associer",
+     "vide": "— je suis… —",
+     "choix": [
+      "Maître d'ouvrage (MOA)",
+      "Architecte",
+      "BET structure",
+      "Maître d'œuvre (MOE)",
+      "AMO",
+      "BET fluides",
+      "CSPS",
+      "Entreprise",
+      "Économiste de la construction",
+      "Dessinateur-projeteur / modeleur",
+      "Bureau de contrôle",
+      "OPC"
+     ],
+     "items": [
+      {
+       "texte": "« C'est MOI qui commande ce bâtiment. J'ai un budget et je sais exactement ce que je veux : une école pour 300 élèves. C'est moi qui paie tout. »",
+       "reponse": "Maître d'ouvrage (MOA)"
+      },
+      {
+       "texte": "« J'ai reçu la commande du client. Je dessine les plans, je choisis les matériaux et je donne une forme architecturale au bâtiment. »",
+       "reponse": "Architecte"
+      },
+      {
+       "texte": "« Je calcule si les poteaux et les poutres peuvent tenir le poids du bâtiment. Sans mes calculs, le bâtiment risque de s'effondrer. »",
+       "reponse": "BET structure"
+      },
+      {
+       "texte": "« Je coordonne et mets en œuvre le projet, je fais le lien entre les besoins du client et les autres acteurs. »",
+       "reponse": "Maître d'œuvre (MOE)"
+      },
+      {
+       "texte": "« Je n'ai pas dessiné les plans, mais j'aide le client à définir précisément ce qu'il veut AVANT que l'architecte commence. Je suis son bras droit. »",
+       "reponse": "AMO"
+      },
+      {
+       "texte": "« Je conçois le système de chauffage, la ventilation et la plomberie. Je travaille avec l'architecte pour intégrer tout ça dans les murs et les plafonds. »",
+       "reponse": "BET fluides"
+      },
+      {
+       "texte": "« Je réalise des visites sur chantier et je m'assure que tout le monde respecte les règles de sécurité. »",
+       "reponse": "CSPS"
+      },
+      {
+       "texte": "« Je réalise les ouvrages et je construis le bâtiment. »",
+       "reponse": "Entreprise"
+      },
+      {
+       "texte": "« Je calcule combien va coûter le bâtiment, mètre carré par mètre carré, du sol au plafond. Mon rôle : rester dans le budget sans brader la qualité. »",
+       "reponse": "Économiste de la construction"
+      },
+      {
+       "texte": "« Je ne m'occupe pas de la conception, mais je produis l'ensemble des plans. »",
+       "reponse": "Dessinateur-projeteur / modeleur"
+      },
+      {
+       "texte": "« Je m'assure que le bâtiment respecte les normes de sécurité incendie et de résistance. Je contrôle de façon indépendante : je ne construis pas. »",
+       "reponse": "Bureau de contrôle"
+      },
+      {
+       "texte": "« Je planifie et je coordonne l'ordre d'intervention de toutes les entreprises, pour que le carreleur n'arrive pas avant le plombier. »",
+       "reponse": "OPC"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "td02",
+   "type": "exercice",
+   "titre": "TD 02 — Métiers et tâches dans la construction",
+   "duree": "25 min",
+   "consigne": "Le bâtiment regroupe des dizaines de métiers, chacun avec des tâches bien précises. Associe chaque métier à sa tâche principale, développe les sigles, puis projette-toi.",
+   "parties": [
+    {
+     "type": "associer",
+     "titre": "Exercice 1 — Relie chaque métier à sa tâche principale",
+     "choix": [
+      "Concevoir les plans et coordonner la maîtrise d'œuvre",
+      "Calculer et dimensionner les structures porteuses",
+      "Concevoir les réseaux (CVC, plomberie, électricité)",
+      "Estimer les coûts et rédiger les DPGF / BPU",
+      "Prévenir les risques et rédiger le plan SPS",
+      "Vérifier la solidité et la sécurité des ouvrages",
+      "Planifier et coordonner les interventions sur chantier",
+      "Assister le client dans ses décisions de projet",
+      "Diriger les équipes et suivre l'avancement du chantier",
+      "Définir les besoins et valider les orientations du projet"
+     ],
+     "items": [
+      {
+       "texte": "Architecte",
+       "reponse": "Concevoir les plans et coordonner la maîtrise d'œuvre"
+      },
+      {
+       "texte": "Ingénieur structure",
+       "reponse": "Calculer et dimensionner les structures porteuses"
+      },
+      {
+       "texte": "Ingénieur fluides / thermique",
+       "reponse": "Concevoir les réseaux (CVC, plomberie, électricité)"
+      },
+      {
+       "texte": "Économiste de la construction",
+       "reponse": "Estimer les coûts et rédiger les DPGF / BPU"
+      },
+      {
+       "texte": "Coordonnateur sécurité (CSPS)",
+       "reponse": "Prévenir les risques et rédiger le plan SPS"
+      },
+      {
+       "texte": "Contrôleur technique",
+       "reponse": "Vérifier la solidité et la sécurité des ouvrages"
+      },
+      {
+       "texte": "Chef de projet OPC",
+       "reponse": "Planifier et coordonner les interventions sur chantier"
+      },
+      {
+       "texte": "Assistant à maîtrise d'ouvrage",
+       "reponse": "Assister le client dans ses décisions de projet"
+      },
+      {
+       "texte": "Conducteur de travaux",
+       "reponse": "Diriger les équipes et suivre l'avancement du chantier"
+      },
+      {
+       "texte": "Élu / directeur technique",
+       "reponse": "Définir les besoins et valider les orientations du projet"
+      }
+     ]
+    },
+    {
+     "type": "saisie",
+     "titre": "Exercice 2 — Écris chaque sigle en toutes lettres",
+     "items": [
+      {
+       "texte": "MOA",
+       "reponse": "Maître d'ouvrage",
+       "motscles": [
+        [
+         "maitre",
+         "maitrise"
+        ],
+        [
+         "ouvrage"
+        ]
+       ]
+      },
+      {
+       "texte": "MOE",
+       "reponse": "Maître d'œuvre",
+       "motscles": [
+        [
+         "maitre",
+         "maitrise"
+        ],
+        [
+         "oeuvre",
+         "œuvre"
+        ]
+       ]
+      },
+      {
+       "texte": "AMO",
+       "reponse": "Assistant à maîtrise d'ouvrage",
+       "motscles": [
+        [
+         "assistant",
+         "assistance"
+        ],
+        [
+         "ouvrage"
+        ]
+       ]
+      },
+      {
+       "texte": "BET",
+       "reponse": "Bureau d'études techniques",
+       "motscles": [
+        [
+         "bureau"
+        ],
+        [
+         "etude"
+        ],
+        [
+         "technique"
+        ]
+       ]
+      },
+      {
+       "texte": "OPC",
+       "reponse": "Ordonnancement, pilotage, coordination",
+       "motscles": [
+        [
+         "ordonnancement"
+        ],
+        [
+         "pilotage"
+        ],
+        [
+         "coordination"
+        ]
+       ]
+      },
+      {
+       "texte": "BC",
+       "reponse": "Bureau de contrôle",
+       "motscles": [
+        [
+         "bureau"
+        ],
+        [
+         "controle"
+        ]
+       ]
+      },
+      {
+       "texte": "CSPS",
+       "reponse": "Coordonnateur sécurité et protection de la santé",
+       "motscles": [
+        [
+         "coordonnateur",
+         "coordinateur",
+         "coordination"
+        ],
+        [
+         "securite"
+        ],
+        [
+         "sante"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "redaction",
+     "titre": "Exercice 3 — Et toi ?",
+     "question": "« Parmi ces métiers, lequel t'attire le plus ? Pourquoi ? » Réponds en 2 à 3 phrases.",
+     "min": 60
+    }
+   ]
+  },
+  {
+   "id": "cours02",
+   "type": "cours",
+   "titre": "Cours 02 — Les liaisons entre acteurs",
+   "duree": "15 min",
+   "fichier": "seq01-s1-cours02.html"
+  },
+  {
+   "id": "td03",
+   "type": "exercice",
+   "titre": "TD 03 — Schéma des liaisons entre acteurs",
+   "duree": "25 min",
+   "consigne": "Les acteurs sont liés entre eux par des contrats ou par des relations de travail. Complète le schéma, puis classe chaque lien.",
+   "parties": [
+    {
+     "type": "schema",
+     "titre": "Exercice 1 — Place chaque acteur dans la bonne case",
+     "colonnes": 3,
+     "etiquettes": [
+      "MOA",
+      "AMO",
+      "MOE",
+      "BET",
+      "OPC",
+      "CSPS",
+      "BC",
+      "Entreprise"
+     ],
+     "decor": [
+      {
+       "t": "↓ contrat",
+       "col": 2,
+       "lig": 2
+      },
+      {
+       "t": "↓ direction des travaux",
+       "col": 2,
+       "lig": 4
+      }
+     ],
+     "cases": [
+      {
+       "id": "amo",
+       "col": 1,
+       "lig": 1,
+       "accepte": [
+        "AMO"
+       ],
+       "indice": "conseille le client"
+      },
+      {
+       "id": "moa",
+       "col": 2,
+       "lig": 1,
+       "accepte": [
+        "MOA"
+       ],
+       "indice": "le client, qui paye"
+      },
+      {
+       "id": "bc",
+       "col": 3,
+       "lig": 1,
+       "accepte": [
+        "BC",
+        "CSPS"
+       ],
+       "indice": "contrôle / sécurité"
+      },
+      {
+       "id": "csps",
+       "col": 3,
+       "lig": 2,
+       "accepte": [
+        "CSPS",
+        "BC"
+       ],
+       "indice": "contrôle / sécurité"
+      },
+      {
+       "id": "opc",
+       "col": 1,
+       "lig": 3,
+       "accepte": [
+        "OPC"
+       ],
+       "indice": "planning du chantier"
+      },
+      {
+       "id": "moe",
+       "col": 2,
+       "lig": 3,
+       "accepte": [
+        "MOE"
+       ],
+       "indice": "conçoit et coordonne"
+      },
+      {
+       "id": "bet",
+       "col": 3,
+       "lig": 3,
+       "accepte": [
+        "BET"
+       ],
+       "indice": "calcule"
+      },
+      {
+       "id": "ent",
+       "col": 2,
+       "lig": 5,
+       "accepte": [
+        "Entreprise"
+       ],
+       "indice": "construit"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "Exercice 2 — Contractuel ou fonctionnel ?",
+     "choix": [
+      "Contractuel",
+      "Fonctionnel"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "MOA ↔ MOE",
+       "reponse": "Contractuel",
+       "explication": "Le MOA signe le contrat de maîtrise d'œuvre et paye la MOE."
+      },
+      {
+       "texte": "MOA ↔ AMO",
+       "reponse": "Contractuel",
+       "explication": "Le MOA paye l'AMO pour être conseillé."
+      },
+      {
+       "texte": "MOA ↔ BC",
+       "reponse": "Contractuel",
+       "explication": "Le bureau de contrôle est mandaté et payé directement par le MOA."
+      },
+      {
+       "texte": "MOA ↔ CSPS",
+       "reponse": "Contractuel",
+       "explication": "Le CSPS est mandaté et payé directement par le MOA."
+      },
+      {
+       "texte": "MOE ↔ BET",
+       "reponse": "Fonctionnel",
+       "explication": "La MOE coordonne les BET (sauf s'ils sont contractés directement par le MOA)."
+      },
+      {
+       "texte": "MOE ↔ OPC",
+       "reponse": [
+        "Fonctionnel",
+        "Contractuel"
+       ],
+       "explication": "Les deux sont acceptés : l'OPC peut être intégré à la MOE ou avoir son propre contrat."
+      },
+      {
+       "texte": "MOE ↔ Entreprise",
+       "reponse": "Fonctionnel",
+       "explication": "La MOE dirige l'entreprise, mais c'est le MOA qui signe le marché et la paye."
+      },
+      {
+       "texte": "AMO ↔ MOE",
+       "reponse": "Fonctionnel",
+       "explication": "Ils échangent des informations, sans contrat entre eux."
+      }
+     ]
+    },
+    {
+     "type": "redaction",
+     "titre": "Exercice 3 — Question de réflexion",
+     "question": "« Parmi toutes ces relations, laquelle te semble la plus importante pour la réussite d'un projet ? Justifie ta réponse. »",
+     "min": 60,
+     "exemple": "La relation MOA ↔ MOE est la plus déterminante : elle fixe le cadre de toute l'opération. C'est le maître d'œuvre qui conçoit, coordonne et valide les travaux pour le compte du client."
+    }
+   ]
+  }
+ ]
+}

@@ -15,8 +15,10 @@ SORTIE = RACINE / "docs"
 ACTS = {}  # activités interactives : (séquence, séance) -> définition
 for f in sorted((RACINE / "data" / "activites").glob("*.json")):
     a = json.loads(f.read_text(encoding="utf-8"))
-    cours = f.with_name(f.stem + "-cours.html")
-    a["_cours"] = cours.read_text(encoding="utf-8") if cours.exists() else ""
+    a["_cours"] = {}
+    for b in a["blocs"]:  # chaque bloc "cours" pointe vers un fragment HTML : data/activites/<fichier>
+        if b["type"] == "cours":
+            a["_cours"][b["id"]] = (f.parent / b["fichier"]).read_text(encoding="utf-8")
     ACTS[(a["sequence"], a["seance"])] = a
 
 TYPES = {  # type de ressource -> (icône, libellé)
@@ -174,7 +176,7 @@ def page_en_ligne(s, i, a):
 <div id="activite"><nav id="etapes" aria-label="Étapes de la séance"></nav><section id="zone" aria-live="polite"></section></div>
 <p><button class="lien-raz" id="raz">Effacer mes réponses et tout recommencer</button></p>
 <script type="application/json" id="activite-data">{donnees}</script>
-<template id="cours-html">{a["_cours"]}</template>'''
+{"".join(f'<template id="cours-{k}">{v}</template>' for k, v in a["_cours"].items())}'''
     return page(f'{s["numero"]} S{i+1} en ligne', contenu, prof=1,
         fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"S{i+1}", f'{s["id"]}/{x["id"]}.html'), ("En ligne", None)],
         extra_tete='<link rel="stylesheet" href="../assets/activites.css">',
@@ -200,7 +202,7 @@ const ok=code(act+"|"+f.get("nom").trim()+"|"+ligne+"|"+f.get("date").trim())===
 const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentique":"✘ Le code ne correspond pas : certificat modifié ou mal recopié";r.className="score "+(ok?"ok":"ko");};
 </script>'''
     opts = "".join(f'<option value="{e(a["id"])}">{e(a["id"])} — {e(a["titre"])}</option>' for a in ACTS.values())
-    ids = {a["id"]: [b["id"] for b in a["blocs"] if b["type"] != "cours"] for a in ACTS.values()}
+    ids = {a["id"]: [b["id"] for b in a["blocs"] if b["type"] != "cours" and any(x["type"] not in ("image", "texte", "redaction") for x in b["parties"])] for a in ACTS.values()}
     contenu = contenu.replace("ACTS_OPTIONS", opts).replace("ACTS_IDS", json.dumps(ids))
     return page("Vérifier un certificat", contenu, extra_tete='<link rel="stylesheet" href="assets/activites.css"><meta name="robots" content="noindex">')
 
@@ -213,6 +215,8 @@ def main():
                 shutil.rmtree(f) if f.is_dir() else f.unlink()
     SORTIE.mkdir(exist_ok=True)
     shutil.copytree(RACINE / "assets", SORTIE / "assets", dirs_exist_ok=True)
+    if (RACINE / "media").exists():
+        shutil.copytree(RACINE / "media", SORTIE / "media", dirs_exist_ok=True)
     (SORTIE / ".nojekyll").touch()
     pages = {"index.html": accueil(), "competences.html": page_competences(), "verifier.html": page_verifier()}
     for s in DATA["sequences"]:

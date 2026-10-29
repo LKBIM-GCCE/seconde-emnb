@@ -140,7 +140,7 @@
 .assoc-liste .sel { flex: 0 1 320px; }
 .assoc-liste small, .saisies small { flex-basis: 100%; }
 .saisies label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; width: 100%; }
-.saisies label b { flex: 0 0 auto; min-width: 70px; }
+.saisies label b { flex: 1 1 220px; min-width: 0; }
 .champ { font: inherit; font-size: 15px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); background: var(--papier); color: var(--encre); flex: 1 1 240px; min-width: 0; }
 .champ.court { flex: 0 0 110px; width: 110px; text-align: right; }
 .nb { display: inline-flex; align-items: center; gap: 6px; }
@@ -174,3 +174,9 @@
 .cartes-sit { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
 .carte-sit { border: 1px solid var(--trait); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 12px; }
 .carte-sit p { margin: 4px 0 0; font-size: 14px; }
+@media (max-width: 700px) {
+  .fig-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .plan-reperes { min-width: 820px; }
+  .repere { width: 24px; height: 24px; font-size: 12px; }
+  .fig-wrap::after { content: "↔ Fais glisser le plan pour le parcourir"; display: block; font-size: 12px; color: var(--doux); margin-top: 4px; }
+}

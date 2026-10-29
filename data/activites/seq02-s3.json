@@ -1,0 +1,360 @@
+{
+ "id": "seq02-s3",
+ "sequence": "seq02",
+ "seance": "s3",
+ "titre": "Les coupes et les échelles",
+ "intro": "Comment connaît-on la hauteur d'un bâtiment ? Tu vas lire les coupes de la Villa Camacho, relever les hauteurs, puis apprendre à utiliser les échelles.",
+ "blocs": [
+  {
+   "id": "cours",
+   "type": "cours",
+   "titre": "Cours — Coupes et échelles",
+   "duree": "15 min",
+   "fichier": "seq02-s3-cours.html"
+  },
+  {
+   "id": "traits",
+   "type": "exercice",
+   "titre": "Activité 1 — Les traits de coupe",
+   "duree": "15 min",
+   "consigne": "Sur les plans, repère les traits de coupe A-A et B-B.",
+   "parties": [
+    {
+     "type": "image",
+     "src": "../media/seq02/rdc.png",
+     "alt": "Plan RDC avec le trait de coupe B-B",
+     "legende": "Plan RDC — trait de coupe B-B"
+    },
+    {
+     "type": "image",
+     "src": "../media/seq02/etage.png",
+     "alt": "Plan étage avec le trait de coupe A-A",
+     "legende": "Plan étage — trait de coupe A-A"
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Sur quel plan est dessiné le trait de coupe A-A ?",
+       "choix": [
+        "Le plan de masse",
+        "Le plan de l'étage",
+        "Les façades"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Sur quel plan est dessiné le trait de coupe B-B ?",
+       "choix": [
+        "Le plan du RDC",
+        "Le plan de l'étage",
+        "Le plan de situation"
+       ],
+       "r": 0
+      },
+      {
+       "q": "Quelles pièces la coupe B-B traverse-t-elle ?",
+       "choix": [
+        "Le garage et la cave",
+        "L'entrée, la cuisine et le coin repas",
+        "Les chambres 1 et 2",
+        "La salle de bains et le WC"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Comment reconnaît-on un trait de coupe ?",
+       "choix": [
+        "Trait fin continu",
+        "Trait mixte épais avec des lettres et des flèches aux extrémités",
+        "Trait rouge en zigzag",
+        "Un cercle avec un nombre"
+       ],
+       "r": 1
+      },
+      {
+       "q": "La coupe C-C n'est pas repérée sur les plans. D'après la coupe, quelle pièce traverse-t-elle ?",
+       "choix": [
+        "Le garage",
+        "Le séjour",
+        "La chambre 1",
+        "La cave"
+       ],
+       "r": 1
+      }
+     ]
+    },
+    {
+     "type": "redaction",
+     "question": "À quoi servent les traits de coupe sur un plan ? Réponds en une phrase.",
+     "min": 30,
+     "exemple": "Ils indiquent où le bâtiment est coupé et dans quel sens on regarde la coupe."
+    }
+   ]
+  },
+  {
+   "id": "coupeA",
+   "type": "exercice",
+   "titre": "Activité 2 — Lire la coupe A-A",
+   "duree": "20 min",
+   "consigne": "Identifie chaque élément repéré sur la coupe A-A.",
+   "parties": [
+    {
+     "type": "associer",
+     "image": "../media/seq02/coupe-a.png",
+     "alt": "Coupe A-A de la Villa Camacho",
+     "choix": [
+      "Toiture (charpente et couverture)",
+      "Plancher de l'étage",
+      "Plancher bas du RDC (dallage)",
+      "Fondation",
+      "Toiture terrasse végétalisée",
+      "Escalier",
+      "Niveau de référence ±0,00"
+     ],
+     "vide": "— quel élément ? —",
+     "items": [
+      {
+       "texte": "Repère n° 1",
+       "reponse": "Toiture (charpente et couverture)",
+       "x": 57.7,
+       "y": 36.5
+      },
+      {
+       "texte": "Repère n° 2",
+       "reponse": "Plancher de l'étage",
+       "x": 60.4,
+       "y": 49.3
+      },
+      {
+       "texte": "Repère n° 3",
+       "reponse": "Plancher bas du RDC (dallage)",
+       "x": 57.7,
+       "y": 61.5
+      },
+      {
+       "texte": "Repère n° 4",
+       "reponse": "Fondation",
+       "x": 73.4,
+       "y": 65.3
+      },
+      {
+       "texte": "Repère n° 5",
+       "reponse": "Toiture terrasse végétalisée",
+       "x": 32.4,
+       "y": 44.3
+      },
+      {
+       "texte": "Repère n° 6",
+       "reponse": "Escalier",
+       "x": 49.7,
+       "y": 55.9
+      },
+      {
+       "texte": "Repère n° 7",
+       "reponse": "Niveau de référence ±0,00",
+       "x": 65.7,
+       "y": 58.8
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Sous le plancher bas du RDC, y a-t-il un vide sanitaire ?",
+       "choix": [
+        "Oui, un vide sanitaire de 1 m",
+        "Non : le dallage repose sur une couche de cailloux (hérisson) posée sur le sol"
+       ],
+       "r": 1,
+       "explication": "La couche pointillée sous la dalle est un hérisson de 35 cm : le plancher est sur terre-plein."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hauteurs",
+   "type": "exercice",
+   "titre": "Activité 3 — Relever les hauteurs",
+   "duree": "20 min",
+   "consigne": "Lis les cotes de hauteur sur la coupe A-A. Les cotes sont en centimètres : écris les valeurs en mètres.",
+   "parties": [
+    {
+     "type": "image",
+     "src": "../media/seq02/coupe-a.png",
+     "alt": "Coupe A-A",
+     "legende": "Coupe A-A — cotation en cm"
+    },
+    {
+     "type": "nombre",
+     "items": [
+      {
+       "texte": "HSP du RDC",
+       "valeur": 2.5,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Cote 250 cm, du ±0,00 au plafond."
+      },
+      {
+       "texte": "Épaisseur du plancher de l'étage",
+       "valeur": 0.22,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Cote 22 cm."
+      },
+      {
+       "texte": "Vérification : HSP RDC + épaisseur du plancher",
+       "valeur": 2.72,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "2,50 + 0,22 = 2,72 m : c'est la cote du plancher de l'étage (+2,72)."
+      },
+      {
+       "texte": "Niveau du faîtage (point le plus haut) : +",
+       "valeur": 6.3,
+       "tolerance": 0.005,
+       "unite": "m"
+      },
+      {
+       "texte": "Niveau du plancher du garage : +",
+       "valeur": 0.6,
+       "tolerance": 0.005,
+       "unite": "m"
+      },
+      {
+       "texte": "HSP du garage",
+       "valeur": 2.4,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Cote 240 cm."
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Que représente le niveau ±0,00 ?",
+       "choix": [
+        "Le niveau de la mer",
+        "Le niveau de référence du projet, d'où partent toutes les hauteurs",
+        "Le point le plus bas du terrain",
+        "Le niveau des fondations"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Quelle est la différence entre la HSP et la hauteur d'étage ?",
+       "choix": [
+        "Aucune",
+        "La HSP ne comprend pas l'épaisseur du plancher",
+        "La HSP comprend la toiture",
+        "La hauteur d'étage est toujours plus petite"
+       ],
+       "r": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "echelles",
+   "type": "exercice",
+   "titre": "Activité 4 — Les échelles",
+   "duree": "20 min",
+   "consigne": "Associe chaque plan à son échelle habituelle, puis calcule. Rappel : mesure réelle = mesure plan × dénominateur ; mesure plan = mesure réelle ÷ dénominateur.",
+   "parties": [
+    {
+     "type": "associer",
+     "titre": "1. Quelle échelle pour quel plan ?",
+     "choix": [
+      "1/5 000",
+      "1/500",
+      "1/100",
+      "1/50",
+      "1/20"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "Plan de situation",
+       "reponse": "1/5 000"
+      },
+      {
+       "texte": "Plan de masse",
+       "reponse": "1/500"
+      },
+      {
+       "texte": "Plan de niveau (RDC, étage)",
+       "reponse": "1/100"
+      },
+      {
+       "texte": "Coupe détaillée",
+       "reponse": "1/50"
+      },
+      {
+       "texte": "Détail de construction",
+       "reponse": "1/20"
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "2. Du réel vers le plan",
+     "items": [
+      {
+       "texte": "6,00 m dessinés à 1/100 →",
+       "valeur": 6,
+       "tolerance": 0.01,
+       "unite": "cm",
+       "explication": "6,00 m ÷ 100 = 0,06 m = 6 cm."
+      },
+      {
+       "texte": "0,50 m dessinés à 1/50 →",
+       "valeur": 1,
+       "tolerance": 0.01,
+       "unite": "cm",
+       "explication": "0,50 m ÷ 50 = 0,01 m = 1 cm."
+      },
+      {
+       "texte": "10,00 m dessinés à 1/500 →",
+       "valeur": 2,
+       "tolerance": 0.01,
+       "unite": "cm",
+       "explication": "10,00 m ÷ 500 = 0,02 m = 2 cm."
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "3. Du plan vers le réel",
+     "items": [
+      {
+       "texte": "4,8 cm mesurés sur un plan à 1/100 →",
+       "valeur": 4.8,
+       "tolerance": 0.01,
+       "unite": "m",
+       "explication": "4,8 × 100 = 480 cm = 4,80 m."
+      },
+      {
+       "texte": "9 mm mesurés sur un plan à 1/100 →",
+       "valeur": 0.9,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "9 mm × 100 = 900 mm = 0,90 m (largeur d'une porte)."
+      },
+      {
+       "texte": "7,5 mm mesurés sur un plan à 1/50 →",
+       "valeur": 0.375,
+       "tolerance": 0.002,
+       "unite": "m",
+       "explication": "7,5 × 50 = 375 mm = 0,375 m : l'épaisseur du mur en brique monomur."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

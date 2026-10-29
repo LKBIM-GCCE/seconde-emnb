@@ -1,0 +1,332 @@
+{
+ "id": "seq02-s4",
+ "sequence": "seq02",
+ "seance": "s4",
+ "titre": "Analyse de l'évolution des plans : de l'esquisse à l'APD",
+ "intro": "Un plan d'esquisse et un plan de permis de construire, c'est la même chose ? Tu vas comparer la maquette APS et les plans APD de la Villa Camacho, puis faire le bilan de la séquence.",
+ "blocs": [
+  {
+   "id": "cours",
+   "type": "cours",
+   "titre": "Cours — Les plans évoluent avec le projet",
+   "duree": "15 min",
+   "fichier": "seq02-s4-cours.html"
+  },
+  {
+   "id": "phase",
+   "type": "exercice",
+   "titre": "Activité 1 — À quelle phase appartient ce plan ?",
+   "duree": "10 min",
+   "consigne": "Pour chaque plan décrit, retrouve sa phase à partir de son niveau de détail.",
+   "parties": [
+    {
+     "type": "indices",
+     "choix": [
+      "ESQ",
+      "APS",
+      "APD",
+      "DCE",
+      "EXE"
+     ],
+     "libelle": "Phase",
+     "titreDossier": "Plan n° ",
+     "dossiers": [
+      {
+       "indices": [
+        "Croquis à main levée, sans aucune cote.",
+        "On voit seulement l'implantation et le volume général.",
+        "Échelle 1/500."
+       ],
+       "reponse": "ESQ"
+      },
+      {
+       "indices": [
+        "Plans de niveaux avec des dimensions approximatives.",
+        "Une maquette 3D simple permet de visualiser le projet.",
+        "Échelle 1/200."
+       ],
+       "reponse": "APS"
+      },
+      {
+       "indices": [
+        "Plans entièrement cotés au 1/100.",
+        "Les surfaces des pièces sont indiquées.",
+        "Le dossier sert à déposer le permis de construire."
+       ],
+       "reponse": "APD"
+      },
+      {
+       "indices": [
+        "Plans au 1/50 accompagnés du CCTP et des quantitatifs.",
+        "Le dossier est envoyé aux entreprises pour qu'elles chiffrent.",
+        "Les menuiseries sont décrites précisément."
+       ],
+       "reponse": "DCE"
+      },
+      {
+       "indices": [
+        "Plans de réservations pour les gaines et les réseaux.",
+        "Détails au 1/20 et au 1/5.",
+        "Ils sont utilisés sur le chantier par les ouvriers."
+       ],
+       "reponse": "EXE"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "etude",
+   "type": "exercice",
+   "titre": "Activité 2 — Étude 01 : APS ou APD ?",
+   "duree": "30 min",
+   "consigne": "Le maître d'œuvre te remet la maquette APS de la Villa Camacho et les plans APD. Compare-les, puis indique quelles évolutions ont réellement eu lieu. (Le TP noté reste à faire sur papier, avec DR1 et DR2.)",
+   "parties": [
+    {
+     "type": "image",
+     "src": "../media/seq02/aps-maquette-rdc.jpg",
+     "alt": "Maquette APS du rez-de-chaussée",
+     "legende": "Maquette APS (3D) — rez-de-chaussée"
+    },
+    {
+     "type": "image",
+     "src": "../media/seq02/rdc.png",
+     "alt": "Plan APD du rez-de-chaussée",
+     "legende": "Plan APD — rez-de-chaussée"
+    },
+    {
+     "type": "vraifaux",
+     "titre": "1. Ces évolutions ont-elles eu lieu entre l'APS et l'APD ?",
+     "items": [
+      {
+       "texte": "L'emplacement de la cave du garage a été modifié.",
+       "reponse": true,
+       "explication": "La cave a été déplacée dans le garage."
+      },
+      {
+       "texte": "Une deuxième porte du garage a été supprimée.",
+       "reponse": true,
+       "explication": "Il ne reste qu'une porte de service."
+      },
+      {
+       "texte": "Des portes à galandage ont été créées.",
+       "reponse": true,
+       "explication": "On les lit sur le plan APD (cuisine, lingerie…)."
+      },
+      {
+       "texte": "Un auvent a été créé, ce qui a modifié la toiture.",
+       "reponse": true,
+       "explication": "L'auvent de l'entrée impose une modification de la toiture."
+      },
+      {
+       "texte": "Une sortie de fumée pour un poêle à granulés a été prévue.",
+       "reponse": true,
+       "explication": "Conduit de cheminée extérieur en inox, côté séjour."
+      },
+      {
+       "texte": "Le nombre de vantaux des portes-fenêtres a été modifié.",
+       "reponse": true,
+       "explication": "Décision prise pendant l'APD."
+      },
+      {
+       "texte": "Une piscine a été ajoutée sur le terrain.",
+       "reponse": false,
+       "explication": "Aucune piscine n'apparaît sur les plans APD."
+      },
+      {
+       "texte": "L'étage a été supprimé : la maison est devenue de plain-pied.",
+       "reponse": false,
+       "explication": "La villa reste en R+1."
+      },
+      {
+       "texte": "Le garage a été déplacé de l'autre côté de la maison.",
+       "reponse": false,
+       "explication": "Le garage reste au même endroit."
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "titre": "2. Pourquoi ces évolutions ?",
+     "questions": [
+      {
+       "q": "Entre l'APS et l'APD, les différences entre les plans sont…",
+       "choix": [
+        "des erreurs de l'architecte",
+        "normales : le projet se précise",
+        "interdites par la loi"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Laquelle de ces raisons peut faire évoluer un plan ?",
+       "choix": [
+        "Une demande du client",
+        "Une contrainte technique ou réglementaire",
+        "Le budget",
+        "Toutes ces raisons"
+       ],
+       "r": 3
+      },
+      {
+       "q": "Pour comparer deux plans, quelle méthode est la plus efficace ?",
+       "choix": [
+        "Commencer par les cotes de détail",
+        "Forme globale, puis ouvertures et cloisons, puis cotes",
+        "Regarder seulement le cartouche"
+       ],
+       "r": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "type": "exercice",
+   "titre": "Bilan — Quiz de la séquence 02",
+   "duree": "15 min",
+   "consigne": "Fais le point sur toute la séquence : situation, masse, niveaux, façades, coupes, échelles et phases.",
+   "parties": [
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Quel plan répond à la question « Où est le terrain ? »",
+       "choix": [
+        "Le plan de masse",
+        "Le plan de situation",
+        "La coupe",
+        "La façade"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Quel plan montre l'implantation du bâtiment sur sa parcelle ?",
+       "choix": [
+        "Le plan de masse",
+        "Le plan RDC",
+        "La façade",
+        "Le détail"
+       ],
+       "r": 0
+      },
+      {
+       "q": "Un plan de niveaux est une coupe…",
+       "choix": [
+        "verticale",
+        "horizontale à environ 1 m du sol",
+        "oblique",
+        "de la toiture"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Sur un plan, la trémie d'escalier est représentée par…",
+       "choix": [
+        "un cercle",
+        "un rectangle barré en X",
+        "un trait fin",
+        "une flèche"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Qu'est-ce qu'une façade ?",
+       "choix": [
+        "Une vue intérieure",
+        "Une vue extérieure d'une face du bâtiment",
+        "Une vue de dessus",
+        "Une coupe"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Grâce à quoi nomme-t-on les façades Nord, Sud, Est, Ouest ?",
+       "choix": [
+        "Le cartouche",
+        "L'indicateur Nord du plan de masse",
+        "La légende des matériaux",
+        "L'échelle"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Quel document permet de lire la hauteur sous plafond ?",
+       "choix": [
+        "Le plan de situation",
+        "La coupe",
+        "Le plan de masse",
+        "Le cartouche"
+       ],
+       "r": 1
+      },
+      {
+       "q": "À 1/100, 1 cm sur le plan représente…",
+       "choix": [
+        "1 cm",
+        "10 cm",
+        "1 m",
+        "10 m"
+       ],
+       "r": 2
+      },
+      {
+       "q": "HSP RDC 2,50 m + plancher 0,22 m = ?",
+       "choix": [
+        "2,28 m",
+        "2,72 m",
+        "2,50 m",
+        "3,00 m"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Le niveau ±0,00 est…",
+       "choix": [
+        "l'altitude de la mer",
+        "la référence de hauteur du projet",
+        "le fond des fondations",
+        "le faîtage"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Dans quelle phase les plans sont-ils entièrement cotés pour le permis de construire ?",
+       "choix": [
+        "ESQ",
+        "APS",
+        "APD",
+        "EXE"
+       ],
+       "r": 2
+      },
+      {
+       "q": "Où trouve-t-on l'échelle et la phase d'un plan ?",
+       "choix": [
+        "Dans la légende",
+        "Dans le cartouche",
+        "Sur la façade",
+        "Sur le plan de situation"
+       ],
+       "r": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bilan",
+   "type": "exercice",
+   "titre": "Bilan — Ce que je retiens",
+   "duree": "5 min",
+   "parties": [
+    {
+     "type": "redaction",
+     "question": "Quelle est, pour toi, la chose la plus importante apprise dans cette séquence sur la lecture de plans ? Pourquoi ?",
+     "min": 50
+    }
+   ]
+  }
+ ]
+}

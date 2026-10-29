@@ -1,0 +1,376 @@
+{
+ "id": "seq02-s1",
+ "sequence": "seq02",
+ "seance": "s1",
+ "titre": "Découverte du dossier : plan de situation et plan de masse",
+ "intro": "Tu es assistant(e) en architecture et tu reçois le dossier de la Villa Camacho. Avant toute lecture technique, tu dois classer les plans et te repérer géographiquement.",
+ "blocs": [
+  {
+   "id": "classer",
+   "type": "exercice",
+   "titre": "Activité 1 — Classer le dossier",
+   "duree": "25 min",
+   "consigne": "Voici les 8 documents du dossier (noms lus dans les cartouches). Classe chacun dans son type de pièce graphique.",
+   "parties": [
+    {
+     "type": "associer",
+     "choix": [
+      "Plan de situation",
+      "Plan de masse",
+      "Plan de niveaux",
+      "Façades",
+      "Coupes"
+     ],
+     "melanger": false,
+     "items": [
+      {
+       "texte": "Plan de situation (St Léonard de Noblat)",
+       "reponse": "Plan de situation"
+      },
+      {
+       "texte": "Plan de masse — parcelle H885/889/894",
+       "reponse": "Plan de masse"
+      },
+      {
+       "texte": "Plan rez-de-chaussée",
+       "reponse": "Plan de niveaux"
+      },
+      {
+       "texte": "Plan étage",
+       "reponse": "Plan de niveaux"
+      },
+      {
+       "texte": "Façades 1 et 2",
+       "reponse": "Façades"
+      },
+      {
+       "texte": "Façades 3 et 4",
+       "reponse": "Façades"
+      },
+      {
+       "texte": "Coupe A-A",
+       "reponse": "Coupes"
+      },
+      {
+       "texte": "Coupes B-B et C-C",
+       "reponse": "Coupes"
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "À quoi sert chaque type de plan ?",
+     "choix": [
+      "Plan de situation",
+      "Plan de masse",
+      "Plan de niveaux",
+      "Façades",
+      "Coupes"
+     ],
+     "melanger": false,
+     "vide": "— quel plan ? —",
+     "items": [
+      {
+       "texte": "Répondre à la question : OÙ se trouve le terrain ?",
+       "reponse": "Plan de situation"
+      },
+      {
+       "texte": "Montrer COMMENT le bâtiment est implanté sur sa parcelle.",
+       "reponse": "Plan de masse"
+      },
+      {
+       "texte": "Montrer l'organisation des pièces de chaque étage.",
+       "reponse": "Plan de niveaux"
+      },
+      {
+       "texte": "Montrer l'aspect extérieur : ouvertures, matériaux.",
+       "reponse": "Façades"
+      },
+      {
+       "texte": "Montrer l'intérieur en hauteur : planchers, toiture, fondations.",
+       "reponse": "Coupes"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cours",
+   "type": "cours",
+   "titre": "Cours — Le dossier graphique",
+   "duree": "10 min",
+   "fichier": "seq02-s1-cours.html"
+  },
+  {
+   "id": "situation",
+   "type": "exercice",
+   "titre": "Activité 2 — Le plan de situation",
+   "duree": "25 min",
+   "consigne": "Observe attentivement le plan de situation de la Villa Camacho (clique sur « Agrandir » pour le voir en grand), puis réponds.",
+   "parties": [
+    {
+     "type": "image",
+     "src": "../media/seq02/plan-de-situation.jpg",
+     "alt": "Plan de situation de la Villa Camacho",
+     "legende": "Plan de situation — Villa Camacho, St Léonard de Noblat"
+    },
+    {
+     "type": "saisie",
+     "titre": "1. Lis les informations du plan",
+     "items": [
+      {
+       "texte": "Nom du cabinet d'architecture",
+       "reponse": "Atelier « POLYGONE »",
+       "motscles": [
+        [
+         "polygone"
+        ]
+       ]
+      },
+      {
+       "texte": "Objet du projet",
+       "reponse": "Construction d'une maison d'habitation",
+       "motscles": [
+        [
+         "maison"
+        ]
+       ]
+      },
+      {
+       "texte": "Commune",
+       "reponse": "St Léonard de Noblat",
+       "motscles": [
+        [
+         "leonard"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "items": [
+      {
+       "texte": "Code postal",
+       "valeur": 87400,
+       "tolerance": 0
+      },
+      {
+       "texte": "Échelle du plan : 1 /",
+       "valeur": 12500,
+       "tolerance": 0,
+       "explication": "L'échelle est écrite à la main en bas du plan : 1/12 500."
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "titre": "2. Localise le terrain",
+     "questions": [
+      {
+       "q": "Quel symbole indique la position de la villa ?",
+       "choix": [
+        "Une étoile",
+        "Une flèche",
+        "Un cercle",
+        "Une croix"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Quel est le nom du lieu-dit où se trouve la villa ?",
+       "choix": [
+        "Le Colombier",
+        "Bellevue",
+        "Beaufort",
+        "Le Temple"
+       ],
+       "r": 1
+      },
+      {
+       "q": "La villa est-elle dans le centre de St-Léonard ?",
+       "choix": [
+        "Oui, en plein centre",
+        "Non, en périphérie, à l'écart du centre"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Sur une carte IGN, le Nord est en haut. Dans quelle direction est la villa par rapport au centre-ville ?",
+       "choix": [
+        "Nord",
+        "Sud",
+        "Est",
+        "Ouest"
+       ],
+       "r": 2,
+       "explication": "La villa est à droite (à l'est) du centre, vers la Peyrade / Bellevue."
+      },
+      {
+       "q": "Laquelle de ces routes apparaît sur le plan ?",
+       "choix": [
+        "D 109",
+        "A 20",
+        "N 7",
+        "D 1000"
+       ],
+       "r": 0,
+       "explication": "On lit aussi la D 39 et la D 13."
+      }
+     ]
+    },
+    {
+     "type": "redaction",
+     "titre": "3. Synthèse",
+     "question": "Explique en une ou deux phrases le rôle du plan de situation.",
+     "min": 40,
+     "exemple": "Le plan de situation sert à localiser le terrain dans la commune : il montre le quartier, les routes et les accès."
+    }
+   ]
+  },
+  {
+   "id": "masse",
+   "type": "exercice",
+   "titre": "Activité 3 — Le plan de masse",
+   "duree": "25 min",
+   "consigne": "Observe le plan de masse : l'orientation, la parcelle, les courbes de niveau et les réseaux.",
+   "parties": [
+    {
+     "type": "image",
+     "src": "../media/seq02/plan-de-masse.png",
+     "alt": "Plan de masse de la Villa Camacho",
+     "legende": "Plan de masse — Villa Camacho"
+    },
+    {
+     "type": "saisie",
+     "titre": "1. Informations sur la parcelle",
+     "items": [
+      {
+       "texte": "Numéros des parcelles cadastrales",
+       "reponse": "H885 / 889 / 894",
+       "motscles": [
+        [
+         "885"
+        ],
+        [
+         "889"
+        ],
+        [
+         "894"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "items": [
+      {
+       "texte": "Surface totale de la parcelle",
+       "valeur": 2026,
+       "tolerance": 0,
+       "unite": "m²"
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Quel est l'indicateur de direction utilisé ?",
+       "choix": [
+        "Une rose des vents",
+        "Une simple flèche",
+        "Il n'y en a pas"
+       ],
+       "r": 0
+      },
+      {
+       "q": "Vers où pointe le Nord sur ce plan ?",
+       "choix": [
+        "Vers le haut",
+        "Vers la droite",
+        "Vers le bas",
+        "Vers la gauche"
+       ],
+       "r": 1,
+       "explication": "La rose des vents, en bas à gauche, a sa pointe « N » vers la droite."
+      },
+      {
+       "q": "Que représentent les traits bleus continus qui entourent le terrain ?",
+       "choix": [
+        "Les routes",
+        "Les limites de propriété",
+        "Les réseaux d'eau",
+        "Les courbes de niveau"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Que représentent les lignes numérotées de 362 à 367 ?",
+       "choix": [
+        "Les numéros des maisons voisines",
+        "Les courbes de niveau (altitude du terrain)",
+        "Les distances en mètres",
+        "Les numéros de parcelles"
+       ],
+       "r": 1
+      },
+      {
+       "q": "Quel est le point le plus haut du terrain ?",
+       "choix": [
+        "362 m",
+        "364 m",
+        "367 m",
+        "2026 m"
+       ],
+       "r": 2
+      },
+      {
+       "q": "Le Nord étant à droite, dans quelle direction le terrain monte-t-il ?",
+       "choix": [
+        "Vers l'ouest (en haut du plan)",
+        "Vers l'est (en bas du plan)"
+       ],
+       "r": 1,
+       "explication": "Les altitudes augmentent vers le bas du plan, c'est-à-dire vers l'est."
+      }
+     ]
+    },
+    {
+     "type": "vraifaux",
+     "titre": "2. Les réseaux représentés",
+     "items": [
+      {
+       "texte": "Le raccordement AEP / EDF / Télécom est représenté.",
+       "reponse": true,
+       "explication": "On le voit arriver depuis la route, en haut du plan."
+      },
+      {
+       "texte": "Les eaux pluviales (EP) sont représentées.",
+       "reponse": true,
+       "explication": "On repère 2 points EP."
+      },
+      {
+       "texte": "On voit 4 tranchées d'épandage pour l'assainissement.",
+       "reponse": true,
+       "explication": "« Tranchées d'épandage x 4, longueur 100 ml »."
+      },
+      {
+       "texte": "Le plan de masse montre les pièces intérieures de la maison.",
+       "reponse": false,
+       "explication": "Non : il montre seulement l'emprise du bâtiment. Les pièces sont sur les plans de niveaux."
+      }
+     ]
+    },
+    {
+     "type": "redaction",
+     "titre": "3. Synthèse",
+     "question": "Nomme un élément présent sur le plan de masse et absent du plan de situation.",
+     "min": 20,
+     "exemple": "Les limites de la parcelle, les réseaux, les courbes de niveau ou l'emprise exacte de la maison."
+    }
+   ]
+  }
+ ]
+}

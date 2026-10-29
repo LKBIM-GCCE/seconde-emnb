@@ -1,0 +1,1302 @@
+{
+  "site": {
+    "titre": "Seconde EMNB",
+    "sous_titre": "Études et modélisation numérique du bâtiment",
+    "etablissement": "Lycée des métiers Urbain Vitry — Toulouse",
+    "annee": "2026–2027",
+    "enseignant": "K. Lormeau"
+  },
+  "competences": {
+    "C1.1.1": "Situer ses fonctions et ses responsabilités dans l'entreprise",
+    "C1.1.3": "Identifier les partenaires, leurs fonctions et leurs missions",
+    "C1.2.1": "Rechercher des informations, identifier leurs sources et apprécier leur pertinence",
+    "C1.3.2": "Choisir et utiliser l'outil de communication approprié",
+    "C2.1.1": "S'approprier le contenu d'un dossier",
+    "C2.1.2": "Identifier les interventions et travaux à réaliser",
+    "C2.2.1": "Identifier les données nécessaires à l'activité",
+    "C2.2.2": "Hiérarchiser les critères de choix",
+    "C2.2.3": "Choisir les données numériques ou graphiques",
+    "C3.2.1": "Effectuer les mesures et leur contrôle",
+    "C4.1.1": "Classer les différents documents du dossier"
+  },
+  "sequences": [
+    {
+      "id": "seq01",
+      "numero": "SEQ01",
+      "titre": "Les acteurs et les phases de la construction",
+      "problematique": "Quelle est ma place dans l'entreprise et quel est le rôle de chaque intervenant selon la phase du projet ?",
+      "periode": "Septembre",
+      "duree": "8 h",
+      "contexte": "Tu découvres qui fait quoi dans un projet de construction (maître d'ouvrage, maître d'œuvre, bureaux d'études, entreprises) et à quel moment chacun intervient, de l'idée jusqu'à la réception.",
+      "statut": "en_ligne",
+      "seances": [
+        {
+          "titre": "Découvrir les acteurs de la construction",
+          "duree": "2 h",
+          "competences": [
+            "C1.1.1"
+          ],
+          "evaluation": "Formative",
+          "objectifs": [
+            "Découvrir les acteurs d'un projet à partir de leurs indices métier",
+            "Relier chaque métier à son acteur",
+            "Distinguer liens contractuels et liens fonctionnels"
+          ],
+          "ressources": [
+            {
+              "nom": "Support de présentation",
+              "type": "presentation",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 01-ACTEURS DE LA CONSTRUCTION/LKBIM-DECOUVERTE DES ACTEURS-SUPPORT PRESENTATION.pptx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Cours 01 — Les acteurs",
+              "type": "cours",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 01-ACTEURS DE LA CONSTRUCTION/LKBIM-DECOUVERTE DES ACTEURS-COURS01.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Cours 02 — Les liaisons entre acteurs",
+              "type": "cours",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 01-ACTEURS DE LA CONSTRUCTION/LKBIM-DECOUVERTE DES ACTEURS-COURS02.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD 01 — Qui suis-je ?",
+              "type": "td",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 01-ACTEURS DE LA CONSTRUCTION/LKBIM-DECOUVERTE DES ACTEURS-TD01.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD 02 — Métier ↔ acteur",
+              "type": "td",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 01-ACTEURS DE LA CONSTRUCTION/LKBIM-DECOUVERTE DES ACTEURS-TD02.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD 03 — Schéma des liaisons",
+              "type": "td",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 01-ACTEURS DE LA CONSTRUCTION/LKBIM-DECOUVERTE DES ACTEURS-TD03.docx",
+              "lien": "",
+              "integrer": false
+            }
+          ],
+          "id": "s1",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Mobiliser les représentations initiales des élèves sur les métiers du bâtiment",
+              "eleves": [
+                "Observer 3 photos de chantiers variés projetées.",
+                "Répondre oralement à la question : « Qui travaille sur ce projet ? »"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Découvrir les acteurs d'un projet de construction à travers leurs indices métier",
+              "eleves": [
+                "En groupe et en vous aidant d'internet et de vos connaissances, retrouver les acteurs de constructions qui correspondent au cartes donnée."
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Mémoriser les rôles et les relations entre acteurs",
+              "eleves": [
+                "Écouter le mini-cours.",
+                "Prendre des notes pour la suite des activités."
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Comprendre les missions de chaque acteur et les métiers associés",
+              "eleves": [
+                "Relier chaque métier (architecte, ingénieur structure,",
+                "économiste…) à son acteur dans le projet.",
+                "« Et toi, tu veux exercer quel métier ? »"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Comprendre les liaisons contractuelles et fonctionnelles entre acteurs",
+              "eleves": [
+                "Écouter le cours afin de comprendre les liaisons entre les différents acteurs."
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Restituer les liaisons entre acteurs à partir du cours",
+              "eleves": [
+                "Compléter le schéma vierge des liaisons :",
+                "— placer les acteurs dans les cases",
+                "— tracer les flèches",
+                "— indiquer la nature du lien (contractuel / fonctionnel)",
+                "Comparer avec le voisin."
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Les phases de l'acte de construire",
+          "duree": "2 h",
+          "competences": [
+            "C1.1.1",
+            "C1.1.3"
+          ],
+          "evaluation": "Formative (quiz 10 questions)",
+          "objectifs": [
+            "Ordonner les phases d'un projet selon la loi MOP",
+            "Identifier une phase à partir d'indices de chantier",
+            "Croiser acteurs et phases : qui intervient à quel moment ?"
+          ],
+          "ressources": [
+            {
+              "nom": "Support de présentation",
+              "type": "presentation",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 02-PHASES DE L'ACTE DE CONSTRUIRE/LKBIM-PHASES DE L'ACTE DE CONSTRUIRE-SUPPORT PRESENTATION.pptx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Cours 03 — Les phases (loi MOP)",
+              "type": "cours",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 02-PHASES DE L'ACTE DE CONSTRUIRE/LKBIM-PHASES DE L'ACTE DE CONSTRUIRE-COURS03.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD 04 — Cartes-phases et frise",
+              "type": "td",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 02-PHASES DE L'ACTE DE CONSTRUIRE/LKBIM-PHASES DE L'ACTE DE CONSTRUIRE-TD04.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD 05 — À quelle phase sommes-nous ?",
+              "type": "td",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 02-PHASES DE L'ACTE DE CONSTRUIRE/LKBIM-PHASES DE L'ACTE DE CONSTRUIRE-TD05 SUPPORT.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD 06 — Acteurs × phases",
+              "type": "td",
+              "fichier_source": "S01-ACTEURS ET PHASES DE LA CONSTRUCTION/SEANCE 02-PHASES DE L'ACTE DE CONSTRUIRE/LKBIM-PHASES DE L'ACTE DE CONSTRUIRE-TD06 SUPPORT.pdf",
+              "lien": "",
+              "integrer": false
+            }
+          ],
+          "id": "s2",
+          "deroule": [
+            {
+              "temps": "25 min",
+              "etape": "Ordonner les 8 phases d'un projet selon la loi MOP",
+              "eleves": [
+                "Par groupe, classer les 8 cartes-phases dans l'ordre chronologique.",
+                "Compléter la frise élève (8 cases vides).",
+                "Comparer avec les autres groupes."
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Comprendre le contenu et les enjeux des phases",
+              "eleves": [
+                "Écouter le mini-cours.",
+                "Compléter la légende de la frise",
+                "(couleurs, noms, documents produits)."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Identifier une phase à partir d'indices de chantier",
+              "eleves": [
+                "Travail individuel :",
+                "Lire les 3 indices de chaque dossier.",
+                "Identifier la phase correspondante et noter son nom.",
+                "Souligner l'indice le plus déterminant.",
+                "Reporter les 8 phases dans le bon ordre sur la frise vierge au verso."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Croiser acteurs et phases : qui intervient à quel moment ?",
+              "eleves": [
+                "Recevoir la fiche avec les acteurs et les phases de la construction. Relier les bons acteurs avec les bonnes phases et les bonnes missions."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Évaluer les acquis de la séance de manière formative",
+              "eleves": [
+                "Répondre individuellement à 10 questions",
+                "(acteurs + phases).",
+                "Self-correction à l'annonce des réponses."
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Fixer les 3 apprentissages essentiels et préparer la suite du cycle",
+              "eleves": [
+                "Recopier ou compléter la fiche synthèse « À retenir »",
+                "(3 phrases clés).",
+                "Écouter l'annonce de la prochaine séance."
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Application croisée et résolution de problèmes",
+          "duree": "2 h",
+          "competences": [
+            "C1.1.1",
+            "C1.1.3"
+          ],
+          "evaluation": "Formative",
+          "objectifs": [
+            "Mobiliser acteurs et phases face à un dysfonctionnement de chantier",
+            "Remettre les documents d'un projet dans l'ordre chronologique",
+            "Construire le tableau croisé acteurs × phases"
+          ],
+          "ressources": [],
+          "id": "s3",
+          "deroule": [
+            {
+              "temps": "5 min",
+              "etape": "Lancement et consignes",
+              "eleves": [
+                "Lecture individuelle de la carte reçue.",
+                "Echange rapide au sein du groupe."
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Travail en groupe",
+              "eleves": [
+                "Discussion, argumentation en groupe.",
+                "Rédaction d'une réponse courte (3-4 lignes).",
+                "Désignation d'un porte-parole."
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Restitution commune",
+              "eleves": [
+                "Écoute les autres groupes.",
+                "Peut réagir / compléter.",
+                "Note les corrections sur sa fiche."
+              ]
+            },
+            {
+              "temps": "5 min",
+              "etape": "Présentation du dossier",
+              "eleves": [
+                "Reçoit le dossier, prend connaissance rapide des 4 documents."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Tri et chronologie",
+              "eleves": [
+                "Tri des documents.",
+                "Complétion d'un tableau de positionnement (feuille guide)."
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mise en perspective métier",
+              "eleves": [
+                "Complète la fiche de synthèse documentaire.",
+                "Prépare la restitution orale du groupe."
+              ]
+            },
+            {
+              "temps": "35 min",
+              "etape": "Co-construction du tableau",
+              "eleves": [
+                "Répond aux questions du prof.",
+                "Note les éléments validés sur leur propre matrice.",
+                "Participe aux ajustements."
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Trace écrite validée",
+              "eleves": [
+                "Finalise le tableau sur la feuille propre.",
+                "Souligne / surligne les rôles de son futur métier."
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Jeu de rôle, transition numérique et évaluation",
+          "duree": "2 h",
+          "competences": [
+            "C1.1.1",
+            "C1.1.3"
+          ],
+          "evaluation": "Sommative (QCM numérique)",
+          "objectifs": [
+            "Endosser le rôle d'un acteur face à un imprévu",
+            "Comprendre le passage de témoin conception → réalisation grâce au BIM",
+            "Valider les acquis de la séquence"
+          ],
+          "ressources": [],
+          "id": "s4",
+          "deroule": [
+            {
+              "temps": "5 min",
+              "etape": "Attribution des rôles et scénario",
+              "eleves": [
+                "Prend connaissance du scénario.",
+                "Identifie son rôle et ses responsabilités dans cette phase."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Préparation en groupe",
+              "eleves": [
+                "Rédige ou prépare à l'oral la réaction de son acteur.",
+                "Consulte ses notes de cours (S01/S02/S03)."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Restitution « Réunion de chantier »",
+              "eleves": [
+                "Présente la réaction de son acteur.",
+                "Interagit avec les autres groupes.",
+                "Note les impacts identifiés collectivement."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Du plan 2D à la maquette 3D",
+              "eleves": [
+                "Observe et répond aux questions.",
+                "Note la différence plan 2D / maquette 3D.",
+                "Identifie un exemple concret d'erreur évitée grâce au BIM."
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Mise en commun « À quoi sert le BIM ? »",
+              "eleves": [
+                "Propose une formulation.",
+                "Note la définition validée dans son cours."
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "QCM numérique (individuel)",
+              "eleves": [
+                "Répond au QCM sur son poste / tablette / smartphone.",
+                "Travail individuel, sans notes."
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Correction et débrief rapide",
+              "eleves": [
+                "Prend note des corrections.",
+                "Identifie ses propres erreurs."
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Bilan de séquence",
+              "eleves": [
+                "Participe au bilan.",
+                "Réfléchit à son futur positionnement métier."
+              ]
+            },
+            {
+              "temps": "5 min",
+              "etape": "Transition vers la suite",
+              "eleves": [
+                "Note la suite du programme.",
+                "Rangement."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seq02",
+      "numero": "SEQ02",
+      "titre": "La lecture de plans",
+      "problematique": "Comment lire et exploiter un dossier de plans pour identifier l'organisation d'un bâtiment, repérer ses dimensions réelles et analyser l'évolution du projet entre ses différentes phases ?",
+      "periode": "Septembre – Octobre",
+      "duree": "8 h",
+      "contexte": "Assistant(e) en architecture dans un bureau d'études, tu intègres l'équipe du projet Villa Camacho, une maison individuelle. Tu dois t'approprier le dossier graphique complet, de l'Esquisse à l'APD.",
+      "statut": "en_ligne",
+      "seances": [
+        {
+          "titre": "Découverte du dossier : plan de situation et plan de masse",
+          "duree": "2 h",
+          "competences": [
+            "C1.2.1",
+            "C2.1.1",
+            "C4.1.1"
+          ],
+          "evaluation": "Formative (fiche défi)",
+          "objectifs": [
+            "Nommer les différents types de plans d'un dossier",
+            "Localiser un terrain sur un plan de situation",
+            "Lire un plan de masse et situer le bâtiment sur la parcelle",
+            "Orienter un plan à l'aide de la rose des vents"
+          ],
+          "ressources": [
+            {
+              "nom": "Support de présentation S1",
+              "type": "presentation",
+              "fichier_source": "S02-LECTURE DE PLAN/S01-PLAN DE SITUATION & MASSE/LKBIM-SEQ02-S1-PPT-V2.pptx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD — Découverte du dossier",
+              "type": "td",
+              "fichier_source": "S02-LECTURE DE PLAN/S01-PLAN DE SITUATION & MASSE/LKBIM-TD DECOUVERTE DU DOSSIER.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Fiche synthèse — Dossier graphique et plan de masse",
+              "type": "synthese",
+              "fichier_source": "S02-LECTURE DE PLAN/S01-PLAN DE SITUATION & MASSE/LKBIM-FICHE SYNTHESE DOSSIER GRAPHIQUE ET PLN MASSE.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Plan de situation",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/Plan de situation.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Plan de masse",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/plan de masse.pdf",
+              "lien": "",
+              "integrer": false
+            }
+          ],
+          "id": "s1",
+          "deroule": [
+            {
+              "temps": "15 min",
+              "etape": "Lancement",
+              "eleves": [
+                "Recevoir le dossier Villa Camacho (plans imprimés)",
+                "Observer et feuilleter les documents sans consigne précise",
+                "Répondre à la question : « Combien de documents différents ? Lesquels ? »"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mission - Plan de situation",
+              "eleves": [
+                "Localiser la Villa Camacho sur le plan de situation : commune, quartier, voiries",
+                "Identifier les accès depuis la voie publique",
+                "Indiquer l'orientation du terrain à partir de la rose des vents",
+                "Compléter la fiche activité : plan de situation annoté"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Plan de situation",
+              "eleves": [
+                "Examiner la correction projetée du plan de situation",
+                "Identifier les éléments mal localisés ou mal nommés sur sa fiche",
+                "Indiquer les corrections sur la fiche défi"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mission - Plan de masse",
+              "eleves": [
+                "Identifier l'indicateur Nord sur le plan de masse",
+                "Reconnaître les symboles de la légende : limites de parcelle, emprise bâtiment, végétaux, accès",
+                "Localiser le bâtiment sur la parcelle (implantation)",
+                "Indiquer sur la fiche activité chaque élément repéré : plan de masse annoté"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Plan de masse",
+              "eleves": [
+                "Examiner la correction du plan de masse projetée",
+                "Citer les symboles de légende mal identifiés sur sa fiche",
+                "Indiquer les corrections nécessaires sur la fiche activité"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Apport structurant",
+              "eleves": [
+                "Citer les 3 types de plans graphiques : plan de situation, plan de masse, plan de niveaux",
+                "Nommer la différence entre plan de situation et plan de masse",
+                "Identifier la fiche de cours dans le dossier distribué",
+                "Classer la fiche de cours dans le porte-documents"
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Plans de niveaux et façades",
+          "duree": "2 h",
+          "competences": [
+            "C2.1.1",
+            "C2.1.2",
+            "C2.2.1"
+          ],
+          "evaluation": "Formative (grille TD02)",
+          "objectifs": [
+            "Identifier les types de lignes d'un plan",
+            "Nommer les pièces et espaces représentés",
+            "Lire les cotes et retrouver une dimension",
+            "Distinguer une porte d'une fenêtre sur un plan"
+          ],
+          "ressources": [
+            {
+              "nom": "Support de présentation S2",
+              "type": "presentation",
+              "fichier_source": "S02-LECTURE DE PLAN/S02-PLAN RDC ET ELEVATION/LKBIM-SEQ02-S2-PPT.pptx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD — Plans d'étages et façades",
+              "type": "td",
+              "fichier_source": "S02-LECTURE DE PLAN/S02-PLAN RDC ET ELEVATION/LKBIM-TD PLN ETAGES & FACADES.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Fiche synthèse — Plans d'étages et façades",
+              "type": "synthese",
+              "fichier_source": "S02-LECTURE DE PLAN/S02-PLAN RDC ET ELEVATION/LKBIM-FICHE SYNTHESE PLN ETAGES & FACADES.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Plan RDC",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/RDC.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Plan Étage",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/ETAGE.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Façades 1 et 2",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/FACADES 1 2.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Façades 3 et 4",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/FACADES 3 4.pdf",
+              "lien": "",
+              "integrer": false
+            }
+          ],
+          "id": "s2",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Rappel + Lancement",
+              "eleves": [
+                "Citer 3 pièces graphiques vues en S1",
+                "Nommer la différence entre plan de situation et plan de masse",
+                "Identifier sur le schéma la zone coupée à 1 m (coupe horizontale)",
+                "Reconnaître les plans RDC et Étage dans le dossier Villa Camacho"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mission - Plans de niveaux (RDC + Étage)",
+              "eleves": [
+                "Nommer chaque pièce sur le plan RDC : séjour, cuisine, chambre(s), SDB, WC",
+                "Identifier les éléments architecturaux : murs porteurs, cloisons, portes, fenêtres",
+                "Localiser la trémie d'escalier sur le plan RDC et sur le plan Étage",
+                "Indiquer sur la fiche activité l'emplacement de chaque pièce (ACTIVITE_PLAN_ETAGE.pdf)"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - RDC + Étage",
+              "eleves": [
+                "Examiner la correction projetée (RDC puis Étage)",
+                "Citer les éléments mal nommés ou mal identifiés sur sa fiche",
+                "Indiquer la différence entre mur porteur (épais) et cloison (fin)"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Lancement - Découverte des façades",
+              "eleves": [
+                "Nommer les 4 façades du bâtiment : Nord, Sud, Est, Ouest",
+                "Identifier l'indicateur Nord sur le plan de masse",
+                "Reconnaître chaque façade dans le dossier Villa Camacho"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Lire et orienter les façades",
+              "eleves": [
+                "Identifier les ouvertures (baies, portes-fenêtres) sur chaque façade",
+                "Localiser le RDC et l'Étage sur les représentations de façade",
+                "Nommer les matériaux représentés sur les façades de la Villa Camacho",
+                "Indiquer l'orientation de chaque façade à partir de l'indicateur Nord (ACTIVITE_LES_FACADES.pdf)"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Façades",
+              "eleves": [
+                "Examiner la correction des 4 orientations projetée",
+                "Citer les éléments identifiés sur chaque façade : ouvertures, matériaux, niveaux",
+                "Indiquer les erreurs d'orientation corrigées sur sa fiche activité"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Apport structurant",
+              "eleves": [
+                "Citer la définition d'un plan de niveaux : coupe horizontale à 1 m du sol",
+                "Nommer les 3 informations lisibles sur une façade : orientation, ouvertures, matériaux",
+                "Identifier la fiche de cours dans le dossier distribué",
+                "Classer la fiche de cours dans le porte-documents (section SEQ02)"
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Les coupes et les échelles",
+          "duree": "2 h",
+          "competences": [
+            "C2.2.1",
+            "C3.2.1"
+          ],
+          "evaluation": "Formative (tableau de relevé)",
+          "objectifs": [
+            "Expliquer à quoi sert une coupe",
+            "Relier un trait de coupe à la coupe correspondante",
+            "Lire des cotes altimétriques sur une coupe",
+            "Utiliser une règle Kutch pour retrouver une mesure réelle"
+          ],
+          "ressources": [
+            {
+              "nom": "Support de présentation S3",
+              "type": "presentation",
+              "fichier_source": "S02-LECTURE DE PLAN/S03-COUPES & ECHELLES/LKBIM-SEQ02-S3-PPT.pptx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TD — Coupes et échelles",
+              "type": "td",
+              "fichier_source": "S02-LECTURE DE PLAN/S03-COUPES & ECHELLES/LKBIM-TD COUPES & ECHELLES.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Fiche synthèse — Coupes et échelles",
+              "type": "synthese",
+              "fichier_source": "S02-LECTURE DE PLAN/S03-COUPES & ECHELLES/LKBIM-COUPES & ECHELLES-FICHE SYNTESE.docx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Coupe A",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/coupe A.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Coupes B et C",
+              "type": "plan",
+              "fichier_source": "S02-LECTURE DE PLAN/00-RESSOURCES/PLAN DCE/coupe B C.pdf",
+              "lien": "",
+              "integrer": false
+            }
+          ],
+          "id": "s3",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Lancement défi",
+              "eleves": [
+                "Identifier le trait de coupe A-A sur le plan RDC",
+                "Décrire oralement 2 éléments supposés visibles sur la coupe A-A",
+                "Nommer la direction de coupe à partir des flèches et des lettres"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Mission - Localiser les traits de coupe",
+              "eleves": [
+                "Localiser les traits de coupe A-A, B-B, C-C sur le plan RDC",
+                "Identifier les conventions : lettres aux extrémités, flèches de sens de regard",
+                "Indiquer sur la fiche repérage la direction de chaque coupe"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Lire la coupe A-A",
+              "eleves": [
+                "Identifier sur la coupe A-A : RDC, Étage, plancher, toiture, fondations, vide sanitaire",
+                "Localiser le niveau de référence ± 0.00 sur la coupe",
+                "Nommer chaque élément sur la fiche activité S3-A annotée"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Cotes de hauteur",
+              "eleves": [
+                "Repérer les cotes de hauteur sur les coupes A-A, B-B et C-C",
+                "Indiquer dans le tableau : HSP RDC, HSP Étage, épaisseur plancher, hauteur faîtage",
+                "Identifier la cohérence : HSP + épaisseur plancher = hauteur d'étage"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Coupes",
+              "eleves": [
+                "Examiner le tableau de hauteurs corrigé projeté",
+                "Identifier les cotes mal lues ou mal renseignées sur sa fiche",
+                "Citer le rôle du niveau ± 0.00 comme référence du bâtiment"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Découverte - Échelles",
+              "eleves": [
+                "Localiser le cartouche sur le plan RDC et identifier l'échelle",
+                "Citer la formule : mesure réelle = mesure plan × dénominateur",
+                "Indiquer la mesure réelle de 2 pièces calculées à partir du plan RDC",
+                "Compléter l'exercice d'introduction aux échelles"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Apport structurant",
+              "eleves": [
+                "Citer la définition d'une coupe : section verticale du bâtiment",
+                "Nommer le niveau de référence : ± 0.00",
+                "Identifier la formule de l'échelle sur la fiche de cours",
+                "Classer la fiche de cours dans le porte-documents"
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Analyse de l'évolution des plans : de l'Esquisse à l'APD",
+          "duree": "2 h",
+          "competences": [
+            "C2.1.1",
+            "C2.2.1"
+          ],
+          "evaluation": "Sommative — C2.1.1 (3 pts) · C2.2.1 (7 pts)",
+          "objectifs": [
+            "Identifier la phase d'un document à partir de son niveau de détail",
+            "Repérer les différences entre un plan Esquisse et un plan APD",
+            "Expliquer pourquoi les plans évoluent au cours du projet"
+          ],
+          "ressources": [
+            {
+              "nom": "Support de présentation S4",
+              "type": "presentation",
+              "fichier_source": "S02-LECTURE DE PLAN/S04-ANALYSE DE L'EVOLUTION DES PLANS/LKBIM-SEQ02-S4-PPT.pptx",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "TP 01 — Analyse de l'évolution des plans",
+              "type": "td",
+              "fichier_source": "S02-LECTURE DE PLAN/S04-ANALYSE DE L'EVOLUTION DES PLANS/LKBIM-ANALYSE DE L'EVOLUTION DE PLAN-TP01.pdf",
+              "lien": "",
+              "integrer": false
+            },
+            {
+              "nom": "Fiche synthèse — Évolution des plans",
+              "type": "synthese",
+              "fichier_source": "S02-LECTURE DE PLAN/S04-ANALYSE DE L'EVOLUTION DES PLANS/LKBIM-ANALYSE DE L'EVOLUTION DES PLANS-FICHE SYNTESE.pdf",
+              "lien": "",
+              "integrer": false
+            }
+          ],
+          "id": "s4",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Lancement - Les phases de conception",
+              "eleves": [
+                "Identifier les 4 phases sur le schéma projeté : Esquisse, APS, APD, PC",
+                "Nommer le rôle de chaque phase",
+                "Reconnaître la phase d'un plan à partir des informations du cartouche"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Lire le plan Esquisse",
+              "eleves": [
+                "Identifier les pièces représentées sur le plan Esquisse",
+                "Nommer les informations du cartouche : phase, échelle, date, indice de révision",
+                "Indiquer le niveau de détail sur la fiche comparaison Esquisse / APD"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Lire le plan APD et comparer",
+              "eleves": [
+                "Identifier les évolutions sur le plan APD par rapport à l'Esquisse",
+                "Localiser les éléments ajoutés, supprimés ou modifiés : pièces, cotes, ouvertures",
+                "Indiquer les différences sur la fiche comparaison : colonne 2"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Comparaison Esquisse / APD",
+              "eleves": [
+                "Examiner la correction projetée des 2 plans côte à côte",
+                "Citer les 3 principales différences identifiées",
+                "Indiquer pourquoi les plans évoluent au cours de la conception"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Découverte BIM - Plan / Maquette",
+              "eleves": [
+                "Reconnaître dans la maquette 3D : RDC, Étage, façade Sud, coupe A-A",
+                "Identifier dans la maquette un élément vu sur le plan papier (ex. : séjour, trémie)",
+                "Indiquer les réponses aux 4 questions de la fiche découverte BIM"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Exploration BIM - Repérage guidé",
+              "eleves": [
+                "Localiser dans la maquette : RDC, Étage, toiture, façade Sud",
+                "Identifier 3 éléments visibles en 3D non lisibles sur le plan 2D",
+                "Indiquer les réponses sur la fiche découverte BIM (suite)"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Bilan de séquence",
+              "eleves": [
+                "Citer les 5 types de documents vus dans la séquence : situation, masse, niveaux, façades, coupes",
+                "Identifier les phases Esquisse et APD dans les documents de la séquence",
+                "Classer toutes les fiches de cours dans le porte-documents (ordre S1 → S4)"
+              ]
+            }
+          ]
+        }
+      ],
+      "ressources_sequence": [
+        {
+          "nom": "Fiche synthèse A3 de la séquence",
+          "type": "synthese",
+          "fichier_source": "S02-LECTURE DE PLAN/LKBIM-SEQ02-SYNTHESE-A3.docx",
+          "lien": "",
+          "integrer": false
+        }
+      ]
+    },
+    {
+      "id": "seq03",
+      "numero": "SEQ03",
+      "titre": "La maquette numérique IFC",
+      "problematique": "Comment une maquette IFC permet-elle de répondre aux besoins d'information de chaque intervenant d'un projet ?",
+      "periode": "Novembre – Décembre",
+      "duree": "8 h",
+      "contexte": "Tu rejoins la cellule BIM Desk de l'agence Atelier Équerre Architectes. L'agence conçoit sous Revit, mais ses partenaires reçoivent les maquettes en IFC. Pour chaque demande (ticket), tu retrouves l'information et tu la transmets sous la forme la plus utile.",
+      "statut": "en_ligne",
+      "seances": [
+        {
+          "titre": "Pourquoi l'IFC ? Jeu Mission IFC",
+          "duree": "2 h",
+          "competences": [
+            "C1.2.1",
+            "C1.3.2",
+            "C2.1.1"
+          ],
+          "evaluation": "Formative (certificat Mission IFC)",
+          "objectifs": [
+            "Expliquer pourquoi l'agence transmet un fichier IFC plutôt qu'un fichier Revit",
+            "Identifier la classe IFC d'un objet (IfcWall, IfcDoor, IfcSlab…)",
+            "Ordonner l'arborescence : Projet › Site › Bâtiment › Niveau › Élément",
+            "Lire une propriété d'un objet"
+          ],
+          "ressources": [],
+          "id": "s1",
+          "deroule": [
+            {
+              "temps": "15 min",
+              "etape": "Lancement - Le fichier illisible",
+              "eleves": [
+                "Découvrir la situation : arrivée dans la cellule BIM Desk de l'agence Atelier Équerre",
+                "Observer la tentative d'ouverture du fichier .rvt chez un partenaire (message d'erreur)",
+                "Répondre à la question : « Comment envoyer la maquette à quelqu'un qui n'a pas Revit ? »"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission IFC - 1. Explorer",
+              "eleves": [
+                "Lancer le jeu Mission IFC (mission 1 « Explorer »)",
+                "Faire tourner la maquette, filtrer par niveau, masquer des classes",
+                "Découvrir au moins 7 classes sur 9 : IfcWall, IfcDoor, IfcSlab…"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mission IFC - 2. Chasse aux objets + 3. Arborescence",
+              "eleves": [
+                "Retrouver les 9 objets demandés : porte d'entrée, fenêtre du R+1, escalier…",
+                "Vérifier le niveau d'un objet grâce au chemin affiché dans l'inspecteur",
+                "Ranger les 5 étiquettes de l'arborescence dans le bon ordre"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission IFC - 4. Propriétés",
+              "eleves": [
+                "Sélectionner l'objet demandé puis lire la réponse dans l'inspecteur",
+                "Répondre aux 7 questions : épaisseur de mur, largeur de porte, marches, Uw, porteur, matériau, surface",
+                "Capturer le certificat de fin de mission"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Mise en commun",
+              "eleves": [
+                "Comparer ses scores et ses erreurs avec la correction projetée",
+                "Expliquer à l'oral une question ratée et la bonne méthode",
+                "Compléter le schéma de l'arborescence sur la fiche"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Apport structurant",
+              "eleves": [
+                "Citer : IFC = format ouvert, lisible avec une visionneuse gratuite",
+                "Nommer les 3 notions : classe, arborescence, propriétés",
+                "Répondre à la question de départ : « Comment envoyer la maquette à un partenaire ? »"
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Lire la maquette du projet (BIMvision)",
+          "duree": "2 h",
+          "competences": [
+            "C2.1.1",
+            "C2.2.1"
+          ],
+          "evaluation": "Formative (fiche d'identité + tickets)",
+          "objectifs": [
+            "Naviguer dans une maquette IFC : niveaux, coupes, masquage",
+            "Compléter la fiche d'identité du projet",
+            "Traiter les tickets « information » du maître d'ouvrage",
+            "Indiquer la source de chaque réponse"
+          ],
+          "ressources": [
+            {
+              "nom": "Télécharger BIMvision (gratuit)",
+              "type": "lien",
+              "fichier_source": "",
+              "lien": "https://bimvision.eu/download/",
+              "integrer": false
+            }
+          ],
+          "id": "s2",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Rappel + Lancement",
+              "eleves": [
+                "Répondre aux 3 questions flash : classe d'une porte ? niveau d'un objet ? où lire une épaisseur ?",
+                "Découvrir l'ordre de mission : villa Sabonnères, villa Goyrans, siège social ou maison de quartier",
+                "Ouvrir le dossier réseau du groupe : IFC + plans PDF"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Prise en main BIMvision",
+              "eleves": [
+                "Ouvrir l'IFC du projet dans BIMvision",
+                "Reproduire les gestes du jeu : niveaux, masquage, sélection, propriétés",
+                "Réaliser un plan de coupe horizontal pour voir l'intérieur du RDC"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Fiche d'identité du projet",
+              "eleves": [
+                "Compléter la fiche : usage, niveaux, nombre de pièces, surface, matériaux des murs extérieurs, toiture",
+                "Indiquer pour chaque réponse où elle a été trouvée : maquette ou plan",
+                "Joindre une vue 3D du projet en capture"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Correction - Fiche d'identité",
+              "eleves": [
+                "Présenter son projet en 1 min (porte-parole du groupe)",
+                "Comparer ses réponses avec la correction projetée",
+                "Citer une donnée trouvée seulement dans la maquette"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mission - Tickets « information »",
+              "eleves": [
+                "Traiter 5 tickets du maître d'ouvrage et du conducteur de travaux : « Quels murs sont porteurs ? », « Quel matériau en façade ? »…",
+                "Pour chaque ticket : donnée nécessaire, réponse, source (objet, propriété, plan)",
+                "Traiter le ticket vigilance de son projet"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Tickets",
+              "eleves": [
+                "Examiner la correction projetée ticket par ticket",
+                "Corriger ses réponses et ses sources",
+                "Expliquer le ticket vigilance trouvé par son groupe"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Apport structurant",
+              "eleves": [
+                "Compléter la fiche de cours : les 4 étapes d'un ticket",
+                "Citer 2 données lues dans la maquette et 2 lues sur le plan",
+                "Classer la fiche dans le porte-documents"
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Répondre à l'économiste : tickets quantitatifs",
+          "duree": "2 h",
+          "competences": [
+            "C2.2.1",
+            "C2.2.2",
+            "C2.2.3"
+          ],
+          "evaluation": "Formative (tableau de quantités + capture annotée)",
+          "objectifs": [
+            "Compter des objets par classe et par niveau",
+            "Relever des longueurs, surfaces et volumes dans la maquette",
+            "Comparer une donnée de la maquette avec le plan",
+            "Choisir la forme de réponse : tableau ou capture annotée"
+          ],
+          "ressources": [],
+          "id": "s3",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Lancement défi",
+              "eleves": [
+                "Comparer 2 réponses à la même demande : un tableau de valeurs et une capture annotée",
+                "Répondre : « Laquelle est la plus utile pour l'économiste ? Pour le conducteur de travaux ? »",
+                "Justifier son choix à l'oral"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Mission - Compter",
+              "eleves": [
+                "Compter les portes, fenêtres et pièces par niveau",
+                "Vérifier le comptage dans l'arborescence par classe",
+                "Reporter les résultats dans le tableur"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Mission - Relever des quantités",
+              "eleves": [
+                "Relever : surface de chaque pièce, surface de la dalle du RDC, longueur et surface des murs extérieurs",
+                "Reporter les valeurs avec leur unité dans le tableur",
+                "Repérer le jeu de quantités utilisé (Qto)"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Mission - Plan ou maquette ?",
+              "eleves": [
+                "Relever une cote sur le plan PDF et la comparer avec la valeur de la maquette",
+                "Comparer la surface d'une pièce : nomenclature PDF / maquette",
+                "Indiquer quelle source fait foi et pourquoi"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Mission - Choisir la forme de réponse",
+              "eleves": [
+                "Traiter 2 tickets : un à réponse numérique (tableau), un à réponse graphique (capture annotée)",
+                "Réaliser la capture dans BIMvision et l'annoter : repères, légende",
+                "Justifier en une phrase le choix de la forme"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Correction - Tickets",
+              "eleves": [
+                "Examiner la correction projetée",
+                "Corriger valeurs, unités et formes de réponse",
+                "Présenter une capture annotée de son groupe"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Apport structurant",
+              "eleves": [
+                "Compléter la fiche de synthèse « graphique ou numérique ? »",
+                "Citer un exemple de chaque forme vu dans la séance",
+                "Noter ses questions pour l'évaluation"
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Évaluation : les futurs bureaux de l'agence",
+          "duree": "2 h",
+          "competences": [
+            "C2.2.1",
+            "C2.2.3"
+          ],
+          "evaluation": "Sommative — C2.2.1 (3 pts) · C2.2.3 (7 pts)",
+          "objectifs": [
+            "Identifier les données nécessaires à chaque demande",
+            "Retrouver seul les informations dans une maquette inconnue",
+            "Choisir et justifier la forme de réponse, puis la présenter à l'oral"
+          ],
+          "ressources": [],
+          "id": "s4",
+          "deroule": [
+            {
+              "temps": "10 min",
+              "etape": "Lancement - Consignes de l'évaluation",
+              "eleves": [
+                "Lire l'ordre de mission : l'agence a acheté une maison pour y installer ses bureaux",
+                "Prendre connaissance des 5 tickets et de la grille d'évaluation",
+                "Ouvrir la maquette IFC et les plans PDF"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Évaluation - Découverte du projet",
+              "eleves": [
+                "Explorer la maquette : niveaux, locaux, terrasses",
+                "Compléter l'en-tête de la fiche réponse : nombre de niveaux et de locaux",
+                "Repérer les documents PDF disponibles"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Évaluation - Tickets information",
+              "eleves": [
+                "Traiter les tickets 1 à 3 : matériaux de façade, hauteur d'acrotère, usage d'un local",
+                "Indiquer pour chacun la donnée nécessaire, la réponse et la source",
+                "Choisir la forme de réponse et la justifier"
+              ]
+            },
+            {
+              "temps": "25 min",
+              "etape": "Évaluation - Tickets quantitatifs",
+              "eleves": [
+                "Ticket 4 : surface des locaux clos et couverts (ticket vigilance : terrasses à exclure)",
+                "Ticket 5 : capture annotée demandée par le conducteur de travaux",
+                "Justifier le choix de la forme de réponse"
+              ]
+            },
+            {
+              "temps": "20 min",
+              "etape": "Oral - Restitution au client",
+              "eleves": [
+                "Présenter en 2 min un ticket au choix à l'enseignant (rôle du client)",
+                "Justifier le choix de la source et de la forme de réponse",
+                "Répondre à une question du client"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Correction collective",
+              "eleves": [
+                "Examiner le corrigé projeté",
+                "Repérer ses erreurs sans modifier sa copie",
+                "Expliquer pourquoi les terrasses ne sont pas des locaux clos"
+              ]
+            },
+            {
+              "temps": "5 min",
+              "etape": "Bilan de séquence",
+              "eleves": [
+                "Citer les 3 notions IFC et la méthode du ticket",
+                "Compléter la grille d'auto-évaluation des compétences",
+                "Classer les fiches S1 → S4 dans le porte-documents"
+              ]
+            }
+          ]
+        }
+      ],
+      "ressources_sequence": [
+        {
+          "nom": "Fiche synthèse A3 de la séquence",
+          "type": "synthese",
+          "fichier_source": "S03-DECOUVERTE DE L'IFC/LKBIM-SEQ03-SYNTHESE-A3.docx",
+          "lien": "",
+          "integrer": false
+        },
+        {
+          "nom": "Synthèse visuelle de la séquence",
+          "type": "presentation",
+          "fichier_source": "S03-DECOUVERTE DE L'IFC/LKBIM-SEQ03-SYNTHESE_VISUELLE.pptx",
+          "lien": "",
+          "integrer": false
+        }
+      ]
+    },
+    {
+      "id": "seq04",
+      "numero": "SEQ04",
+      "titre": "Économie de la construction",
+      "problematique": "",
+      "periode": "À venir",
+      "duree": "",
+      "contexte": "",
+      "statut": "a_venir",
+      "seances": []
+    },
+    {
+      "id": "seq05",
+      "numero": "SEQ05",
+      "titre": "Synthèse et projet",
+      "problematique": "",
+      "periode": "À venir",
+      "duree": "",
+      "contexte": "",
+      "statut": "a_venir",
+      "seances": []
+    }
+  ]
+}

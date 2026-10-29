@@ -180,3 +180,19 @@
   .repere { width: 24px; height: 24px; font-size: 12px; }
   .fig-wrap::after { content: "↔ Fais glisser le plan pour le parcourir"; display: block; font-size: 12px; color: var(--doux); margin-top: 4px; }
 }
+.bas-seance { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-top: 20px; }
+.consigne { background: var(--plan-pale); border-left-color: var(--plan); }
+#zone { border-color: var(--plan); }
+.etape.actif { border-color: var(--chantier); box-shadow: 0 0 0 2px var(--chantier-pale); }
+.etape.actif .n { background: var(--chantier); }
+.btn { box-shadow: 0 3px 0 #b84408; }
+.btn.sec { box-shadow: none; }
+.schema-cours { margin: 18px 0; background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 14px; }
+.schema-cours svg { display: block; width: 100%; height: auto; font-family: var(--texte); }
+.schema-cours figcaption { font-size: 14px; color: var(--doux); margin-top: 8px; text-align: center; }
+.duo-images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.duo-images figure { margin: 0; border: 1px solid var(--trait); border-radius: 8px; overflow: hidden; background: #fff; }
+.duo-images img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: contain; background: #fff; }
+.duo-images figcaption { padding: 8px 12px; font-size: 14px; background: var(--carte); color: var(--doux); }
+.duo-images b { color: var(--chantier); font-family: var(--titre); margin-right: 6px; }
+@media (max-width: 600px) { .duo-images { grid-template-columns: 1fr; } }

@@ -2,27 +2,103 @@
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Accueil · Seconde EMNB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-</head><body>
+</head><body class="p-accueil">
 <header class="entete">
-  <a class="marque" href="index.html"><span class="logo">2<small>de</small></span>
+  <a class="marque" href="index.html"><span class="logo" aria-hidden="true">2<small>de</small></span>
     <span><strong>Seconde EMNB</strong><em>Études et modélisation numérique du bâtiment</em></span></a>
-  <nav class="menu"><a href="seq01/index.html">SEQ01</a><a href="seq02/index.html">SEQ02</a><a href="seq03/index.html">SEQ03</a><a href="competences.html">Compétences</a></nav>
+  <nav class="menu" aria-label="Séquences"><a href="seq01/index.html">SEQ01</a><a href="seq02/index.html">SEQ02</a><a href="seq03/index.html">SEQ03</a><a href="competences.html">Compétences</a></nav>
 </header>
 <main>
-<section class="hero"><p class="sur">2026–2027</p><h1>Bienvenue en Seconde EMNB</h1>
-<p>Retrouve ici chaque séquence de l'année : ce que tu vas apprendre, le déroulé des séances et tous les documents (cours, TD, plans, fiches synthèse).</p></section>
-<section class="grille"><a class="carte" href="seq01/index.html">
-  <div class="carte-haut"><span class="num">SEQ01</span><span class="periode">Septembre</span></div>
-  <h2>Les acteurs et les phases de la construction</h2><p>Quelle est ma place dans l&#x27;entreprise et quel est le rôle de chaque intervenant selon la phase du projet ?</p>
-  <span class="meta">4 séances · 8 h</span></a><a class="carte" href="seq02/index.html">
-  <div class="carte-haut"><span class="num">SEQ02</span><span class="periode">Septembre – Octobre</span></div>
-  <h2>La lecture de plans</h2><p>Comment lire et exploiter un dossier de plans pour identifier l&#x27;organisation d&#x27;un bâtiment, repérer ses dimensions réelles et analyser l&#x27;évolution du projet entre ses différentes phases ?</p>
-  <span class="meta">4 séances · 8 h</span></a><a class="carte" href="seq03/index.html">
-  <div class="carte-haut"><span class="num">SEQ03</span><span class="periode">Novembre – Décembre</span></div>
-  <h2>La maquette numérique IFC</h2><p>Comment une maquette IFC permet-elle de répondre aux besoins d&#x27;information de chaque intervenant d&#x27;un projet ?</p>
-  <span class="meta">4 séances · 8 h</span></a><div class="carte off"><div class="carte-haut"><span class="num">SEQ04</span><span class="periode">À venir</span></div>
-  <h2>Économie de la construction</h2><p>Cette séquence sera publiée dans l'année.</p></div><div class="carte off"><div class="carte-haut"><span class="num">SEQ05</span><span class="periode">À venir</span></div>
-  <h2>Synthèse et projet</h2><p>Cette séquence sera publiée dans l'année.</p></div></section></main>
-<footer class="pied">Lycée des métiers Urbain Vitry — Toulouse · K. Lormeau · 2026–2027</footer>
+<section class="hero">
+  <div class="hero-texte">
+    <h1>Lire un plan, modéliser un bâtiment, le chiffrer.</h1>
+    <p>Bienvenue en Seconde EMNB. Ici tu retrouves toutes les séances de l'année : tu peux les faire en ligne, vérifier tes réponses et télécharger ta fiche synthèse.</p>
+    <a class="btn-grand" href="seq01/index.html">Commencer par la séquence 1</a>
+  </div>
+  <figure class="hero-photo">
+    <img src="media/projet/villa-livree.jpg" alt="La Villa Camacho terminée : maison à étage avec bardage bois et toiture en tuiles">
+    <svg class="hero-cotes" viewBox="0 0 100 66" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M6 61 H94 M6 58 V64 M94 58 V64" /><path d="M97 8 V56 M94 8 H100 M94 56 H100" />
+    </svg>
+    <span class="hero-cote-h">18,10 m</span><span class="hero-cote-v">+6,30</span>
+    <figcaption>La Villa Camacho, maison réelle étudiée en séquence 2.</figcaption>
+  </figure>
+</section>
+<section class="parcours">
+  <h2 class="titre-section">Ton parcours de l'année <span class="cote " aria-hidden="true"><span>5 séquences</span></span></h2>
+  <ol class="route"><li class="etape-seq"><a class="feuille" href="seq01/index.html">
+<div class="illu"><svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trois acteurs reliés : maître d'ouvrage, maître d'œuvre, entreprise">
+<g fill="none" stroke-width="2.2" stroke-linecap="round">
+<path d="M70 60 L120 40 L170 60" stroke="var(--plan)"/><path d="M70 60 L170 60" stroke="var(--plan)" stroke-dasharray="5 5"/>
+<path d="M120 84 L120 94" stroke="var(--plan)" stroke-dasharray="5 5"/>
+</g>
+<g>
+<circle cx="120" cy="28" r="11" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M107 25 a13 11 0 0 1 26 0 z" fill="var(--signal)" stroke="var(--encre)" stroke-width="2"/>
+<path d="M102 62 q18 -24 36 0 v6 h-36z" fill="var(--plan)"/><text x="120" y="80" stroke="var(--calque)" stroke-width="4" paint-order="stroke" text-anchor="middle" font-size="12" font-weight="700" fill="var(--encre)">MOA</text>
+<circle cx="50" cy="70" r="11" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M37 67 a13 11 0 0 1 26 0 z" fill="#fff" stroke="var(--encre)" stroke-width="2"/>
+<path d="M32 104 q18 -24 36 0 v6 h-36z" fill="var(--plan-fonce)"/><text x="50" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="var(--encre)">MOE</text>
+<circle cx="190" cy="70" r="11" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M177 67 a13 11 0 0 1 26 0 z" fill="var(--chantier)" stroke="var(--encre)" stroke-width="2"/>
+<path d="M172 104 q18 -24 36 0 v6 h-36z" fill="var(--chantier)"/><text x="190" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="var(--encre)">ENT.</text>
+<rect x="104" y="96" width="32" height="40" rx="2" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><path d="M110 106h20M110 114h20M110 122h12" stroke="var(--plan)" stroke-width="2"/>
+</g></svg>
+</div><h2>Les acteurs et les phases de la construction</h2><p>Quelle est ma place dans l&#x27;entreprise et quel est le rôle de chaque intervenant selon la phase du projet ?</p><table class="cartouche"><tr><td>Séquence</td><td>SEQ01</td></tr><tr><td>Période</td><td>Septembre</td></tr><tr><td>Durée</td><td>8 h</td></tr></table>
+<span class="avance" data-acts="seq01-s1:3 seq01-s2:4 seq01-s3:3 seq01-s4:4"></span></a></li><li class="etape-seq"><a class="feuille" href="seq02/index.html">
+<div class="illu"><svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Une feuille de plan avec un plan de maison, une cote et une loupe">
+<path d="M40 14 h140 l20 20 v106 h-160z" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><path d="M180 14 v20 h20" fill="none" stroke="var(--plan)" stroke-width="2"/>
+<g fill="none" stroke="var(--encre)" stroke-width="5" stroke-linejoin="miter"><path d="M62 44 h96 v62 h-40 v-24 h-56z"/></g>
+<g stroke="var(--encre)" stroke-width="2"><path d="M100 44 v38M62 66 h38M130 82 v24"/></g>
+<path d="M118 106 a12 12 0 0 1 12 -12" fill="none" stroke="var(--plan)" stroke-width="1.5"/>
+<g stroke="var(--chantier)" stroke-width="1.6"><path d="M62 120 h96"/><path d="M62 115 v10M158 115 v10M58 124 l8 -8M154 124 l8 -8"/></g>
+<text x="110" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="var(--chantier)">9,60</text>
+<g transform="translate(175 30)"><path d="M0 18 l7 -18 l7 18 l-7 -5z" fill="var(--plan)"/><text x="7" y="-4" text-anchor="middle" font-size="9" font-weight="700" fill="var(--plan)">N</text></g>
+<circle cx="182" cy="100" r="22" fill="color-mix(in srgb, var(--signal) 30%, transparent)" stroke="var(--encre)" stroke-width="3"/><path d="M198 116 l18 18" stroke="var(--encre)" stroke-width="7" stroke-linecap="round"/>
+</svg>
+</div><h2>La lecture de plans</h2><p>Comment lire et exploiter un dossier de plans pour identifier l&#x27;organisation d&#x27;un bâtiment, repérer ses dimensions réelles et analyser l&#x27;évolution du projet entre ses différentes phases ?</p><table class="cartouche"><tr><td>Séquence</td><td>SEQ02</td></tr><tr><td>Période</td><td>Septembre – Octobre</td></tr><tr><td>Durée</td><td>8 h</td></tr></table>
+<span class="avance" data-acts="seq02-s1:3 seq02-s2:3 seq02-s3:4 seq02-s4:4"></span></a></li><li class="etape-seq"><a class="feuille" href="seq03/index.html">
+<div class="illu"><svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Maquette numérique isométrique d'une maison avec des étiquettes IFC">
+<g stroke="var(--plan)" stroke-width="2" stroke-linejoin="round">
+<path d="M70 70 L120 45 L170 70 L170 120 L120 145 L70 120z" fill="color-mix(in srgb, var(--plan) 12%, var(--carte))"/>
+<path d="M70 70 L120 95 L170 70" fill="none"/><path d="M120 95 V145" fill="none"/>
+<path d="M62 74 L120 18 L178 74 L120 100z" fill="var(--chantier)" stroke="var(--encre)"/>
+<path d="M120 18 L120 100" stroke="var(--encre)" fill="none"/>
+<path d="M86 104 l14 7 v16 l-14 -7z M140 111 l14 -7 v16 l-14 7z" fill="var(--signal)" stroke="var(--encre)"/>
+</g>
+<g font-size="10" font-weight="700">
+<rect x="4" y="36" width="58" height="18" rx="9" fill="var(--plan-fonce)"/><text x="33" y="49" text-anchor="middle" fill="#fff">IfcRoof</text><path d="M62 45 L92 56" stroke="var(--plan-fonce)" stroke-width="1.5"/>
+<rect x="176" y="96" width="60" height="18" rx="9" fill="var(--plan-fonce)"/><text x="206" y="109" text-anchor="middle" fill="#fff">IfcWindow</text><path d="M176 105 L154 112" stroke="var(--plan-fonce)" stroke-width="1.5"/>
+<rect x="8" y="122" width="54" height="18" rx="9" fill="var(--plan-fonce)"/><text x="35" y="135" text-anchor="middle" fill="#fff">IfcWall</text><path d="M62 130 L82 124" stroke="var(--plan-fonce)" stroke-width="1.5"/>
+</g></svg>
+</div><h2>La maquette numérique IFC</h2><p>Comment une maquette IFC permet-elle de répondre aux besoins d&#x27;information de chaque intervenant d&#x27;un projet ?</p><table class="cartouche"><tr><td>Séquence</td><td>SEQ03</td></tr><tr><td>Période</td><td>Novembre – Décembre</td></tr><tr><td>Durée</td><td>8 h</td></tr></table>
+<span class="avance" data-acts=""></span></a></li><li class="etape-seq bientot"><div class="feuille"><div class="illu"><svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Calculatrice, pile de parpaings et symbole euro">
+<rect x="40" y="26" width="70" height="104" rx="8" fill="var(--carte)" stroke="var(--encre)" stroke-width="2.5"/><rect x="50" y="36" width="50" height="22" rx="3" fill="color-mix(in srgb, var(--plan) 18%, var(--carte))" stroke="var(--plan)" stroke-width="1.5"/>
+<text x="96" y="52" text-anchor="end" font-size="12" font-weight="700" fill="var(--plan-fonce)">1 280 €</text>
+<g fill="var(--plan)"><rect x="50" y="66" width="12" height="10" rx="2"/><rect x="69" y="66" width="12" height="10" rx="2"/><rect x="88" y="66" width="12" height="10" rx="2" fill="var(--chantier)"/>
+<rect x="50" y="84" width="12" height="10" rx="2"/><rect x="69" y="84" width="12" height="10" rx="2"/><rect x="88" y="84" width="12" height="10" rx="2" fill="var(--chantier)"/>
+<rect x="50" y="102" width="12" height="10" rx="2"/><rect x="69" y="102" width="12" height="10" rx="2"/><rect x="88" y="102" width="12" height="10" rx="2" fill="var(--signal)"/></g>
+<g stroke="var(--encre)" stroke-width="2" fill="color-mix(in srgb, var(--encre) 10%, var(--carte))"><rect x="128" y="108" width="40" height="20"/><rect x="170" y="108" width="40" height="20"/><rect x="149" y="86" width="40" height="20"/><rect x="149" y="64" width="40" height="20"/></g>
+<circle cx="200" cy="44" r="22" fill="var(--signal)" stroke="var(--encre)" stroke-width="2.5"/><text x="200" y="53" text-anchor="middle" font-size="26" font-weight="800" fill="var(--encre)">€</text>
+</svg>
+</div><h2>Économie de la construction</h2>
+<p>Cette séquence arrive plus tard dans l'année.</p><table class="cartouche"><tr><td>Séquence</td><td>SEQ04</td></tr><tr><td>Période</td><td>À venir</td></tr></table></div></li><li class="etape-seq bientot"><div class="feuille"><div class="illu"><svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Un élève présente son projet de maison sur un tableau">
+<rect x="70" y="14" width="150" height="96" rx="4" fill="var(--carte)" stroke="var(--encre)" stroke-width="2.5"/><path d="M145 110 v26 M125 136 h40" stroke="var(--encre)" stroke-width="2.5"/>
+<path d="M100 88 V60 L135 38 L170 60 V88z" fill="color-mix(in srgb, var(--plan) 14%, var(--carte))" stroke="var(--plan)" stroke-width="2"/><path d="M95 63 L135 34 L175 63" fill="none" stroke="var(--chantier)" stroke-width="4" stroke-linejoin="round"/>
+<rect x="128" y="68" width="14" height="20" fill="var(--signal)" stroke="var(--plan)" stroke-width="1.5"/>
+<path d="M182 88 L200 64 L208 72" fill="none" stroke="var(--chantier)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="36" cy="70" r="12" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M18 120 q18 -36 36 0 v12 h-36z" fill="var(--plan)"/><path d="M48 92 L76 70" stroke="var(--encre)" stroke-width="3" stroke-linecap="round"/>
+</svg>
+</div><h2>Synthèse et projet</h2>
+<p>Cette séquence arrive plus tard dans l'année.</p><table class="cartouche"><tr><td>Séquence</td><td>SEQ05</td></tr><tr><td>Période</td><td>À venir</td></tr></table></div></li></ol>
+</section>
+<section class="projet-fil">
+  <h2 class="titre-section">Du plan à la maison <span class="cote " aria-hidden="true"><span>un projet réel</span></span></h2>
+  <div class="trois-temps">
+    <figure><img src="media/projet/villa-maquette.jpg" alt="Maquette 3D de la Villa Camacho" loading="lazy"><figcaption><b>1. La maquette</b> Le projet est dessiné et modélisé au bureau d'études.</figcaption></figure>
+    <figure><img src="media/projet/villa-chantier.jpg" alt="Chantier de la Villa Camacho : murs en briques montés" loading="lazy"><figcaption><b>2. Le chantier</b> Les entreprises construisent à partir des plans.</figcaption></figure>
+    <figure><img src="media/projet/villa-livree.jpg" alt="Villa Camacho livrée" loading="lazy"><figcaption><b>3. La livraison</b> Le client prend possession de sa maison.</figcaption></figure>
+  </div>
+</section></main>
+<footer class="pied"><span>Lycée des métiers Urbain Vitry — Toulouse</span><span>K. Lormeau</span><span>2026–2027</span></footer>
+<script src="assets/progression.js"></script>
 </body></html>

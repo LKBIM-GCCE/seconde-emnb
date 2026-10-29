@@ -1,0 +1,13 @@
+<svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Maquette numérique isométrique d'une maison avec des étiquettes IFC">
+<g stroke="var(--plan)" stroke-width="2" stroke-linejoin="round">
+<path d="M70 70 L120 45 L170 70 L170 120 L120 145 L70 120z" fill="color-mix(in srgb, var(--plan) 12%, var(--carte))"/>
+<path d="M70 70 L120 95 L170 70" fill="none"/><path d="M120 95 V145" fill="none"/>
+<path d="M62 74 L120 18 L178 74 L120 100z" fill="var(--chantier)" stroke="var(--encre)"/>
+<path d="M120 18 L120 100" stroke="var(--encre)" fill="none"/>
+<path d="M86 104 l14 7 v16 l-14 -7z M140 111 l14 -7 v16 l-14 7z" fill="var(--signal)" stroke="var(--encre)"/>
+</g>
+<g font-size="10" font-weight="700">
+<rect x="4" y="36" width="58" height="18" rx="9" fill="var(--plan-fonce)"/><text x="33" y="49" text-anchor="middle" fill="#fff">IfcRoof</text><path d="M62 45 L92 56" stroke="var(--plan-fonce)" stroke-width="1.5"/>
+<rect x="176" y="96" width="60" height="18" rx="9" fill="var(--plan-fonce)"/><text x="206" y="109" text-anchor="middle" fill="#fff">IfcWindow</text><path d="M176 105 L154 112" stroke="var(--plan-fonce)" stroke-width="1.5"/>
+<rect x="8" y="122" width="54" height="18" rx="9" fill="var(--plan-fonce)"/><text x="35" y="135" text-anchor="middle" fill="#fff">IfcWall</text><path d="M62 130 L82 124" stroke="var(--plan-fonce)" stroke-width="1.5"/>
+</g></svg>

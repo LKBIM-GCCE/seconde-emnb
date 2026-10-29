@@ -1,0 +1,10 @@
+<svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Une feuille de plan avec un plan de maison, une cote et une loupe">
+<path d="M40 14 h140 l20 20 v106 h-160z" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><path d="M180 14 v20 h20" fill="none" stroke="var(--plan)" stroke-width="2"/>
+<g fill="none" stroke="var(--encre)" stroke-width="5" stroke-linejoin="miter"><path d="M62 44 h96 v62 h-40 v-24 h-56z"/></g>
+<g stroke="var(--encre)" stroke-width="2"><path d="M100 44 v38M62 66 h38M130 82 v24"/></g>
+<path d="M118 106 a12 12 0 0 1 12 -12" fill="none" stroke="var(--plan)" stroke-width="1.5"/>
+<g stroke="var(--chantier)" stroke-width="1.6"><path d="M62 120 h96"/><path d="M62 115 v10M158 115 v10M58 124 l8 -8M154 124 l8 -8"/></g>
+<text x="110" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="var(--chantier)">9,60</text>
+<g transform="translate(175 30)"><path d="M0 18 l7 -18 l7 18 l-7 -5z" fill="var(--plan)"/><text x="7" y="-4" text-anchor="middle" font-size="9" font-weight="700" fill="var(--plan)">N</text></g>
+<circle cx="182" cy="100" r="22" fill="color-mix(in srgb, var(--signal) 30%, transparent)" stroke="var(--encre)" stroke-width="3"/><path d="M198 116 l18 18" stroke="var(--encre)" stroke-width="7" stroke-linecap="round"/>
+</svg>

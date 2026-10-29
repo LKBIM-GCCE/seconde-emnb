@@ -1,0 +1,7 @@
+<svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Un élève présente son projet de maison sur un tableau">
+<rect x="70" y="14" width="150" height="96" rx="4" fill="var(--carte)" stroke="var(--encre)" stroke-width="2.5"/><path d="M145 110 v26 M125 136 h40" stroke="var(--encre)" stroke-width="2.5"/>
+<path d="M100 88 V60 L135 38 L170 60 V88z" fill="color-mix(in srgb, var(--plan) 14%, var(--carte))" stroke="var(--plan)" stroke-width="2"/><path d="M95 63 L135 34 L175 63" fill="none" stroke="var(--chantier)" stroke-width="4" stroke-linejoin="round"/>
+<rect x="128" y="68" width="14" height="20" fill="var(--signal)" stroke="var(--plan)" stroke-width="1.5"/>
+<path d="M182 88 L200 64 L208 72" fill="none" stroke="var(--chantier)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="36" cy="70" r="12" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M18 120 q18 -36 36 0 v12 h-36z" fill="var(--plan)"/><path d="M48 92 L76 70" stroke="var(--encre)" stroke-width="3" stroke-linecap="round"/>
+</svg>

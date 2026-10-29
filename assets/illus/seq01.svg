@@ -1,0 +1,14 @@
+<svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trois acteurs reliés : maître d'ouvrage, maître d'œuvre, entreprise">
+<g fill="none" stroke-width="2.2" stroke-linecap="round">
+<path d="M70 60 L120 40 L170 60" stroke="var(--plan)"/><path d="M70 60 L170 60" stroke="var(--plan)" stroke-dasharray="5 5"/>
+<path d="M120 84 L120 94" stroke="var(--plan)" stroke-dasharray="5 5"/>
+</g>
+<g>
+<circle cx="120" cy="28" r="11" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M107 25 a13 11 0 0 1 26 0 z" fill="var(--signal)" stroke="var(--encre)" stroke-width="2"/>
+<path d="M102 62 q18 -24 36 0 v6 h-36z" fill="var(--plan)"/><text x="120" y="80" stroke="var(--calque)" stroke-width="4" paint-order="stroke" text-anchor="middle" font-size="12" font-weight="700" fill="var(--encre)">MOA</text>
+<circle cx="50" cy="70" r="11" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M37 67 a13 11 0 0 1 26 0 z" fill="#fff" stroke="var(--encre)" stroke-width="2"/>
+<path d="M32 104 q18 -24 36 0 v6 h-36z" fill="var(--plan-fonce)"/><text x="50" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="var(--encre)">MOE</text>
+<circle cx="190" cy="70" r="11" fill="var(--carte)" stroke="var(--encre)" stroke-width="2"/><path d="M177 67 a13 11 0 0 1 26 0 z" fill="var(--chantier)" stroke="var(--encre)" stroke-width="2"/>
+<path d="M172 104 q18 -24 36 0 v6 h-36z" fill="var(--chantier)"/><text x="190" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="var(--encre)">ENT.</text>
+<rect x="104" y="96" width="32" height="40" rx="2" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><path d="M110 106h20M110 114h20M110 122h12" stroke="var(--plan)" stroke-width="2"/>
+</g></svg>

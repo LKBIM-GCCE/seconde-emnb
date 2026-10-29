@@ -1,0 +1,9 @@
+<svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Calculatrice, pile de parpaings et symbole euro">
+<rect x="40" y="26" width="70" height="104" rx="8" fill="var(--carte)" stroke="var(--encre)" stroke-width="2.5"/><rect x="50" y="36" width="50" height="22" rx="3" fill="color-mix(in srgb, var(--plan) 18%, var(--carte))" stroke="var(--plan)" stroke-width="1.5"/>
+<text x="96" y="52" text-anchor="end" font-size="12" font-weight="700" fill="var(--plan-fonce)">1 280 €</text>
+<g fill="var(--plan)"><rect x="50" y="66" width="12" height="10" rx="2"/><rect x="69" y="66" width="12" height="10" rx="2"/><rect x="88" y="66" width="12" height="10" rx="2" fill="var(--chantier)"/>
+<rect x="50" y="84" width="12" height="10" rx="2"/><rect x="69" y="84" width="12" height="10" rx="2"/><rect x="88" y="84" width="12" height="10" rx="2" fill="var(--chantier)"/>
+<rect x="50" y="102" width="12" height="10" rx="2"/><rect x="69" y="102" width="12" height="10" rx="2"/><rect x="88" y="102" width="12" height="10" rx="2" fill="var(--signal)"/></g>
+<g stroke="var(--encre)" stroke-width="2" fill="color-mix(in srgb, var(--encre) 10%, var(--carte))"><rect x="128" y="108" width="40" height="20"/><rect x="170" y="108" width="40" height="20"/><rect x="149" y="86" width="40" height="20"/><rect x="149" y="64" width="40" height="20"/></g>
+<circle cx="200" cy="44" r="22" fill="var(--signal)" stroke="var(--encre)" stroke-width="2.5"/><text x="200" y="53" text-anchor="middle" font-size="26" font-weight="800" fill="var(--encre)">€</text>
+</svg>

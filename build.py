@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 Générateur du site Seconde EMNB.
-Lit data/progression.json et fabrique toutes les pages dans docs/
-(dossier publié par GitHub Pages). Usage : python build.py
+Lit data/progression.json (séquences), data/activites/*.json (séances en ligne)
+et fabrique toutes les pages dans docs/ (publié par GitHub Pages). Usage : python build.py
 """
-import json, re, shutil
+import json, shutil
 from html import escape as e
 from pathlib import Path
 
@@ -12,143 +12,155 @@ RACINE = Path(__file__).parent
 DATA = json.loads((RACINE / "data" / "progression.json").read_text(encoding="utf-8"))
 SITE, COMP = DATA["site"], DATA["competences"]
 SORTIE = RACINE / "docs"
-ACTS = {}  # activités interactives : (séquence, séance) -> définition
+ILLUS = {f.stem: f.read_text(encoding="utf-8") for f in (RACINE / "assets" / "illus").glob("*.svg")}
+
+ACTS = {}  # séances en ligne : (séquence, séance) -> définition
 for f in sorted((RACINE / "data" / "activites").glob("*.json")):
     a = json.loads(f.read_text(encoding="utf-8"))
-    a["_cours"] = {}
-    for b in a["blocs"]:  # chaque bloc "cours" pointe vers un fragment HTML : data/activites/<fichier>
-        if b["type"] == "cours":
-            a["_cours"][b["id"]] = (f.parent / b["fichier"]).read_text(encoding="utf-8")
+    a["_cours"] = {b["id"]: (f.parent / b["fichier"]).read_text(encoding="utf-8") for b in a["blocs"] if b["type"] == "cours"}
     ACTS[(a["sequence"], a["seance"])] = a
 
-TYPES = {  # type de ressource -> (icône, libellé)
-    "cours": ("📘", "Cours"), "td": ("✏️", "TD / TP"), "synthese": ("📌", "Fiche synthèse"),
-    "presentation": ("🖥️", "Présentation"), "plan": ("📐", "Plan"), "maquette": ("🧊", "Maquette"),
-    "video": ("🎬", "Vidéo"), "qcm": ("✅", "QCM"), "lien": ("🔗", "Lien"),
-}
+# fiches synthèse (PDF dans fiches/) : par séance, et une fiche A3 par séquence
+FICHES = {(f.stem.split("-")[0], f.stem.split("-")[1]): f.name for f in (RACINE / "fiches").glob("seq0?-s?.pdf")}
+FICHES_SEQ = {f.stem.split("-")[0]: f.name for f in (RACINE / "fiches").glob("seq0?-synthese-*.pdf")}
 
-
-# ---------- outils ----------
-def lien_integrable(url):
-    """Transforme un lien Google Drive / Docs / Slides / YouTube en lien d'aperçu intégrable."""
-    m = re.search(r"drive\.google\.com/file/d/([^/]+)", url)
-    if m: return f"https://drive.google.com/file/d/{m[1]}/preview"
-    m = re.search(r"docs\.google\.com/(document|presentation|spreadsheets|forms)/d/([^/]+)", url)
-    if m:
-        kind, id_ = m[1], m[2]
-        return f"https://docs.google.com/forms/d/{id_}/viewform?embedded=true" if kind == "forms" \
-            else f"https://docs.google.com/{kind}/d/{id_}/preview"
-    m = re.search(r"(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]+)", url)
-    if m: return f"https://www.youtube-nocookie.com/embed/{m[1]}"
-    return url
+POLICES = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+           '<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">')
 
 
 def comp_pills(codes):
     return "".join(f'<span class="comp" title="{e(COMP.get(c, ""))}">{e(c)}</span>' for c in codes)
 
 
-def ressource_html(r, base):
-    icone, libelle = TYPES.get(r["type"], ("📄", "Document"))
-    if not r["lien"]:
-        return f'''<li class="res off"><span class="ico">{icone}</span><span class="txt"><b>{e(r["nom"])}</b><small>{libelle} · bientôt disponible</small></span></li>'''
-    url = r["lien"] if r["lien"].startswith("http") else base + r["lien"]
-    bloc = f'''<li class="res"><a href="{e(url)}" target="_blank" rel="noopener"><span class="ico">{icone}</span><span class="txt"><b>{e(r["nom"])}</b><small>{libelle} · ouvrir ↗</small></span></a>'''
-    if r.get("integrer"):
-        bloc += f'<div class="embed"><iframe src="{e(lien_integrable(url))}" loading="lazy" allowfullscreen></iframe></div>'
-    return bloc + "</li>"
+def cote(texte, cls=""):
+    """Ligne de cote façon plan d'architecte : ├──── texte ────┤"""
+    return f'<span class="cote {cls}" aria-hidden="true"><span>{e(texte)}</span></span>'
 
 
-def liste_ressources(rs, base):
-    if not rs:
-        return '<p class="vide">Les documents de cette séance seront ajoutés prochainement.</p>'
-    return '<ul class="ressources">' + "".join(ressource_html(r, base) for r in rs) + "</ul>"
+def bouton_fiche(seq_id, seance_id, base):
+    f = FICHES.get((seq_id, seance_id))
+    if not f:
+        return ""
+    return f'<a class="btn-fiche" href="{base}fiches/{f}" download><span class="ico-fiche" aria-hidden="true">📌</span><span><b>Ma fiche synthèse</b><small>PDF à télécharger ou imprimer</small></span></a>'
 
 
 # ---------- gabarit ----------
-def page(titre, contenu, prof=0, fil=None, extra_tete="", extra_pied=""):
+def page(titre, contenu, prof=0, fil=None, extra_tete="", extra_pied="", classe=""):
     base = "../" * prof
-    nav_seq = "".join(
-        f'<a href="{base}{s["id"]}/index.html">{e(s["numero"])}</a>' for s in DATA["sequences"] if s["statut"] == "en_ligne")
+    nav_seq = "".join(f'<a href="{base}{s["id"]}/index.html">{e(s["numero"])}</a>' for s in DATA["sequences"] if s["statut"] == "en_ligne")
     fil_html = ""
     if fil:
-        fil_html = '<nav class="fil">' + " › ".join(
-            f'<a href="{base}{u}">{e(t)}</a>' if u else f"<span>{e(t)}</span>" for t, u in fil) + "</nav>"
+        fil_html = '<nav class="fil" aria-label="Fil d\'Ariane">' + " / ".join(
+            f'<a href="{base}{u}">{e(t)}</a>' if u else f'<span aria-current="page">{e(t)}</span>' for t, u in fil) + "</nav>"
     return f"""<!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titre)} · {e(SITE["titre"])}</title>
+{POLICES}
 <link rel="stylesheet" href="{base}assets/style.css">{extra_tete}
-</head><body>
+</head><body class="{classe}">
 <header class="entete">
-  <a class="marque" href="{base}index.html"><span class="logo">2<small>de</small></span>
+  <a class="marque" href="{base}index.html"><span class="logo" aria-hidden="true">2<small>de</small></span>
     <span><strong>{e(SITE["titre"])}</strong><em>{e(SITE["sous_titre"])}</em></span></a>
-  <nav class="menu">{nav_seq}<a href="{base}competences.html">Compétences</a></nav>
+  <nav class="menu" aria-label="Séquences">{nav_seq}<a href="{base}competences.html">Compétences</a></nav>
 </header>
 <main>{fil_html}{contenu}</main>
-<footer class="pied">{e(SITE["etablissement"])} · {e(SITE["enseignant"])} · {e(SITE["annee"])}</footer>{extra_pied}
+<footer class="pied"><span>{e(SITE["etablissement"])}</span><span>{e(SITE["enseignant"])}</span><span>{e(SITE["annee"])}</span></footer>
+<script src="{base}assets/progression.js"></script>{extra_pied}
 </body></html>"""
 
 
 # ---------- pages ----------
 def accueil():
-    cartes = ""
-    for s in DATA["sequences"]:
+    etapes = ""
+    for k, s in enumerate(DATA["sequences"], 1):
+        illu = ILLUS.get(s["id"], "")
+        cartouche = f'<table class="cartouche"><tr><td>Séquence</td><td>{e(s["numero"])}</td></tr><tr><td>Période</td><td>{e(s["periode"])}</td></tr>' + \
+                    (f'<tr><td>Durée</td><td>{e(s["duree"])}</td></tr>' if s["duree"] else "") + "</table>"
         if s["statut"] == "en_ligne":
-            cartes += f'''<a class="carte" href="{s["id"]}/index.html">
-  <div class="carte-haut"><span class="num">{e(s["numero"])}</span><span class="periode">{e(s["periode"])}</span></div>
-  <h2>{e(s["titre"])}</h2><p>{e(s["problematique"])}</p>
-  <span class="meta">{len(s["seances"])} séances · {e(s["duree"])}</span></a>'''
+            etapes += f'''<li class="etape-seq"><a class="feuille" href="{s["id"]}/index.html">
+<div class="illu">{illu}</div><h2>{e(s["titre"])}</h2><p>{e(s["problematique"])}</p>{cartouche}
+<span class="avance" data-acts="{" ".join(ACTS[(s["id"], x["id"])]["id"] + ":" + str(sum(1 for b in ACTS[(s["id"], x["id"])]["blocs"] if b["type"] != "cours")) for x in s["seances"] if (s["id"], x["id"]) in ACTS)}"></span></a></li>'''
         else:
-            cartes += f'''<div class="carte off"><div class="carte-haut"><span class="num">{e(s["numero"])}</span><span class="periode">À venir</span></div>
-  <h2>{e(s["titre"])}</h2><p>Cette séquence sera publiée dans l'année.</p></div>'''
+            etapes += f'''<li class="etape-seq bientot"><div class="feuille"><div class="illu">{illu}</div><h2>{e(s["titre"])}</h2>
+<p>Cette séquence arrive plus tard dans l'année.</p>{cartouche}</div></li>'''
     return page("Accueil", f'''
-<section class="hero"><p class="sur">{e(SITE["annee"])}</p><h1>Bienvenue en Seconde EMNB</h1>
-<p>Retrouve ici chaque séquence de l'année : ce que tu vas apprendre, le déroulé des séances et tous les documents (cours, TD, plans, fiches synthèse).</p></section>
-<section class="grille">{cartes}</section>''')
+<section class="hero">
+  <div class="hero-texte">
+    <h1>Lire un plan, modéliser un bâtiment, le chiffrer.</h1>
+    <p>Bienvenue en Seconde EMNB. Ici tu retrouves toutes les séances de l'année : tu peux les faire en ligne, vérifier tes réponses et télécharger ta fiche synthèse.</p>
+    <a class="btn-grand" href="seq01/index.html">Commencer par la séquence 1</a>
+  </div>
+  <figure class="hero-photo">
+    <img src="media/projet/villa-livree.jpg" alt="La Villa Camacho terminée : maison à étage avec bardage bois et toiture en tuiles">
+    <svg class="hero-cotes" viewBox="0 0 100 66" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M6 61 H94 M6 58 V64 M94 58 V64" /><path d="M97 8 V56 M94 8 H100 M94 56 H100" />
+    </svg>
+    <span class="hero-cote-h">18,10 m</span><span class="hero-cote-v">+6,30</span>
+    <figcaption>La Villa Camacho, maison réelle étudiée en séquence 2.</figcaption>
+  </figure>
+</section>
+<section class="parcours">
+  <h2 class="titre-section">Ton parcours de l'année {cote("5 séquences")}</h2>
+  <ol class="route">{etapes}</ol>
+</section>
+<section class="projet-fil">
+  <h2 class="titre-section">Du plan à la maison {cote("un projet réel")}</h2>
+  <div class="trois-temps">
+    <figure><img src="media/projet/villa-maquette.jpg" alt="Maquette 3D de la Villa Camacho" loading="lazy"><figcaption><b>1. La maquette</b> Le projet est dessiné et modélisé au bureau d'études.</figcaption></figure>
+    <figure><img src="media/projet/villa-chantier.jpg" alt="Chantier de la Villa Camacho : murs en briques montés" loading="lazy"><figcaption><b>2. Le chantier</b> Les entreprises construisent à partir des plans.</figcaption></figure>
+    <figure><img src="media/projet/villa-livree.jpg" alt="Villa Camacho livrée" loading="lazy"><figcaption><b>3. La livraison</b> Le client prend possession de sa maison.</figcaption></figure>
+  </div>
+</section>''', classe="p-accueil")
 
 
 def page_sequence(s):
-    lignes = "".join(f'''<a class="seance-ligne" href="{x["id"]}.html"><span class="num-s">S{i}</span>
-  <div><h3>{e(x["titre"])}</h3><p>{e(x["duree"])} · {e(x["evaluation"])}</p></div><div class="comps">{comp_pills(x["competences"])}</div></a>'''
-        for i, x in enumerate(s["seances"], 1))
-    res_seq = ""
-    if s.get("ressources_sequence"):
-        res_seq = f'<section class="bloc"><h2>Documents de la séquence</h2>{liste_ressources(s["ressources_sequence"], "../")}</section>'
+    lignes = ""
+    for i, x in enumerate(s["seances"], 1):
+        act = ACTS.get((s["id"], x["id"]))
+        lignes += f'''<li class="pas"><a href="{x["id"]}.html"><span class="borne">S{i}</span>
+<span class="pas-txt"><b>{e(x["titre"])}</b><small>{e(x["duree"])} — {e(x["evaluation"])}</small></span>
+<span class="pas-etat" {f'data-act="{act["id"]}" data-nb="{sum(1 for b in act["blocs"] if b["type"] != "cours")}"' if act else ""}></span></a></li>'''
+    fiche_seq = ""
+    if s["id"] in FICHES_SEQ:
+        fiche_seq = f'<a class="btn-fiche large" href="../fiches/{FICHES_SEQ[s["id"]]}" download><span class="ico-fiche" aria-hidden="true">🗂️</span><span><b>Fiche synthèse A3 de la séquence</b><small>Tout ce qu\'il faut retenir sur une seule page</small></span></a>'
     return page(s["numero"], f'''
-<section class="titre"><span class="num">{e(s["numero"])}</span><h1>{e(s["titre"])}</h1>
-<p class="periode">{e(s["periode"])} · {e(s["duree"])}</p></section>
-<section class="bloc probl"><h2>Problématique</h2><p>{e(s["problematique"])}</p></section>
-<section class="bloc"><h2>Ta mission</h2><p>{e(s["contexte"])}</p></section>
-<section class="bloc"><h2>Les séances</h2><div class="liste">{lignes}</div></section>{res_seq}''',
-        prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])
+<section class="bandeau-seq">
+  <div><p class="numero-seq">{e(s["numero"])}</p><h1>{e(s["titre"])}</h1>{cote(f'{s["periode"]} — {s["duree"]}')}</div>
+  <div class="illu grande">{ILLUS.get(s["id"], "")}</div>
+</section>
+<section class="bulle"><h2>La question de la séquence</h2><p>{e(s["problematique"])}</p></section>
+<section class="mission"><h2>Ta mission</h2><p>{e(s["contexte"])}</p></section>
+<section><h2 class="titre-section">Les séances {cote(f'{len(s["seances"])} × 2 h')}</h2><ol class="chemin">{lignes}</ol></section>
+{fiche_seq}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])
 
 
 def page_seance(s, i):
     x = s["seances"][i]
+    act = ACTS.get((s["id"], x["id"]))
     objectifs = "".join(f"<li>{e(o)}</li>" for o in x["objectifs"])
     comps = "".join(f"<li><b>{e(c)}</b> {e(COMP.get(c, ''))}</li>" for c in x["competences"])
     deroule = "".join(f'''<li><span class="temps">{e(d["temps"])}</span><div><h3>{e(d["etape"])}</h3>
 <ul>{"".join(f"<li>{e(a)}</li>" for a in d["eleves"])}</ul></div></li>''' for d in x["deroule"])
     cta = ""
-    if (s["id"], x["id"]) in ACTS:
-        cta = f'''<a class="cta-act" href="{x["id"]}-en-ligne.html"><div><b>▶ Faire la séance en ligne</b>
-<span>Cours, activités corrigées automatiquement et certificat à déposer sur l'ENT</span></div><span class="fleche">→</span></a>'''
+    if act:
+        nb = sum(1 for b in act["blocs"] if b["type"] != "cours")
+        cta = f'''<a class="cta-seance" href="{x["id"]}-en-ligne.html"><span class="cta-play" aria-hidden="true">▶</span>
+<span><b>Faire la séance en ligne</b><small>{nb} activités corrigées tout de suite, puis ton certificat à déposer sur l'ENT</small></span>
+<span class="pas-etat" data-act="{act["id"]}" data-nb="{nb}"></span></a>'''
     prec = s["seances"][i - 1] if i > 0 else None
     suiv = s["seances"][i + 1] if i + 1 < len(s["seances"]) else None
-    nav = '<nav class="pagination">' + (f'<a href="{prec["id"]}.html">← S{i} · {e(prec["titre"])}</a>' if prec else "<span></span>") \
-        + (f'<a href="{suiv["id"]}.html">S{i+2} · {e(suiv["titre"])} →</a>' if suiv else "<span></span>") + "</nav>"
+    nav = '<nav class="pagination">' + (f'<a href="{prec["id"]}.html">S{i} · {e(prec["titre"])}</a>' if prec else "<span></span>") \
+        + (f'<a class="suiv" href="{suiv["id"]}.html">S{i+2} · {e(suiv["titre"])}</a>' if suiv else "<span></span>") + "</nav>"
     return page(f'{s["numero"]} S{i+1}', f'''
-<section class="titre"><span class="num">{e(s["numero"])} · S{i+1}</span><h1>{e(x["titre"])}</h1>
-<p class="periode">{e(x["duree"])} · Évaluation : {e(x["evaluation"])}</p></section>
+<section class="titre-seance"><p class="numero-seq">{e(s["numero"])} · séance {i+1}</p><h1>{e(x["titre"])}</h1>{cote(x["duree"])}</section>
+<div class="actions">{cta}{bouton_fiche(s["id"], x["id"], "../")}</div>
 <div class="deux-col">
 <section class="bloc"><h2>À la fin de la séance, je sais…</h2><ul class="coche">{objectifs}</ul></section>
-<section class="bloc"><h2>Compétences travaillées</h2><ul class="liste-comp">{comps}</ul></section>
+<section class="bloc"><h2>Compétences travaillées</h2><ul class="liste-comp">{comps}</ul><p class="eval">Évaluation : {e(x["evaluation"])}</p></section>
 </div>
-{cta}
-<section class="bloc"><h2>Documents</h2>{liste_ressources(x["ressources"], "../")}</section>
-<section class="bloc"><h2>Déroulé de la séance</h2><ol class="frise">{deroule}</ol></section>
-{nav}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"S{i+1}", None)],
-        extra_tete='<link rel="stylesheet" href="../assets/activites.css">')
+<details class="bloc deroule"><summary>Voir le déroulé de la séance</summary><ol class="frise">{deroule}</ol></details>
+{nav}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"Séance {i+1}", None)])
 
 
 def page_competences():
@@ -159,10 +171,10 @@ def page_competences():
         cases = ""
         for s in seqs:
             liens = [f'<a href="{s["id"]}/{x["id"]}.html">S{k}</a>' for k, x in enumerate(s["seances"], 1) if code in x["competences"]]
-            cases += f'<td>{" ".join(liens) if liens else ""}</td>'
+            cases += f'<td>{" ".join(liens)}</td>'
         lignes += f"<tr><th scope='row'><b>{e(code)}</b><small>{e(lib)}</small></th>{cases}</tr>"
     return page("Compétences", f'''
-<section class="titre"><h1>Les compétences de l'année</h1><p class="periode">Clique sur une séance pour y aller.</p></section>
+<section class="titre-seance"><h1>Les compétences de l'année</h1><p class="chapo">Chaque case renvoie à la séance où la compétence est travaillée.</p></section>
 <section class="bloc tableau"><table><thead><tr><th>Compétence</th>{tete}</tr></thead><tbody>{lignes}</tbody></table></section>''',
         fil=[("Accueil", "index.html"), ("Compétences", None)])
 
@@ -171,21 +183,20 @@ def page_en_ligne(s, i, a):
     x = s["seances"][i]
     donnees = json.dumps({k: v for k, v in a.items() if k != "_cours"}, ensure_ascii=False).replace("</", "<\\/")
     contenu = f'''
-<section class="titre bandeau-act"><div><span class="num">{e(s["numero"])} · S{i+1} · en ligne</span><h1>{e(x["titre"])}</h1>
-<p class="periode">{e(a["intro"])}</p></div></section>
+<section class="titre-seance en-ligne"><p class="numero-seq">{e(s["numero"])} · séance {i+1} en ligne</p><h1>{e(x["titre"])}</h1>
+<p class="chapo">{e(a["intro"])}</p></section>
 <div id="activite"><nav id="etapes" aria-label="Étapes de la séance"></nav><section id="zone" aria-live="polite"></section></div>
-<p><button class="lien-raz" id="raz">Effacer mes réponses et tout recommencer</button></p>
+<div class="bas-seance">{bouton_fiche(s["id"], x["id"], "../")}<button class="lien-raz" id="raz">Effacer mes réponses et tout recommencer</button></div>
 <script type="application/json" id="activite-data">{donnees}</script>
 {"".join(f'<template id="cours-{k}">{v}</template>' for k, v in a["_cours"].items())}'''
     return page(f'{s["numero"]} S{i+1} en ligne', contenu, prof=1,
-        fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"S{i+1}", f'{s["id"]}/{x["id"]}.html'), ("En ligne", None)],
-        extra_tete='<link rel="stylesheet" href="../assets/activites.css">',
-        extra_pied='<script src="../assets/activites.js"></script>')
+        fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"Séance {i+1}", f'{s["id"]}/{x["id"]}.html'), ("En ligne", None)],
+        extra_tete='<link rel="stylesheet" href="../assets/activites.css">', extra_pied='<script src="../assets/activites.js"></script>')
 
 
 def page_verifier():
     contenu = '''
-<section class="titre"><h1>Vérifier un certificat</h1><p class="periode">Page réservée à l'enseignant · recopie les informations du certificat.</p></section>
+<section class="titre-seance"><h1>Vérifier un certificat</h1><p class="chapo">Page réservée à l'enseignant : recopie les informations lues sur le certificat.</p></section>
 <section class="bloc"><form id="v" class="verif">
 <label>Séance <select name="act">ACTS_OPTIONS</select></label>
 <label>Nom tel qu'écrit <input name="nom" required></label>
@@ -210,13 +221,11 @@ const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentiq
 # ---------- construction ----------
 def main():
     if SORTIE.exists():
-        for f in SORTIE.iterdir():
-            if f.name != "ressources":  # les documents déposés ne sont jamais effacés
-                shutil.rmtree(f) if f.is_dir() else f.unlink()
-    SORTIE.mkdir(exist_ok=True)
-    shutil.copytree(RACINE / "assets", SORTIE / "assets", dirs_exist_ok=True)
-    if (RACINE / "media").exists():
-        shutil.copytree(RACINE / "media", SORTIE / "media", dirs_exist_ok=True)
+        shutil.rmtree(SORTIE)
+    SORTIE.mkdir()
+    for d in ("assets", "media", "fiches"):
+        if (RACINE / d).exists():
+            shutil.copytree(RACINE / d, SORTIE / d, dirs_exist_ok=True)
     (SORTIE / ".nojekyll").touch()
     pages = {"index.html": accueil(), "competences.html": page_competences(), "verifier.html": page_verifier()}
     for s in DATA["sequences"]:
@@ -229,9 +238,7 @@ def main():
     for chemin, html in pages.items():
         (SORTIE / chemin).parent.mkdir(parents=True, exist_ok=True)
         (SORTIE / chemin).write_text(html, encoding="utf-8")
-    nb_res = sum(len(x["ressources"]) for s in DATA["sequences"] for x in s["seances"])
-    nb_ok = sum(1 for s in DATA["sequences"] for x in s["seances"] for r in x["ressources"] if r["lien"])
-    print(f"✔ {len(pages)} pages générées · documents en ligne : {nb_ok}/{nb_res}")
+    print(f"✔ {len(pages)} pages · {len(ACTS)} séances en ligne · {len(FICHES)} fiches synthèse")
 
 
 if __name__ == "__main__":

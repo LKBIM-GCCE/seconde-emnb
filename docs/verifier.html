@@ -2,15 +2,16 @@
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vérifier un certificat · Seconde EMNB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/activites.css"><meta name="robots" content="noindex">
-</head><body>
+</head><body class="">
 <header class="entete">
-  <a class="marque" href="index.html"><span class="logo">2<small>de</small></span>
+  <a class="marque" href="index.html"><span class="logo" aria-hidden="true">2<small>de</small></span>
     <span><strong>Seconde EMNB</strong><em>Études et modélisation numérique du bâtiment</em></span></a>
-  <nav class="menu"><a href="seq01/index.html">SEQ01</a><a href="seq02/index.html">SEQ02</a><a href="seq03/index.html">SEQ03</a><a href="competences.html">Compétences</a></nav>
+  <nav class="menu" aria-label="Séquences"><a href="seq01/index.html">SEQ01</a><a href="seq02/index.html">SEQ02</a><a href="seq03/index.html">SEQ03</a><a href="competences.html">Compétences</a></nav>
 </header>
 <main>
-<section class="titre"><h1>Vérifier un certificat</h1><p class="periode">Page réservée à l'enseignant · recopie les informations du certificat.</p></section>
+<section class="titre-seance"><h1>Vérifier un certificat</h1><p class="chapo">Page réservée à l'enseignant : recopie les informations lues sur le certificat.</p></section>
 <section class="bloc"><form id="v" class="verif">
 <label>Séance <select name="act"><option value="seq01-s1">seq01-s1 — Découvrir les acteurs de la construction</option><option value="seq01-s2">seq01-s2 — Les phases de l&#x27;acte de construire</option><option value="seq01-s3">seq01-s3 — Application croisée et résolution de problèmes</option><option value="seq01-s4">seq01-s4 — Jeu de rôle, transition numérique et évaluation</option><option value="seq02-s1">seq02-s1 — Découverte du dossier : plan de situation et plan de masse</option><option value="seq02-s2">seq02-s2 — Plans de niveaux et façades</option><option value="seq02-s3">seq02-s3 — Les coupes et les échelles</option><option value="seq02-s4">seq02-s4 — Analyse de l&#x27;évolution des plans : de l&#x27;esquisse à l&#x27;APD</option></select></label>
 <label>Nom tel qu'écrit <input name="nom" required></label>
@@ -26,5 +27,6 @@ const sc=f.get("sc").trim().split(/\s+/);const ligne=IDS[act].map((id,k)=>id+":"
 const ok=code(act+"|"+f.get("nom").trim()+"|"+ligne+"|"+f.get("date").trim())===f.get("code").trim().toUpperCase();
 const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentique":"✘ Le code ne correspond pas : certificat modifié ou mal recopié";r.className="score "+(ok?"ok":"ko");};
 </script></main>
-<footer class="pied">Lycée des métiers Urbain Vitry — Toulouse · K. Lormeau · 2026–2027</footer>
+<footer class="pied"><span>Lycée des métiers Urbain Vitry — Toulouse</span><span>K. Lormeau</span><span>2026–2027</span></footer>
+<script src="assets/progression.js"></script>
 </body></html>

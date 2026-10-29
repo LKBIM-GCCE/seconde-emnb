@@ -267,8 +267,41 @@
           h("td", {}, `${etat.res[b.id].pts} / ${etat.res[b.id].max}`), h("td", { class: "ess" }, `${etat.essais[b.id] || 1} essai(s)`)))),
         h("p", { class: "certif-total" }, `Total : ${tot} / ${max}  (${Math.round(tot / max * 100)} %)`),
         h("p", { class: "certif-pied" }, `${date} à ${heure} · Code de contrôle : `, h("b", {}, c))));
-      cible.append(h("p", { class: "aide" }, "📸 Fais une capture d'écran de ce certificat (touche Impr. écran, ou Windows + Maj + S) et dépose-la sur l'ENT."));
+      const lignes = faits.map(b => [b.titre, `${etat.res[b.id].pts} / ${etat.res[b.id].max}`, `${etat.essais[b.id] || 1} essai(s)`]);
+      const telecharger = () => imageCertificat({ nom: etat.nom, lignes, total: `Total : ${tot} / ${max}  (${Math.round(tot / max * 100)} %)`, pied: `${date} à ${heure}`, code: c });
+      cible.append(h("div", { class: "pied-bloc" },
+        h("button", { class: "btn", onclick: telecharger }, "⬇ Télécharger mon certificat (image)"),
+        h("span", { class: "aide" }, "Puis dépose le fichier sur l'ENT.")));
     };
+  }
+
+  // dessine le certificat dans une image PNG et la télécharge
+  function imageCertificat(d) {
+    const W = 1200, H = 720 + d.lignes.length * 56, cv = document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    const x = cv.getContext("2d"), F = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+    const txt = (t, px, y, opt = {}) => { x.font = `${opt.poids || 400} ${px}px ${F}`; x.fillStyle = opt.c || "#1c2228"; x.textAlign = opt.a || "center"; x.fillText(t, opt.x ?? W / 2, y); };
+    x.fillStyle = "#f4f2ec"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "#c4521f"; x.lineWidth = 6; x.strokeRect(30, 30, W - 60, H - 60); x.lineWidth = 2; x.strokeRect(44, 44, W - 88, H - 88);
+    x.fillStyle = "#c4521f"; x.beginPath(); x.roundRect(W / 2 - 34, 78, 68, 68, 12); x.fill();
+    txt("2de", 30, 124, { poids: 800, c: "#fff" });
+    txt("SECONDE EMNB · LYCÉE DES MÉTIERS URBAIN VITRY", 20, 186, { poids: 600, c: "#5d6670" });
+    txt("Certificat de séance", 52, 252, { poids: 800, c: "#c4521f" });
+    txt(A.titre, 28, 298, { poids: 600 });
+    txt(d.nom, 60, 388, { poids: 800 });
+    let y = 460;
+    x.strokeStyle = "#dedad0"; x.lineWidth = 1.5;
+    d.lignes.forEach(([t, s, e]) => {
+      txt(t, 24, y, { a: "left", x: 140 }); txt(s, 26, y, { a: "right", x: 900, poids: 700 }); txt(e, 18, y, { a: "right", x: W - 140, c: "#5d6670" });
+      x.beginPath(); x.moveTo(140, y + 20); x.lineTo(W - 140, y + 20); x.stroke(); y += 56;
+    });
+    txt(d.total, 34, y + 46, { poids: 800 });
+    txt(`${d.pied}  ·  Code de contrôle : ${d.code}`, 22, y + 100, { c: "#5d6670" });
+    const fichier = `certificat_${A.id}_${d.nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "")}.png`;
+    cv.toBlob(blob => {
+      const a = h("a", { href: URL.createObjectURL(blob), download: fichier });
+      document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }, "image/png");
   }
 
   function alerte(msg) {

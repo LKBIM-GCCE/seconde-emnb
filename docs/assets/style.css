@@ -199,6 +199,12 @@ table { border-collapse: collapse; }
 .tableau tbody th small { color: var(--doux); font-weight: 400; }
 .tableau td a { display: inline-block; background: var(--plan); color: #fff; font-weight: 700; text-decoration: none; padding: 2px 8px; border-radius: 4px; margin: 2px 2px 0 0; font-size: 13px; }
 
-.pied { display: flex; justify-content: center; gap: 8px 24px; flex-wrap: wrap; color: var(--doux); font-size: 13px; padding: 24px 16px; border-top: 1px solid var(--trait); }
+.pied { display: flex; justify-content: center; align-items: center; gap: 8px 24px; flex-wrap: wrap; color: var(--doux); font-size: 13px; padding: 24px 16px; border-top: 1px solid var(--trait); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media print { .entete, .pagination, .pied, .actions { display: none; } body { background: #fff; } }
+
+/* Logo du lycée */
+.logo-lycee { height: 44px; width: auto; border-radius: 6px; flex: none; }
+.pied-logo { height: 48px; width: auto; border-radius: 6px; }
+@media (max-width: 760px) { .logo-lycee { display: none; } }
+.entete .menu { margin-left: auto; }

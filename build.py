@@ -63,9 +63,10 @@ def page(titre, contenu, prof=0, fil=None, extra_tete="", extra_pied="", classe=
   <a class="marque" href="{base}index.html"><span class="logo" aria-hidden="true">2<small>de</small></span>
     <span><strong>{e(SITE["titre"])}</strong><em>{e(SITE["sous_titre"])}</em></span></a>
   <nav class="menu" aria-label="Séquences">{nav_seq}<a href="{base}competences.html">Compétences</a></nav>
+  <img class="logo-lycee" src="{base}assets/logo-lycee.jpg" alt="Lycée Urbain Vitry" width="72" height="36">
 </header>
 <main>{fil_html}{contenu}</main>
-<footer class="pied"><span>{e(SITE["etablissement"])}</span><span>{e(SITE["enseignant"])}</span><span>{e(SITE["annee"])}</span></footer>
+<footer class="pied"><img class="pied-logo" src="{base}assets/logo-lycee.jpg" alt="Lycée Urbain Vitry" width="96" height="48"><span>{e(SITE["etablissement"])}</span><span>{e(SITE["enseignant"])}</span><span>{e(SITE["annee"])}</span></footer>
 <script src="{base}assets/progression.js"></script>{extra_pied}
 </body></html>"""
 

@@ -63,7 +63,7 @@
    "type": "exercice",
    "titre": "Phase 2 — Le passage de témoin : du plan 2D à la maquette 3D",
    "duree": "30 min",
-   "consigne": "Le professeur te montre le même projet en plans PDF puis dans une visionneuse 3D (BIMvision ou Autodesk Viewer). Réponds aux questions.",
+   "consigne": "Le professeur te montre le même projet en plans PDF puis dans la visionneuse 3D du site. Réponds aux questions.",
    "parties": [
     {
      "type": "vraifaux",

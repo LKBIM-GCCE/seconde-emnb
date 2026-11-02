@@ -1018,15 +1018,7 @@
             "Traiter les tickets « information » du maître d'ouvrage",
             "Indiquer la source de chaque réponse"
           ],
-          "ressources": [
-            {
-              "nom": "Télécharger BIMvision (gratuit)",
-              "type": "lien",
-              "fichier_source": "",
-              "lien": "https://bimvision.eu/download/",
-              "integrer": false
-            }
-          ],
+          "ressources": [],
           "id": "s2",
           "deroule": [
             {
@@ -1034,15 +1026,15 @@
               "etape": "Rappel + Lancement",
               "eleves": [
                 "Répondre aux 3 questions flash : classe d'une porte ? niveau d'un objet ? où lire une épaisseur ?",
-                "Découvrir l'ordre de mission : villa Sabonnères, villa Goyrans, siège social ou maison de quartier",
-                "Ouvrir le dossier réseau du groupe : IFC + plans PDF"
+                "Découvrir l'ordre de mission : villa Sabonnère, villa Goyrans, maison de quartier ou siège social de l'entreprise",
+                "Choisir le projet du groupe sur le site : maquette IFC + plans PDF"
               ]
             },
             {
               "temps": "20 min",
-              "etape": "Prise en main BIMvision",
+              "etape": "Prise en main de la visionneuse",
               "eleves": [
-                "Ouvrir l'IFC du projet dans BIMvision",
+                "Ouvrir la maquette du projet dans la visionneuse du site",
                 "Reproduire les gestes du jeu : niveaux, masquage, sélection, propriétés",
                 "Réaliser un plan de coupe horizontal pour voir l'intérieur du RDC"
               ]
@@ -1127,7 +1119,7 @@
               "eleves": [
                 "Compter les portes, fenêtres et pièces par niveau",
                 "Vérifier le comptage dans l'arborescence par classe",
-                "Reporter les résultats dans le tableur"
+                "Saisir les résultats dans l'activité en ligne"
               ]
             },
             {
@@ -1135,7 +1127,7 @@
               "etape": "Mission - Relever des quantités",
               "eleves": [
                 "Relever : surface de chaque pièce, surface de la dalle du RDC, longueur et surface des murs extérieurs",
-                "Reporter les valeurs avec leur unité dans le tableur",
+                "Saisir les valeurs avec leur unité dans l'activité en ligne",
                 "Repérer le jeu de quantités utilisé (Qto)"
               ]
             },
@@ -1153,7 +1145,7 @@
               "etape": "Mission - Choisir la forme de réponse",
               "eleves": [
                 "Traiter 2 tickets : un à réponse numérique (tableau), un à réponse graphique (capture annotée)",
-                "Réaliser la capture dans BIMvision et l'annoter : repères, légende",
+                "Réaliser la capture (bouton 📷 de la visionneuse) et l'annoter : repères, légende",
                 "Justifier en une phrase le choix de la forme"
               ]
             },
@@ -1197,7 +1189,7 @@
               "temps": "10 min",
               "etape": "Lancement - Consignes de l'évaluation",
               "eleves": [
-                "Lire l'ordre de mission : l'agence a acheté une maison pour y installer ses bureaux",
+                "Lire l'ordre de mission : l'agence a acheté un bâtiment d'habitation pour le transformer en bureaux",
                 "Prendre connaissance des 5 tickets et de la grille d'évaluation",
                 "Ouvrir la maquette IFC et les plans PDF"
               ]

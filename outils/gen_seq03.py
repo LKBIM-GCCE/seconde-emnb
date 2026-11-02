@@ -41,10 +41,10 @@ PROJETS = [
     {"id": "villa-sabonnere", "nom": "Groupe 1 — Villa Sabonnère", "desc": "Maison individuelle de plain-pied, 3 chambres."},
     {"id": "villa-goyrans", "nom": "Groupe 2 — Villa Goyrans", "desc": "Grande maison individuelle sur terrain en pente, avec sous-sol."},
     {"id": "maison-quartier", "nom": "Groupe 3 — Maison de quartier", "desc": "Équipement public : salles polyvalentes, cuisine, sanitaires."},
-    {"id": "agence-architecte", "nom": "Groupe 4 — Agence d'architecture", "desc": "Bâtiment existant transformé en bureaux, sur deux niveaux."},
+    {"id": "siege-social", "nom": "Groupe 4 — Siège social de l'entreprise", "desc": "Immeuble de bureaux neuf sur deux niveaux, 24 pièces."},
 ]
 D = {p["id"]: charge(p["id"]) for p in PROJETS}
-B = charge("bureaux-agence")
+B = charge("agence-architecte")
 
 # Données de référence par projet (lues dans les maquettes, puis choisies pour être fiables)
 REF = {
@@ -57,9 +57,9 @@ REF = {
     "maison-quartier": dict(usage="Équipement public (ERP)", toiture="Toiture terrasse (plancher béton + étanchéité)", mur="Mur Duomur (béton + isolant)",
                             dallage=0.20, porte="0,93 m × 2,04 m", piece="Salle polyvalente 2", piece_lib="la salle polyvalente 2", niveau_piece="RDC",
                             vigil="fenetres"),
-    "agence-architecte": dict(usage="Bureaux (lieu de travail)", toiture="Toiture terrasse (plancher béton)", mur="Maçonnerie existante de 33 cm",
-                              dallage=0.20, porte="0,73 m × 2,04 m", piece="Pôle conception", piece_lib="le pôle conception", niveau_piece="RDC",
-                              vigil="cloison"),
+    "siege-social": dict(usage="Bureaux (lieu de travail)", toiture="Toiture en pente, couverture non précisée (toit générique)", mur="Brique 20 cm + enduit",
+                         dallage=0.20, porte="0,92 m × 2,13 m", piece="Accueil", piece_lib="l'accueil", niveau_piece="RDC",
+                         piece_t3="Reprographie", piece_t3_lib="la reprographie", vigil="wc"),
 }
 for pid, r in REF.items():
     d = D[pid]
@@ -75,9 +75,9 @@ for pid, r in REF.items():
     r["portes_rdc"] = nb(d, "IfcDoor", "RDC")
 
 USAGES = ["Maison individuelle (logement)", "Équipement public (ERP)", "Bureaux (lieu de travail)", "Bâtiment industriel"]
-TOITS = ["Toiture en pente, en tuiles", "Toiture terrasse (plancher béton + étanchéité)", "Toiture terrasse (plancher béton)", "Toiture en bac acier"]
+TOITS = ["Toiture en pente, en tuiles", "Toiture en pente, couverture non précisée (toit générique)", "Toiture terrasse (plancher béton + étanchéité)", "Toiture en bac acier"]
 MURS = ["Brique 20 cm + enduit", "Mur Duomur (béton + isolant)", "Maçonnerie existante de 33 cm", "Ossature bois + bardage", "Parpaing 20 cm sans isolant"]
-PORTES = ["0,73 m × 2,04 m", "0,83 m × 2,04 m", "0,93 m × 2,04 m", "1,20 m × 2,15 m"]
+PORTES = ["0,73 m × 2,04 m", "0,83 m × 2,04 m", "0,92 m × 2,13 m", "0,93 m × 2,04 m"]
 
 
 def q(question, choix, bonne, expl=""):
@@ -133,7 +133,8 @@ def tickets_info(pid):
         q("Ticket 1 — Où as-tu trouvé cette information ?", SOURCES, "Le nom du type / les matériaux"),
         q("Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »", PORTES, r["porte"], "Le nom du type de porte contient ses dimensions (largeur × hauteur)."),
         q("Ticket 2 — Où as-tu trouvé cette information ?", SOURCES, "Le nom du type / les matériaux"),
-        q(f"Ticket 3 — MOA : « À quel niveau se trouve {r['piece_lib']} ? »", [n["nom"] for n in D[pid]["niveaux"]], r["niveau_piece"], "Le chemin de l'inspecteur indique le niveau."),
+        q(f"Ticket 3 — MOA : « À quel niveau se trouve {r.get('piece_t3_lib', r['piece_lib'])} ? »", [n["nom"] for n in D[pid]["niveaux"]],
+          piece(D[pid], r["piece_t3"])["niveau"] if r.get("piece_t3") else r["niveau_piece"], "Le chemin de l'inspecteur indique le niveau."),
         q("Ticket 3 — Où as-tu trouvé cette information ?", SOURCES, "L'arborescence (le niveau)")]},
         {"type": "nombre", "pour": [pid], "titre": "Ticket 4 — Conducteur de travaux : « Quelle est l'épaisseur du dallage du RDC ? »", "items": [
             {"texte": "Épaisseur du dallage du RDC", "valeur": r["dallage"], "tolerance": 0.005, "unite": "m", "explication": f"Type : {r['type_dalle']} — lu dans les Cotes (Épaisseur)."}]}]
@@ -150,6 +151,12 @@ def tickets_info(pid):
               ["Je donne une surface au hasard", "Je repère la cuisine sur le plan PDF, je retrouve son numéro dans la maquette, puis je signale que les pièces ne sont pas nommées", "Je réponds que la maison n'a pas de cuisine"],
               "Je repère la cuisine sur le plan PDF, je retrouve son numéro dans la maquette, puis je signale que les pièces ne sont pas nommées",
               "Les pièces n'ont pas été nommées dans Revit : la maquette seule ne suffit pas.")]})
+    elif v == "wc":
+        t.append({"type": "qcm", "pour": [pid], "titre": "Ticket 5 — Vigilance", "questions": [
+            q("Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Le client te demande la surface des sanitaires. Que fais-tu ?",
+              ["Je donne 30,06 m² sans rien dire", "C'est suspect : je compare avec le plan PDF et je signale la donnée au chef de projet", "Je réponds qu'il n'y a pas de WC"],
+              "C'est suspect : je compare avec le plan PDF et je signale la donnée au chef de projet",
+              "Les pièces ont sans doute été mal découpées dans Revit : il faut lire la donnée, pas seulement la recopier.")]})
     else:
         t.append({"type": "qcm", "pour": [pid], "titre": "Ticket 5 — Vigilance", "questions": [
             q("Le MOA demande combien de fenêtres compte le bâtiment. L'arborescence n'affiche aucun IfcWindow. Pourquoi ?",
@@ -190,7 +197,8 @@ s2 = {"id": "seq03-s2", "sequence": "seq03", "seance": "s2", "titre": "Lire la m
 def tickets_quanti(pid):
     r = REF[pid]
     return [{"type": "nombre", "pour": [pid], "titre": "1. Compter (onglet Arborescence)", "items": [
-        {"texte": "Nombre de fenêtres (IfcWindow)", "valeur": r["nb_fenetres"], "tolerance": 0, "unite": "u"},
+        ({"texte": "Nombre de fenêtres (IfcWindow)", "valeur": r["nb_fenetres"], "tolerance": 0, "unite": "u"} if r["nb_fenetres"]
+         else {"texte": "Nombre de poteaux (IfcColumn)", "valeur": nb(D[pid], "IfcColumn"), "tolerance": 0, "unite": "u"}),
         {"texte": "Nombre de portes (IfcDoor) au RDC", "valeur": r["portes_rdc"], "tolerance": 0, "unite": "u"}]},
         {"type": "nombre", "pour": [pid], "titre": "2. Relever des quantités", "items": [
             {"texte": f"Surface de {r['piece_lib']} (active « Pièces » et clique dessus)", "valeur": r["surf_piece"], "tolerance": 0.06, "unite": "m²"},
@@ -221,42 +229,53 @@ s3 = {"id": "seq03-s3", "sequence": "seq03", "seance": "s3", "titre": "Répondre
                        {"type": "redaction", "titre": "Justifie ton choix", "question": "En une ou deux phrases : pourquoi une capture annotée est-elle la bonne forme de réponse pour ce ticket ?", "min": 40,
                         "exemple": "Le conducteur de travaux doit voir où sont les portes : une image annotée se comprend sans moi, plus vite qu'une liste."}]}]}
 
-# ================================================================== S4 (évaluation : futurs bureaux)
-rdc_b = [e for e in B["elements"] if e["cls"] == "IfcSpace" and e["niveau"] == "RDC"]
-surf_rdc_b = rd(sum(surf(e) for e in rdc_b))
-niv = {n["nom"]: n["altitude"] for n in B["niveaux"]}
-haut_b = rd(niv["R+1"] - niv["RDC"])
-repro = piece(B, "Reprographie")
+# ================================================================== S4 (évaluation : futurs bureaux de l'agence = agence-architecte)
+esp_b = [e for e in B["elements"] if e["cls"] == "IfcSpace"]
+surf_locaux = rd(sum(surf(e) for e in esp_b))
+niv_pieces_b = len({e["niveau"] for e in esp_b})
+terrasse = next(e for e in B["elements"] if e["cls"] == "IfcSlab" and e["type"].endswith("00- Terrasse"))
+p43 = next(e for e in esp_b if e.get("numero") == "43")
+EVAL = ["agence-architecte"]
 s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluation : les futurs bureaux de l'agence",
-      "intro": "L'agence a acheté un bâtiment pour y installer ses bureaux. Tu travailles seul : traite les tickets dans la maquette, en indiquant ta source et la forme de ta réponse. Le passage à l'oral devant le client se fait ensuite en classe.",
+      "intro": "L'agence a acheté un bâtiment d'habitation pour le transformer en bureaux. Tu travailles seul, avec la maquette IFC et les plans PDF du permis de construire : traite les tickets en indiquant ta source et la forme de ta réponse. Le passage à l'oral devant le client se fait ensuite en classe.",
       "blocs": [
           {"id": "decouverte", "type": "exercice", "titre": "Découverte du projet", "duree": "15 min",
-           "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, objets.",
-           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"]},
+           "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF.",
+           "parties": [{"type": "visionneuse", "maquettes": EVAL},
                        {"type": "nombre", "items": [
-                           {"texte": "Nombre de pièces (IfcSpace) dans tout le bâtiment", "valeur": nb(B, "IfcSpace"), "tolerance": 0, "unite": "u"},
-                           {"texte": "Nombre de fenêtres (IfcWindow)", "valeur": nb(B, "IfcWindow"), "tolerance": 0, "unite": "u"}]}]},
+                           {"texte": "Nombre de niveaux qui contiennent des pièces (IfcSpace)", "valeur": niv_pieces_b, "tolerance": 0, "unite": "u"},
+                           {"texte": "Nombre de locaux (IfcSpace) dans tout le bâtiment", "valeur": len(esp_b), "tolerance": 0, "unite": "u"}]}]},
           {"id": "info", "type": "exercice", "titre": "Tickets « information »", "duree": "25 min",
-           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"]},
+           "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "qcm", "titre": "Ticket 1 — Client : « De quoi sont faits les murs de façade, et quelle sera leur finition ? »", "questions": [
+                           q("Composition des murs de façade", ["Brique 20 cm + enduit", "Maçonnerie existante de 33 cm", "Mur Duomur (béton + isolant)", "Ossature bois + bardage"], "Maçonnerie existante de 33 cm",
+                             "Type « 00- Ext Mur existant 33cm » : on garde les murs du bâtiment existant."),
+                           q("Source de la composition", SOURCES, "Le nom du type / les matériaux"),
+                           q("Finition des façades dans le projet", ["Briquette en terre cuite apparente", "Enduit gratté fin, teinte beige (RAL 1014)", "Bardage bois", "Peinture blanche"], "Enduit gratté fin, teinte beige (RAL 1014)",
+                             "Indiqué sur les façades « état projeté » et dans la notice du permis de construire."),
+                           q("Source de la finition", SOURCES, "Le plan PDF", "La maquette ne contient pas la teinte de l'enduit : il faut le plan.")]},
+                       {"type": "nombre", "titre": "Ticket 2 — Conducteur de travaux : « Quelle est la hauteur de l'acrotère le plus haut, par rapport au terrain naturel ? »", "items": [
+                           {"texte": "Hauteur de l'acrotère le plus haut", "valeur": 5.82, "tolerance": 0.01, "unite": "m",
+                            "explication": "Cote « Acrotère 5,82 m/TN » sur les façades du permis de construire (dans la maquette : haut des murs « Acrotère 20 » du niveau Toiture terrasse)."}]},
                        {"type": "qcm", "questions": [
-                           q("Ticket 1 — Client : « De quoi sont faits les murs de façade ? »", ["Brique 20 cm + enduit", "Mur Duomur (béton + isolant)", "Ossature bois + bardage", "Maçonnerie existante de 33 cm"], "Brique 20 cm + enduit"),
-                           q("Ticket 1 — Source", SOURCES, "Le nom du type / les matériaux"),
-                           q("Ticket 3 — Client : « Que contient la pièce n° 19 et à quel niveau est-elle ? »", ["Un bureau, au RDC", "La reprographie, au R+1", "Les WC, au RDC", "L'accueil, au R+1"], f"La reprographie, au {repro['niveau']}"),
-                           q("Ticket 3 — Forme de réponse la plus adaptée", ["Réponse numérique", "Réponse écrite courte (nom + niveau)", "Capture annotée"], "Réponse écrite courte (nom + niveau)")]},
-                       {"type": "nombre", "items": [{"texte": "Ticket 2 — Client : « Quelle hauteur entre le niveau du RDC et celui du R+1 ? »", "valeur": haut_b, "tolerance": 0.005, "unite": "m",
-                                                      "explication": f"RDC à {str(niv['RDC']).replace('.', ',')} m et R+1 à {str(niv['R+1']).replace('.', ',')} m (altitudes des niveaux, onglet Arborescence)."}]}]},
+                           q("Ticket 2 — Source la plus directe", SOURCES, "Le plan PDF", "La cote altimétrique est écrite sur les façades."),
+                           q(f"Ticket 3 — Client : « À quoi servira la pièce n° 43, et à quel niveau est-elle ? »",
+                             ["Bureau direction, au R+1", f"{p43['nom']}, au {p43['niveau']}", "Salle de réunion, au RDC", "Archives, au RDC"], f"{p43['nom']}, au {p43['niveau']}",
+                             "Active « Pièces », clique sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."),
+                           q("Ticket 3 — Forme de réponse la plus adaptée", ["Réponse numérique", "Réponse écrite courte (nom + niveau)", "Capture annotée"], "Réponse écrite courte (nom + niveau)")]}]},
           {"id": "quanti", "type": "exercice", "titre": "Tickets quantitatifs", "duree": "25 min",
-           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"]},
-                       {"type": "nombre", "items": [{"texte": "Ticket 4 — Économiste : « Surface totale des pièces du RDC ? » (additionne les IfcSpace du RDC)", "valeur": surf_rdc_b, "tolerance": 0.6, "unite": "m²"}]},
+           "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "nombre", "items": [{"texte": "Ticket 4 — Économiste : « Surface totale des locaux clos et couverts ? » (additionne les IfcSpace des deux niveaux)", "valeur": surf_locaux, "tolerance": 0.6, "unite": "m²",
+                                                      "explication": f"{len(esp_b)} locaux : RDC + R+1. Les terrasses ne sont pas des locaux."}]},
                        {"type": "qcm", "questions": [
-                           q("Ticket vigilance — Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Que fais-tu ?",
-                             ["Je l'additionne sans rien dire", "C'est suspect : je vérifie sur le plan et je signale la donnée au chef de projet", "Je supprime les WC du calcul sans le dire"],
-                             "C'est suspect : je vérifie sur le plan et je signale la donnée au chef de projet", "Lire la donnée, pas seulement le total.")]},
-                       {"type": "redaction", "titre": "Ticket 5 — Capture annotée", "question": "Le conducteur de travaux veut voir où est l'escalier. Fais une capture annotée (bouton 📷) et dépose-la sur l'ENT. Ici, explique en une phrase pourquoi tu as choisi cette vue.", "min": 30}]}]}
+                           q(f"Ticket vigilance — Au R+1, une terrasse accessible de {str(rd(surf(terrasse))).replace('.', ',')} m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
+                             ["Oui, c'est une surface du bâtiment", "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse", "Oui, mais seulement la moitié"],
+                             "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse", "Lire ce que l'on additionne, pas seulement le total.")]},
+                       {"type": "redaction", "titre": "Ticket 5 — Capture annotée", "question": "Le conducteur de travaux veut voir où se trouvent la terrasse accessible et les toitures terrasses. Fais une capture annotée (bouton 📷) et dépose-la sur l'ENT. Ici, explique en une phrase pourquoi tu as choisi cette vue.", "min": 30}]}]}
 
 for s in (s1, s2, s3, s4):
     if s["id"] in ("seq03-s2", "seq03-s3", "seq03-s4"):
-        s["plans"] = {k: f"plans/{k}.pdf" for k in ("villa-sabonnere", "villa-goyrans", "maison-quartier", "agence-architecte", "bureaux-agence")}
+        s["plans"] = {k: f"plans/{k}.pdf" for k in ("villa-sabonnere", "villa-goyrans", "maison-quartier", "siege-social", "agence-architecte")}
     json.dump(s, open(OUT / f"{s['id']}.json", "w"), ensure_ascii=False, indent=1)
 print({k: {x: v[x] for x in ("nb_spaces", "nb_portes", "nb_fenetres", "surf_piece", "surf_dalle", "portes_rdc", "niv_pieces", "dallage")} for k, v in REF.items()})
-print("bureaux:", nb(B, "IfcSpace"), nb(B, "IfcWindow"), surf_rdc_b, haut_b, repro["niveau"])
+print("agence (S4):", niv_pieces_b, len(esp_b), surf_locaux, rd(surf(terrasse)), p43["nom"], p43["niveau"])

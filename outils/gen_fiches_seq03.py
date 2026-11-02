@@ -172,7 +172,7 @@ f.texte("L'agence conçoit ses projets sous **Revit** (fichier **natif** .rvt). 
 f.trois("🔒  NATIF = CONCEVOIR", ".rvt · lisible par Revit seulement", "Le fichier de travail de l'agence : on y modifie le projet.",
         "🌐 IFC = ÉCHANGER :",
         ["**Format ouvert** et normalisé (Industry Foundation Classes)",
-         "Lisible avec une **visionneuse gratuite** (BIMvision, visionneuse du site…)",
+         "Lisible avec une **visionneuse gratuite**, comme celle du site",
          "Partagé avec l'économiste, le BET, l'entreprise, le client",
          "On **consulte** l'IFC, on ne modifie pas le projet dedans"])
 f.blanc()

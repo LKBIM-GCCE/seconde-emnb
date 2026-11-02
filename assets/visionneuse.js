@@ -139,6 +139,7 @@
       let h = `<p class="v-classe"><b>${esc(e.ifc)}</b> ${esc(nomCls(e.ifc.replace("StandardCase", "")))}</p>${e.partie_de ? `<p class="v-partie">fait partie de <b>${esc(e.partie_de)}</b> (${esc(nomCls(e.partie_de))})</p>` : ""}
 <p class="v-nom">${esc(e.nom || "(sans nom)")}</p>
 <p class="v-chemin" title="Arborescence IFC">${chemin.map(esc).join(" › ")}</p>`;
+      if (e.numero) h += `<dl class="v-dl"><dt>N° de pièce</dt><dd>${esc(e.numero)}</dd></dl>`;
       if (e.type) h += `<dl class="v-dl"><dt>Type</dt><dd>${esc(e.type)}</dd></dl>`;
       const ordre = Object.keys(e.props).sort((a, b) => (a.startsWith("Pset") ? 0 : 1) - (b.startsWith("Pset") ? 0 : 1));
       for (const g of ordre) {

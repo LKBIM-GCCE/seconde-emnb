@@ -3,33 +3,33 @@
  "sequence": "seq03",
  "seance": "s4",
  "titre": "Évaluation : les futurs bureaux de l'agence",
- "intro": "L'agence a acheté un bâtiment pour y installer ses bureaux. Tu travailles seul : traite les tickets dans la maquette, en indiquant ta source et la forme de ta réponse. Le passage à l'oral devant le client se fait ensuite en classe.",
+ "intro": "L'agence a acheté un bâtiment d'habitation pour le transformer en bureaux. Tu travailles seul, avec la maquette IFC et les plans PDF du permis de construire : traite les tickets en indiquant ta source et la forme de ta réponse. Le passage à l'oral devant le client se fait ensuite en classe.",
  "blocs": [
   {
    "id": "decouverte",
    "type": "exercice",
    "titre": "Découverte du projet",
    "duree": "15 min",
-   "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, objets.",
+   "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF.",
    "parties": [
     {
      "type": "visionneuse",
      "maquettes": [
-      "bureaux-agence"
+      "agence-architecte"
      ]
     },
     {
      "type": "nombre",
      "items": [
       {
-       "texte": "Nombre de pièces (IfcSpace) dans tout le bâtiment",
-       "valeur": 24,
+       "texte": "Nombre de niveaux qui contiennent des pièces (IfcSpace)",
+       "valeur": 2,
        "tolerance": 0,
        "unite": "u"
       },
       {
-       "texte": "Nombre de fenêtres (IfcWindow)",
-       "valeur": 37,
+       "texte": "Nombre de locaux (IfcSpace) dans tout le bâtiment",
+       "valeur": 13,
        "tolerance": 0,
        "unite": "u"
       }
@@ -46,25 +46,26 @@
     {
      "type": "visionneuse",
      "maquettes": [
-      "bureaux-agence"
+      "agence-architecte"
      ]
     },
     {
      "type": "qcm",
+     "titre": "Ticket 1 — Client : « De quoi sont faits les murs de façade, et quelle sera leur finition ? »",
      "questions": [
       {
-       "q": "Ticket 1 — Client : « De quoi sont faits les murs de façade ? »",
+       "q": "Composition des murs de façade",
        "choix": [
         "Brique 20 cm + enduit",
+        "Maçonnerie existante de 33 cm",
         "Mur Duomur (béton + isolant)",
-        "Ossature bois + bardage",
-        "Maçonnerie existante de 33 cm"
+        "Ossature bois + bardage"
        ],
-       "r": 0,
-       "explication": ""
+       "r": 1,
+       "explication": "Type « 00- Ext Mur existant 33cm » : on garde les murs du bâtiment existant."
       },
       {
-       "q": "Ticket 1 — Source",
+       "q": "Source de la composition",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -77,15 +78,70 @@
        "explication": ""
       },
       {
-       "q": "Ticket 3 — Client : « Que contient la pièce n° 19 et à quel niveau est-elle ? »",
+       "q": "Finition des façades dans le projet",
        "choix": [
-        "Un bureau, au RDC",
-        "La reprographie, au R+1",
-        "Les WC, au RDC",
-        "L'accueil, au R+1"
+        "Briquette en terre cuite apparente",
+        "Enduit gratté fin, teinte beige (RAL 1014)",
+        "Bardage bois",
+        "Peinture blanche"
        ],
        "r": 1,
-       "explication": ""
+       "explication": "Indiqué sur les façades « état projeté » et dans la notice du permis de construire."
+      },
+      {
+       "q": "Source de la finition",
+       "choix": [
+        "La classe de l'objet",
+        "L'arborescence (le niveau)",
+        "Le nom du type / les matériaux",
+        "Une propriété Pset (Oui / Non)",
+        "Les quantités (Qto / Cotes)",
+        "Le plan PDF"
+       ],
+       "r": 5,
+       "explication": "La maquette ne contient pas la teinte de l'enduit : il faut le plan."
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "Ticket 2 — Conducteur de travaux : « Quelle est la hauteur de l'acrotère le plus haut, par rapport au terrain naturel ? »",
+     "items": [
+      {
+       "texte": "Hauteur de l'acrotère le plus haut",
+       "valeur": 5.82,
+       "tolerance": 0.01,
+       "unite": "m",
+       "explication": "Cote « Acrotère 5,82 m/TN » sur les façades du permis de construire (dans la maquette : haut des murs « Acrotère 20 » du niveau Toiture terrasse)."
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Ticket 2 — Source la plus directe",
+       "choix": [
+        "La classe de l'objet",
+        "L'arborescence (le niveau)",
+        "Le nom du type / les matériaux",
+        "Une propriété Pset (Oui / Non)",
+        "Les quantités (Qto / Cotes)",
+        "Le plan PDF"
+       ],
+       "r": 5,
+       "explication": "La cote altimétrique est écrite sur les façades."
+      },
+      {
+       "q": "Ticket 3 — Client : « À quoi servira la pièce n° 43, et à quel niveau est-elle ? »",
+       "choix": [
+        "Bureau direction, au R+1",
+        "Pôle économie et travaux, au R+1",
+        "Salle de réunion, au RDC",
+        "Archives, au RDC"
+       ],
+       "r": 1,
+       "explication": "Active « Pièces », clique sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."
       },
       {
        "q": "Ticket 3 — Forme de réponse la plus adaptée",
@@ -96,18 +152,6 @@
        ],
        "r": 1,
        "explication": ""
-      }
-     ]
-    },
-    {
-     "type": "nombre",
-     "items": [
-      {
-       "texte": "Ticket 2 — Client : « Quelle hauteur entre le niveau du RDC et celui du R+1 ? »",
-       "valeur": 2.9,
-       "tolerance": 0.005,
-       "unite": "m",
-       "explication": "RDC à 0,1 m et R+1 à 3,0 m (altitudes des niveaux, onglet Arborescence)."
       }
      ]
     }
@@ -122,17 +166,18 @@
     {
      "type": "visionneuse",
      "maquettes": [
-      "bureaux-agence"
+      "agence-architecte"
      ]
     },
     {
      "type": "nombre",
      "items": [
       {
-       "texte": "Ticket 4 — Économiste : « Surface totale des pièces du RDC ? » (additionne les IfcSpace du RDC)",
-       "valeur": 179.11,
+       "texte": "Ticket 4 — Économiste : « Surface totale des locaux clos et couverts ? » (additionne les IfcSpace des deux niveaux)",
+       "valeur": 188.21,
        "tolerance": 0.6,
-       "unite": "m²"
+       "unite": "m²",
+       "explication": "13 locaux : RDC + R+1. Les terrasses ne sont pas des locaux."
       }
      ]
     },
@@ -140,21 +185,21 @@
      "type": "qcm",
      "questions": [
       {
-       "q": "Ticket vigilance — Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Que fais-tu ?",
+       "q": "Ticket vigilance — Au R+1, une terrasse accessible de 21,12 m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
        "choix": [
-        "Je l'additionne sans rien dire",
-        "C'est suspect : je vérifie sur le plan et je signale la donnée au chef de projet",
-        "Je supprime les WC du calcul sans le dire"
+        "Oui, c'est une surface du bâtiment",
+        "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse",
+        "Oui, mais seulement la moitié"
        ],
        "r": 1,
-       "explication": "Lire la donnée, pas seulement le total."
+       "explication": "Lire ce que l'on additionne, pas seulement le total."
       }
      ]
     },
     {
      "type": "redaction",
      "titre": "Ticket 5 — Capture annotée",
-     "question": "Le conducteur de travaux veut voir où est l'escalier. Fais une capture annotée (bouton 📷) et dépose-la sur l'ENT. Ici, explique en une phrase pourquoi tu as choisi cette vue.",
+     "question": "Le conducteur de travaux veut voir où se trouvent la terrasse accessible et les toitures terrasses. Fais une capture annotée (bouton 📷) et dépose-la sur l'ENT. Ici, explique en une phrase pourquoi tu as choisi cette vue.",
      "min": 30
     }
    ]
@@ -164,7 +209,7 @@
   "villa-sabonnere": "plans/villa-sabonnere.pdf",
   "villa-goyrans": "plans/villa-goyrans.pdf",
   "maison-quartier": "plans/maison-quartier.pdf",
-  "agence-architecte": "plans/agence-architecte.pdf",
-  "bureaux-agence": "plans/bureaux-agence.pdf"
+  "siege-social": "plans/siege-social.pdf",
+  "agence-architecte": "plans/agence-architecte.pdf"
  }
 }

@@ -75,9 +75,9 @@
        "desc": "Équipement public : salles polyvalentes, cuisine, sanitaires."
       },
       {
-       "id": "agence-architecte",
-       "nom": "Groupe 4 — Agence d'architecture",
-       "desc": "Bâtiment existant transformé en bureaux, sur deux niveaux."
+       "id": "siege-social",
+       "nom": "Groupe 4 — Siège social de l'entreprise",
+       "desc": "Immeuble de bureaux neuf sur deux niveaux, 24 pièces."
       }
      ]
     },
@@ -138,9 +138,9 @@
        "desc": "Équipement public : salles polyvalentes, cuisine, sanitaires."
       },
       {
-       "id": "agence-architecte",
-       "nom": "Groupe 4 — Agence d'architecture",
-       "desc": "Bâtiment existant transformé en bureaux, sur deux niveaux."
+       "id": "siege-social",
+       "nom": "Groupe 4 — Siège social de l'entreprise",
+       "desc": "Immeuble de bureaux neuf sur deux niveaux, 24 pièces."
       }
      ]
     },
@@ -169,8 +169,8 @@
        "q": "Quel type de toiture a ce bâtiment ?",
        "choix": [
         "Toiture en pente, en tuiles",
+        "Toiture en pente, couverture non précisée (toit générique)",
         "Toiture terrasse (plancher béton + étanchéité)",
-        "Toiture terrasse (plancher béton)",
         "Toiture en bac acier"
        ],
        "r": 0,
@@ -239,8 +239,8 @@
        "q": "Quel type de toiture a ce bâtiment ?",
        "choix": [
         "Toiture en pente, en tuiles",
+        "Toiture en pente, couverture non précisée (toit générique)",
         "Toiture terrasse (plancher béton + étanchéité)",
-        "Toiture terrasse (plancher béton)",
         "Toiture en bac acier"
        ],
        "r": 0,
@@ -309,11 +309,11 @@
        "q": "Quel type de toiture a ce bâtiment ?",
        "choix": [
         "Toiture en pente, en tuiles",
+        "Toiture en pente, couverture non précisée (toit générique)",
         "Toiture terrasse (plancher béton + étanchéité)",
-        "Toiture terrasse (plancher béton)",
         "Toiture en bac acier"
        ],
-       "r": 1,
+       "r": 2,
        "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
@@ -360,7 +360,7 @@
     {
      "type": "qcm",
      "pour": [
-      "agence-architecte"
+      "siege-social"
      ],
      "titre": "1. Le projet",
      "questions": [
@@ -379,11 +379,11 @@
        "q": "Quel type de toiture a ce bâtiment ?",
        "choix": [
         "Toiture en pente, en tuiles",
+        "Toiture en pente, couverture non précisée (toit générique)",
         "Toiture terrasse (plancher béton + étanchéité)",
-        "Toiture terrasse (plancher béton)",
         "Toiture en bac acier"
        ],
-       "r": 2,
+       "r": 1,
        "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
@@ -395,7 +395,7 @@
         "Ossature bois + bardage",
         "Parpaing 20 cm sans isolant"
        ],
-       "r": 2,
+       "r": 0,
        "explication": "Clique sur un mur de façade : le nom du type et les matériaux donnent sa composition."
       }
      ]
@@ -403,19 +403,19 @@
     {
      "type": "nombre",
      "pour": [
-      "agence-architecte"
+      "siege-social"
      ],
      "titre": "2. Les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
-       "valeur": 13,
+       "valeur": 24,
        "tolerance": 0,
        "unite": "u"
       },
       {
        "texte": "Nombre de portes (IfcDoor)",
-       "valeur": 12,
+       "valeur": 23,
        "tolerance": 0,
        "unite": "u"
       },
@@ -462,9 +462,9 @@
        "desc": "Équipement public : salles polyvalentes, cuisine, sanitaires."
       },
       {
-       "id": "agence-architecte",
-       "nom": "Groupe 4 — Agence d'architecture",
-       "desc": "Bâtiment existant transformé en bureaux, sur deux niveaux."
+       "id": "siege-social",
+       "nom": "Groupe 4 — Siège social de l'entreprise",
+       "desc": "Immeuble de bureaux neuf sur deux niveaux, 24 pièces."
       }
      ]
     },
@@ -508,8 +508,8 @@
        "choix": [
         "0,73 m × 2,04 m",
         "0,83 m × 2,04 m",
-        "0,93 m × 2,04 m",
-        "1,20 m × 2,15 m"
+        "0,92 m × 2,13 m",
+        "0,93 m × 2,04 m"
        ],
        "r": 1,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
@@ -625,8 +625,8 @@
        "choix": [
         "0,73 m × 2,04 m",
         "0,83 m × 2,04 m",
-        "0,93 m × 2,04 m",
-        "1,20 m × 2,15 m"
+        "0,92 m × 2,13 m",
+        "0,93 m × 2,04 m"
        ],
        "r": 1,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
@@ -745,10 +745,10 @@
        "choix": [
         "0,73 m × 2,04 m",
         "0,83 m × 2,04 m",
-        "0,93 m × 2,04 m",
-        "1,20 m × 2,15 m"
+        "0,92 m × 2,13 m",
+        "0,93 m × 2,04 m"
        ],
-       "r": 2,
+       "r": 3,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
@@ -829,7 +829,7 @@
     {
      "type": "qcm",
      "pour": [
-      "agence-architecte"
+      "siege-social"
      ],
      "titre": "Tickets du maître d'ouvrage et du conducteur de travaux",
      "questions": [
@@ -842,7 +842,7 @@
         "Ossature bois + bardage",
         "Parpaing 20 cm sans isolant"
        ],
-       "r": 2,
+       "r": 0,
        "explication": ""
       },
       {
@@ -863,10 +863,10 @@
        "choix": [
         "0,73 m × 2,04 m",
         "0,83 m × 2,04 m",
-        "0,93 m × 2,04 m",
-        "1,20 m × 2,15 m"
+        "0,92 m × 2,13 m",
+        "0,93 m × 2,04 m"
        ],
-       "r": 0,
+       "r": 2,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
@@ -883,14 +883,14 @@
        "explication": ""
       },
       {
-       "q": "Ticket 3 — MOA : « À quel niveau se trouve le pôle conception ? »",
+       "q": "Ticket 3 — MOA : « À quel niveau se trouve la reprographie ? »",
        "choix": [
-        "Garage",
+        "Fondation",
         "RDC",
         "R+1",
-        "Toiture terrasse"
+        "EGOUT"
        ],
-       "r": 1,
+       "r": 2,
        "explication": "Le chemin de l'inspecteur indique le niveau."
       },
       {
@@ -911,7 +911,7 @@
     {
      "type": "nombre",
      "pour": [
-      "agence-architecte"
+      "siege-social"
      ],
      "titre": "Ticket 4 — Conducteur de travaux : « Quelle est l'épaisseur du dallage du RDC ? »",
      "items": [
@@ -920,26 +920,26 @@
        "valeur": 0.2,
        "tolerance": 0.005,
        "unite": "m",
-       "explication": "Type : Sol:00- Plancher bas — lu dans les Cotes (Épaisseur)."
+       "explication": "Type : Sol:Plancher béton — lu dans les Cotes (Épaisseur)."
       }
      ]
     },
     {
      "type": "qcm",
      "pour": [
-      "agence-architecte"
+      "siege-social"
      ],
      "titre": "Ticket 5 — Vigilance",
      "questions": [
       {
-       "q": "Clique sur une cloison intérieure (plaque de plâtre). Sa propriété IsExternal (élément extérieur ?) vaut Oui. Que fais-tu ?",
+       "q": "Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Le client te demande la surface des sanitaires. Que fais-tu ?",
        "choix": [
-        "Je réponds au client que c'est un mur de façade",
-        "La donnée est fausse (mauvais réglage à l'export) : je vérifie sur le plan et je le signale",
-        "Je supprime la cloison"
+        "Je donne 30,06 m² sans rien dire",
+        "C'est suspect : je compare avec le plan PDF et je signale la donnée au chef de projet",
+        "Je réponds qu'il n'y a pas de WC"
        ],
        "r": 1,
-       "explication": "Une maquette peut contenir des erreurs : ici toutes les parois ont été exportées comme « extérieures »."
+       "explication": "Les pièces ont sans doute été mal découpées dans Revit : il faut lire la donnée, pas seulement la recopier."
       }
      ]
     }
@@ -950,7 +950,7 @@
   "villa-sabonnere": "plans/villa-sabonnere.pdf",
   "villa-goyrans": "plans/villa-goyrans.pdf",
   "maison-quartier": "plans/maison-quartier.pdf",
-  "agence-architecte": "plans/agence-architecte.pdf",
-  "bureaux-agence": "plans/bureaux-agence.pdf"
+  "siege-social": "plans/siege-social.pdf",
+  "agence-architecte": "plans/agence-architecte.pdf"
  }
 }

@@ -332,11 +332,10 @@ const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentiq
 def page_jeux():
     import sys
     sys.path.insert(0, str(RACINE / "outils"))
-    from maison_jeux import ZONES, DECOR, IFC
+    from maison_jeux import ZONES, DECOR
     cat_f = RACINE / "jeux" / "decouverte" / "catalogue.json"
     cat = json.loads(cat_f.read_text(encoding="utf-8")) if cat_f.exists() else []
     entrees = [(c["slug"], c["nom"], *ZONES[c["slug"]], c["etapes"]) for c in cat if c["slug"] in ZONES]
-    entrees.append(("mission-ifc", "Mission IFC", *IFC, [{"cle": "jouer", "lib": "▶ Jouer", "href": "jeux/mission-ifc.html"}]))
     zones = ""
     for slug, nom, emo, desc, x, y, forme, etapes in entrees:
         larg = int(len(nom) * 8.2 + 26)
@@ -357,7 +356,7 @@ def page_jeux():
 var faits=new Set(v.map(function(x){return x.split('/')[0]}));
 document.querySelectorAll('[data-slug]').forEach(function(el){if(faits.has(el.dataset.slug))el.classList.add('vu')});
 document.querySelectorAll('.mj-etape').forEach(function(a){if(v.indexOf(a.dataset.cle)>=0)a.classList.add('vu')});
-var n=document.querySelectorAll('.mj-carte').length-1,f=Array.from(faits).filter(function(s){return s!=='mission-ifc'}).length;
+var n=document.querySelectorAll('.mj-carte').length,f=faits.size;
 var c=document.querySelector('.mj-compteur');if(c){c.querySelector('b').textContent=f+' / '+n;c.querySelector('i').style.width=(100*f/n)+'%'}})();
 </script>"""
     return page("La maison des jeux", f"""

@@ -91,9 +91,4 @@ DECOR = """
 <rect x="44" y="254" width="102" height="132" rx="4" fill="#ffffff" stroke="#1f55d6" stroke-width="2"/>
 <g stroke="#1f55d6" stroke-width="1.5" fill="none"><rect x="58" y="270" width="74" height="54"/><path d="M58 300h40v24M98 270v30"/><path d="M58 340h74M58 350h50M58 360h64"/></g>
 <path d="M70 386l-14 148M120 386l14 148" stroke="#8a5a33" stroke-width="5"/>
-<!-- ordinateur (Mission IFC) -->
-<rect x="40" y="470" width="110" height="8" fill="#8a5a33"/><path d="M52 478v56M138 478v56" stroke="#8a5a33" stroke-width="5"/>
-<rect x="62" y="428" width="66" height="42" rx="3" fill="#13223f"/><rect x="66" y="432" width="58" height="34" fill="#1f55d6"/><path d="M80 456l15-12 15 12z" fill="#ffc52e"/><rect x="54" y="468" width="82" height="5" rx="2" fill="#55637e"/>
 """
-
-IFC = ("💻", "La maquette numérique en jeu (SEQ03) : classes, arborescence, propriétés.", 95, 440, '<rect x="40" y="420" width="110" height="60" rx="6"/>')

@@ -51,8 +51,8 @@ h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; margin: 6px 0 10px; }
 .marque { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .marque strong { display: block; font-family: var(--titre); font-size: 18px; }
 .marque em { display: block; font-style: normal; font-size: 13px; opacity: .8; }
-.logo { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 8px; background: var(--signal); color: #13223f; font: 800 20px/1 var(--titre); }
-.logo small { font-size: 10px; display: block; margin-top: -3px; }
+.logo { width: 42px; height: 42px; flex: none; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; border-radius: 8px; background: var(--signal); color: #13223f; font: 800 22px/1 var(--titre); }
+.logo small { font-size: 11px; line-height: 1; margin: 1px 0 0 1px; }
 .menu { display: flex; gap: 2px; flex-wrap: wrap; }
 .menu a { text-decoration: none; color: #fff; opacity: .85; font-weight: 700; font-size: 14px; padding: 6px 10px; border-radius: 6px; }
 .menu a:hover { opacity: 1; background: rgba(255,255,255,.12); }

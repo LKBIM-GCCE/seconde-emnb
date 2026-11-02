@@ -11,6 +11,7 @@ Site de la classe de Seconde EMNB (Lycée des métiers Urbain Vitry), publié av
 | `data/activites/*-cours*.html` | Contenu des cours (avec schémas) |
 | `media/maquettes/*.glb / *.json` | Maquettes IFC converties pour la visionneuse 3D |
 | `jeux/mission-ifc.html` | Jeu Mission IFC (SEQ03 S1) |
+| `jeux/decouverte/` | Jeux de découverte (11 thèmes), adaptés par `outils/adapter_jeux.py` ; page `jeux.html` = la maison des jeux (`outils/maison_jeux.py`) |
 | `fiches/` | Fiches synthèse PDF |
 | `plans/` | Plans PDF des projets publiés |
 | `assets/` | Style, moteur d'activités, visionneuse IFC, three.js |

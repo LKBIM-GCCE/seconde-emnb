@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Plomberie et sanitaire : découvrir</title>
+<style>
+:root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
+*{box-sizing:border-box}
+body{margin:0;padding:8px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--encre);background:#FAFAF7;line-height:1.45;font-size:16px}
+.cadre{max-width:1000px;margin:0 auto;border:6px solid var(--jaune);border-radius:10px;background:#fff;overflow:hidden}
+header{background:var(--jaune);padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.2rem;line-height:1.2}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#fff;padding:3px 9px;border-radius:20px}
+main{padding:14px}
+.consigne{background:var(--jaune-clair);border-left:4px solid var(--jaune);padding:8px 12px;border-radius:4px;margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid #C9CED6;background:#fff;color:var(--encre);border-radius:8px;padding:8px 12px}
+button:hover:not(:disabled){border-color:var(--bleu)}
+.btn{background:var(--bleu);color:#fff;border-color:var(--bleu);font-weight:600}
+.progression{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gris);margin-bottom:4px}
+.barre{height:6px;background:var(--ligne);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.barre div{height:100%;background:var(--jaune);transition:width .3s}
+.question{font-size:1.08rem;font-weight:600;margin:6px 0 12px}
+.feedback{padding:10px 12px;border-radius:6px;margin:12px 0}
+.feedback.ok{background:var(--vert-clair);border-left:4px solid var(--vert)}
+.feedback.ko{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.resultat{text-align:center;padding:10px}
+.resultat .note{font-size:2.4rem;font-weight:800;margin:4px 0;color:var(--bleu)}
+footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid var(--ligne)}
+.onglets{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.onglets button.actif{background:var(--bleu);color:#fff;border-color:var(--bleu)}
+.grille{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:760px){.grille{grid-template-columns:1fr}}
+#inutile{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.zone{cursor:pointer}
+.zone .f{stroke:#4A4A4A;stroke-width:1}
+.zone:hover .f{stroke:var(--bleu);stroke-width:2}
+.zone.sel .f{stroke:var(--bleu);stroke-width:3.5}
+.zone.vrai .f{stroke:var(--vert);stroke-width:4}
+.zone.erreur .f{stroke:var(--rouge);stroke-width:4}
+.zone .l{stroke:#8B5A2B}
+.zone .lc{stroke:#B5532E}
+.zone:hover .l,.zone:hover .lc,.zone.sel .l,.zone.sel .lc{stroke:var(--bleu)}
+.zone.vrai .l,.zone.vrai .lc{stroke:var(--vert)}
+.zone.erreur .l,.zone.erreur .lc{stroke:var(--rouge)}
+.hit{fill:transparent;stroke:none}
+.hitl{stroke:transparent;fill:none}
+.lbl{font-size:12px;fill:#7A7A7A}
+.fiche{border:1px solid var(--ligne);border-left:4px solid var(--bleu);border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.fiche h2{margin:0 0 6px;font-size:1.05rem;color:var(--bleu)}
+.fiche p{margin:0 0 6px}
+.savoir{font-size:.92rem;color:#3B4652}
+.aide{color:var(--gris);margin-top:0}
+.puces{display:flex;flex-wrap:wrap;gap:5px}
+.puce{font-size:.8rem;padding:4px 9px;border-radius:14px}
+.puce.vu{background:var(--vert-clair);border-color:var(--vert)}
+.compteur{font-size:.85rem;color:var(--gris);margin:6px 0}
+.planche{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.planches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.planches button{font-size:.85rem;padding:5px 10px}
+.planches button.actif{background:var(--jaune);border-color:var(--jaune);font-weight:700}
+.zone .lt{stroke:#1F3A68}.zone .la{stroke:#C62828}
+.zone:hover .lt,.zone.sel .lt,.zone:hover .la,.zone.sel .la{stroke:#E07A00}
+.zone.vrai .lt,.zone.vrai .la{stroke:var(--vert)}.zone.erreur .lt,.zone.erreur .la{stroke:var(--rouge)}
+.titreP{font-size:13px;fill:#5F6B7A;font-weight:600}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><link rel="stylesheet" href="../../../assets/jeux-theme.css"></head><body><nav class="jeux-barre" aria-label="Navigation des jeux"><a class="jeux-retour" href="../../../jeux.html">🏠 La maison des jeux</a><span class="jeux-theme">Plomberie et sanitaire</span><span class="jeux-etapes"><a href="decouvrir.html" aria-current="page">1 · Découvrir</a><a href="sentrainer.html">2 · S'entraîner</a></span></nav><script>(function(){try{var k="emnb-jeux-vus",v=JSON.parse(localStorage.getItem(k)||"[]");if(v.indexOf("plomberie/decouvrir")<0){v.push("plomberie/decouvrir");localStorage.setItem(k,JSON.stringify(v))}}catch(e){}})()</script><div class="cadre">
+<header><h1>Plomberie et sanitaire · Découvrir</h1><div class="badges"><span class="badge">Découverte libre</span><span class="badge">2de EMNB</span></div></header>
+<main>
+<p class="consigne">Trois planches pour découvrir la plomberie : le plan des réseaux d'une salle de bains et d'une cuisine, la coupe des évacuations d'une maison et l'arrivée d'eau jusqu'au lavabo. <strong>Découvrir</strong> : clique sur chaque élément. <strong>Défi</strong> : retrouve les éléments demandés.</p>
+<div class="onglets"><button id="oExp" class="actif">1. Découvrir</button><button id="oDef">2. Défi (12 questions)</button></div>
+<div class="grille"><div><div class="planches" id="planches"></div><svg class="planche" data-p="plan" viewBox="0 0 800 460" role="img" aria-label="Plan des réseaux d'une salle de bains et d'une cuisine"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="20" y="20" width="760" height="420" fill="#FFFFFF" stroke="#333" stroke-width="8"/>
+<rect x="400" y="20" width="6" height="420" fill="#333"/><rect x="300" y="300" width="100" height="6" fill="#333"/><rect x="300" y="300" width="6" height="140" fill="#333"/>
+<g font-size="12" fill="#7A7A7A" text-anchor="middle"><text x="160" y="250">Salle de bains</text><text x="600" y="250">Cuisine</text><text x="352" y="430">Placard</text></g>
+<g class="zone" data-id="ef"><path d="M330 390 V200 H120 V60 M330 200 H230 V60 M330 330 H200 V260 M330 390 H420 V380 H560" fill="none" stroke="#2F6DB5" stroke-width="2.5" stroke-dasharray="6 3"/><path class="hitl" d="M330 390 V200 H120 V60 M330 200 H230 V60 M330 330 H200 V260 M330 390 H420 V380 H560" stroke-width="12"/></g>
+<g class="zone" data-id="ecs"><path d="M345 390 V210 H128 V60 M345 210 H238 V60 M345 400 H420 V392 H572" fill="none" stroke="#D62020" stroke-width="2.5" stroke-dasharray="6 3"/><path class="hitl" d="M345 390 V210 H128 V60 M345 210 H238 V60 M345 400 H420 V392 H572" stroke-width="12"/></g>
+<g class="zone" data-id="nourrice"><rect class="f" x="316" y="380" width="44" height="30" fill="#E6E8EB"/><text x="338" y="400" font-size="9" text-anchor="middle" fill="#333">nourrice</text></g>
+<g class="zone" data-id="chauffe_eau"><circle class="f" cx="352" cy="340" r="20" fill="#F7E3E3"/><text x="352" y="344" font-size="10" text-anchor="middle" fill="#D62020" font-weight="700">CE</text></g>
+<g class="zone" data-id="douche"><rect class="f" x="30" y="30" width="80" height="80" fill="#EAF3FB"/><circle cx="70" cy="70" r="6" fill="#fff" stroke="#555"/><path d="M34 34 L70 70 M106 34 L70 70 M34 106 L70 70 M106 106 L70 70" stroke="#9FB4C7" stroke-dasharray="3 3"/></g>
+<g class="zone" data-id="lavabo"><rect class="f" x="210" y="30" width="44" height="30" rx="10" fill="#F4F4F4"/></g>
+<g class="zone" data-id="wc"><rect class="f" x="40" y="250" width="40" height="18" fill="#E6E8EB"/><ellipse class="f" cx="60" cy="290" rx="15" ry="22" fill="#F4F4F4"/></g>
+<g class="zone" data-id="lave_linge"><rect class="f" x="180" y="250" width="44" height="44" fill="#F4F4F4"/><circle cx="202" cy="272" r="13" fill="none" stroke="#555"/></g>
+<g class="zone" data-id="evier"><rect class="f" x="520" y="370" width="100" height="40" rx="4" fill="#F4F4F4"/><rect x="530" y="376" width="38" height="28" rx="4" fill="#fff" stroke="#555"/><rect x="572" y="376" width="38" height="28" rx="4" fill="#fff" stroke="#555"/></g>
+<g class="zone" data-id="eu"><path d="M70 110 V160 H370 V180 M232 60 V160 M202 294 V160 M570 404 V200 H380" fill="none" stroke="#8B5A2B" stroke-width="3" /><path class="hitl" d="M70 110 V160 H370 V180 M232 60 V160 M202 294 V160 M570 404 V200 H380" stroke-width="12"/></g>
+<g class="zone" data-id="ev"><path d="M60 268 V230 H370" fill="none" stroke="#8B5A2B" stroke-width="6" /><path class="hitl" d="M60 268 V230 H370" stroke-width="12"/></g>
+<g class="zone" data-id="chute"><circle class="f" cx="378" cy="190" r="12" fill="#C9A27A"/><text x="378" y="194" font-size="8" text-anchor="middle" fill="#fff">Ø100</text></g>
+<g font-size="10"><text x="440" y="60" fill="#2F6DB5">— EF (eau froide)</text><text x="440" y="78" fill="#D62020">— ECS (eau chaude)</text><text x="440" y="96" fill="#8B5A2B">— EU / EV (évacuations)</text></g>
+</svg><svg class="planche" data-p="coupe" viewBox="0 0 800 460" role="img" aria-label="Coupe sur les évacuations d'une maison"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="0" y="360" width="800" height="100" fill="#EADFC8"/><line x1="0" y1="360" x2="800" y2="360" stroke="#7A6A4F" stroke-width="2"/>
+<rect x="560" y="360" width="240" height="14" fill="#B9BDC4"/><text x="690" y="352" font-size="11" fill="#555">voie publique</text>
+<g class="zone" data-id="limite"><line class="lt" x1="540" y1="250" x2="540" y2="460" stroke-width="2" stroke-dasharray="10 4 2 4"/><text x="540" y="244" font-size="10" text-anchor="middle" fill="#1F3A68">limite de propriété</text><path class="hitl" d="M540 250 V460" stroke-width="14"/></g>
+<polygon points="40,150 220,60 400,150" fill="#C9794F" stroke="#6B3A22"/>
+<rect x="60" y="150" width="320" height="210" fill="#FFFFFF" stroke="#333" stroke-width="4"/><rect x="60" y="250" width="320" height="8" fill="#B9BDC4" stroke="#333"/>
+<text x="140" y="200" font-size="11" fill="#7A7A7A">R+1</text><text x="140" y="300" font-size="11" fill="#7A7A7A">RDC</text>
+<rect x="230" y="232" width="24" height="18" rx="5" fill="#F4F4F4" stroke="#555"/><rect x="290" y="226" width="30" height="10" rx="4" fill="#F4F4F4" stroke="#555"/>
+<rect x="230" y="332" width="24" height="28" rx="5" fill="#F4F4F4" stroke="#555"/>
+<g class="zone" data-id="chute_c"><path d="M350 150 V380" fill="none" stroke="#8B5A2B" stroke-width="7" /><path class="hitl" d="M350 150 V380" stroke-width="12"/></g>
+<g class="zone" data-id="ventil"><path d="M350 150 V70" fill="none" stroke="#8B5A2B" stroke-width="7" /><path class="hitl" d="M350 150 V70" stroke-width="12"/><rect x="342" y="62" width="16" height="8" fill="#8A8F96"/></g>
+<g class="zone" data-id="branchement"><path d="M254 244 L350 248 M305 236 L350 240 M254 352 L350 356" fill="none" stroke="#8B5A2B" stroke-width="3" /><path class="hitl" d="M254 244 L350 248 M305 236 L350 240 M254 352 L350 356" stroke-width="12"/><text x="290" y="270" font-size="9" fill="#8B5A2B">pente 1 à 3 %</text></g>
+<g class="zone" data-id="collecteur"><path d="M350 380 L440 392 L520 400" fill="none" stroke="#8B5A2B" stroke-width="6" /><path class="hitl" d="M350 380 L440 392 L520 400" stroke-width="12"/></g>
+<g class="zone" data-id="regard_visite"><rect class="f" x="430" y="362" width="26" height="40" fill="#B0B4BA"/><rect x="426" y="358" width="34" height="6" fill="#555"/></g>
+<g class="zone" data-id="regard_branchement"><rect class="f" x="516" y="362" width="26" height="46" fill="#B0B4BA"/><rect x="512" y="358" width="34" height="6" fill="#555"/></g>
+<g class="zone" data-id="reseau_public"><circle class="f" cx="680" cy="420" r="18" fill="#C9A27A"/><text x="680" y="424" font-size="9" text-anchor="middle" fill="#fff">EU</text><path d="M542 404 L662 418" fill="none" stroke="#8B5A2B" stroke-width="6" /><path class="hitl" d="M542 404 L662 418" stroke-width="12"/></g>
+<g class="zone" data-id="ep"><path d="M40 150 H30 V370 L70 380 L470 430 L610 430" fill="none" stroke="#2F6DB5" stroke-width="4" /><path class="hitl" d="M40 150 H30 V370 L70 380 L470 430 L610 430" stroke-width="12"/><circle class="f" cx="630" cy="430" r="16" fill="#9FB4C7"/><text x="630" y="434" font-size="9" text-anchor="middle" fill="#fff">EP</text></g>
+</svg><svg class="planche" data-p="detail" viewBox="0 0 800 460" role="img" aria-label="Arrivée d'eau, chauffe-eau et lavabo"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="20" y="420" width="760" height="20" fill="url(#pBeton)" stroke="#4A4A4A"/>
+<g class="zone" data-id="compteur"><rect class="f" x="30" y="350" width="44" height="34" rx="4" fill="#E6E8EB"/><circle cx="52" cy="367" r="9" fill="#fff" stroke="#555"/></g>
+<g class="zone" data-id="rag"><polygon class="f" points="92,358 108,368 92,378" fill="#2F6DB5"/><polygon class="f" points="124,358 108,368 124,378" fill="#2F6DB5"/><line x1="108" y1="368" x2="108" y2="350" stroke="#333" stroke-width="3"/><rect class="hit" x="86" y="344" width="44" height="40"/></g>
+<g class="zone" data-id="reducteur"><rect class="f" x="140" y="356" width="34" height="24" rx="6" fill="#B9C9DD"/><circle cx="157" cy="346" r="8" fill="#fff" stroke="#555"/></g>
+<path d="M74 367 H92 M124 367 H140 M174 367 H230 V300 M230 367 H560 V250" fill="none" stroke="#2F6DB5" stroke-width="4" /><path class="hit" d="M74 367 H92 M124 367 H140 M174 367 H230 V300 M230 367 H560 V250" stroke-width="12"/>
+<g class="zone" data-id="chauffe_eau_d"><rect class="f" x="250" y="60" width="110" height="200" rx="50" fill="#F7F3EE"/><text x="305" y="160" font-size="11" text-anchor="middle" fill="#D62020" font-weight="700">ballon ECS</text></g>
+<g class="zone" data-id="groupe_secu"><rect class="f" x="216" y="284" width="30" height="34" rx="4" fill="#E0A458"/><path d="M231 318 V360 M222 360 h18 l-4 10 h-10 z" stroke="#555" fill="#fff"/><text x="231" y="392" font-size="9" text-anchor="middle" fill="#555">vers évacuation</text></g>
+<path d="M230 300 V280 H270 V260" fill="none" stroke="#2F6DB5" stroke-width="4"/>
+<g class="zone" data-id="ecs_d"><path d="M340 260 V300 H620 V250" fill="none" stroke="#D62020" stroke-width="4" /><path class="hitl" d="M340 260 V300 H620 V250" stroke-width="12"/></g>
+<rect x="540" y="200" width="150" height="34" rx="10" fill="#F4F4F4" stroke="#555"/><rect x="608" y="234" width="14" height="140" fill="#F4F4F4" stroke="#555"/>
+<g class="zone" data-id="mitigeur"><rect class="f" x="600" y="172" width="30" height="28" rx="4" fill="#C9CDD3"/><path d="M615 172 V160 H640" stroke="#555" stroke-width="5" fill="none"/></g>
+<g class="zone" data-id="robinets_lav"><rect class="f" x="552" y="244" width="16" height="12" fill="#2F6DB5"/><rect class="f" x="612" y="244" width="16" height="12" fill="#D62020"/><rect class="hit" x="546" y="238" width="88" height="24"/></g>
+<g class="zone" data-id="siphon"><path class="lt" d="M660 234 V300 Q660 320 676 320 Q692 320 692 300 V290" fill="none" stroke-width="6"/><path class="hitl" d="M660 234 V300 Q660 320 676 320 Q692 320 692 300" stroke-width="16"/></g>
+<g class="zone" data-id="evac_lav"><path d="M692 290 H760" fill="none" stroke="#8B5A2B" stroke-width="6" /><path class="hitl" d="M692 290 H760" stroke-width="12"/><text x="726" y="282" font-size="9" text-anchor="middle" fill="#8B5A2B">Ø32</text></g>
+</svg></div><div id="panneau"></div></div>
+</main>
+<footer>Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Tu découvres : lots techniques, lecture et implantation des réseaux de plomberie, synthèse.</footer>
+</div>
+<script>
+const PL=[["plan", "Plan des réseaux"], ["coupe", "Coupe évacuations"], ["detail", "Arrivée d'eau et lavabo"]];
+const RAW={"ef": ["plan", "Réseau d'eau froide (EF)", "Tubes PER sous gaine bleue, un par appareil, depuis la nourrice.", "C'est une distribution en pieuvre : pas de raccord encastré entre la nourrice et l'appareil."], "ecs": ["plan", "Réseau d'eau chaude (ECS)", "Tubes PER sous gaine rouge, depuis le chauffe-eau via la nourrice.", "Le chauffe-eau est placé près des pièces d'eau pour réduire l'attente et les pertes."], "nourrice": ["plan", "Nourrice (collecteur)", "Pièce de répartition avec un robinet par départ.", "Elle reste accessible, ici dans un placard."], "chauffe_eau": ["plan", "Chauffe-eau", "Ballon d'eau chaude sanitaire.", "Placé au plus près des points de puisage, il est équipé d'un groupe de sécurité."], "douche": ["plan", "Douche à l'italienne", "Sol carrelé en pente vers un siphon de sol central.", "Elle demande une réservation dans la dalle et une protection à l'eau sous carrelage (SPEC)."], "lavabo": ["plan", "Lavabo", "Appareil de toilette, évacuation Ø 32 mm.", "Il reçoit l'EF et l'ECS et possède son propre siphon."], "wc": ["plan", "WC suspendu", "Cuvette portée par un bâti-support encastré.", "Son évacuation (EV) de Ø 100 mm rejoint directement la chute."], "lave_linge": ["plan", "Lave-linge", "Appareil alimenté en eau froide, avec une évacuation EU.", "Il demande aussi un circuit électrique spécialisé : coordination plomberie et électricité."], "evier": ["plan", "Évier", "Évier double bac de la cuisine, évacuation Ø 40 mm.", "Il reçoit l'EF et l'ECS."], "eu": ["plan", "Évacuations EU", "Évacuations des eaux usées (douche, lavabo, lave-linge, évier), en PVC.", "Elles sont posées avec une pente de 1 à 3 cm par mètre vers la chute."], "ev": ["plan", "Évacuation EV", "Évacuation des eaux vannes du WC, Ø 100 mm.", "Elle rejoint la chute par le chemin le plus court possible."], "chute": ["plan", "Chute", "Canalisation verticale qui collecte les évacuations.", "Elle est regroupée avec les pièces d'eau, souvent dans une gaine technique."], "limite": ["coupe", "Limite de propriété", "Séparation entre la parcelle et le domaine public.", "Le regard de branchement est placé à cette limite."], "ventil": ["coupe", "Ventilation primaire", "Prolongement de la chute jusqu'en toiture, à l'air libre.", "Elle équilibre la pression dans le réseau et protège la garde d'eau des siphons."], "branchement": ["coupe", "Branchements d'appareils", "Évacuations des appareils de chaque niveau jusqu'à la chute.", "Pente de 1 à 3 cm par mètre."], "collecteur": ["coupe", "Collecteur enterré", "Canalisation enterrée qui reprend la chute et conduit les eaux vers l'extérieur.", "Il est posé en pente, sous la dalle ou dans le vide sanitaire."], "regard_visite": ["coupe", "Regard de visite", "Regard qui donne accès au réseau enterré.", "On en place aux changements de direction et aux jonctions, pour contrôler et déboucher."], "regard_branchement": ["coupe", "Regard de branchement", "Regard en limite de propriété.", "Il raccorde le réseau privé au réseau public d'eaux usées."], "reseau_public": ["coupe", "Réseau public d'eaux usées", "Collecteur de la commune, sous la voie.", "Le raccordement est encadré par le règlement d'assainissement de la commune."], "ep": ["coupe", "Réseau d'eaux pluviales (EP)", "Descente de gouttière et canalisation séparée, vers le réseau EP.", "Réseau séparatif : les eaux pluviales ne se mélangent pas aux eaux usées."], "compteur": ["detail", "Compteur d'eau", "Point de livraison de l'eau potable.", "Il est relevé par le distributeur ; en collectif, il est placé dans la gaine palière."], "rag": ["detail", "Robinet d'arrêt général", "Vanne qui coupe l'eau de tout le logement.", "Il est placé juste après le compteur, accessible."], "reducteur": ["detail", "Réducteur de pression", "Appareil qui abaisse la pression du réseau public.", "Une pression trop forte use la robinetterie et provoque des coups de bélier."], "chauffe_eau_d": ["detail", "Ballon d'eau chaude", "Chauffe-eau à accumulation (électrique ou thermodynamique).", "L'eau stockée est maintenue chaude pour limiter les légionelles."], "groupe_secu": ["detail", "Groupe de sécurité", "Organe obligatoire sur l'arrivée d'eau froide du ballon.", "Sa soupape évacue l'eau de dilatation vers un siphon : il faut prévoir une évacuation à proximité."], "ecs_d": ["detail", "Départ d'eau chaude", "Canalisation ECS du ballon vers les appareils.", "Elle est calorifugée pour limiter les pertes de chaleur."], "mitigeur": ["detail", "Mitigeur", "Robinet qui mélange l'eau froide et l'eau chaude avec une seule manette.", "La version thermostatique délivre une température réglée et stable."], "robinets_lav": ["detail", "Robinets d'arrêt du lavabo", "Petits robinets sur l'EF et l'ECS, sous le lavabo.", "Ils permettent d'intervenir sur l'appareil sans couper l'eau du logement."], "siphon": ["detail", "Siphon", "Coude qui retient une garde d'eau.", "Cette garde d'eau bloque les odeurs qui remontent du réseau d'évacuation."], "evac_lav": ["detail", "Évacuation du lavabo", "Tube PVC de Ø 32 mm, posé en pente.", "Il rejoint la chute ou un collecteur."], "chute_c": ["coupe", "Chute", "Canalisation verticale qui reçoit les évacuations de chaque étage.", "Elle se prolonge en toiture par la ventilation primaire."]};
+const EL={};for(const k in RAW)EL[k]={p:RAW[k][0],n:RAW[k][1],r:RAW[k][2],s:RAW[k][3]};
+const IDS=Object.keys(EL),NBD=12;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const panneau=document.getElementById('panneau'),zones=[...document.querySelectorAll('.zone')];
+let mode='exp',cur='facade',vus=new Set(),defi=null;
+const zone=id=>document.querySelector('.zone[data-id="'+id+'"]');
+const nettoyer=()=>zones.forEach(z=>z.classList.remove('sel','vrai','erreur'));
+function montrer(p){cur=p;document.querySelectorAll('.planche').forEach(s=>s.style.display=s.dataset.p===p?'block':'none');
+ const pb=document.getElementById('planches');pb.style.display=mode==='exp'?'flex':'none';
+ pb.innerHTML=PL.map(([id,t])=>`<button data-p="${id}" class="${id===p?'actif':''}">${t}</button>`).join('');
+ pb.querySelectorAll('button').forEach(b=>b.onclick=()=>{nettoyer();montrer(b.dataset.p);if(mode==='exp')vueExplorer()})}
+zones.forEach(z=>z.addEventListener('click',()=>mode==='exp'?explorer(z.dataset.id):repondre(z.dataset.id)));
+function onglets(){oExp.classList.toggle('actif',mode==='exp');oDef.classList.toggle('actif',mode==='def')}
+function vueExplorer(){mode='exp';onglets();montrer(cur);
+ const ids=IDS.filter(i=>EL[i].p===cur);
+ panneau.innerHTML=`<p class="aide">Clique sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
+ panneau.querySelectorAll('.puce').forEach(b=>b.onclick=()=>explorer(b.dataset.id));compteur()}
+function explorer(id){nettoyer();zone(id).classList.add('sel');vus.add(id);const e=EL[id];
+ document.getElementById('fiche').innerHTML=`<div class="fiche"><h2>${e.n}</h2><p>${e.r}</p><p class="savoir"><strong>À savoir :</strong> ${e.s}</p></div>`;compteur()}
+function compteur(){const c=document.getElementById('cpt');if(!c)return;
+ c.textContent=`Éléments découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — tu es prêt(e) pour le défi.':'');
+ panneau.querySelectorAll('.puce').forEach(b=>b.classList.toggle('vu',vus.has(b.dataset.id)))}
+function vueDefi(){mode='def';onglets();defi={liste:shuffle(IDS).slice(0,NBD),i:0,score:0,fait:false};question()}
+function question(){nettoyer();const d=defi;d.fait=false;const id=d.liste[d.i];montrer(EL[id].p);
+ panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Clique sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
+function repondre(id){const d=defi;if(!d||d.fait)return;d.fait=true;const c=d.liste[d.i],ok=id===c;if(ok)d.score++;
+ zone(c).classList.add('vrai');if(!ok)zone(id).classList.add('erreur');
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Tu as désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('suiv').onclick=()=>{d.i++;d.i<d.liste.length?question():finDefi()}}
+function finDefi(){nettoyer();const d=defi,p=d.score/d.liste.length;
+ panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?"Excellent : tu sais lire les réseaux de plomberie d'un bâtiment.":p>=.5?'Bon début. Reviens en mode Découvrir pour revoir les éléments manqués.':'Prends le temps d\'explorer les trois planches, puis retente le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
+ document.getElementById('rej').onclick=vueDefi;document.getElementById('ret').onclick=()=>{mode='exp';vueExplorer()}}
+const oExp=document.getElementById('oExp'),oDef=document.getElementById('oDef');
+oExp.onclick=()=>{nettoyer();vueExplorer()};oDef.onclick=vueDefi;
+vueExplorer();
+</script><script>window.addEventListener("load",function(){var p=document.querySelectorAll("svg.planche");if(p.length&&!Array.prototype.some.call(p,function(s){return getComputedStyle(s).display!=="none"})){var b=document.querySelector(".planches button");if(b)b.click()}});</script></body></html>

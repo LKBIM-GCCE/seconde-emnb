@@ -1,0 +1,40 @@
+/* Thème « dossier de plans » appliqué aux jeux de découverte (chargé après le style d'origine du jeu) */
+:root {
+  --jaune: #ffc52e; --jaune-clair: #fff4d1; --encre: #13223f; --gris: #55637e;
+  --vert: #1f8a5b; --vert-clair: #ddf3e8; --rouge: #c62828; --rouge-clair: #fdecea;
+  --bleu: #1f55d6; --ligne: #cfd9e8;
+  --plan-fonce: #0f2c6e; --chantier: #f2600f; --calque: #eef3f9;
+}
+body {
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif; font-size: 17px; padding: 0 8px 16px;
+  background: var(--calque);
+  background-image: linear-gradient(rgba(31, 85, 214, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 85, 214, .07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+h1, h2, .question, .resultat .note { font-family: "Bricolage Grotesque", "Trebuchet MS", sans-serif; }
+.cadre { border: 1.5px solid var(--bleu); border-radius: 10px; box-shadow: 0 6px 0 var(--jaune); margin-top: 12px; }
+header { background: var(--plan-fonce); color: #fff; padding: 14px 16px; }
+header h1 { font-size: 1.35rem; font-weight: 800; }
+.badge { background: var(--jaune); color: var(--encre); }
+.consigne { background: var(--jaune-clair); border-left-color: var(--chantier); }
+.btn, .onglets button.actif { background: var(--bleu); border-color: var(--bleu); }
+button { border-radius: 8px; }
+button:hover:not(:disabled) { border-color: var(--chantier); }
+.btn:hover:not(:disabled) { background: var(--plan-fonce); }
+.barre { height: 10px; border-radius: 5px; }
+.barre div { background: linear-gradient(90deg, var(--jaune), var(--chantier)); }
+.resultat .note { color: var(--chantier); font-size: 3rem; }
+.fiche { border-left-color: var(--chantier); }
+.fiche h2 { color: var(--plan-fonce); }
+footer { background: #f6f9fd; }
+
+/* Barre de navigation ajoutée */
+.jeux-barre { max-width: 1000px; margin: 10px auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 15px; }
+.jeux-barre a { text-decoration: none; font-weight: 700; }
+.jeux-retour { background: var(--plan-fonce); color: #fff; padding: 7px 12px; border-radius: 8px; }
+.jeux-retour:hover { background: var(--chantier); }
+.jeux-theme { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; color: var(--plan-fonce); }
+.jeux-etapes { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.jeux-etapes a { color: var(--bleu); background: #fff; border: 1.5px solid var(--bleu); padding: 5px 10px; border-radius: 20px; font-size: 14px; }
+.jeux-etapes a[aria-current="page"] { background: var(--jaune); border-color: var(--jaune); color: var(--encre); }
+@media (max-width: 600px) { .jeux-etapes { margin-left: 0; } }

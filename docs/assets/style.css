@@ -268,3 +268,58 @@ table { border-collapse: collapse; }
 .table-comp .ligne-fam th { background: var(--fp); color: var(--f); font: 800 14px/1.3 var(--titre); text-transform: uppercase; letter-spacing: .03em; border-left: 4px solid var(--f); }
 .table-comp .clair { display: block; margin-top: 6px; font-weight: 400; color: var(--encre); font-size: 15px; }
 .table-comp .exemple { display: block; margin-top: 2px; font-weight: 400; font-style: italic; color: var(--doux); font-size: 13px; }
+
+/* Menu : Jeux */
+.menu .menu-jeux { background: var(--signal); color: #13223f; opacity: 1; }
+.menu .menu-jeux:hover { background: #fff; }
+
+/* La maison des jeux */
+.mj-tete .chapo { max-width: 46em; }
+.mj-compteur { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; font-weight: 700; }
+.mj-jauge { flex: 0 1 260px; height: 14px; border-radius: 7px; background: var(--plan-pale); overflow: hidden; }
+.mj-jauge i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--signal), var(--chantier)); transition: width .6s; }
+.mj-maison { margin: 18px 0 0; background: var(--carte); border: 1.5px solid var(--plan); border-radius: 12px; padding: 8px; box-shadow: 0 6px 0 var(--signal); }
+.mj-maison svg { display: block; width: 100%; height: auto; border-radius: 8px; }
+.mj-maison figcaption { font-size: 15px; color: var(--doux); padding: 10px 8px 4px; }
+.mj-zone { cursor: pointer; outline: none; }
+.mj-surv > * { fill: rgba(255, 197, 46, 0); stroke: none; transition: fill .2s; }
+.mj-zone:hover .mj-surv > *, .mj-zone:focus-visible .mj-surv > * { fill: rgba(255, 197, 46, .45); stroke: #f2600f; stroke-width: 3; }
+.mj-pin circle { fill: #ffc52e; stroke: #13223f; stroke-width: 2.5; }
+.mj-pin text { font-size: 22px; }
+.mj-pin { transition: transform .2s; }
+@media (prefers-reduced-motion: no-preference) {
+  .mj-pin > circle { animation: mj-pouls 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+}
+@keyframes mj-pouls { 0%, 100% { stroke-width: 2.5; } 50% { stroke-width: 6; stroke: #f2600f; } }
+.mj-zone:hover .mj-pin > circle, .mj-zone:focus-visible .mj-pin > circle { fill: #f2600f; }
+.mj-ok { display: none; }
+.mj-ok circle { fill: #1f8a5b; stroke: #fff; stroke-width: 2; }
+.mj-ok path { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.mj-zone.vu .mj-ok { display: inline; }
+.mj-etiq { opacity: 0; transition: opacity .15s; pointer-events: none; }
+.mj-etiq rect { fill: #0f2c6e; }
+.mj-etiq text { fill: #fff; font: 700 15px var(--texte); }
+.mj-zone:hover .mj-etiq, .mj-zone:focus-visible .mj-etiq { opacity: 1; }
+.mj-maison-hint { display: none; }
+@media (max-width: 700px) { .mj-maison-hint { display: block; } }
+
+.mj-cartes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+.mj-carte { position: relative; background: var(--carte); border: 1px solid var(--trait); border-radius: 10px; padding: 16px 16px 14px; display: flex; flex-direction: column; }
+.mj-carte.vu { border-color: #1f8a5b; }
+.mj-carte.vu::after { content: "✓ exploré"; position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 700; color: #fff; background: #1f8a5b; padding: 2px 8px; border-radius: 10px; }
+.mj-emo { font-size: 34px; line-height: 1; }
+.mj-carte h3 { margin: 8px 0 4px; font-size: 19px; }
+.mj-carte p { margin: 0 0 12px; color: var(--doux); font-size: 15px; flex: 1; }
+.mj-etapes { display: flex; flex-wrap: wrap; gap: 6px; }
+.mj-etape { text-decoration: none; font-weight: 700; font-size: 14px; color: var(--plan); border: 1.5px solid var(--plan); border-radius: 20px; padding: 4px 10px; }
+.mj-etape:hover { background: var(--plan); color: #fff; }
+.mj-etape.vu { background: var(--plan-pale); }
+.mj-etape.vu::before { content: "✓ "; color: #1f8a5b; }
+
+/* Accueil : bandeau jeux */
+.accueil-jeux { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 40px; padding: 18px 22px; border-radius: 12px; background: var(--plan-fonce); color: #fff; box-shadow: 0 6px 0 var(--signal); text-decoration: none; }
+.accueil-jeux .aj-emo { font-size: 42px; line-height: 1; }
+.accueil-jeux b { display: block; font: 800 22px/1.2 var(--titre); }
+.accueil-jeux span { opacity: .85; font-size: 15px; }
+.accueil-jeux .aj-go { margin-left: auto; background: var(--signal); color: #13223f; font-weight: 800; padding: 8px 16px; border-radius: 20px; opacity: 1; }
+.accueil-jeux:hover .aj-go { background: #fff; }

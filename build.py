@@ -62,7 +62,7 @@ def page(titre, contenu, prof=0, fil=None, extra_tete="", extra_pied="", classe=
 <header class="entete">
   <a class="marque" href="{base}index.html"><span class="logo" aria-hidden="true">2<small>de</small></span>
     <span><strong>{e(SITE["titre"])}</strong><em>{e(SITE["sous_titre"])}</em></span></a>
-  <nav class="menu" aria-label="Séquences">{nav_seq}<a href="{base}competences.html">Compétences</a></nav>
+  <nav class="menu" aria-label="Séquences">{nav_seq}<a href="{base}competences.html">Compétences</a><a class="menu-jeux" href="{base}jeux.html">🎮 Jeux</a></nav>
   <img class="logo-lycee" src="{base}assets/logo-lycee.jpg" alt="Lycée Urbain Vitry" width="72" height="36">
 </header>
 <main>{fil_html}{contenu}</main>
@@ -166,6 +166,9 @@ def accueil():
   <p class="chapo">Une compétence, c'est un savoir-faire du métier que tu montres en situation. Elles sont rangées en 4 familles :</p>
   <ul class="familles">{fam_html}</ul>
   <a class="btn-lien" href="competences.html">Comprendre les compétences →</a>
+</section>
+<section>
+  <a class="accueil-jeux" href="jeux.html"><span class="aj-emo" aria-hidden="true">🏠</span><div><b>La maison des jeux</b><span>Explore une maison et découvre les métiers du bâtiment en jouant. Libre, sans note.</span></div><span class="aj-go">Entrer →</span></a>
 </section>''', classe="p-accueil")
 
 
@@ -325,6 +328,48 @@ const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentiq
     return page("Vérifier un certificat", contenu, extra_tete='<link rel="stylesheet" href="assets/activites.css"><meta name="robots" content="noindex">')
 
 
+# ------------------------------------------------------------------ La maison des jeux
+def page_jeux():
+    import sys
+    sys.path.insert(0, str(RACINE / "outils"))
+    from maison_jeux import ZONES, DECOR, IFC
+    cat_f = RACINE / "jeux" / "decouverte" / "catalogue.json"
+    cat = json.loads(cat_f.read_text(encoding="utf-8")) if cat_f.exists() else []
+    entrees = [(c["slug"], c["nom"], *ZONES[c["slug"]], c["etapes"]) for c in cat if c["slug"] in ZONES]
+    entrees.append(("mission-ifc", "Mission IFC", *IFC, [{"cle": "jouer", "lib": "▶ Jouer", "href": "jeux/mission-ifc.html"}]))
+    zones = ""
+    for slug, nom, emo, desc, x, y, forme, etapes in entrees:
+        larg = int(len(nom) * 8.2 + 26)
+        ex = max(10, min(990 - larg, x - larg // 2))
+        ey = y + 28 if y < 560 else y - 64
+        zones += (f'<a class="mj-zone" href="{etapes[0]["href"]}" data-slug="{slug}" aria-label="{e(nom)} : {e(desc)}">'
+                  f'<g class="mj-surv">{forme}</g>'
+                  f'<g class="mj-pin" transform="translate({x} {y})"><circle r="21"/><text y="8" text-anchor="middle">{emo}</text>'
+                  f'<g class="mj-ok"><circle cx="17" cy="-17" r="9"/><path d="M12.5 -17l3 3 6-6"/></g></g>'
+                  f'<g class="mj-etiq"><rect x="{ex}" y="{ey}" width="{larg}" height="30" rx="15"/><text x="{ex + larg / 2}" y="{ey + 20}" text-anchor="middle">{e(nom)}</text></g></a>')
+    cartes = ""
+    for slug, nom, emo, desc, x, y, forme, etapes in entrees:
+        boutons = "".join(f'<a class="mj-etape" data-cle="{slug}/{s["cle"]}" href="{s["href"]}">{e(s["lib"])}</a>' for s in etapes)
+        cartes += (f'<li class="mj-carte" id="jeu-{slug}" data-slug="{slug}"><span class="mj-emo" aria-hidden="true">{emo}</span>'
+                   f'<h3>{e(nom)}</h3><p>{e(desc)}</p><div class="mj-etapes">{boutons}</div></li>')
+    script = """<script>
+(function(){var v=[];try{v=JSON.parse(localStorage.getItem('emnb-jeux-vus')||'[]')}catch(e){}
+var faits=new Set(v.map(function(x){return x.split('/')[0]}));
+document.querySelectorAll('[data-slug]').forEach(function(el){if(faits.has(el.dataset.slug))el.classList.add('vu')});
+document.querySelectorAll('.mj-etape').forEach(function(a){if(v.indexOf(a.dataset.cle)>=0)a.classList.add('vu')});
+var n=document.querySelectorAll('.mj-carte').length-1,f=Array.from(faits).filter(function(s){return s!=='mission-ifc'}).length;
+var c=document.querySelector('.mj-compteur');if(c){c.querySelector('b').textContent=f+' / '+n;c.querySelector('i').style.width=(100*f/n)+'%'}})();
+</script>"""
+    return page("La maison des jeux", f"""
+<section class="titre-seance mj-tete"><h1>La maison des jeux</h1>
+<p class="chapo">Explore la maison : clique sur une partie du bâtiment pour découvrir le métier qui la construit. Pas de note, pas de stress : tu joues autant que tu veux, dans l'ordre que tu veux.</p>
+<div class="mj-compteur" aria-live="polite"><span>Pièces explorées : <b>0 / 11</b></span><span class="mj-jauge"><i></i></span></div></section>
+<figure class="mj-maison"><svg viewBox="0 0 1000 640" role="img" aria-labelledby="mj-titre"><title id="mj-titre">Coupe d'une maison : chaque partie ouvre un jeu</title>{DECOR}{zones}</svg>
+<figcaption><span class="mj-maison-hint">👆 Touche une pastille jaune, ou choisis un jeu dans la liste plus bas.</span>Astuce : chaque jeu a jusqu'à 3 étapes — <b>Découvrir</b> (explorer les planches), <b>S'entraîner</b> (questions qui changent à chaque partie), <b>Se défier</b> (un défi pour aller plus loin).</figcaption></figure>
+<section><h2 class="titre-section">Tous les jeux {cote(f"{len(entrees)} thèmes")}</h2><ul class="mj-cartes">{cartes}</ul></section>
+{script}""", fil=[("Accueil", "index.html"), ("Jeux", None)], classe="p-accueil")
+
+
 # ---------- construction ----------
 def main():
     if SORTIE.exists():
@@ -334,7 +379,7 @@ def main():
         if (RACINE / d).exists():
             shutil.copytree(RACINE / d, SORTIE / d, dirs_exist_ok=True)
     (SORTIE / ".nojekyll").touch()
-    pages = {"index.html": accueil(), "competences.html": page_competences(), "verifier.html": page_verifier()}
+    pages = {"index.html": accueil(), "competences.html": page_competences(), "verifier.html": page_verifier(), "jeux.html": page_jeux()}
     for s in DATA["sequences"]:
         if s["statut"] != "en_ligne": continue
         pages[f'{s["id"]}/index.html'] = page_sequence(s)

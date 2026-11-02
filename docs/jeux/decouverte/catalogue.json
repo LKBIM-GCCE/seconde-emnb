@@ -1,0 +1,198 @@
+[
+ {
+  "slug": "gros-oeuvre",
+  "nom": "Gros œuvre",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/gros-oeuvre/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/gros-oeuvre/sentrainer.html"
+   },
+   {
+    "cle": "sedefier",
+    "lib": "3 · Se défier",
+    "href": "jeux/decouverte/gros-oeuvre/sedefier.html"
+   }
+  ]
+ },
+ {
+  "slug": "couverture",
+  "nom": "Couverture et étanchéité",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/couverture/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/couverture/sentrainer.html"
+   },
+   {
+    "cle": "sedefier",
+    "lib": "3 · Se défier",
+    "href": "jeux/decouverte/couverture/sedefier.html"
+   }
+  ]
+ },
+ {
+  "slug": "menuiseries",
+  "nom": "Menuiseries extérieures",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/menuiseries/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/menuiseries/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "platrerie",
+  "nom": "Plâtrerie et plafonds",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/platrerie/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/platrerie/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "electricite",
+  "nom": "Électricité",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/electricite/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/electricite/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "plomberie",
+  "nom": "Plomberie et sanitaire",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/plomberie/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/plomberie/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "sols",
+  "nom": "Revêtements de sol",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/sols/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/sols/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "peinture",
+  "nom": "Peinture et revêtements muraux",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/peinture/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/peinture/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "lexique",
+  "nom": "Lexique du bâtiment",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/lexique/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/lexique/sentrainer.html"
+   }
+  ]
+ },
+ {
+  "slug": "incendie",
+  "nom": "Sécurité incendie",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/incendie/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/incendie/sentrainer.html"
+   },
+   {
+    "cle": "sedefier",
+    "lib": "3 · Se défier",
+    "href": "jeux/decouverte/incendie/sedefier.html"
+   }
+  ]
+ },
+ {
+  "slug": "pmr",
+  "nom": "Accessibilité PMR",
+  "etapes": [
+   {
+    "cle": "decouvrir",
+    "lib": "1 · Découvrir",
+    "href": "jeux/decouverte/pmr/decouvrir.html"
+   },
+   {
+    "cle": "sentrainer",
+    "lib": "2 · S'entraîner",
+    "href": "jeux/decouverte/pmr/sentrainer.html"
+   },
+   {
+    "cle": "sedefier",
+    "lib": "3 · Se défier",
+    "href": "jeux/decouverte/pmr/sedefier.html"
+   }
+  ]
+ }
+]

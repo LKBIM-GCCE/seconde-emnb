@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incendie : calculateur guidé</title>
+<style>
+:root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
+*{box-sizing:border-box}
+body{margin:0;padding:8px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--encre);background:#FAFAF7;line-height:1.45;font-size:16px}
+.cadre{max-width:820px;margin:0 auto;border:6px solid var(--jaune);border-radius:10px;background:#fff;overflow:hidden}
+header{background:var(--jaune);padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.2rem;line-height:1.2}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#fff;padding:3px 9px;border-radius:20px}
+main{padding:14px}
+.consigne{background:var(--jaune-clair);border-left:4px solid var(--jaune);padding:8px 12px;border-radius:4px;margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid #C9CED6;background:#fff;color:var(--encre);border-radius:8px;padding:8px 12px}
+button:hover:not(:disabled){border-color:var(--bleu)}
+button:disabled{cursor:default}
+.btn{background:var(--bleu);color:#fff;border-color:var(--bleu);font-weight:600}
+.progression{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gris);margin-bottom:4px}
+.barre{height:6px;background:var(--ligne);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.barre div{height:100%;background:var(--jaune);transition:width .3s}
+.question{font-size:1.08rem;font-weight:600;margin:6px 0 12px}
+.feedback{padding:10px 12px;border-radius:6px;margin:12px 0}
+.feedback.ok{background:var(--vert-clair);border-left:4px solid var(--vert)}
+.feedback.ko{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.resultat{text-align:center;padding:10px}
+.resultat .note{font-size:2.4rem;font-weight:800;margin:4px 0;color:var(--bleu)}
+footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid var(--ligne)}
+.choix{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.opt{text-align:left;padding:10px 12px}
+.opt.bon{background:var(--vert-clair);border-color:var(--vert);font-weight:600}
+.opt.faux{background:var(--rouge-clair);border-color:var(--rouge)}
+.visuel{text-align:center;margin:6px 0}
+.visuel svg{width:220px;max-width:100%;height:auto;border:1px solid var(--ligne);border-radius:8px;background:#fff}
+.revoir{text-align:left;margin-top:14px}
+.revoir li{margin-bottom:8px}
+.cas{background:#EEF2F8;border-left:4px solid var(--bleu);padding:8px 12px;border-radius:4px;margin:4px 0 8px;font-size:.95rem}
+.bloc{margin:0;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gris)}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><link rel="stylesheet" href="../../../assets/jeux-theme.css"></head>
+<body><nav class="jeux-barre" aria-label="Navigation des jeux"><a class="jeux-retour" href="../../../jeux.html">🏠 La maison des jeux</a><span class="jeux-theme">Sécurité incendie</span><span class="jeux-etapes"><a href="decouvrir.html">1 · Découvrir</a><a href="sentrainer.html">2 · S'entraîner</a><a href="sedefier.html" aria-current="page">3 · Se défier</a></span></nav><script>(function(){try{var k="emnb-jeux-vus",v=JSON.parse(localStorage.getItem(k)||"[]");if(v.indexOf("incendie/sedefier")<0){v.push("incendie/sedefier");localStorage.setItem(k,JSON.stringify(v))}}catch(e){}})()</script>
+<div class="cadre">
+<header><h1>Sécurité incendie · Se défier : calculateur guidé</h1><div class="badges"><span class="badge">Découverte libre</span><span class="badge">2de EMNB</span></div></header>
+<main>
+<p class="consigne">Trois établissements à étudier pas à pas : calcule l'effectif, détermine la catégorie, puis dimensionne les dégagements. Rappels : 1 UP = 0,60 m ; un dégagement de 1 UP fait 0,90 m, de 2 UP 1,40 m ; de 101 à 500 personnes, 1 UP par tranche de 100 personnes + 1 UP. Pour simplifier, on ne compte ici que le public.</p>
+<div id="app"></div>
+</main>
+<footer>Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Tu découvres : principes de la réglementation incendie des ERP, classement.</footer>
+</div>
+<script>
+const CHOIX=[];
+const BANQUE=[{"b": "<strong>Cas 1 — Salle de conférence (type L)</strong> : 450 places assises, au rez-de-chaussée.", "q": "Étape 1 : quel est l'effectif du public ?", "o": ["450 personnes", "225 personnes", "900 personnes", "45 personnes"], "r": "450 personnes", "e": "Dans une salle de type L à places assises, l'effectif est égal au nombre de places."}, {"b": "<strong>Cas 1 — Salle de conférence (type L)</strong> : 450 places assises, au rez-de-chaussée.", "q": "Étape 2 : quelle est la catégorie de l'ERP ?", "o": ["3e catégorie (301 à 700 personnes)", "4e catégorie (jusqu'à 300 personnes)", "2e catégorie (701 à 1 500 personnes)", "5e catégorie"], "r": "3e catégorie (301 à 700 personnes)", "e": "450 personnes se situent entre 301 et 700 : c'est la 3e catégorie, dans le 1er groupe."}, {"b": "<strong>Cas 1 — Salle de conférence (type L)</strong> : 450 places assises, au rez-de-chaussée.", "q": "Étape 3 : combien d'unités de passage (UP) faut-il au total ?", "o": ["6 UP", "5 UP", "4 UP", "9 UP"], "r": "6 UP", "e": "Entre 101 et 500 personnes : 1 UP par tranche de 100 personnes (450 → 5 UP), plus 1 UP, soit 6 UP."}, {"b": "<strong>Cas 1 — Salle de conférence (type L)</strong> : 450 places assises, au rez-de-chaussée.", "q": "Étape 4 : comment répartir ces 6 UP ?", "o": ["Sur au moins 2 dégagements, chacun d'au moins 2 UP (par exemple 2 sorties de 3 UP = 1,80 m)", "Une seule sortie de 6 UP", "6 sorties de 1 UP (0,90 m)", "2 sorties de 1 UP et une de 4 UP"], "r": "Sur au moins 2 dégagements, chacun d'au moins 2 UP (par exemple 2 sorties de 3 UP = 1,80 m)", "e": "Au-delà de 200 personnes, les dégagements font au moins 2 UP. Deux sorties de 3 UP mesurent chacune 3 × 0,60 = 1,80 m."}, {"b": "<strong>Cas 1 — Salle de conférence (type L)</strong> : 450 places assises, au rez-de-chaussée.", "q": "Étape 5 : dans quel sens s'ouvrent les portes de la salle ?", "o": ["Dans le sens de la sortie", "Vers l'intérieur de la salle", "Indifféremment", "Elles doivent rester fermées à clé pendant les séances"], "r": "Dans le sens de la sortie", "e": "La salle reçoit plus de 50 personnes : ses portes s'ouvrent dans le sens de l'évacuation."}, {"b": "<strong>Cas 2 — Plateau de bureaux (type W)</strong> : 2 400 m² de bureaux accessibles au public, sur un niveau.", "q": "Étape 1 : quel est l'effectif du public ?", "o": ["240 personnes", "2 400 personnes", "120 personnes", "480 personnes"], "r": "240 personnes", "e": "En bureaux (type W), on compte 1 personne pour 10 m² : 2 400 ÷ 10 = 240 personnes."}, {"b": "<strong>Cas 2 — Plateau de bureaux (type W)</strong> : 2 400 m² de bureaux accessibles au public, sur un niveau.", "q": "Étape 2 : combien d'UP faut-il au total ?", "o": ["4 UP", "3 UP", "2 UP", "5 UP"], "r": "4 UP", "e": "240 personnes → 3 tranches de 100 → 3 UP, plus 1 UP, soit 4 UP."}, {"b": "<strong>Cas 2 — Plateau de bureaux (type W)</strong> : 2 400 m² de bureaux accessibles au public, sur un niveau.", "q": "Étape 3 : quelle répartition est conforme ?", "o": ["2 dégagements de 2 UP (1,40 m chacun)", "1 dégagement de 4 UP (2,40 m)", "4 dégagements de 1 UP (0,90 m)", "1 dégagement de 3 UP et 1 de 1 UP"], "r": "2 dégagements de 2 UP (1,40 m chacun)", "e": "Il faut au moins 2 dégagements, et au-delà de 200 personnes chacun fait au moins 2 UP, soit 1,40 m."}, {"b": "<strong>Cas 2 — Plateau de bureaux (type W)</strong> : 2 400 m² de bureaux accessibles au public, sur un niveau.", "q": "Étape 4 : sur ce plateau, quelle distance maximale pour gagner un escalier protégé ?", "o": ["40 m (30 m depuis un cul-de-sac)", "100 m", "15 m", "60 m"], "r": "40 m (30 m depuis un cul-de-sac)", "e": "La distance se mesure suivant l'axe des circulations. Pour gagner un escalier non protégé, elle est limitée à 30 m."}, {"b": "<strong>Cas 3 — Restaurant (type N)</strong> : salle de 80 m² avec places assises.", "q": "Étape 1 : quel est l'effectif du public ?", "o": ["80 personnes", "40 personnes", "160 personnes", "8 personnes"], "r": "80 personnes", "e": "En restaurant (type N), on compte 1 personne par m² dans une salle à places assises : 80 m² → 80 personnes."}, {"b": "<strong>Cas 3 — Restaurant (type N)</strong> : salle de 80 m² avec places assises.", "q": "Étape 2 : quels dégagements faut-il prévoir ?", "o": ["2 dégagements de 1 UP (0,90 m), ou 1 de 2 UP (1,40 m) et 1 dégagement accessoire", "1 seul dégagement de 1 UP", "4 dégagements de 2 UP", "Aucun, la porte d'entrée suffit"], "r": "2 dégagements de 1 UP (0,90 m), ou 1 de 2 UP (1,40 m) et 1 dégagement accessoire", "e": "Pour 51 à 100 personnes, il faut deux possibilités de sortie."}, {"b": "<strong>Cas 3 — Restaurant (type N)</strong> : salle de 80 m² avec places assises.", "q": "Étape 3 : dans quel sens s'ouvre la porte de la salle ?", "o": ["Dans le sens de la sortie", "Vers l'intérieur", "Indifféremment", "Elle doit être coulissante"], "r": "Dans le sens de la sortie", "e": "80 personnes, c'est plus de 50 : la porte s'ouvre vers l'extérieur de la salle."}];
+const NB=12;
+const MSG=["Excellent : tu sais classer un ERP et dimensionner ses dégagements.","Bon début. Relis les explications ci-dessous, puis refais les trois cas.","Relis les rappels de la consigne et les explications, puis refais les trois cas."];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const app=document.getElementById('app');let serie,idx,score,ratees;
+function demarrer(){serie=BANQUE.slice(0,NB);idx=0;score=0;ratees=[];afficher()}
+function afficher(){const q=serie[idx],opts=q.o?shuffle(q.o):CHOIX;
+ app.innerHTML=`<div class="progression"><span>Question ${idx+1} / ${serie.length}</span><span>Score : ${score}</span></div><div class="barre"><div style="width:${idx/serie.length*100}%"></div></div>${q.svg?`<div class="visuel">${q.svg}</div>`:''}<div class="cas">${q.b}</div><p class="question">${q.q}</p><div class="choix">${opts.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div><div id="fb"></div>`;
+ app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>repondre(b,q,opts))}
+function repondre(b,q,opts){const ok=opts[+b.dataset.i]===q.r;if(ok)score++;else ratees.push(q);
+ app.querySelectorAll('.opt').forEach((x,i)=>{x.disabled=true;if(opts[i]===q.r)x.classList.add('bon');else if(x===b)x.classList.add('faux')});
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait. Bonne réponse : '+q.r+'.'}</strong> ${q.e}</div><button class="btn" id="suiv">${idx<serie.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('suiv').onclick=()=>{idx++;idx<serie.length?afficher():fin()}}
+function fin(){const p=score/serie.length;
+ app.innerHTML=`<div class="resultat"><p class="note">${score} / ${serie.length}</p><p>${p>=.8?MSG[0]:p>=.5?MSG[1]:MSG[2]}</p><button class="btn" id="rej">Rejouer</button></div>${ratees.length?`<div class="revoir"><h3>À revoir</h3><ul>${ratees.map(q=>`<li><strong>${q.q}</strong><br>Réponse : ${q.r}. ${q.e}</li>`).join('')}</ul></div>`:''}`;
+ document.getElementById('rej').onclick=demarrer}
+demarrer();
+</script>
+<script>window.addEventListener("load",function(){var p=document.querySelectorAll("svg.planche");if(p.length&&!Array.prototype.some.call(p,function(s){return getComputedStyle(s).display!=="none"})){var b=document.querySelector(".planches button");if(b)b.click()}});</script></body>
+</html>

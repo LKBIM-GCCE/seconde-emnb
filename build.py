@@ -72,6 +72,37 @@ def page(titre, contenu, prof=0, fil=None, extra_tete="", extra_pied="", classe=
 
 
 # ---------- pages ----------
+
+# Familles de compétences (vademecum 2de EMNB) et explications « en clair » pour les élèves
+FAMILLES = {
+    "C1": ("S'informer, communiquer", "fam1", "Chercher l'information, savoir qui fait quoi, transmettre au bon interlocuteur."),
+    "C2": ("Analyser", "fam2", "Comprendre un dossier ou une maquette, repérer les données utiles, faire des choix."),
+    "C3": ("Produire", "fam3", "Mesurer, dessiner, modéliser, calculer : fabriquer un document du métier."),
+    "C4": ("Contrôler", "fam4", "Classer, vérifier, s'assurer que le dossier est juste et à jour."),
+}
+EN_CLAIR = {
+    "C1.1.1": ("Je sais dire quel est mon rôle dans l'équipe et à qui je rends compte.", "SEQ01 : situer l'assistant d'études parmi les acteurs du projet."),
+    "C1.1.3": ("Je sais qui fait quoi sur un projet : maître d'ouvrage, architecte, économiste, bureau d'études, entreprises.", "SEQ01 : relier chaque acteur à sa mission et à sa phase."),
+    "C1.2.1": ("Je sais trouver une information, dire d'où elle vient et si elle est fiable.", "SEQ03 : noter la source de chaque réponse (maquette ou plan)."),
+    "C1.3.2": ("Je sais choisir le bon moyen pour transmettre une information.", "SEQ03 : envoyer un fichier IFC plutôt qu'un fichier Revit."),
+    "C2.1.1": ("Je sais m'y retrouver dans un dossier de plans ou dans une maquette.", "SEQ02 : identifier les pièces du dossier de la Villa Camacho."),
+    "C2.1.2": ("Je sais repérer les ouvrages et les travaux concernés par une demande.", "SEQ02 : repérer murs, cloisons, ouvertures sur les plans de niveaux."),
+    "C2.2.1": ("Je sais de quelles données j'ai besoin pour répondre à une demande.", "SEQ03 : la méthode du ticket (demande → donnée → recherche → source)."),
+    "C2.2.2": ("Je sais classer des critères pour faire un choix, du plus important au moins important.", "SEQ03 : précision, rapidité, lisibilité pour choisir la forme de réponse."),
+    "C2.2.3": ("Je sais choisir entre une réponse en chiffres (tableau) et une réponse en image (capture, plan).", "SEQ03 : tableau pour l'économiste, capture annotée pour le conducteur de travaux."),
+    "C3.2.1": ("Je sais mesurer, utiliser une échelle et vérifier mes mesures.", "SEQ02 : lire une cote et retrouver une dimension réelle avec l'échelle."),
+    "C4.1.1": ("Je sais classer et nommer les documents d'un dossier.", "SEQ02 : ranger les plans du dossier dans le bon ordre."),
+}
+NIVEAUX = [("NA", "Non acquis", "Je n'y arrive pas encore : on reprend ensemble.", "na"),
+           ("ECA", "En cours d'acquisition", "J'y arrive avec de l'aide ou je fais encore des erreurs.", "eca"),
+           ("A", "Acquis", "Je le fais seul(e), de façon juste et fiable.", "a")]
+
+
+def puce_fam(code):
+    nom, cls, _ = FAMILLES[code[:2]]
+    return f'<span class="fam {cls}">{e(code[:2])} · {e(nom)}</span>'
+
+
 def accueil():
     etapes = ""
     for k, s in enumerate(DATA["sequences"], 1):
@@ -85,6 +116,7 @@ def accueil():
         else:
             etapes += f'''<li class="etape-seq bientot"><div class="feuille"><div class="illu">{illu}</div><h2>{e(s["titre"])}</h2>
 <p>Cette séquence arrive plus tard dans l'année.</p>{cartouche}</div></li>'''
+    fam_html = "".join(f'<li class="{c}"><b>{k}</b><span>{e(n)}</span><small>{e(d)}</small></li>' for k, (n, c, d) in FAMILLES.items())
     return page("Accueil", f'''
 <section class="hero">
   <div class="hero-texte">
@@ -105,13 +137,35 @@ def accueil():
   <h2 class="titre-section">Ton parcours de l'année {cote("5 séquences")}</h2>
   <ol class="route">{etapes}</ol>
 </section>
-<section class="projet-fil">
-  <h2 class="titre-section">Du plan à la maison {cote("un projet réel")}</h2>
-  <div class="trois-temps">
-    <figure><img src="media/projet/villa-maquette.jpg" alt="Maquette 3D de la Villa Camacho" loading="lazy"><figcaption><b>1. La maquette</b> Le projet est dessiné et modélisé au bureau d'études.</figcaption></figure>
-    <figure><img src="media/projet/villa-chantier.jpg" alt="Chantier de la Villa Camacho : murs en briques montés" loading="lazy"><figcaption><b>2. Le chantier</b> Les entreprises construisent à partir des plans.</figcaption></figure>
-    <figure><img src="media/projet/villa-livree.jpg" alt="Villa Camacho livrée" loading="lazy"><figcaption><b>3. La livraison</b> Le client prend possession de sa maison.</figcaption></figure>
-  </div>
+<section class="projets-annee">
+  <h2 class="titre-section">Les projets que tu vas étudier {cote("des bâtiments réels")}</h2>
+  <p class="chapo">Toute l'année, tu travailles sur de vrais projets, comme dans un bureau d'études.</p>
+  <article class="projet-carte">
+    <header><span class="projet-seq">SEQ02 · La lecture de plans</span><h3>La Villa Camacho</h3>
+      <p>Une maison individuelle réelle, suivie de la maquette à la livraison.</p></header>
+    <div class="trois-temps">
+      <figure><img src="media/projet/villa-maquette.jpg" alt="Maquette 3D de la Villa Camacho" loading="lazy"><figcaption><b>1. La maquette</b> Le projet est dessiné et modélisé au bureau d'études.</figcaption></figure>
+      <figure><img src="media/projet/villa-chantier.jpg" alt="Chantier de la Villa Camacho : murs en briques montés" loading="lazy"><figcaption><b>2. Le chantier</b> Les entreprises construisent à partir des plans.</figcaption></figure>
+      <figure><img src="media/projet/villa-livree.jpg" alt="Villa Camacho livrée" loading="lazy"><figcaption><b>3. La livraison</b> Le client prend possession de sa maison.</figcaption></figure>
+    </div>
+  </article>
+  <article class="projet-carte">
+    <header><span class="projet-seq">SEQ03 · La maquette numérique IFC</span><h3>Les projets de l'agence Atelier Équerre</h3>
+      <p>Chaque groupe explore une maquette IFC dans la visionneuse du site. L'évaluation porte sur les futurs bureaux de l'agence.</p></header>
+    <div class="cinq-maquettes">
+      <figure><img src="media/projet/maquette-villa-sabonnere.jpg" alt="Maquette de la villa Sabonnère" loading="lazy"><figcaption><b>Groupe 1</b> Villa Sabonnère</figcaption></figure>
+      <figure><img src="media/projet/maquette-villa-goyrans.jpg" alt="Maquette de la villa Goyrans" loading="lazy"><figcaption><b>Groupe 2</b> Villa Goyrans</figcaption></figure>
+      <figure><img src="media/projet/maquette-maison-quartier.jpg" alt="Maquette de la maison de quartier" loading="lazy"><figcaption><b>Groupe 3</b> Maison de quartier</figcaption></figure>
+      <figure><img src="media/projet/maquette-siege-social.jpg" alt="Maquette du siège social de l'entreprise" loading="lazy"><figcaption><b>Groupe 4</b> Siège social</figcaption></figure>
+      <figure class="eval"><img src="media/projet/maquette-agence-architecte.jpg" alt="Maquette des futurs bureaux de l'agence" loading="lazy"><figcaption><b>Évaluation</b> Futurs bureaux de l'agence</figcaption></figure>
+    </div>
+  </article>
+</section>
+<section class="comp-minute">
+  <h2 class="titre-section">Les compétences en 1 minute {cote("ce qu'on évalue")}</h2>
+  <p class="chapo">Une compétence, c'est un savoir-faire du métier que tu montres en situation. Elles sont rangées en 4 familles :</p>
+  <ul class="familles">{fam_html}</ul>
+  <a class="btn-lien" href="competences.html">Comprendre les compétences →</a>
 </section>''', classe="p-accueil")
 
 
@@ -167,17 +221,64 @@ def page_seance(s, i):
 def page_competences():
     seqs = [s for s in DATA["sequences"] if s["statut"] == "en_ligne"]
     tete = "".join(f"<th>{e(s['numero'])}</th>" for s in seqs)
-    lignes = ""
+    lignes, fam_prec = "", None
     for code, lib in COMP.items():
+        if code[:2] != fam_prec:
+            fam_prec = code[:2]
+            nom, cls, _ = FAMILLES[fam_prec]
+            lignes += f'<tr class="ligne-fam {cls}"><th colspan="{len(seqs) + 1}" scope="rowgroup">{e(fam_prec)} · {e(nom)}</th></tr>'
         cases = ""
         for s in seqs:
             liens = [f'<a href="{s["id"]}/{x["id"]}.html">S{k}</a>' for k, x in enumerate(s["seances"], 1) if code in x["competences"]]
             cases += f'<td>{" ".join(liens)}</td>'
-        lignes += f"<tr><th scope='row'><b>{e(code)}</b><small>{e(lib)}</small></th>{cases}</tr>"
-    return page("Compétences", f'''
-<section class="titre-seance"><h1>Les compétences de l'année</h1><p class="chapo">Chaque case renvoie à la séance où la compétence est travaillée.</p></section>
-<section class="bloc tableau"><table><thead><tr><th>Compétence</th>{tete}</tr></thead><tbody>{lignes}</tbody></table></section>''',
-        fil=[("Accueil", "index.html"), ("Compétences", None)])
+        clair, ex = EN_CLAIR.get(code, ("", ""))
+        lignes += (f"<tr><th scope='row'><b>{e(code)}</b><small>{e(lib)}</small>"
+                   + (f"<span class='clair'>{e(clair)}</span><span class='exemple'>Exemple — {e(ex)}</span>" if clair else "")
+                   + f"</th>{cases}</tr>")
+    familles = "".join(f'<li class="{c}"><b>{k}</b><span>{e(n)}</span><small>{e(d)}</small></li>' for k, (n, c, d) in FAMILLES.items())
+    niveaux = "".join(f'<li class="niv-{c}"><b>{e(a)}</b><span>{e(n)}</span><small>{e(d)}</small></li>' for a, n, d, c in NIVEAUX)
+    return page("Compétences", f"""
+<section class="titre-seance"><h1>Les compétences de l'année</h1>
+<p class="chapo">Ce que tu apprends à faire en Seconde EMNB, comme un professionnel des études du bâtiment.</p></section>
+
+<section class="bloc comp-intro">
+  <h2>C'est quoi une compétence ?</h2>
+  <div class="trois-cartes">
+    <div><b>🛠 Un savoir-faire du métier</b><p>Pas seulement « savoir », mais <b>savoir faire</b> : lire un plan, trouver une donnée dans une maquette, choisir comment répondre.</p></div>
+    <div><b>🎯 Montrée en situation</b><p>Tu la montres pendant une mission : un ticket à traiter, un dossier à analyser, une présentation au client.</p></div>
+    <div><b>📈 Elle progresse</b><p>La même compétence revient dans plusieurs séquences : à chaque fois, tu vas un peu plus loin.</p></div>
+  </div>
+</section>
+
+<section class="bloc">
+  <h2>Comment lire un code de compétence ?</h2>
+  <div class="decode">
+    <span class="d-code"><i class="d1">C2</i><i class="d2">.2</i><i class="d3">.3</i></span>
+    <ul>
+      <li><i class="d1">C2</i> la famille : <b>Analyser</b></li>
+      <li><i class="d2">.2</i> le groupe : <b>Proposer des choix techniques, numériques et graphiques</b></li>
+      <li><i class="d3">.3</i> la compétence : <b>Choisir les données numériques ou graphiques</b></li>
+    </ul>
+  </div>
+</section>
+
+<section class="bloc">
+  <h2>Les 4 familles</h2>
+  <ul class="familles">{familles}</ul>
+</section>
+
+<section class="bloc">
+  <h2>Comment je suis évalué(e) ?</h2>
+  <p>Pour chaque compétence, ton professeur note ton niveau sur une grille de suivi :</p>
+  <ul class="niveaux">{niveaux}</ul>
+  <p class="aide">Les certificats des séances en ligne montrent ton travail ; la note vient de la grille, du travail rendu et de l'oral.</p>
+</section>
+
+<section class="bloc tableau">
+  <h2>Où chaque compétence est travaillée</h2>
+  <p class="aide">Chaque case renvoie à la séance où la compétence est travaillée.</p>
+  <table class="table-comp"><thead><tr><th>Compétence</th>{tete}</tr></thead><tbody>{lignes}</tbody></table>
+</section>""", fil=[("Accueil", "index.html"), ("Compétences", None)])
 
 
 def VIS(a):

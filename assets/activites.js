@@ -47,6 +47,32 @@
     manque: () => null, score: () => [0, 0]
   });
 
+  // projet du groupe : partagé entre les séances (clé emnb-projet)
+  const lireProjet = () => { try { return localStorage.getItem("emnb-projet") || ""; } catch (e) { return ""; } };
+  P.projet = (p, d, fini) => {
+    const choix = p.choix;
+    const sel = h("select", { class: "sel sel-projet" }, h("option", { value: "" }, "— choisir le projet de ton groupe —"),
+      ...choix.map(c => { const o = h("option", { value: c.id }, c.nom); if (c.id === lireProjet()) o.selected = true; return o; }));
+    sel.disabled = fini;
+    sel.onchange = () => { try { localStorage.setItem("emnb-projet", sel.value); } catch (e) {} ; ouvrir(courant, false); };
+    const c = choix.find(x => x.id === lireProjet());
+    return { el: h("div", { class: "choix-projet" }, h("label", {}, h("b", {}, "Projet de ton groupe : "), sel), c && c.desc ? h("p", { class: "aide" }, c.desc) : null),
+      manque: () => lireProjet() ? null : "Choisis d'abord le projet de ton groupe.", score: () => [0, 0] };
+  };
+  P.visionneuse = (p) => {
+    const ids = p.maquettes || [lireProjet()].filter(Boolean);
+    if (!ids.length) return { el: h("p", { class: "aide" }, "Choisis le projet de ton groupe pour afficher sa maquette."), manque: () => null, score: () => [0, 0] };
+    const div = h("div", { class: "visionneuse", "data-maquettes": ids.join(","), "data-base": "../" });
+    setTimeout(() => window.EMNB_visionneuse && window.EMNB_visionneuse(div), 0);
+    const pdf = p.plans !== false && ids.length === 1 && A.plans && A.plans[ids[0]];
+    return { el: h("div", {}, div, pdf ? h("a", { class: "lien-plans", href: "../" + pdf, target: "_blank", rel: "noopener" }, "📄 Ouvrir les plans PDF du projet") : null), manque: () => null, score: () => [0, 0] };
+  };
+  P.jeu = (p) => ({
+    el: h("div", { class: "jeu" }, h("iframe", { src: p.src, title: p.titreJeu || "Jeu", loading: "lazy", allow: "fullscreen" }),
+      h("a", { class: "lien-plans", href: p.src, target: "_blank", rel: "noopener" }, "↗ Ouvrir le jeu en plein écran")),
+    manque: () => null, score: () => [0, 0]
+  });
+
   P.texte = (p) => ({ el: h("div", { class: "texte-partie", html: p.html }), manque: () => null, score: () => [0, 0] });
 
   P.ordre = (p, d, fini, g) => {
@@ -271,9 +297,18 @@
     const res = etat.res[b.id], fini = !!res;
     const det = fini ? res.detail : b.parties.map(() => ({}));
     const g = 1 + (etat.essais[b.id] || 0);
+    const projet = lireProjet();
+    let cols = null;
+    if (b.parties.some(p => p.type === "visionneuse")) {
+      cols = { gauche: h("div", { class: "col-maquette" }), droite: h("div", { class: "col-questions" }) };
+      zone.append(h("div", { class: "colonnes" }, cols.gauche, cols.droite));
+    }
     const objs = b.parties.map((p, k) => {
+      if (p.pour && !p.pour.includes(projet)) return { manque: () => null, score: () => [0, 0] };
+      if (p.type !== "projet" && p.pour === undefined && b.parties.some(x => x.type === "projet") && !projet && p.type !== "texte") return { manque: () => null, score: () => [0, 0] };
       const o = P[p.type](p, det[k], fini, g + k);
-      zone.append(h("section", { class: "partie" }, p.titre ? h("h3", { class: "sous" }, p.titre) : null, p.consigne ? h("p", { class: "consigne-p" }, p.consigne) : null, o.el));
+      const sec = h("section", { class: "partie" + (p.type === "visionneuse" ? " partie-maquette" : "") }, p.titre ? h("h3", { class: "sous" }, p.titre) : null, p.consigne ? h("p", { class: "consigne-p" }, p.consigne) : null, o.el);
+      if (cols && p.type === "visionneuse") cols.gauche.append(sec); else (cols ? cols.droite : zone).append(sec);
       return o;
     });
     const pied = h("div", { class: "pied-bloc" });
@@ -303,6 +338,11 @@
     const s = x.toString(36).toUpperCase().padStart(7, "0");
     return s.slice(0, 2) + "-" + s.slice(2, 6);
   }
+  function projetNom() {
+    const pr = lireProjet(); if (!pr) return "";
+    for (const b of A.blocs) for (const p of (b.parties || [])) if (p.type === "projet") { const c = p.choix.find(x => x.id === pr); if (c) return c.nom.split(" — ").pop(); }
+    return "";
+  }
   function certificat() {
     const notes = A.blocs.filter(b => b.type !== "cours");
     const faits = notes.filter(b => etat.res[b.id]);
@@ -323,7 +363,7 @@
       cible.innerHTML = "";
       cible.append(h("div", { class: "certif" },
         h("p", { class: "certif-sur" }, "Seconde EMNB · Lycée des métiers Urbain Vitry"), h("h3", {}, "Certificat de séance"),
-        h("p", { class: "certif-seance" }, A.titre), h("p", { class: "certif-nom" }, etat.nom),
+        h("p", { class: "certif-seance" }, A.titre + (projetNom() ? " — " + projetNom() : "")), h("p", { class: "certif-nom" }, etat.nom),
         h("table", {}, ...lignes.map(([t, s, e]) => h("tr", {}, h("td", {}, t), h("td", {}, s), h("td", { class: "ess" }, e)))),
         textes.length ? h("div", { class: "certif-textes" }, ...textes.map(t => h("p", {}, "« " + t + " »"))) : null,
         total ? h("p", { class: "certif-total" }, total) : null,
@@ -349,7 +389,7 @@
     txt("2de", 30, 124, { p: 800, c: "#fff" });
     txt("SECONDE EMNB · LYCÉE DES MÉTIERS URBAIN VITRY", 20, 186, { p: 600, c: "#5d6670" });
     txt("Certificat de séance", 52, 252, { p: 800, c: "#c4521f" });
-    txt(A.titre, 28, 298, { p: 600 });
+    txt(A.titre + (projetNom() ? " — " + projetNom() : ""), 28, 298, { p: 600 });
     txt(etat.nom, 60, 388, { p: 800 });
     let y = 460; x.strokeStyle = "#dedad0"; x.lineWidth = 1.5;
     d.lignes.forEach(([t, s, e]) => { txt(t.length > 52 ? t.slice(0, 50) + "…" : t, 24, y, { a: "left", x: 140 }); txt(s, 26, y, { a: "right", x: 900, p: 700 }); txt(e, 18, y, { a: "right", x: W - 140, c: "#5d6670" });

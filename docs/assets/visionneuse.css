@@ -1,0 +1,39 @@
+/* Visionneuse IFC */
+.visionneuse { border: 1.5px solid var(--plan); border-radius: 8px; background: var(--carte); overflow: hidden; margin: 12px 0; }
+.v-barre { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px; background: var(--plan-fonce); color: #fff; font-size: 14px; }
+.v-barre label { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+.v-barre select { font: inherit; font-weight: 400; padding: 5px 8px; border-radius: 6px; border: 0; max-width: 190px; }
+.v-coupe { width: 120px; accent-color: var(--signal); }
+.v-btn { font: inherit; font-weight: 700; padding: 6px 12px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,.5); background: transparent; color: #fff; cursor: pointer; }
+.v-btn:hover { background: rgba(255,255,255,.12); }
+.v-btn[aria-pressed="true"] { background: var(--signal); color: #13223f; border-color: var(--signal); }
+.v-corps { display: grid; grid-template-columns: 1fr 340px; height: 560px; }
+.v-vue { position: relative; min-height: 0; }
+.v-vue canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.v-charge { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(233,238,246,.85); color: #13223f; font-weight: 700; }
+.v-aide { position: absolute; left: 8px; bottom: 6px; margin: 0; font-size: 12px; color: #55637e; background: rgba(255,255,255,.8); padding: 2px 8px; border-radius: 4px; pointer-events: none; }
+.v-panneau { border-left: 1px solid var(--trait); display: flex; flex-direction: column; min-height: 0; }
+.v-onglets { display: flex; border-bottom: 1px solid var(--trait); }
+.v-onglets button { flex: 1; font: 700 14px var(--texte); padding: 10px; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--doux); cursor: pointer; }
+.v-onglets button.on { color: var(--plan-fonce); border-bottom-color: var(--chantier); }
+.v-insp, .v-arbo { overflow: auto; padding: 12px 14px; font-size: 14px; flex: 1; }
+.v-vide { color: var(--doux); font-style: italic; }
+.v-classe { margin: 0; font-size: 15px; } .v-classe b { color: var(--chantier); margin-right: 6px; font-family: ui-monospace, Consolas, monospace; }
+.v-nom { margin: 2px 0 6px; font-weight: 700; word-break: break-word; }
+.v-chemin { margin: 0 0 10px; font-size: 12px; color: var(--plan); background: var(--plan-pale); padding: 4px 8px; border-radius: 4px; }
+.v-mono { font-family: ui-monospace, Consolas, monospace; font-size: 11px; color: var(--doux); font-weight: 400; }
+.v-pset { border-top: 1px solid var(--trait); padding: 6px 0; }
+.v-pset summary { cursor: pointer; font-weight: 700; color: var(--plan-fonce); }
+.v-dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3px 10px; margin: 6px 0 0; }
+.v-dl dt { color: var(--doux); word-break: break-word; } .v-dl dd { margin: 0; font-weight: 700; word-break: break-word; }
+.v-racine { font-size: 12px; color: var(--plan); margin: 0 0 8px; }
+.v-niv > summary { font-weight: 800; cursor: pointer; padding: 4px 0; color: var(--plan-fonce); }
+.v-cls { margin-left: 14px; } .v-cls > summary { cursor: pointer; padding: 2px 0; }
+.v-nb { display: inline-block; min-width: 24px; text-align: center; background: var(--signal); color: #13223f; border-radius: 10px; font-size: 12px; font-weight: 800; padding: 0 6px; }
+.v-cls ul { list-style: none; margin: 2px 0 6px 10px; padding: 0; }
+.v-cls li button { background: none; border: 0; color: var(--plan); font: 13px var(--texte); text-align: left; cursor: pointer; padding: 2px 0; }
+.v-cls li button:hover { text-decoration: underline; }
+@media (max-width: 860px) { .v-corps { grid-template-columns: 1fr; height: auto; } .v-vue { height: 380px; } .v-panneau { border-left: 0; border-top: 1px solid var(--trait); max-height: 360px; } }
+.v-charge[hidden] { display: none; }
+.v-partie { margin: 0 0 4px; font-size: 13px; color: var(--doux); } .v-partie b { font-family: ui-monospace, Consolas, monospace; color: var(--chantier); }
+.v-projet[hidden] { display: none; }

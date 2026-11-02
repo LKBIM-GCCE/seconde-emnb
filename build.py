@@ -179,6 +179,10 @@ def page_competences():
         fil=[("Accueil", "index.html"), ("Compétences", None)])
 
 
+def VIS(a):
+    return any(p["type"] == "visionneuse" for bl in a["blocs"] if bl["type"] != "cours" for p in bl["parties"])
+
+
 def page_en_ligne(s, i, a):
     x = s["seances"][i]
     donnees = json.dumps({k: v for k, v in a.items() if k != "_cours"}, ensure_ascii=False).replace("</", "<\\/")
@@ -191,7 +195,8 @@ def page_en_ligne(s, i, a):
 {"".join(f'<template id="cours-{k}">{v}</template>' for k, v in a["_cours"].items())}'''
     return page(f'{s["numero"]} S{i+1} en ligne', contenu, prof=1,
         fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"Séance {i+1}", f'{s["id"]}/{x["id"]}.html'), ("En ligne", None)],
-        extra_tete='<link rel="stylesheet" href="../assets/activites.css">', extra_pied='<script src="../assets/activites.js"></script>')
+        extra_tete='<link rel="stylesheet" href="../assets/activites.css">' + ('<link rel="stylesheet" href="../assets/visionneuse.css">' if VIS(a) else ""), classe="large" if VIS(a) else "",
+        extra_pied=('<script src="../assets/vendor/three.min.js"></script><script src="../assets/vendor/OrbitControls.js"></script><script src="../assets/vendor/GLTFLoader.js"></script><script src="../assets/visionneuse.js"></script>' if VIS(a) else "") + '<script src="../assets/activites.js"></script>')
 
 
 def page_verifier():
@@ -213,7 +218,7 @@ const ok=code(act+"|"+f.get("nom").trim()+"|"+ligne+"|"+f.get("date").trim())===
 const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentique":"✘ Le code ne correspond pas : certificat modifié ou mal recopié";r.className="score "+(ok?"ok":"ko");};
 </script>'''
     opts = "".join(f'<option value="{e(a["id"])}">{e(a["id"])} — {e(a["titre"])}</option>' for a in ACTS.values())
-    ids = {a["id"]: [b["id"] for b in a["blocs"] if b["type"] != "cours" and any(x["type"] not in ("image", "texte", "redaction") for x in b["parties"])] for a in ACTS.values()}
+    ids = {a["id"]: [b["id"] for b in a["blocs"] if b["type"] != "cours" and any(x["type"] in ("ordre", "indices", "associer", "grille", "vraifaux", "qcm", "saisie", "nombre", "schema") for x in b["parties"])] for a in ACTS.values()}
     contenu = contenu.replace("ACTS_OPTIONS", opts).replace("ACTS_IDS", json.dumps(ids))
     return page("Vérifier un certificat", contenu, extra_tete='<link rel="stylesheet" href="assets/activites.css"><meta name="robots" content="noindex">')
 
@@ -223,7 +228,7 @@ def main():
     if SORTIE.exists():
         shutil.rmtree(SORTIE)
     SORTIE.mkdir()
-    for d in ("assets", "media", "fiches"):
+    for d in ("assets", "media", "fiches", "jeux", "plans"):
         if (RACINE / d).exists():
             shutil.copytree(RACINE / d, SORTIE / d, dirs_exist_ok=True)
     (SORTIE / ".nojekyll").touch()

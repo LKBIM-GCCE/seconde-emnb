@@ -927,7 +927,7 @@
       "problematique": "Comment une maquette IFC permet-elle de répondre aux besoins d'information de chaque intervenant d'un projet ?",
       "periode": "Novembre – Décembre",
       "duree": "8 h",
-      "contexte": "Tu rejoins la cellule BIM Desk de l'agence Atelier Équerre Architectes. L'agence conçoit sous Revit, mais ses partenaires reçoivent les maquettes en IFC. Pour chaque demande (ticket), tu retrouves l'information et tu la transmets sous la forme la plus utile.",
+      "contexte": "Tu rejoins la cellule BIM Desk de l'agence Atelier Équerre Architectes. L'agence conçoit sous Revit, mais ses partenaires reçoivent les maquettes en IFC. Ton groupe travaille sur l'un des 4 projets de l'agence, directement dans la visionneuse 3D du site.",
       "statut": "en_ligne",
       "seances": [
         {
@@ -1005,7 +1005,7 @@
           ]
         },
         {
-          "titre": "Lire la maquette du projet (BIMvision)",
+          "titre": "Lire la maquette du projet",
           "duree": "2 h",
           "competences": [
             "C2.1.1",

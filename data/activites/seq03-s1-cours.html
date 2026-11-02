@@ -1,0 +1,19 @@
+<p class="chapeau">L'agence conçoit ses projets sous <b>Revit</b>. Mais ses partenaires (économiste, bureau d'études, entreprise, client) n'ont pas tous ce logiciel. Pour partager la maquette, on l'exporte en <b>IFC</b>.</p>
+<figure class="schema-cours"><svg viewBox="0 0 720 200" role="img" aria-label="Le fichier Revit est exporté en IFC, puis lu par tous les partenaires avec une visionneuse gratuite">
+<g font-family="var(--titre)" text-anchor="middle">
+<rect x="20" y="60" width="150" height="80" rx="10" fill="var(--plan-fonce)"/><text x="95" y="96" fill="#fff" font-size="22" font-weight="800">.rvt</text><text x="95" y="120" fill="#fff" font-size="13">fichier natif Revit</text>
+<path d="M175 100 h90" stroke="var(--chantier)" stroke-width="4" marker-end="url(#fi1)"/><text x="220" y="88" font-size="13" fill="var(--chantier)" font-weight="700">export</text>
+<rect x="270" y="50" width="170" height="100" rx="10" fill="var(--signal)"/><text x="355" y="94" fill="#13223f" font-size="26" font-weight="800">.ifc</text><text x="355" y="120" fill="#13223f" font-size="13">format ouvert d'échange</text>
+<g stroke="var(--plan)" stroke-width="3" fill="none"><path d="M445 80 L540 38" marker-end="url(#fi2)"/><path d="M445 100 L540 100" marker-end="url(#fi2)"/><path d="M445 120 L540 162" marker-end="url(#fi2)"/></g>
+<g font-size="15" font-weight="700" fill="var(--encre)"><rect x="545" y="18" width="160" height="40" rx="8" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><text x="625" y="44">Économiste</text>
+<rect x="545" y="80" width="160" height="40" rx="8" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><text x="625" y="106">Bureau d'études</text>
+<rect x="545" y="142" width="160" height="40" rx="8" fill="var(--carte)" stroke="var(--plan)" stroke-width="2"/><text x="625" y="168">Entreprise, client</text></g>
+<defs><marker id="fi1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--chantier)"/></marker><marker id="fi2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--plan)"/></marker></defs></g></svg>
+<figcaption>Natif (Revit) pour concevoir, IFC pour échanger : tout le monde peut l'ouvrir avec une visionneuse gratuite.</figcaption></figure>
+<h4>Les 3 notions à retenir</h4>
+<div class="trois-notions">
+ <div class="encadre"><h4>1. La classe</h4><p>Chaque objet appartient à une <b>classe</b> qui dit ce qu'il est : <code>IfcWall</code> (mur), <code>IfcSlab</code> (dalle), <code>IfcDoor</code> (porte), <code>IfcWindow</code> (fenêtre), <code>IfcRoof</code> (toiture), <code>IfcSpace</code> (pièce)…</p></div>
+ <div class="encadre"><h4>2. L'arborescence</h4><p>Les objets sont rangés comme dans des dossiers :<br><b>Projet › Site › Bâtiment › Niveau › Élément</b>. On sait toujours à quel niveau se trouve un objet.</p></div>
+ <div class="encadre"><h4>3. Les propriétés</h4><p>Chaque objet porte des <b>informations</b> rangées dans des jeux de propriétés : <code>Pset_…</code> (extérieur ? porteur ?) et quantités <code>Qto</code> / Cotes (longueur, surface, volume).</p></div>
+</div>
+<div class="encadre retenir"><h4>À retenir</h4><ul><li>IFC = format <b>ouvert</b>, lisible par tous avec une visionneuse gratuite (BIMvision, la visionneuse du site…).</li><li>Le fichier natif (.rvt) sert à concevoir ; l'IFC sert à <b>échanger</b>.</li><li>Une maquette IFC est une <b>base de données</b> : classes, arborescence, propriétés.</li></ul></div>

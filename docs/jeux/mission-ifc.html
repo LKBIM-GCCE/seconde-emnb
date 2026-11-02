@@ -1,0 +1,661 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mission IFC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout : barre de missions en haut, maquette 3D à gauche, carnet de mission + inspecteur IFC à droite (empilés sur téléphone) */
+:root{
+  --paper:#eef1ee; --panel:#f8faf8; --ink:#1b2320; --muted:#5a6660; --line:#cfd7d2;
+  --accent:#2753b8; --accent-ink:#ffffff; --accent-soft:#dfe7f8;
+  --view:#dde3df; --ok:#1f7a4a; --ok-soft:#dcefe3; --ko:#b23a2a; --ko-soft:#f6e0dc;
+  --chip:#e6ebe8;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141917; --panel:#1b211f; --ink:#e4ebe7; --muted:#9aa8a1; --line:#2e3834;
+  --accent:#7ea2f0; --accent-ink:#0e1530; --accent-soft:#22304f;
+  --view:#1f2624; --ok:#6cc595; --ok-soft:#1d3428; --ko:#ee8a7a; --ko-soft:#3d2420; --chip:#252d2a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141917; --panel:#1b211f; --ink:#e4ebe7; --muted:#9aa8a1; --line:#2e3834;
+  --accent:#7ea2f0; --accent-ink:#0e1530; --accent-soft:#22304f;
+  --view:#1f2624; --ok:#6cc595; --ok-soft:#1d3428; --ko:#ee8a7a; --ko-soft:#3d2420; --chip:#252d2a;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--f-mono)}
+
+.app{display:flex;flex-direction:column;min-height:100%;padding-inline:16px;padding-block:12px;gap:12px;max-width:1500px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.brand{display:flex;flex-direction:column;line-height:1.05;min-width:0}
+.brand h1{margin:0;font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:.02em;text-transform:uppercase}
+.brand h1 span{color:var(--accent)}
+.brand small{color:var(--muted);font-size:13px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:0}
+.tab{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:6px 12px;font-size:14px}
+.tab b{font-family:var(--f-display);font-size:18px;font-weight:600;color:var(--muted)}
+.tab[aria-current="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab[aria-current="true"] b{color:var(--accent-ink)}
+.tab .done{color:var(--ok);font-weight:600}
+.tab[aria-current="true"] .done{color:var(--accent-ink)}
+.scorebox{display:flex;align-items:center;gap:10px}
+.score{font-family:var(--f-display);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums}
+.score small{font-family:var(--f-body);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-left:4px}
+.ghost{border:1px solid var(--line);background:transparent;border-radius:6px;padding:6px 10px;font-size:13px;color:var(--muted)}
+.ghost:hover{color:var(--ink);border-color:var(--muted)}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:12px;flex:1;min-height:0}
+@media (max-width:900px){main{grid-template-columns:minmax(0,1fr)}}
+
+.viewport{position:relative;background:var(--view);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-height:480px;height:calc(100vh - 110px)}
+@media (max-width:900px){.viewport{height:58vh;min-height:360px}}
+.viewport canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.viewport canvas.drag{cursor:grabbing}
+.viewport canvas.hov{cursor:pointer}
+.ov{position:absolute;display:flex;gap:6px;flex-wrap:wrap}
+.ov.tl{top:10px;left:10px}
+.ov.tr{top:10px;right:10px}
+.ov.bl{left:10px;right:10px;bottom:10px}
+.seg{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:6px 12px;font-size:13px;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg .lbl{padding:6px 10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line);display:flex;align-items:center}
+.pill{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px}
+.help{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+@media (max-width:600px){.help{display:none}}
+.legend{display:flex;flex-wrap:wrap;gap:5px}
+.lg{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:3px 8px 3px 6px;font-family:var(--f-mono);font-size:11.5px}
+.lg i{width:10px;height:10px;border-radius:2px;display:inline-block;border:1px solid rgba(0,0,0,.2)}
+.lg[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+
+aside{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (min-width:901px){aside{height:calc(100vh - 110px);min-height:480px;overflow:auto}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.eyebrow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.card h2{margin:0;font-family:var(--f-display);font-size:26px;font-weight:600;line-height:1.1;text-wrap:balance}
+.card p{margin:0}
+.muted{color:var(--muted)}
+.q{font-size:17px;font-weight:500;text-wrap:balance}
+.q code,.card code{font-family:var(--f-mono);font-size:.92em;background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:3px}
+.progress{height:6px;background:var(--chip);border-radius:3px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--accent);transition:width .3s}
+.fb{border-radius:6px;padding:10px 12px;font-size:14px}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.ko{background:var(--ko-soft);color:var(--ko)}
+.fb.info{background:var(--accent-soft)}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:8px 14px;font-weight:600;font-size:14px}
+.btn.sec{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.4;cursor:default}
+
+.classgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.cg{border:1px dashed var(--line);border-radius:6px;padding:8px 6px;text-align:center;font-size:12px;color:var(--muted);min-width:0}
+.cg.on{border-style:solid;border-color:var(--ok);color:var(--ink);background:var(--ok-soft)}
+.cg .mono{display:block;font-size:11.5px;overflow-wrap:anywhere}
+
+.tree{display:flex;flex-direction:column;gap:6px}
+.slot{border:1px dashed var(--line);border-radius:6px;padding:8px 10px;min-height:40px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.slot.filled{border-style:solid;border-color:var(--ok);background:var(--ok-soft);color:var(--ink)}
+.slot .mono{font-weight:500}
+.slot .idx{font-family:var(--f-display);font-size:16px;color:var(--muted);width:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chipb{border:1px solid var(--line);background:var(--chip);border-radius:6px;padding:8px 10px;font-family:var(--f-mono);font-size:13px}
+.chipb:hover{border-color:var(--accent)}
+.shake{animation:shake .35s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.opt{border:1px solid var(--line);background:var(--chip);border-radius:6px;padding:9px 10px;text-align:left;font-size:14px;font-variant-numeric:tabular-nums}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.good{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.bad{background:var(--ko-soft);border-color:var(--ko);color:var(--ko)}
+.opt:disabled{cursor:default}
+
+.insp-empty{color:var(--muted);font-size:14px}
+.ifc-head{display:flex;flex-direction:column;gap:4px}
+.ifc-cls{font-family:var(--f-mono);font-size:20px;font-weight:500;color:var(--accent)}
+.ifc-name{font-weight:600}
+.path{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:2px 4px}
+.path span.mono{color:var(--ink)}
+.pset{border-top:1px solid var(--line);padding-top:8px}
+.pset h3{margin:0 0 4px;font-family:var(--f-mono);font-size:12.5px;font-weight:500;color:var(--muted)}
+.pset table{width:100%;border-collapse:collapse;font-size:13px}
+.pset td{padding:4px 0;vertical-align:top;border-bottom:1px dotted var(--line)}
+.pset tr:last-child td{border-bottom:0}
+.pset td:first-child{width:52%;padding-right:8px}
+.pset td:first-child .mono{display:block;font-size:12.5px}
+.pset td:first-child small{color:var(--muted);font-size:11.5px}
+.pset td:last-child{font-variant-numeric:tabular-nums;font-weight:500;overflow-wrap:anywhere}
+
+.cert{border:2px solid var(--ink);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:10px;text-align:center}
+.cert .big{font-family:var(--f-display);font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.cert input{font:inherit;font-size:18px;text-align:center;border:0;border-bottom:1px solid var(--muted);background:transparent;color:var(--ink);padding:4px;width:100%}
+.cert table{width:100%;font-size:13px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.cert td{padding:3px 0;border-bottom:1px dotted var(--line);text-align:left}
+.cert td:last-child{text-align:right}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand"><h1>Mission <span>IFC</span></h1><small>Maquette numérique · Maison R+1</small></div>
+    <nav class="tabs" id="tabs" aria-label="Missions"></nav>
+    <div class="scorebox">
+      <div class="score" id="score">0<small>pts</small></div>
+      <button class="ghost" id="resetBtn" type="button">Recommencer</button>
+    </div>
+  </header>
+  <main>
+    <section class="viewport" id="vp" aria-label="Maquette 3D">
+      <div class="ov tl">
+        <div class="seg" role="group" aria-label="Niveau affiché">
+          <span class="lbl">Niveau</span>
+          <button type="button" data-st="all" aria-pressed="true">Tout</button>
+          <button type="button" data-st="RDC" aria-pressed="false">RDC</button>
+          <button type="button" data-st="R+1" aria-pressed="false">R+1</button>
+        </div>
+        <button class="pill" type="button" id="recenter">Recentrer</button>
+      </div>
+      <div class="ov tr"><span class="help">Glisser : tourner · Clic droit / Maj : déplacer · Molette : zoom · Clic : sélectionner</span></div>
+      <div class="ov bl"><div class="legend" id="legend" aria-label="Afficher ou masquer une classe IFC"></div></div>
+    </section>
+    <aside>
+      <div class="card" id="mission"></div>
+      <div class="card" id="inspector" aria-live="polite"></div>
+    </aside>
+  </main>
+</div>
+
+<script src="../assets/vendor/three.min.js"></script>
+<script>
+(function(){
+/* ---------- Données des classes IFC ---------- */
+const CLS = {
+  IfcSite:   {fr:"Terrain",   color:0x9fb38a, desc:"Le terrain sur lequel le bâtiment est construit. Il porte la position géographique du projet."},
+  IfcSlab:   {fr:"Dalle",     color:0xa9a59a, desc:"Un élément horizontal porteur : dalle sur terre-plein, plancher d'étage ou dalle de terrasse."},
+  IfcWall:   {fr:"Mur",       color:0xdcd6c8, desc:"Un mur ou une cloison. La propriété IsExternal dit s'il est en façade, LoadBearing s'il est porteur."},
+  IfcDoor:   {fr:"Porte",     color:0x8b5a3a, desc:"Une porte, intérieure ou extérieure. Ses dimensions sont dans OverallWidth et OverallHeight."},
+  IfcWindow: {fr:"Fenêtre",   color:0x6fa8d6, desc:"Une fenêtre ou une baie vitrée. Le coefficient Uw indique ses performances thermiques."},
+  IfcStair:  {fr:"Escalier",  color:0xc8a066, desc:"Un escalier qui relie deux niveaux. On y lit le nombre de marches, leur hauteur et le giron."},
+  IfcRoof:   {fr:"Toiture",   color:0xb3614a, desc:"La couverture du bâtiment. Elle regroupe les pans de toit et porte la pente."},
+  IfcColumn: {fr:"Poteau",    color:0x9c7447, desc:"Un élément vertical porteur, ici les poteaux en bois de la terrasse."},
+  IfcBeam:   {fr:"Poutre",    color:0xb88a55, desc:"Un élément horizontal porteur qui franchit une portée entre deux appuis."}
+};
+const CLS_ORDER = Object.keys(CLS);
+const GLOSS = {IsExternal:"Élément extérieur ?",LoadBearing:"Élément porteur ?",FireRating:"Résistance au feu",Length:"Longueur",Height:"Hauteur",Width:"Épaisseur",Depth:"Épaisseur",GrossArea:"Surface brute",NetArea:"Surface nette",OverallWidth:"Largeur totale",OverallHeight:"Hauteur totale",ThermalTransmittance:"Coefficient Uw",NumberOfRiser:"Nombre de contremarches",NumberOfTreads:"Nombre de marches",RiserHeight:"Hauteur de marche",TreadLength:"Giron",PitchAngle:"Pente",Material:"Matériau",Span:"Portée",CrossSection:"Section",Area:"Surface",RefElevation:"Altitude du terrain",Name:"Nom",Elevation:"Altitude du niveau",AcousticRating:"Isolement acoustique"};
+
+const m = n => n.toFixed(2).replace('.',',') + " m";
+const m2 = n => n.toFixed(1).replace('.',',') + " m²";
+const Y=true, N=false;
+
+/* ---------- Scène ---------- */
+const vp = document.getElementById('vp');
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+vp.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40,1,0.1,400);
+scene.add(new THREE.HemisphereLight(0xffffff,0x8a8f86,0.75));
+const sun = new THREE.DirectionalLight(0xffffff,0.75);
+sun.position.set(18,26,22); sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-16,right:16,top:16,bottom:-16,near:1,far:80});
+sun.shadow.bias=-0.0006;
+sun.target.position.set(5,0,5); scene.add(sun); scene.add(sun.target);
+
+const els = [];
+const edgeMat = new THREE.LineBasicMaterial({color:0x2f3532,transparent:true,opacity:0.35});
+let seed = 7;
+function rnd(){ seed = (seed*16807)%2147483647; return seed/2147483647; }
+const GC = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
+function guid(){ let s=""; for(let i=0;i<22;i++) s+=GC[Math.floor(rnd()*64)]; return s; }
+
+function material(cls){
+  const c = CLS[cls].color, glass = cls==='IfcWindow';
+  return new THREE.MeshStandardMaterial({color:c, roughness:glass?0.2:0.9, metalness:0, transparent:glass, opacity:glass?0.55:1, depthWrite:!glass});
+}
+function boxMesh(cls,b){
+  const [x0,x1,y0,y1,z0,z1]=b;
+  const g = new THREE.BoxGeometry(x1-x0,y1-y0,z1-z0);
+  const mesh = new THREE.Mesh(g,material(cls));
+  mesh.position.set((x0+x1)/2,(y0+y1)/2,(z0+z1)/2);
+  mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(g),edgeMat));
+  return mesh;
+}
+function addEl(def, meshes){
+  const grp = new THREE.Group();
+  meshes.forEach(ms=>{ ms.castShadow = def.ifc!=='IfcWindow' && def.ifc!=='IfcSite'; ms.receiveShadow=true; grp.add(ms); });
+  const rec = Object.assign({id:els.length, guid:guid(), obj:grp}, def);
+  grp.userData.rec = rec;
+  scene.add(grp); els.push(rec);
+  return rec;
+}
+function bounds(bs){
+  let a=[1e9,-1e9,1e9,-1e9,1e9,-1e9];
+  bs.forEach(b=>{a[0]=Math.min(a[0],b[0]);a[1]=Math.max(a[1],b[1]);a[2]=Math.min(a[2],b[2]);a[3]=Math.max(a[3],b[3]);a[4]=Math.min(a[4],b[4]);a[5]=Math.max(a[5],b[5]);});
+  return a;
+}
+function wall(key,name,storey,bs,o){
+  const B=bounds(bs), dx=B[1]-B[0], dz=B[5]-B[4];
+  const L=Math.max(dx,dz), W=Math.min(dx,dz), H=B[3]-B[2];
+  return addEl({key,ifc:'IfcWall',name,storey,psets:{
+    "Pset_WallCommon":{IsExternal:o.ext,LoadBearing:o.lb,FireRating:o.fire||"REI 60",AcousticRating:o.ac||"—"},
+    "Qto_WallBaseQuantities":{Length:m(L),Height:m(H),Width:m(W),GrossArea:m2(L*H)},
+    "IfcMaterial":{Material:o.mat}
+  }}, bs.map(b=>boxMesh('IfcWall',b)));
+}
+function opening(key,ifc,name,storey,b,ps){
+  return addEl({key,ifc,name,storey,psets:ps},[boxMesh(ifc,b)]);
+}
+
+/* Terrain */
+(function(){
+  const g = new THREE.PlaneGeometry(44,40);
+  const mesh = new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:CLS.IfcSite.color,roughness:1}));
+  mesh.rotation.x=-Math.PI/2; mesh.position.set(5,-0.05,5);
+  addEl({key:'site',ifc:'IfcSite',name:"Parcelle AB 214",storey:'—',psets:{
+    "Pset_SiteCommon":{Name:"Lotissement Les Tilleuls, lot 12",Area:"612 m²",RefElevation:"152,40 m NGF"}}},[mesh]);
+})();
+
+const EXT_MAT = "Bloc béton creux B40 + doublage isolant", T=0.2;
+/* ---------- RDC (0,00 → 2,70) ---------- */
+addEl({key:'dalle_rdc',ifc:'IfcSlab',name:"Dalle sur terre-plein RDC",storey:'RDC',psets:{
+  "Pset_SlabCommon":{IsExternal:N,LoadBearing:Y,FireRating:"—"},
+  "Qto_SlabBaseQuantities":{Width:m(0.20),GrossArea:m2(80),Length:m(10)},
+  "IfcMaterial":{Material:"Béton armé C25/30"}}},[boxMesh('IfcSlab',[0,10,-0.2,0,0,8])]);
+const R=[0,2.7];
+wall('mur_n_rdc',"Mur extérieur Nord – RDC",'RDC',[[0,10,R[0],R[1],0,T]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('mur_s_rdc',"Mur extérieur Sud – RDC",'RDC',[[0,10,R[0],R[1],8-T,8]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('mur_o_rdc',"Mur extérieur Ouest – RDC",'RDC',[[0,T,R[0],R[1],T,8-T]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('mur_e_rdc',"Mur extérieur Est – RDC",'RDC',[[10-T,10,R[0],R[1],T,8-T]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('refend_rdc',"Mur de refend – RDC",'RDC',[[5.9,6.1,0,2.7,T,4.2],[5.9,6.1,0,2.7,5.1,8-T],[5.9,6.1,2.1,2.7,4.2,5.1]],{ext:N,lb:Y,mat:"Bloc béton creux B40",fire:"REI 60"});
+opening('porte_entree','IfcDoor',"Porte d'entrée",'RDC',[3.0,3.9,0,2.15,8-T-0.04,8.04],{
+  "Pset_DoorCommon":{IsExternal:Y,FireRating:"—",ThermalTransmittance:"1,5 W/m².K"},
+  "Qto_DoorBaseQuantities":{OverallWidth:m(0.90),OverallHeight:m(2.15)},
+  "IfcMaterial":{Material:"Aluminium à rupture de pont thermique"}});
+opening('porte_int','IfcDoor',"Porte de distribution séjour",'RDC',[5.97,6.03,0,2.04,4.25,5.05],{
+  "Pset_DoorCommon":{IsExternal:N,FireRating:"—"},
+  "Qto_DoorBaseQuantities":{OverallWidth:m(0.80),OverallHeight:m(2.04)},
+  "IfcMaterial":{Material:"Bois, âme alvéolaire"}});
+const winPs=(w,h,u,mat)=>({"Pset_WindowCommon":{IsExternal:Y,ThermalTransmittance:u+" W/m².K"},"Qto_WindowBaseQuantities":{OverallWidth:m(w),OverallHeight:m(h)},"IfcMaterial":{Material:mat||"PVC double vitrage 4/16/4"}});
+opening('baie_sejour','IfcWindow',"Baie vitrée coulissante – Séjour",'RDC',[6.8,9.2,0,2.15,8-T-0.04,8.04],winPs(2.40,2.15,"1,3","Aluminium double vitrage 4/16/4"));
+opening('fen_cuisine','IfcWindow',"Fenêtre – Cuisine",'RDC',[1.2,2.4,1.0,2.15,8-T-0.04,8.04],winPs(1.20,1.15,"1,4"));
+opening('fen_est','IfcWindow',"Fenêtre – Séjour Est",'RDC',[10-T-0.04,10.04,1.0,2.15,3.0,4.2],winPs(1.20,1.15,"1,4"));
+opening('fen_wc','IfcWindow',"Fenêtre – WC",'RDC',[4.0,4.6,1.6,2.15,-0.04,T+0.04],winPs(0.60,0.55,"1,4"));
+/* Escalier : 15 contremarches de 19,3 cm, giron 25 cm */
+(function(){
+  const rh=2.9/15, g=0.25, steps=[];
+  for(let i=0;i<14;i++){ steps.push(boxMesh('IfcStair',[0.3,1.3,0,(i+1)*rh,6.5-(i+1)*g,6.5-i*g])); }
+  addEl({key:'escalier',ifc:'IfcStair',name:"Escalier droit RDC → R+1",storey:'RDC',psets:{
+    "Pset_StairCommon":{NumberOfRiser:"15",NumberOfTreads:"14",RiserHeight:"0,193 m",TreadLength:"0,25 m",IsExternal:N},
+    "IfcMaterial":{Material:"Béton armé préfabriqué"}}},steps);
+})();
+/* Terrasse */
+addEl({key:'dalle_terrasse',ifc:'IfcSlab',name:"Dalle de terrasse",storey:'RDC',psets:{
+  "Pset_SlabCommon":{IsExternal:Y,LoadBearing:N},
+  "Qto_SlabBaseQuantities":{Width:m(0.15),GrossArea:m2(9.6)},
+  "IfcMaterial":{Material:"Béton désactivé"}}},[boxMesh('IfcSlab',[6,10,-0.15,0,8,10.4])]);
+const colPs={"Pset_ColumnCommon":{IsExternal:Y,LoadBearing:Y},"Qto_ColumnBaseQuantities":{Length:m(2.5),CrossSection:"0,20 × 0,20 m"},"IfcMaterial":{Material:"Bois lamellé-collé GL24h"}};
+addEl({key:'poteau_o',ifc:'IfcColumn',name:"Poteau terrasse Ouest",storey:'RDC',psets:colPs},[boxMesh('IfcColumn',[6.3,6.5,0,2.5,10.0,10.2])]);
+addEl({key:'poteau_e',ifc:'IfcColumn',name:"Poteau terrasse Est",storey:'RDC',psets:colPs},[boxMesh('IfcColumn',[9.6,9.8,0,2.5,10.0,10.2])]);
+const beamPs=(L)=>({"Pset_BeamCommon":{IsExternal:Y,LoadBearing:Y,Span:m(L)},"Qto_BeamBaseQuantities":{Length:m(L),CrossSection:"0,08 × 0,25 m"},"IfcMaterial":{Material:"Bois lamellé-collé GL24h"}});
+addEl({key:'poutre_rive',ifc:'IfcBeam',name:"Poutre de rive terrasse",storey:'RDC',psets:beamPs(3.8)},[boxMesh('IfcBeam',[6.1,10,2.5,2.75,10.06,10.14])]);
+addEl({key:'solive_o',ifc:'IfcBeam',name:"Solive terrasse Ouest",storey:'RDC',psets:beamPs(2.2)},[boxMesh('IfcBeam',[6.36,6.44,2.5,2.75,8,10.06])]);
+addEl({key:'solive_e',ifc:'IfcBeam',name:"Solive terrasse Est",storey:'RDC',psets:beamPs(2.2)},[boxMesh('IfcBeam',[9.66,9.74,2.5,2.75,8,10.06])]);
+
+/* ---------- R+1 (2,90 → 5,60) ---------- */
+addEl({key:'plancher_r1',ifc:'IfcSlab',name:"Plancher haut RDC (sol du R+1)",storey:'R+1',psets:{
+  "Pset_SlabCommon":{IsExternal:N,LoadBearing:Y,FireRating:"REI 30"},
+  "Qto_SlabBaseQuantities":{Width:m(0.20),GrossArea:m2(80),NetArea:m2(74.7)},
+  "IfcMaterial":{Material:"Béton armé sur prédalles"}}},
+  [boxMesh('IfcSlab',[1.4,10,2.7,2.9,0,8]),boxMesh('IfcSlab',[0,1.4,2.7,2.9,0,2.8]),boxMesh('IfcSlab',[0,1.4,2.7,2.9,6.6,8])]);
+const U=[2.9,5.6];
+wall('mur_n_r1',"Mur extérieur Nord – R+1",'R+1',[[0,10,U[0],U[1],0,T]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('mur_s_r1',"Mur extérieur Sud – R+1",'R+1',[[0,10,U[0],U[1],8-T,8]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('mur_o_r1',"Mur extérieur Ouest – R+1",'R+1',[[0,T,U[0],U[1],T,8-T]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('mur_e_r1',"Mur extérieur Est – R+1",'R+1',[[10-T,10,U[0],U[1],T,8-T]],{ext:Y,lb:Y,mat:EXT_MAT});
+wall('cloison_r1',"Cloison chambres – R+1",'R+1',[[5.45,5.52,U[0],U[1],T,8-T]],{ext:N,lb:N,mat:"Plaque de plâtre 72/48",fire:"—",ac:"Rw 38 dB"});
+/* Pignons */
+function gable(key,name,x){
+  const sh=new THREE.Shape(); sh.moveTo(0,0); sh.lineTo(8,0); sh.lineTo(4,1.6); sh.lineTo(0,0);
+  const g=new THREE.ExtrudeGeometry(sh,{depth:T,bevelEnabled:false});
+  g.rotateY(-Math.PI/2); g.translate(x,5.6,0);
+  const mesh=new THREE.Mesh(g,material('IfcWall'));
+  mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(g),edgeMat));
+  addEl({key,ifc:'IfcWall',name,storey:'R+1',psets:{
+    "Pset_WallCommon":{IsExternal:Y,LoadBearing:Y,FireRating:"REI 30"},
+    "Qto_WallBaseQuantities":{Length:m(8),Height:m(1.6),Width:m(0.20),GrossArea:m2(6.4)},
+    "IfcMaterial":{Material:EXT_MAT}}},[mesh]);
+}
+gable('pignon_o',"Mur pignon Ouest",T);
+gable('pignon_e',"Mur pignon Est",10);
+opening('fen_ch1','IfcWindow',"Fenêtre – Chambre 1",'R+1',[1.8,3.0,3.9,5.05,8-T-0.04,8.04],winPs(1.20,1.15,"1,4"));
+opening('fen_ch2','IfcWindow',"Fenêtre – Chambre 2",'R+1',[6.8,8.0,3.9,5.05,8-T-0.04,8.04],winPs(1.20,1.15,"1,4"));
+opening('fen_sdb','IfcWindow',"Fenêtre – Salle de bains",'R+1',[7.2,8.0,4.3,5.05,-0.04,T+0.04],winPs(0.80,0.75,"1,4"));
+/* Toiture */
+(function(){
+  const a=Math.atan(0.4), L=(4.4)/Math.cos(a), parts=[];
+  [[1.8,-a],[6.2,a]].forEach(([z,rot])=>{
+    const g=new THREE.BoxGeometry(10.8,0.15,L);
+    const mesh=new THREE.Mesh(g,material('IfcRoof'));
+    mesh.position.set(5,6.32+0.09,z); mesh.rotation.x=rot;
+    mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(g),edgeMat));
+    parts.push(mesh);
+  });
+  addEl({key:'toiture',ifc:'IfcRoof',name:"Toiture deux pans",storey:'R+1',psets:{
+    "Pset_RoofCommon":{IsExternal:Y,FireRating:"—"},
+    "Qto_RoofBaseQuantities":{PitchAngle:"22°",GrossArea:m2(2*10.8*L)},
+    "IfcMaterial":{Material:"Tuiles terre cuite sur charpente bois"}}},parts);
+})();
+
+/* ---------- Caméra orbitale ---------- */
+const HOME={tx:5,ty:2.4,tz:5,r:24,th:0.72,ph:1.08};
+let cam=Object.assign({},HOME);
+const target=new THREE.Vector3();
+function placeCam(){
+  target.set(cam.tx,cam.ty,cam.tz);
+  camera.position.set(cam.tx+cam.r*Math.sin(cam.ph)*Math.sin(cam.th), cam.ty+cam.r*Math.cos(cam.ph), cam.tz+cam.r*Math.sin(cam.ph)*Math.cos(cam.th));
+  camera.lookAt(target); dirty=true;
+}
+let dirty=true;
+function resize(){
+  const w=vp.clientWidth,h=vp.clientHeight; if(!w||!h) return;
+  renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); dirty=true;
+}
+new ResizeObserver(resize).observe(vp);
+const cv=renderer.domElement;
+const ptrs=new Map(); let moved=0, pan=false, pinch0=0, r0=0;
+cv.addEventListener('contextmenu',e=>e.preventDefault());
+cv.addEventListener('pointerdown',e=>{
+  cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  moved=0; pan = e.button===2 || e.shiftKey;
+  if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; pinch0=Math.hypot(a.x-b.x,a.y-b.y); r0=cam.r; }
+  cv.classList.add('drag');
+});
+cv.addEventListener('pointermove',e=>{
+  const p=ptrs.get(e.pointerId);
+  if(!p){ hover(e); return; }
+  const dx=e.clientX-p.x, dy=e.clientY-p.y; p.x=e.clientX; p.y=e.clientY; moved+=Math.abs(dx)+Math.abs(dy);
+  if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y); if(pinch0>0){cam.r=Math.min(70,Math.max(6,r0*pinch0/d));} placeCam(); return; }
+  if(pan){
+    const right=new THREE.Vector3().setFromMatrixColumn(camera.matrix,0), up=new THREE.Vector3().setFromMatrixColumn(camera.matrix,1), k=cam.r*0.0016;
+    cam.tx-= (right.x*dx - up.x*dy)*k; cam.ty-= (right.y*dx - up.y*dy)*k; cam.tz-= (right.z*dx - up.z*dy)*k;
+  } else {
+    cam.th-=dx*0.008; cam.ph=Math.min(1.52,Math.max(0.12,cam.ph-dy*0.008));
+  }
+  placeCam();
+});
+function endPtr(e){
+  const wasSingle = ptrs.size===1;
+  ptrs.delete(e.pointerId); if(!ptrs.size) cv.classList.remove('drag');
+  if(e.type==='pointerup' && wasSingle && moved<6) pick(e);
+}
+cv.addEventListener('pointerup',endPtr); cv.addEventListener('pointercancel',endPtr);
+cv.addEventListener('wheel',e=>{e.preventDefault(); cam.r=Math.min(70,Math.max(6,cam.r*(1+e.deltaY*0.001))); placeCam();},{passive:false});
+document.getElementById('recenter').onclick=()=>{cam=Object.assign({},HOME); placeCam();};
+
+/* ---------- Sélection ---------- */
+const ray=new THREE.Raycaster(), ndc=new THREE.Vector2();
+let hovered=null, selected=null;
+function hitAt(e){
+  const r=cv.getBoundingClientRect();
+  ndc.set(((e.clientX-r.left)/r.width)*2-1, -((e.clientY-r.top)/r.height)*2+1);
+  ray.setFromCamera(ndc,camera);
+  const objs=els.filter(x=>x.obj.visible).map(x=>x.obj);
+  const hits=ray.intersectObjects(objs,true).filter(h=>h.object.isMesh);
+  if(!hits.length) return null;
+  let o=hits[0].object; while(o && !o.userData.rec) o=o.parent;
+  return o?o.userData.rec:null;
+}
+function tint(rec){
+  if(!rec) return;
+  const sel=rec===selected, hov=rec===hovered;
+  rec.obj.traverse(o=>{ if(o.isMesh){ o.material.emissive.setHex(sel?0x2753b8:(hov?0x777777:0)); o.material.emissiveIntensity=sel?0.65:(hov?0.25:0);} });
+  dirty=true;
+}
+function hover(e){
+  if(e.pointerType==='touch') return;
+  const h=hitAt(e);
+  if(h!==hovered){ const old=hovered; hovered=h; tint(old); tint(h); cv.classList.toggle('hov',!!h); }
+}
+function select(rec){
+  const old=selected; selected=rec; tint(old); tint(rec); renderInspector();
+}
+function pick(e){
+  const rec=hitAt(e);
+  select(rec);
+  if(rec) onPick(rec);
+}
+
+/* ---------- Filtres ---------- */
+let storeyFilter='all'; const hiddenCls=new Set();
+function applyVis(){
+  els.forEach(x=>{
+    const okSt = storeyFilter==='all' || x.storey==='—' || x.storey===storeyFilter;
+    x.obj.visible = okSt && !hiddenCls.has(x.ifc);
+  });
+  if(selected && !selected.obj.visible) select(null);
+  dirty=true;
+}
+document.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>setStorey(b.dataset.st));
+function setStorey(s){
+  storeyFilter=s;
+  document.querySelectorAll('[data-st]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===s)));
+  applyVis();
+}
+const legend=document.getElementById('legend');
+CLS_ORDER.forEach(c=>{
+  const b=document.createElement('button'); b.type='button'; b.className='lg'; b.setAttribute('aria-pressed','true');
+  b.innerHTML='<i style="background:#'+CLS[c].color.toString(16).padStart(6,'0')+'"></i>'+c;
+  b.title='Afficher / masquer les '+c;
+  b.onclick=()=>{ if(hiddenCls.has(c)){hiddenCls.delete(c);b.setAttribute('aria-pressed','true');} else {hiddenCls.add(c);b.setAttribute('aria-pressed','false');} applyVis(); };
+  legend.appendChild(b);
+});
+
+/* ---------- Inspecteur ---------- */
+const insp=document.getElementById('inspector');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function val(v){ return v===true?'Oui <span class="muted mono">(TRUE)</span>':v===false?'Non <span class="muted mono">(FALSE)</span>':esc(v); }
+function renderInspector(){
+  if(!selected){
+    insp.innerHTML='<div class="eyebrow">Inspecteur IFC</div><p class="insp-empty">Clique sur un objet de la maquette pour lire sa classe IFC et ses propriétés.</p>';
+    return;
+  }
+  const r=selected, c=CLS[r.ifc];
+  const path = r.ifc==='IfcSite'
+    ? ['IfcProject','IfcSite']
+    : ['IfcProject','IfcSite','IfcBuilding','IfcBuildingStorey · '+r.storey, r.ifc];
+  let h='<div class="eyebrow">Inspecteur IFC</div><div class="ifc-head"><span class="ifc-cls">'+r.ifc+'</span><span class="ifc-name">'+esc(r.name)+'</span>'
+   +'<span class="muted" style="font-size:13.5px">'+c.desc+'</span></div>'
+   +'<div class="path" aria-label="Position dans l\'arborescence">'+path.map(p=>'<span class="mono">'+p+'</span>').join('<span>›</span>')+'</div>'
+   +'<div class="pset"><h3>Attributs</h3><table><tr><td><span class="mono">GlobalId</span><small>Identifiant unique</small></td><td class="mono" style="font-size:12px">'+r.guid+'</td></tr>'
+   +'<tr><td><span class="mono">Name</span><small>Nom</small></td><td>'+esc(r.name)+'</td></tr></table></div>';
+  for(const [ps,props] of Object.entries(r.psets)){
+    h+='<div class="pset"><h3>'+ps+'</h3><table>';
+    for(const [k,v] of Object.entries(props)) h+='<tr><td><span class="mono">'+k+'</span><small>'+(GLOSS[k]||'')+'</small></td><td>'+val(v)+'</td></tr>';
+    h+='</table></div>';
+  }
+  insp.innerHTML=h;
+}
+
+/* ---------- Missions ---------- */
+const byKey=k=>els.find(e=>e.key===k);
+const M2Q=[
+  {q:"Trouve la porte d'entrée : une <code>IfcDoor</code> en façade.", ok:e=>e.key==='porte_entree', tip:"Elle est sur la façade Sud, côté rue."},
+  {q:"Trouve une <code>IfcWindow</code> de l'étage (R+1).", ok:e=>e.ifc==='IfcWindow'&&e.storey==='R+1', tip:"Le niveau d'un objet est écrit dans le chemin de l'inspecteur."},
+  {q:"Trouve l'<code>IfcStair</code> qui relie les deux niveaux.", ok:e=>e.ifc==='IfcStair', tip:"Il est à l'intérieur : affiche seulement le RDC avec le filtre Niveau."},
+  {q:"Trouve un mur intérieur : un <code>IfcWall</code> avec <code>IsExternal = Non</code>.", ok:e=>e.ifc==='IfcWall'&&e.psets.Pset_WallCommon.IsExternal===false, tip:"Masque la toiture ou choisis un niveau pour voir l'intérieur."},
+  {q:"Trouve le plancher de l'étage : une <code>IfcSlab</code> du niveau R+1.", ok:e=>e.ifc==='IfcSlab'&&e.storey==='R+1', tip:"Filtre sur R+1 et masque les murs pour le voir en entier."},
+  {q:"Trouve un <code>IfcColumn</code> (poteau).", ok:e=>e.ifc==='IfcColumn', tip:"Regarde du côté de la terrasse."},
+  {q:"Trouve une <code>IfcBeam</code> (poutre).", ok:e=>e.ifc==='IfcBeam', tip:"Les poutres reposent sur les poteaux."},
+  {q:"Trouve l'<code>IfcRoof</code>.", ok:e=>e.ifc==='IfcRoof', tip:"C'est l'élément le plus haut."},
+  {q:"Trouve l'<code>IfcSite</code> : le terrain du projet.", ok:e=>e.ifc==='IfcSite', tip:"Clique à côté de la maison."}
+];
+const M3=[
+  {c:'IfcProject',fr:'Projet',ex:"Le dossier de départ : il contient tout le projet, ses unités et ses réglages."},
+  {c:'IfcSite',fr:'Terrain',ex:"Le terrain se trouve dans le projet. Il porte l'adresse et l'altitude."},
+  {c:'IfcBuilding',fr:'Bâtiment',ex:"Le bâtiment est posé sur le terrain. Un terrain peut accueillir plusieurs bâtiments."},
+  {c:'IfcBuildingStorey',fr:'Niveau',ex:"Le bâtiment est découpé en niveaux : ici RDC et R+1."},
+  {c:'IfcWall',fr:'Élément',ex:"Chaque objet physique (mur, porte, dalle…) est rangé dans un niveau."}
+];
+const M3HINT=["Le 1er rang contient tout le reste.","Le 2e rang, c'est l'endroit réel où l'on construit.","Le 3e rang, c'est l'ouvrage posé sur le terrain.","Le 4e rang découpe l'ouvrage en étages.","Le dernier rang, c'est l'objet que l'on peut toucher sur le chantier."];
+const M4Q=[
+  {q:"Quelle est l'épaisseur du <b>mur extérieur Nord du RDC</b> ?", key:'mur_n_rdc', o:["0,07 m","0,15 m","0,20 m","0,30 m"], a:2, where:"Qto_WallBaseQuantities › Width"},
+  {q:"Quelle est la largeur de la <b>porte d'entrée</b> ?", key:'porte_entree', o:["0,80 m","0,90 m","1,00 m","2,15 m"], a:1, where:"Qto_DoorBaseQuantities › OverallWidth"},
+  {q:"Combien de contremarches compte l'<b>escalier</b> ?", key:'escalier', o:["12","14","15","18"], a:2, where:"Pset_StairCommon › NumberOfRiser"},
+  {q:"Quel est le coefficient Uw de la <b>baie vitrée du séjour</b> ?", key:'baie_sejour', o:["1,1 W/m².K","1,3 W/m².K","1,4 W/m².K","2,4 W/m².K"], a:1, where:"Pset_WindowCommon › ThermalTransmittance"},
+  {q:"La <b>cloison des chambres au R+1</b> est-elle porteuse ?", key:'cloison_r1', o:["Oui","Non"], a:1, where:"Pset_WallCommon › LoadBearing"},
+  {q:"En quel matériau sont les <b>poteaux de la terrasse</b> ?", key:'poteau_o', o:["Béton armé","Acier S235","Bois lamellé-collé","Bloc béton"], a:2, where:"IfcMaterial › Material"},
+  {q:"Quelle est la surface brute de la <b>dalle sur terre-plein du RDC</b> ?", key:'dalle_rdc', o:["64,0 m²","74,7 m²","80,0 m²","102,0 m²"], a:2, where:"Qto_SlabBaseQuantities › GrossArea"}
+];
+const MAX={1:90,2:M2Q.length*20,3:50,4:M4Q.length*15};
+const TITLES={1:"Explorer",2:"Chasse aux objets",3:"Arborescence",4:"Propriétés",5:"Bilan"};
+
+let S;
+function fresh(){ return {mission:1,pts:{1:0,2:0,3:0,4:0},found:[],done:{},m2:{i:0,miss:0,fb:null},m3:{placed:0,err:0,fb:null,pool:shuffle(M3.map(x=>x.c))},m4:{i:0,ans:null,ok:0},name:""}; }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function total(){ return S.pts[1]+S.pts[2]+S.pts[3]+S.pts[4]; }
+function allDone(){ return S.done[1]&&S.done[2]&&S.done[3]&&S.done[4]; }
+
+const tabsEl=document.getElementById('tabs'), mis=document.getElementById('mission'), scoreEl=document.getElementById('score');
+function renderTabs(){
+  const ids=[1,2,3,4].concat(allDone()?[5]:[]);
+  tabsEl.innerHTML=ids.map(i=>'<button type="button" class="tab" data-m="'+i+'" aria-current="'+(S.mission===i)+'"><b>'+(i<5?i:'★')+'</b>'+TITLES[i]+(S.done[i]?' <span class="done">✓</span>':'')+'</button>').join('');
+  tabsEl.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{S.mission=+b.dataset.m; render();});
+  scoreEl.innerHTML=total()+'<small>pts</small>';
+}
+function nextBtn(n){ return '<div class="row"><button class="btn" type="button" data-go="'+n+'">'+(n===5?'Voir mon bilan':'Mission suivante')+'</button></div>'; }
+function bindGo(){ mis.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{S.mission=+b.dataset.go; render();}); }
+function fbHtml(fb){ return fb?'<div class="fb '+fb.t+'">'+fb.h+'</div>':''; }
+function finish(n){ S.done[n]=true; }
+
+function render(){
+  renderTabs();
+  const k=S.mission; let h='';
+  if(k===1){
+    const n=S.found.length;
+    h='<div class="eyebrow">Mission 1 · Explorer</div><h2>Découvre les classes IFC</h2>'
+     +'<p>Dans une maquette IFC, chaque objet appartient à une <b>classe</b> qui dit ce qu\'il est. Fais tourner la maison et clique sur les objets. Découvre au moins <b>7 classes</b> sur 9.</p>'
+     +'<div class="progress"><span style="width:'+Math.min(100,n/7*100)+'%"></span></div>'
+     +'<div class="classgrid">'+CLS_ORDER.map(c=>S.found.includes(c)?'<div class="cg on"><span class="mono">'+c+'</span>'+CLS[c].fr+'</div>':'<div class="cg"><span class="mono">Ifc???</span>à trouver</div>').join('')+'</div>'
+     +'<p class="muted" style="font-size:13px">+10 pts par classe découverte. Astuce : le filtre <b>Niveau</b> et la légende en bas permettent de voir à l\'intérieur.</p>'
+     +(n>=7?fbHtml({t:'ok',h:'Bravo, tu connais maintenant '+n+' classes IFC.'})+nextBtn(2):'');
+  }
+  else if(k===2){
+    const st=S.m2;
+    if(st.i>=M2Q.length){
+      h='<div class="eyebrow">Mission 2 · Chasse aux objets</div><h2>Chasse terminée</h2><p>Tu as retrouvé tous les objets demandés : <b>'+S.pts[2]+' / '+MAX[2]+' pts</b>.</p>'+nextBtn(3);
+    } else {
+      const Q=M2Q[st.i];
+      h='<div class="eyebrow">Mission 2 · Chasse aux objets · '+(st.i+1)+' / '+M2Q.length+'</div>'
+       +'<div class="progress"><span style="width:'+(st.i/M2Q.length*100)+'%"></span></div>'
+       +'<p class="q">'+Q.q+'</p>'+fbHtml(st.fb)
+       +(st.miss>=2?'<p class="fb info">Indice : '+Q.tip+'</p>':'')
+       +'<div class="row"><button class="btn sec" type="button" id="skip">Passer (0 pt)</button></div>'
+       +'<p class="muted" style="font-size:13px">20 pts du premier coup, 10 pts ensuite.</p>';
+    }
+  }
+  else if(k===3){
+    const st=S.m3;
+    h='<div class="eyebrow">Mission 3 · Arborescence</div><h2>Range la structure spatiale</h2>'
+     +'<p>Un fichier IFC range les objets comme des dossiers emboîtés. Clique sur les étiquettes dans le bon ordre, du plus grand au plus petit.</p><div class="tree">';
+    M3.forEach((x,i)=>{
+      const f=i<st.placed;
+      h+='<div class="slot'+(f?' filled':'')+'" style="margin-left:'+(i*14)+'px"><span class="idx">'+(i+1)+'</span>'+(f?'<span><span class="mono">'+x.c+'</span> · '+x.fr+'</span>':'<span>…</span>')+'</div>';
+    });
+    h+='</div>';
+    if(st.placed<M3.length){
+      h+='<div class="chips" id="pool">'+st.pool.filter(c=>M3.findIndex(x=>x.c===c)>=st.placed).map(c=>'<button type="button" class="chipb" data-c="'+c+'">'+c+'</button>').join('')+'</div>'+fbHtml(st.fb);
+    } else {
+      const nR=els.filter(e=>e.storey==='RDC').length, nU=els.filter(e=>e.storey==='R+1').length;
+      h+=fbHtml({t:'ok',h:'Structure complète : '+S.pts[3]+' / '+MAX[3]+' pts.'})
+       +'<p>Dans cette maquette, le niveau <b>RDC</b> contient '+nR+' objets et le niveau <b>R+1</b> en contient '+nU+'. Clique sur un objet : son chemin complet s\'affiche dans l\'inspecteur.</p>'+nextBtn(4);
+    }
+  }
+  else if(k===4){
+    const st=S.m4;
+    if(st.i>=M4Q.length){
+      h='<div class="eyebrow">Mission 4 · Propriétés</div><h2>Lecture terminée</h2><p>Bonnes réponses : <b>'+st.ok+' / '+M4Q.length+'</b> ('+S.pts[4]+' pts).</p>'+nextBtn(5);
+    } else {
+      const Q=M4Q[st.i];
+      h='<div class="eyebrow">Mission 4 · Propriétés · '+(st.i+1)+' / '+M4Q.length+'</div>'
+       +'<div class="progress"><span style="width:'+(st.i/M4Q.length*100)+'%"></span></div>'
+       +'<p>Sélectionne l\'objet dans la maquette, puis lis la réponse dans l\'inspecteur.</p>'
+       +'<p class="q">'+Q.q+'</p><div class="opts">'
+       +Q.o.map((o,i)=>{let c='opt'; if(st.ans!==null){ if(i===Q.a)c+=' good'; else if(i===st.ans)c+=' bad'; } return '<button type="button" class="'+c+'" data-o="'+i+'"'+(st.ans!==null?' disabled':'')+'>'+o+'</button>';}).join('')+'</div>';
+      if(st.ans===null) h+='<div class="row"><button class="btn sec" type="button" id="show">Me montrer l\'objet</button></div>';
+      else h+=fbHtml(st.ans===Q.a?{t:'ok',h:'Exact, +15 pts. Valeur lue dans <span class="mono">'+Q.where+'</span>.'}:{t:'ko',h:'Raté. La bonne réponse est <b>'+Q.o[Q.a]+'</b>, dans <span class="mono">'+Q.where+'</span>.'})
+        +'<div class="row"><button class="btn" type="button" id="nextq">Question suivante</button></div>';
+    }
+  }
+  else if(k===5){
+    h='<div class="eyebrow">Bilan</div><div class="cert"><span class="eyebrow">Certificat de modeleur junior IFC</span>'
+     +'<label for="prenom" class="muted" style="font-size:13px">Prénom et nom</label><input id="prenom" type="text" autocomplete="off" placeholder="Écris ton nom" value="'+esc(S.name)+'">'
+     +'<div class="big">'+total()+' <span style="font-size:22px">/ '+(MAX[1]+MAX[2]+MAX[3]+MAX[4])+'</span></div>'
+     +'<table>'+[1,2,3,4].map(i=>'<tr><td>'+i+'. '+TITLES[i]+'</td><td>'+S.pts[i]+' / '+MAX[i]+'</td></tr>').join('')+'</table>'
+     +'<p class="muted" style="font-size:13px">'+new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})+'</p></div>'
+     +'<p class="fb info">Fais une capture d\'écran de ce certificat et envoie-la à ton professeur.</p>';
+  }
+  mis.innerHTML=h; bindGo();
+  const skip=document.getElementById('skip'); if(skip) skip.onclick=()=>{S.m2.i++;S.m2.miss=0;S.m2.fb={t:'info',h:'Question passée.'}; if(S.m2.i>=M2Q.length)finish(2); render();};
+  mis.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>m3Click(b));
+  mis.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>m4Answer(+b.dataset.o));
+  const show=document.getElementById('show'); if(show) show.onclick=()=>{ const r=byKey(M4Q[S.m4.i].key); hiddenCls.delete(r.ifc); legend.querySelectorAll('.lg').forEach((b,i)=>b.setAttribute('aria-pressed',String(!hiddenCls.has(CLS_ORDER[i])))); setStorey(r.storey==='—'?'all':r.storey); select(r); };
+  const nq=document.getElementById('nextq'); if(nq) nq.onclick=()=>{S.m4.i++;S.m4.ans=null; if(S.m4.i>=M4Q.length)finish(4); render();};
+  const pr=document.getElementById('prenom'); if(pr) pr.oninput=()=>{S.name=pr.value;};
+}
+
+function onPick(rec){
+  if(!S.found.includes(rec.ifc)){ S.found.push(rec.ifc); S.pts[1]+=10; if(S.found.length>=7) finish(1); if(S.mission===1){render();} else renderTabs(); }
+  if(S.mission===2 && S.m2.i<M2Q.length){
+    const st=S.m2, Q=M2Q[st.i];
+    if(Q.ok(rec)){
+      const g=st.miss?10:20; S.pts[2]+=g;
+      st.fb={t:'ok',h:'Trouvé : <span class="mono">'+rec.ifc+'</span> « '+esc(rec.name)+' ». +'+g+' pts'};
+      st.i++; st.miss=0; if(st.i>=M2Q.length) finish(2);
+    } else {
+      st.miss++;
+      st.fb={t:'ko',h:'Ça, c\'est un <span class="mono">'+rec.ifc+'</span> ('+CLS[rec.ifc].fr.toLowerCase()+(rec.storey!=='—'?', niveau '+rec.storey:'')+'). Essaie encore.'};
+    }
+    render();
+  }
+}
+function m3Click(b){
+  const st=S.m3, want=M3[st.placed];
+  if(b.dataset.c===want.c){
+    st.placed++; st.fb={t:'ok',h:'<span class="mono">'+want.c+'</span> : '+want.ex};
+    if(st.placed>=M3.length){ S.pts[3]=Math.max(10,50-st.err*5); finish(3); }
+  } else {
+    st.err++; st.fb={t:'ko',h:'Pas à cette place. '+M3HINT[st.placed]};
+    render(); const nb=mis.querySelector('[data-c="'+b.dataset.c+'"]'); if(nb) nb.classList.add('shake'); return;
+  }
+  render();
+}
+function m4Answer(i){
+  const st=S.m4; st.ans=i; if(i===M4Q[st.i].a){ st.ok++; S.pts[4]+=15; } render();
+}
+
+/* Réinitialisation avec confirmation intégrée */
+const rb=document.getElementById('resetBtn'); let armed=null;
+rb.onclick=()=>{
+  if(armed){ clearTimeout(armed); armed=null; rb.textContent='Recommencer'; start(); return; }
+  rb.textContent='Confirmer ?'; armed=setTimeout(()=>{armed=null; rb.textContent='Recommencer';},3000);
+};
+function start(){
+  S=fresh(); hiddenCls.clear(); legend.querySelectorAll('.lg').forEach(b=>b.setAttribute('aria-pressed','true'));
+  setStorey('all'); select(null); cam=Object.assign({},HOME); placeCam(); render();
+}
+
+(function loop(){ requestAnimationFrame(loop); if(dirty){ renderer.render(scene,camera); dirty=false; } })();
+resize(); start();
+})();
+</script>
+
+</body></html>

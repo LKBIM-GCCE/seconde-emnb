@@ -1,0 +1,16 @@
+<p class="chapeau">À la cellule BIM Desk, chaque demande d'un partenaire arrive sous forme de <b>ticket</b>. Pour y répondre, on suit toujours la même méthode.</p>
+<figure class="schema-cours"><svg viewBox="0 0 720 150" role="img" aria-label="Méthode du ticket en 4 étapes : lire la demande, identifier la donnée nécessaire, chercher, noter la source">
+<g font-family="var(--titre)" text-anchor="middle">
+<g fill="var(--plan-fonce)"><path d="M10 40 h150 l18 35 l-18 35 h-150 l18 -35z"/><path d="M190 40 h150 l18 35 l-18 35 h-150 l18 -35z" fill="var(--plan)"/><path d="M370 40 h150 l18 35 l-18 35 h-150 l18 -35z" fill="var(--chantier)"/><path d="M550 40 h150 l18 35 l-18 35 h-150 l18 -35z" fill="#1f7a48"/></g>
+<g fill="#fff" font-weight="800" font-size="17"><text x="94" y="72">1. La demande</text><text x="274" y="72">2. La donnée</text><text x="454" y="72">3. Je cherche</text><text x="634" y="72">4. La source</text></g>
+<g fill="#fff" font-size="12"><text x="94" y="92">Qui demande ? Quoi ?</text><text x="274" y="92">De quoi ai-je besoin ?</text><text x="454" y="92">maquette ou plan</text><text x="634" y="92">objet, propriété, plan</text></g></g></svg>
+<figcaption>Demande → donnée nécessaire → recherche → source.</figcaption></figure>
+<h4>Où trouver une information ?</h4>
+<div class="table-scroll"><table class="table-cours"><thead><tr><th>Je cherche…</th><th>Je regarde…</th><th>Exemple</th></tr></thead><tbody>
+<tr><td>Ce qu'est un objet</td><td>Sa <b>classe</b></td><td>IfcDoor = une porte</td></tr>
+<tr><td>Où il se trouve</td><td>L'<b>arborescence</b> (niveau)</td><td>Projet › … › RDC › Porte</td></tr>
+<tr><td>Sa composition, ses dimensions types</td><td>Le <b>nom du type</b> et les matériaux</td><td>« MUR(END20+BRI200) » = enduit 2 cm + brique 20 cm</td></tr>
+<tr><td>S'il est extérieur ou porteur</td><td>Le <b>Pset</b> (Pset_WallCommon…)</td><td>IsExternal = Oui</td></tr>
+<tr><td>Une longueur, une surface, un volume</td><td>Les <b>quantités</b> (Qto, Cotes)</td><td>Surface = 40,27 m²</td></tr>
+<tr><td>Une info absente de la maquette</td><td>Les <b>plans PDF</b></td><td>Une cote, une note</td></tr></tbody></table></div>
+<div class="encadre retenir"><h4>⚠️ Ticket vigilance</h4><p>Une maquette peut contenir des <b>erreurs</b> (propriété mal renseignée à l'export, pièce sans nom…). Quand une donnée te paraît bizarre : vérifie sur le plan et <b>signale-le</b>. Note toujours ta source.</p></div>

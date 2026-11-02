@@ -232,12 +232,12 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
       "blocs": [
           {"id": "decouverte", "type": "exercice", "titre": "Découverte du projet", "duree": "15 min",
            "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, objets.",
-           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"], "plans": False},
+           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"]},
                        {"type": "nombre", "items": [
                            {"texte": "Nombre de pièces (IfcSpace) dans tout le bâtiment", "valeur": nb(B, "IfcSpace"), "tolerance": 0, "unite": "u"},
                            {"texte": "Nombre de fenêtres (IfcWindow)", "valeur": nb(B, "IfcWindow"), "tolerance": 0, "unite": "u"}]}]},
           {"id": "info", "type": "exercice", "titre": "Tickets « information »", "duree": "25 min",
-           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"], "plans": False},
+           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"]},
                        {"type": "qcm", "questions": [
                            q("Ticket 1 — Client : « De quoi sont faits les murs de façade ? »", ["Brique 20 cm + enduit", "Mur Duomur (béton + isolant)", "Ossature bois + bardage", "Maçonnerie existante de 33 cm"], "Brique 20 cm + enduit"),
                            q("Ticket 1 — Source", SOURCES, "Le nom du type / les matériaux"),
@@ -246,7 +246,7 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
                        {"type": "nombre", "items": [{"texte": "Ticket 2 — Client : « Quelle hauteur entre le niveau du RDC et celui du R+1 ? »", "valeur": haut_b, "tolerance": 0.005, "unite": "m",
                                                       "explication": f"RDC à {str(niv['RDC']).replace('.', ',')} m et R+1 à {str(niv['R+1']).replace('.', ',')} m (altitudes des niveaux, onglet Arborescence)."}]}]},
           {"id": "quanti", "type": "exercice", "titre": "Tickets quantitatifs", "duree": "25 min",
-           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"], "plans": False},
+           "parties": [{"type": "visionneuse", "maquettes": ["bureaux-agence"]},
                        {"type": "nombre", "items": [{"texte": "Ticket 4 — Économiste : « Surface totale des pièces du RDC ? » (additionne les IfcSpace du RDC)", "valeur": surf_rdc_b, "tolerance": 0.6, "unite": "m²"}]},
                        {"type": "qcm", "questions": [
                            q("Ticket vigilance — Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Que fais-tu ?",
@@ -255,8 +255,8 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
                        {"type": "redaction", "titre": "Ticket 5 — Capture annotée", "question": "Le conducteur de travaux veut voir où est l'escalier. Fais une capture annotée (bouton 📷) et dépose-la sur l'ENT. Ici, explique en une phrase pourquoi tu as choisi cette vue.", "min": 30}]}]}
 
 for s in (s1, s2, s3, s4):
-    if s["id"] in ("seq03-s2", "seq03-s3"):
-        s["plans"] = {}
+    if s["id"] in ("seq03-s2", "seq03-s3", "seq03-s4"):
+        s["plans"] = {k: f"plans/{k}.pdf" for k in ("villa-sabonnere", "villa-goyrans", "maison-quartier", "agence-architecte", "bureaux-agence")}
     json.dump(s, open(OUT / f"{s['id']}.json", "w"), ensure_ascii=False, indent=1)
 print({k: {x: v[x] for x in ("nb_spaces", "nb_portes", "nb_fenetres", "surf_piece", "surf_dalle", "portes_rdc", "niv_pieces", "dallage")} for k, v in REF.items()})
 print("bureaux:", nb(B, "IfcSpace"), nb(B, "IfcWindow"), surf_rdc_b, haut_b, repro["niveau"])

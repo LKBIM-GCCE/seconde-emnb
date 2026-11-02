@@ -16,8 +16,7 @@
      "type": "visionneuse",
      "maquettes": [
       "bureaux-agence"
-     ],
-     "plans": false
+     ]
     },
     {
      "type": "nombre",
@@ -48,8 +47,7 @@
      "type": "visionneuse",
      "maquettes": [
       "bureaux-agence"
-     ],
-     "plans": false
+     ]
     },
     {
      "type": "qcm",
@@ -125,8 +123,7 @@
      "type": "visionneuse",
      "maquettes": [
       "bureaux-agence"
-     ],
-     "plans": false
+     ]
     },
     {
      "type": "nombre",
@@ -162,5 +159,12 @@
     }
    ]
   }
- ]
+ ],
+ "plans": {
+  "villa-sabonnere": "plans/villa-sabonnere.pdf",
+  "villa-goyrans": "plans/villa-goyrans.pdf",
+  "maison-quartier": "plans/maison-quartier.pdf",
+  "agence-architecte": "plans/agence-architecte.pdf",
+  "bureaux-agence": "plans/bureaux-agence.pdf"
+ }
 }

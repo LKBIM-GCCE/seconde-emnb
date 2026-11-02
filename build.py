@@ -240,6 +240,13 @@ def main():
             pages[f'{s["id"]}/{x["id"]}.html'] = page_seance(s, i)
             if (s["id"], x["id"]) in ACTS:
                 pages[f'{s["id"]}/{x["id"]}-en-ligne.html'] = page_en_ligne(s, i, ACTS[(s["id"], x["id"])])
+    # Anti-cache : chaque CSS / JS du site reçoit ?v=<empreinte>, le navigateur recharge dès qu'il change
+    import hashlib, re as _re
+    def version(m):
+        fichier = RACINE / "assets" / m.group(2)
+        v = hashlib.md5(fichier.read_bytes()).hexdigest()[:8] if fichier.exists() else ""
+        return m.group(1) + m.group(2) + (f"?v={v}" if v else "") + m.group(3)
+    pages = {c: _re.sub(r'(assets/)([\w./-]+\.(?:css|js))(")', version, h) for c, h in pages.items()}
     for chemin, html in pages.items():
         (SORTIE / chemin).parent.mkdir(parents=True, exist_ok=True)
         (SORTIE / chemin).write_text(html, encoding="utf-8")

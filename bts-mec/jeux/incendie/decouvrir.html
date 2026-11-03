@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sécurité incendie en ERP : découvrir</title>
+<style>
+:root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
+*{box-sizing:border-box}
+body{margin:0;padding:8px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--encre);background:#FAFAF7;line-height:1.45;font-size:16px}
+.cadre{max-width:1000px;margin:0 auto;border:6px solid var(--jaune);border-radius:10px;background:#fff;overflow:hidden}
+header{background:var(--jaune);padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.2rem;line-height:1.2}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#fff;padding:3px 9px;border-radius:20px}
+main{padding:14px}
+.consigne{background:var(--jaune-clair);border-left:4px solid var(--jaune);padding:8px 12px;border-radius:4px;margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid #C9CED6;background:#fff;color:var(--encre);border-radius:8px;padding:8px 12px}
+button:hover:not(:disabled){border-color:var(--bleu)}
+.btn{background:var(--bleu);color:#fff;border-color:var(--bleu);font-weight:600}
+.progression{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gris);margin-bottom:4px}
+.barre{height:6px;background:var(--ligne);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.barre div{height:100%;background:var(--jaune);transition:width .3s}
+.question{font-size:1.08rem;font-weight:600;margin:6px 0 12px}
+.feedback{padding:10px 12px;border-radius:6px;margin:12px 0}
+.feedback.ok{background:var(--vert-clair);border-left:4px solid var(--vert)}
+.feedback.ko{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.resultat{text-align:center;padding:10px}
+.resultat .note{font-size:2.4rem;font-weight:800;margin:4px 0;color:var(--bleu)}
+footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid var(--ligne)}
+.onglets{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.onglets button.actif{background:var(--bleu);color:#fff;border-color:var(--bleu)}
+.grille{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:760px){.grille{grid-template-columns:1fr}}
+#inutile{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.zone{cursor:pointer}
+.zone .f{stroke:#4A4A4A;stroke-width:1}
+.zone:hover .f{stroke:var(--bleu);stroke-width:2}
+.zone.sel .f{stroke:var(--bleu);stroke-width:3.5}
+.zone.vrai .f{stroke:var(--vert);stroke-width:4}
+.zone.erreur .f{stroke:var(--rouge);stroke-width:4}
+.zone .l{stroke:#8B5A2B}
+.zone .lc{stroke:#B5532E}
+.zone:hover .l,.zone:hover .lc,.zone.sel .l,.zone.sel .lc{stroke:var(--bleu)}
+.zone.vrai .l,.zone.vrai .lc{stroke:var(--vert)}
+.zone.erreur .l,.zone.erreur .lc{stroke:var(--rouge)}
+.hit{fill:transparent;stroke:none}
+.hitl{stroke:transparent;fill:none}
+.lbl{font-size:12px;fill:#7A7A7A}
+.fiche{border:1px solid var(--ligne);border-left:4px solid var(--bleu);border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.fiche h2{margin:0 0 6px;font-size:1.05rem;color:var(--bleu)}
+.fiche p{margin:0 0 6px}
+.savoir{font-size:.92rem;color:#3B4652}
+.aide{color:var(--gris);margin-top:0}
+.puces{display:flex;flex-wrap:wrap;gap:5px}
+.puce{font-size:.8rem;padding:4px 9px;border-radius:14px}
+.puce.vu{background:var(--vert-clair);border-color:var(--vert)}
+.compteur{font-size:.85rem;color:var(--gris);margin:6px 0}
+.planche{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.planches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.planches button{font-size:.85rem;padding:5px 10px}
+.planches button.actif{background:var(--jaune);border-color:var(--jaune);font-weight:700}
+.zone .lt{stroke:#1F3A68}.zone .la{stroke:#C62828}
+.zone:hover .lt,.zone.sel .lt,.zone:hover .la,.zone.sel .la{stroke:#E07A00}
+.zone.vrai .lt,.zone.vrai .la{stroke:var(--vert)}.zone.erreur .lt,.zone.erreur .la{stroke:var(--rouge)}
+.titreP{font-size:13px;fill:#5F6B7A;font-weight:600}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><style>:root{--jaune:#ffc52e;--jaune-clair:#fff4d1;--encre:#13223f;--gris:#55637e;--vert:#1f8a5b;--vert-clair:#ddf3e8;--rouge:#c62828;--rouge-clair:#fdecea;--bleu:#1f55d6;--ligne:#cfd9e8}
+body{font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:16.5px;background:#eef3f9}
+h1,h2,.question,.resultat .note{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif}
+.cadre{border:1.5px solid var(--bleu);border-radius:10px;box-shadow:0 5px 0 var(--jaune)}
+header{background:#0f2c6e;color:#fff}.badge{background:var(--jaune);color:var(--encre)}
+.consigne{background:var(--jaune-clair);border-left-color:#f2600f}
+.btn,.onglets button.actif{background:var(--bleu);border-color:var(--bleu)}
+button:hover:not(:disabled){border-color:#f2600f}
+.barre{height:10px;border-radius:5px}.barre div{background:linear-gradient(90deg,var(--jaune),#f2600f)}
+.resultat .note{color:#f2600f}.fiche{border-left-color:#f2600f}.fiche h2{color:#0f2c6e}footer{background:#f6f9fd}</style></head><body><div class="cadre">
+<header><h1>Sécurité incendie en ERP · Découvrir</h1><div class="badges"><span class="badge">Autoformation</span><span class="badge">BTS MEC</span></div></header>
+<main>
+<p class="consigne">Deux planches pour découvrir la sécurité incendie d'un immeuble de bureaux (type W) : le plan d'un étage et une coupe sur l'escalier. <strong>Découvrir</strong> : cliquez sur chaque élément. <strong>Défi</strong> : retrouvez les éléments demandés.</p>
+<div class="onglets"><button id="oExp" class="actif">1. Découvrir</button><button id="oDef">2. Défi (12 questions)</button></div>
+<div class="grille"><div><div class="planches" id="planches"></div><svg class="planche" data-p="plan" viewBox="0 0 800 460" role="img" aria-label="Plan d'étage de bureaux"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="20" y="20" width="760" height="420" fill="#FFFFFF" stroke="#333" stroke-width="8"/>
+<rect x="20" y="196" width="660" height="4" fill="#333"/><rect x="110" y="242" width="490" height="4" fill="#333"/><rect x="642" y="242" width="138" height="4" fill="#333"/>
+<rect x="160" y="20" width="4" height="180" fill="#333"/><rect x="300" y="20" width="4" height="180" fill="#333"/><rect x="440" y="20" width="4" height="180" fill="#333"/><rect x="560" y="20" width="4" height="180" fill="#333"/>
+<rect x="330" y="242" width="4" height="190" fill="#333"/><rect x="600" y="242" width="4" height="190" fill="#333"/><rect x="638" y="242" width="4" height="190" fill="#333"/>
+<text x="90" y="110" font-size="11" text-anchor="middle" fill="#7A7A7A">Bureau</text><text x="230" y="110" font-size="11" text-anchor="middle" fill="#7A7A7A">Bureau</text><text x="370" y="110" font-size="11" text-anchor="middle" fill="#7A7A7A">Bureau</text><text x="500" y="110" font-size="11" text-anchor="middle" fill="#7A7A7A">Bureau</text><text x="620" y="110" font-size="11" text-anchor="middle" fill="#7A7A7A">Bureau</text>
+<g class="zone" data-id="circulation"><rect class="f" x="24" y="200" width="752" height="42" fill="#F5E9CF" fill-opacity=".6"/><line x1="250" y1="202" x2="250" y2="240" stroke="#1F3A68" marker-start="url(#fl)" marker-end="url(#fl)"/><text x="256" y="225" font-size="11" fill="#1F3A68">1,40 m = 2 UP</text></g>
+<g class="zone" data-id="escalier"><rect class="f" x="684" y="28" width="88" height="168" fill="#EFE7DA"/><line x1="690" y1="50" x2="766" y2="50" stroke="#8A8F96"/><line x1="690" y1="62" x2="766" y2="62" stroke="#8A8F96"/><line x1="690" y1="74" x2="766" y2="74" stroke="#8A8F96"/><line x1="690" y1="86" x2="766" y2="86" stroke="#8A8F96"/><line x1="690" y1="98" x2="766" y2="98" stroke="#8A8F96"/><line x1="690" y1="110" x2="766" y2="110" stroke="#8A8F96"/><line x1="690" y1="122" x2="766" y2="122" stroke="#8A8F96"/><line x1="690" y1="134" x2="766" y2="134" stroke="#8A8F96"/><line x1="690" y1="146" x2="766" y2="146" stroke="#8A8F96"/><line x1="690" y1="158" x2="766" y2="158" stroke="#8A8F96"/><line x1="690" y1="170" x2="766" y2="170" stroke="#8A8F96"/><line x1="690" y1="182" x2="766" y2="182" stroke="#8A8F96"/><rect x="680" y="24" width="6" height="176" fill="#C62828"/><rect x="680" y="24" width="96" height="6" fill="#C62828"/></g>
+<g class="zone" data-id="escalier_b"><rect class="f" x="28" y="246" width="78" height="186" fill="#EFE7DA"/><line x1="34" y1="270" x2="100" y2="270" stroke="#8A8F96"/><line x1="34" y1="282" x2="100" y2="282" stroke="#8A8F96"/><line x1="34" y1="294" x2="100" y2="294" stroke="#8A8F96"/><line x1="34" y1="306" x2="100" y2="306" stroke="#8A8F96"/><line x1="34" y1="318" x2="100" y2="318" stroke="#8A8F96"/><line x1="34" y1="330" x2="100" y2="330" stroke="#8A8F96"/><line x1="34" y1="342" x2="100" y2="342" stroke="#8A8F96"/><line x1="34" y1="354" x2="100" y2="354" stroke="#8A8F96"/><line x1="34" y1="366" x2="100" y2="366" stroke="#8A8F96"/><line x1="34" y1="378" x2="100" y2="378" stroke="#8A8F96"/><line x1="34" y1="390" x2="100" y2="390" stroke="#8A8F96"/><line x1="34" y1="402" x2="100" y2="402" stroke="#8A8F96"/><line x1="34" y1="414" x2="100" y2="414" stroke="#8A8F96"/><rect x="106" y="242" width="6" height="194" fill="#C62828"/></g>
+<g class="zone" data-id="porte_cf"><rect class="f" x="702" y="194" width="30" height="8" fill="#FFFFFF"/><path d="M702 198 A30 30 0 0 0 732 168" fill="none" stroke="#1F3A68" stroke-dasharray="3 2"/><rect x="726" y="178" width="8" height="4" fill="#1F3A68"/><text x="717" y="160" font-size="10" text-anchor="middle" fill="{R}" font-weight="700">EI 30</text><rect class="hit" x="696" y="150" width="44" height="54"/></g>
+<g class="zone" data-id="salle"><rect class="f" x="112" y="246" width="218" height="186" fill="#EEF2F8"/><text x="221" y="350" font-size="12" text-anchor="middle" fill="#1F3A68">Salle de réunion</text><text x="221" y="366" font-size="11" text-anchor="middle" fill="#1F3A68">60 personnes</text></g>
+<g class="zone" data-id="porte_sortie"><rect class="f" x="190" y="240" width="56" height="8" fill="#FFFFFF"/><path d="M190 244 A28 28 0 0 1 218 216 M246 244 A28 28 0 0 0 218 216" fill="none" stroke="#1F3A68" stroke-dasharray="3 2"/><rect class="hit" x="186" y="210" width="64" height="40"/></g>
+<g class="zone" data-id="local_risque"><rect class="f" x="334" y="246" width="266" height="100" fill="#F7E3E3"/><rect x="334" y="346" width="266" height="5" fill="#C62828"/><rect x="330" y="244" width="5" height="107" fill="#C62828"/><rect x="598" y="244" width="5" height="107" fill="#C62828"/><rect x="334" y="242" width="266" height="5" fill="#C62828"/><rect x="520" y="241" width="26" height="7" fill="#FFFFFF" stroke="#4A4A4A"/><text x="467" y="300" font-size="12" text-anchor="middle" fill="#C62828">Archives</text></g>
+<g class="zone" data-id="cul_de_sac"><rect class="f" x="604" y="246" width="34" height="186" fill="#F5E9CF" fill-opacity=".6"/><line x1="621" y1="254" x2="621" y2="424" stroke="#1F3A68" marker-start="url(#fl)" marker-end="url(#fl)"/><text x="660" y="340" font-size="11" text-anchor="middle" fill="#1F3A68">8 m</text></g>
+<g class="zone" data-id="baes"><rect class="f" x="706" y="184" width="22" height="9" fill="#2E9D4F"/><path d="M711 188.5 h12" stroke="#fff" stroke-width="1.5"/><rect class="f" x="98" y="232" width="22" height="9" fill="#2E9D4F"/><path d="M103 236.5 h12" stroke="#fff" stroke-width="1.5"/><rect class="f" x="400" y="204" width="22" height="9" fill="#2E9D4F"/><path d="M405 208.5 h12" stroke="#fff" stroke-width="1.5"/></g>
+<g class="zone" data-id="extincteur"><circle class="f" cx="380" cy="234" r="7" fill="#C62828"/><text x="380" y="237.5" font-size="9" text-anchor="middle" fill="#fff" font-weight="700">E</text><circle class="f" cx="660" cy="234" r="7" fill="#C62828"/><text x="660" y="237.5" font-size="9" text-anchor="middle" fill="#fff" font-weight="700">E</text></g>
+<g class="zone" data-id="declencheur"><rect class="f" x="742" y="204" width="12" height="12" fill="#C62828"/><circle cx="748" cy="210" r="3" fill="#fff"/><rect class="hit" x="736" y="198" width="24" height="24"/></g>
+<g class="zone" data-id="plan_evac"><rect class="f" x="650" y="204" width="24" height="18" fill="#FFFFFF"/><rect x="653" y="207" width="18" height="12" fill="#2E9D4F" opacity=".35"/><rect class="hit" x="646" y="200" width="32" height="26"/></g>
+<g class="zone" data-id="distance"><path class="lt" d="M90 150 V221 H717 V196" fill="none" stroke-width="2" stroke-dasharray="7 5"/><text x="470" y="194" font-size="11" fill="#1F3A68">≤ 40 m</text><path class="hitl" d="M90 150 V221 H717" stroke-width="10"/></g>
+<text x="728" y="120" font-size="11" text-anchor="middle" fill="#333">Escalier</text><text x="67" y="340" font-size="11" text-anchor="middle" fill="#333">Escalier</text>
+</svg><svg class="planche" data-p="coupe" viewBox="0 0 800 460" role="img" aria-label="Coupe sur un escalier encloisonné"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="0" y="420" width="800" height="40" fill="#EADFC8"/>
+<rect x="60" y="290" width="600" height="10" fill="url(#pBeton)" stroke="#4A4A4A"/><rect x="60" y="160" width="600" height="10" fill="url(#pBeton)" stroke="#4A4A4A"/><rect x="60" y="30" width="600" height="10" fill="url(#pBeton)" stroke="#4A4A4A"/>
+<rect x="60" y="30" width="10" height="390" fill="#D9D5CC" stroke="#4A4A4A"/><rect x="650" y="30" width="10" height="390" fill="#D9D5CC" stroke="#4A4A4A"/>
+<rect x="652" y="330" width="6" height="50" fill="#CFE8F7" stroke="#4A4A4A"/><rect x="652" y="200" width="6" height="50" fill="#CFE8F7" stroke="#4A4A4A"/><rect x="652" y="70" width="6" height="50" fill="#CFE8F7" stroke="#4A4A4A"/>
+<g class="zone" data-id="cage"><rect class="f" x="300" y="30" width="10" height="390" fill="#C62828"/><rect class="f" x="460" y="30" width="10" height="390" fill="#C62828"/><path d="M330 420 L430 300" stroke="#8B5A2B" stroke-width="6"/><path d="M430 290 L330 170" stroke="#8B5A2B" stroke-width="6"/><path d="M330 160 L430 40" stroke="#8B5A2B" stroke-width="6"/></g>
+<g class="zone" data-id="porte_cf2"><rect class="f" x="298" y="360" width="14" height="58" fill="#FFFFFF"/><rect class="f" x="298" y="230" width="14" height="58" fill="#FFFFFF"/><rect class="f" x="298" y="100" width="14" height="58" fill="#FFFFFF"/><text x="250" y="240" font-size="10" fill="#C62828" font-weight="700">EI 30</text></g>
+<g class="zone" data-id="exutoire"><rect class="f" x="350" y="18" width="70" height="14" fill="#9AA3AD"/><line x1="385" y1="16" x2="385" y2="-0" stroke="#1F3A68" stroke-width="2" marker-end="url(#fl)"/><g opacity=".35"><circle cx="370" cy="60" r="10" fill="#777"/><circle cx="395" cy="52" r="12" fill="#777"/></g></g>
+<g class="zone" data-id="amenee"><rect class="f" x="456" y="380" width="18" height="36" fill="#FFFFFF"/><line x1="520" y1="398" x2="478" y2="398" stroke="#1F3A68" stroke-width="2" marker-end="url(#fl)"/><rect class="hit" x="450" y="376" width="74" height="44"/></g>
+<g class="zone" data-id="colonne"><rect class="f" x="440" y="60" width="8" height="360" fill="#C62828"/><circle cx="436" cy="395" r="5" fill="#C62828" stroke="#4A4A4A"/><circle cx="436" cy="265" r="5" fill="#C62828" stroke="#4A4A4A"/><circle cx="436" cy="135" r="5" fill="#C62828" stroke="#4A4A4A"/><rect class="f" x="448" y="400" width="210" height="6" fill="#C62828"/><circle cx="664" cy="403" r="7" fill="#C62828" stroke="#4A4A4A"/></g>
+<g class="zone" data-id="voie"><rect class="f" x="690" y="380" width="90" height="40" fill="#B0362F"/><line x1="720" y1="380" x2="664" y2="220" stroke="#555" stroke-width="5"/><rect class="hit" x="660" y="210" width="130" height="212"/></g>
+<text x="180" y="360" font-size="12" text-anchor="middle" fill="#5F6B7A">RDC</text><text x="180" y="230" font-size="12" text-anchor="middle" fill="#5F6B7A">R+1</text><text x="180" y="100" font-size="12" text-anchor="middle" fill="#5F6B7A">R+2</text>
+</svg></div><div id="panneau"></div></div>
+</main>
+<footer>BTS MEC · Autoformation · Connaissances mobilisées : principes de la réglementation incendie des ERP, classement. Règlement de sécurité : arrêté du 25 juin 1980.</footer>
+</div>
+<script>
+const PL=[["plan", "Plan d'étage (type W)"], ["coupe", "Coupe sur l'escalier"]];
+const RAW={"circulation": ["plan", "Circulation horizontale", "Dégagement qui mène aux escaliers, ici de 1,40 m, soit 2 UP.", "1 UP = 0,60 m, mais 1 UP réel = 0,90 m et 2 UP = 1,40 m. Au-delà de 200 personnes, les dégagements font au moins 2 UP."], "escalier": ["plan", "Escalier encloisonné", "Escalier isolé du reste de l'étage par des parois résistant au feu (en rouge) et des portes munies de ferme-porte.", "Il protège les occupants des fumées pendant la descente et sert d'accès aux pompiers."], "escalier_b": ["plan", "Second escalier", "Deuxième dégagement, à l'autre extrémité de l'étage.", "Avec deux escaliers, le public a le choix de la direction de fuite si l'un est bloqué par le feu."], "porte_cf": ["plan", "Porte EI 30 avec ferme-porte", "Porte coupe-feu 30 minutes qui se referme seule.", "Elle maintient l'escalier protégé des fumées. Ne jamais la bloquer en position ouverte, sauf avec un dispositif asservi au SSI."], "salle": ["plan", "Salle de réunion (60 personnes)", "Local recevant plus de 50 personnes.", "Ses portes doivent s'ouvrir dans le sens de la sortie et un éclairage d'ambiance (anti-panique) peut être exigé."], "porte_sortie": ["plan", "Porte ouvrant dans le sens de la sortie", "Double porte de la salle, qui s'ouvre vers la circulation.", "Obligatoire pour les locaux de plus de 50 personnes : la foule pousse dans le sens de la fuite."], "local_risque": ["plan", "Local à risques (archives)", "Local contenant beaucoup de matières combustibles, isolé par des parois et une porte résistant au feu.", "Les archives, réserves et locaux techniques sont classés à risques moyens ou importants selon leur contenu."], "cul_de_sac": ["plan", "Cul-de-sac", "Partie de circulation en impasse, ici de 8 m.", "Sa longueur est limitée à 10 m. Depuis un cul-de-sac, la distance pour gagner un escalier protégé est limitée à 30 m."], "baes": ["plan", "BAES (éclairage de sécurité)", "Blocs verts qui balisent les cheminements et les sorties.", "Ils s'allument automatiquement en cas de coupure de courant, avec une autonomie d'au moins une heure."], "extincteur": ["plan", "Extincteurs", "Extincteurs portatifs à eau pulvérisée de 6 L.", "En catégorie 1 à 4 : 1 pour 200 m², au moins 1 par niveau et 2 par établissement, à 15 m maximum de tout point. En 5e catégorie : 1 pour 300 m²."], "declencheur": ["plan", "Déclencheur manuel d'alarme", "Boîtier rouge à briser pour déclencher l'alarme.", "On le place près des escaliers et des sorties, à environ 1,30 m du sol."], "plan_evac": ["plan", "Plan d'évacuation", "Plan affiché qui indique « Vous êtes ici », les sorties et les moyens de secours.", "Il est placé à chaque niveau, près des escaliers et des entrées."], "distance": ["plan", "Distance à un escalier protégé", "Parcours mesuré suivant l'axe des circulations, du point le plus éloigné jusqu'à l'escalier.", "40 m maximum pour gagner un escalier protégé ; 30 m depuis un cul-de-sac ou pour gagner un escalier non protégé."], "cage": ["coupe", "Cage d'escalier encloisonnée", "Parois résistant au feu sur toute la hauteur du bâtiment.", "L'escalier reste praticable pendant l'évacuation, même si un étage brûle."], "porte_cf2": ["coupe", "Portes d'accès à chaque niveau", "Portes coupe-feu (EI 30) munies de ferme-porte.", "Elles empêchent les fumées de l'étage sinistré d'envahir l'escalier."], "exutoire": ["coupe", "Exutoire de désenfumage", "Ouvrant en partie haute de l'escalier, qui s'ouvre en cas d'incendie.", "Les fumées chaudes montent et sortent par le haut."], "amenee": ["coupe", "Amenée d'air", "Ouverture en partie basse de l'escalier (porte ou grille).", "L'air frais entre en bas et pousse les fumées vers l'exutoire : c'est le principe du désenfumage naturel."], "colonne": ["coupe", "Colonne sèche", "Canalisation vide, avec une prise d'eau à chaque niveau et un raccord en façade pour les pompiers.", "Les pompiers y branchent leur engin pour amener l'eau dans les étages sans dérouler de tuyaux."], "voie": ["coupe", "Voie échelles et façade accessible", "Voie qui permet aux pompiers de mettre leur échelle en station devant la façade.", "Les baies de la façade accessible servent à l'intervention et au sauvetage."]};
+const EL={};for(const k in RAW)EL[k]={p:RAW[k][0],n:RAW[k][1],r:RAW[k][2],s:RAW[k][3]};
+const IDS=Object.keys(EL),NBD=12;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const panneau=document.getElementById('panneau'),zones=[...document.querySelectorAll('.zone')];
+let mode='exp',cur='facade',vus=new Set(),defi=null;
+const zone=id=>document.querySelector('.zone[data-id="'+id+'"]');
+const nettoyer=()=>zones.forEach(z=>z.classList.remove('sel','vrai','erreur'));
+function montrer(p){cur=p;document.querySelectorAll('.planche').forEach(s=>s.style.display=s.dataset.p===p?'block':'none');
+ const pb=document.getElementById('planches');pb.style.display=mode==='exp'?'flex':'none';
+ pb.innerHTML=PL.map(([id,t])=>`<button data-p="${id}" class="${id===p?'actif':''}">${t}</button>`).join('');
+ pb.querySelectorAll('button').forEach(b=>b.onclick=()=>{nettoyer();montrer(b.dataset.p);if(mode==='exp')vueExplorer()})}
+zones.forEach(z=>z.addEventListener('click',()=>mode==='exp'?explorer(z.dataset.id):repondre(z.dataset.id)));
+function onglets(){oExp.classList.toggle('actif',mode==='exp');oDef.classList.toggle('actif',mode==='def')}
+function vueExplorer(){mode='exp';onglets();montrer(cur);
+ const ids=IDS.filter(i=>EL[i].p===cur);
+ panneau.innerHTML=`<p class="aide">Cliquez sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
+ panneau.querySelectorAll('.puce').forEach(b=>b.onclick=()=>explorer(b.dataset.id));compteur()}
+function explorer(id){nettoyer();zone(id).classList.add('sel');vus.add(id);const e=EL[id];
+ document.getElementById('fiche').innerHTML=`<div class="fiche"><h2>${e.n}</h2><p>${e.r}</p><p class="savoir"><strong>À savoir :</strong> ${e.s}</p></div>`;compteur()}
+function compteur(){const c=document.getElementById('cpt');if(!c)return;
+ c.textContent=`Éléments découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — vous êtes prêt(e) pour le défi.':'');
+ panneau.querySelectorAll('.puce').forEach(b=>b.classList.toggle('vu',vus.has(b.dataset.id)))}
+function vueDefi(){mode='def';onglets();defi={liste:shuffle(IDS).slice(0,NBD),i:0,score:0,fait:false};question()}
+function question(){nettoyer();const d=defi;d.fait=false;const id=d.liste[d.i];montrer(EL[id].p);
+ panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Cliquez sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
+function repondre(id){const d=defi;if(!d||d.fait)return;d.fait=true;const c=d.liste[d.i],ok=id===c;if(ok)d.score++;
+ zone(c).classList.add('vrai');if(!ok)zone(id).classList.add('erreur');
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Vous avez désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('suiv').onclick=()=>{d.i++;d.i<d.liste.length?question():finDefi()}}
+function finDefi(){nettoyer();const d=defi,p=d.score/d.liste.length;
+ panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?"Excellent : vous savez repérer les dispositifs de sécurité incendie d'un ERP.":p>=.5?'Bon début. Revenez en mode Découvrir pour revoir les éléments manqués.':'Prenez le temps d\'explorer les deux planches, puis retentez le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
+ document.getElementById('rej').onclick=vueDefi;document.getElementById('ret').onclick=()=>{mode='exp';vueExplorer()}}
+const oExp=document.getElementById('oExp'),oDef=document.getElementById('oDef');
+oExp.onclick=()=>{nettoyer();vueExplorer()};oDef.onclick=vueDefi;
+vueExplorer();
+</script><script>window.addEventListener("load",function(){var p=document.querySelectorAll("svg.planche");if(p.length&&!Array.prototype.some.call(p,function(s){return getComputedStyle(s).display!=="none"})){var b=document.querySelector(".planches button");if(b)b.click()}});</script></body></html>

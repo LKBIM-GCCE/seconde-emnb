@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Menuiseries extérieures : découvrir</title>
+<style>
+:root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
+*{box-sizing:border-box}
+body{margin:0;padding:8px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--encre);background:#FAFAF7;line-height:1.45;font-size:16px}
+.cadre{max-width:1000px;margin:0 auto;border:6px solid var(--jaune);border-radius:10px;background:#fff;overflow:hidden}
+header{background:var(--jaune);padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.2rem;line-height:1.2}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#fff;padding:3px 9px;border-radius:20px}
+main{padding:14px}
+.consigne{background:var(--jaune-clair);border-left:4px solid var(--jaune);padding:8px 12px;border-radius:4px;margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid #C9CED6;background:#fff;color:var(--encre);border-radius:8px;padding:8px 12px}
+button:hover:not(:disabled){border-color:var(--bleu)}
+.btn{background:var(--bleu);color:#fff;border-color:var(--bleu);font-weight:600}
+.progression{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gris);margin-bottom:4px}
+.barre{height:6px;background:var(--ligne);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.barre div{height:100%;background:var(--jaune);transition:width .3s}
+.question{font-size:1.08rem;font-weight:600;margin:6px 0 12px}
+.feedback{padding:10px 12px;border-radius:6px;margin:12px 0}
+.feedback.ok{background:var(--vert-clair);border-left:4px solid var(--vert)}
+.feedback.ko{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.resultat{text-align:center;padding:10px}
+.resultat .note{font-size:2.4rem;font-weight:800;margin:4px 0;color:var(--bleu)}
+footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid var(--ligne)}
+.onglets{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.onglets button.actif{background:var(--bleu);color:#fff;border-color:var(--bleu)}
+.grille{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:760px){.grille{grid-template-columns:1fr}}
+#inutile{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.zone{cursor:pointer}
+.zone .f{stroke:#4A4A4A;stroke-width:1}
+.zone:hover .f{stroke:var(--bleu);stroke-width:2}
+.zone.sel .f{stroke:var(--bleu);stroke-width:3.5}
+.zone.vrai .f{stroke:var(--vert);stroke-width:4}
+.zone.erreur .f{stroke:var(--rouge);stroke-width:4}
+.zone .l{stroke:#8B5A2B}
+.zone .lc{stroke:#B5532E}
+.zone:hover .l,.zone:hover .lc,.zone.sel .l,.zone.sel .lc{stroke:var(--bleu)}
+.zone.vrai .l,.zone.vrai .lc{stroke:var(--vert)}
+.zone.erreur .l,.zone.erreur .lc{stroke:var(--rouge)}
+.hit{fill:transparent;stroke:none}
+.hitl{stroke:transparent;fill:none}
+.lbl{font-size:12px;fill:#7A7A7A}
+.fiche{border:1px solid var(--ligne);border-left:4px solid var(--bleu);border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.fiche h2{margin:0 0 6px;font-size:1.05rem;color:var(--bleu)}
+.fiche p{margin:0 0 6px}
+.savoir{font-size:.92rem;color:#3B4652}
+.aide{color:var(--gris);margin-top:0}
+.puces{display:flex;flex-wrap:wrap;gap:5px}
+.puce{font-size:.8rem;padding:4px 9px;border-radius:14px}
+.puce.vu{background:var(--vert-clair);border-color:var(--vert)}
+.compteur{font-size:.85rem;color:var(--gris);margin:6px 0}
+.planche{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.planches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.planches button{font-size:.85rem;padding:5px 10px}
+.planches button.actif{background:var(--jaune);border-color:var(--jaune);font-weight:700}
+.zone .lt{stroke:#1F3A68}.zone .la{stroke:#C62828}
+.zone:hover .lt,.zone.sel .lt,.zone:hover .la,.zone.sel .la{stroke:#E07A00}
+.zone.vrai .lt,.zone.vrai .la{stroke:var(--vert)}.zone.erreur .lt,.zone.erreur .la{stroke:var(--rouge)}
+.titreP{font-size:13px;fill:#5F6B7A;font-weight:600}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><style>:root{--jaune:#ffc52e;--jaune-clair:#fff4d1;--encre:#13223f;--gris:#55637e;--vert:#1f8a5b;--vert-clair:#ddf3e8;--rouge:#c62828;--rouge-clair:#fdecea;--bleu:#1f55d6;--ligne:#cfd9e8}
+body{font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:16.5px;background:#eef3f9}
+h1,h2,.question,.resultat .note{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif}
+.cadre{border:1.5px solid var(--bleu);border-radius:10px;box-shadow:0 5px 0 var(--jaune)}
+header{background:#0f2c6e;color:#fff}.badge{background:var(--jaune);color:var(--encre)}
+.consigne{background:var(--jaune-clair);border-left-color:#f2600f}
+.btn,.onglets button.actif{background:var(--bleu);border-color:var(--bleu)}
+button:hover:not(:disabled){border-color:#f2600f}
+.barre{height:10px;border-radius:5px}.barre div{background:linear-gradient(90deg,var(--jaune),#f2600f)}
+.resultat .note{color:#f2600f}.fiche{border-left-color:#f2600f}.fiche h2{color:#0f2c6e}footer{background:#f6f9fd}</style></head><body><div class="cadre">
+<header><h1>Menuiseries extérieures · Découvrir</h1><div class="badges"><span class="badge">Autoformation</span><span class="badge">BTS MEC</span></div></header>
+<main>
+<p class="consigne">Trois planches pour comprendre une fenêtre : sa composition, sa pose et les types d'ouverture. <strong>Découvrir</strong> : choisissez une planche, puis cliquez sur chaque élément. <strong>Défi</strong> : retrouvez les éléments demandés, toutes planches confondues.</p>
+<div class="onglets"><button id="oExp" class="actif">1. Découvrir</button><button id="oDef">2. Défi (12 questions)</button></div>
+<div class="grille"><div><div class="planches" id="planches"></div><svg class="planche" data-p="elevation" viewBox="0 0 800 460" role="img" aria-label="Fenêtre composée vue de l'extérieur"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="0" y="0" width="800" height="460" fill="#F3EAD7"/>
+<rect x="200" y="40" width="400" height="380" fill="#FFFFFF" stroke="#4A4A4A" stroke-width="2"/>
+<rect x="212" y="52" width="376" height="86" fill="#CFE8F7" stroke="#4A4A4A"/>
+<g class="zone" data-id="soufflet"><rect class="f" x="220" y="60" width="360" height="70" fill="#CFE8F7"/><polyline points="220,60 400,130 580,60" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/></g>
+<g class="zone" data-id="entree_air"><rect class="f" x="350" y="43" width="100" height="7" fill="#9AA3AD"/><rect class="hit" x="344" y="36" width="112" height="20"/></g>
+<g class="zone" data-id="traverse"><rect class="f" x="212" y="138" width="376" height="14" fill="#FFFFFF"/></g>
+<g class="zone" data-id="chassis_fixe"><rect class="f" x="212" y="152" width="180" height="256" fill="#CFE8F7"/><text x="302" y="286" font-size="16" text-anchor="middle" fill="#6C8BA3">F</text></g>
+<g class="zone" data-id="meneau"><rect class="f" x="392" y="152" width="16" height="256" fill="#FFFFFF"/><rect class="hit" x="388" y="152" width="24" height="256"/></g>
+<rect x="408" y="152" width="180" height="256" fill="#FFFFFF" stroke="#4A4A4A"/>
+<g class="zone" data-id="ouvrant_fr"><rect class="f" x="416" y="160" width="164" height="226" fill="#CFE8F7"/><polyline points="580,160 416,273 580,386" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/></g>
+<g class="zone" data-id="cremone"><rect class="f" x="568" y="262" width="7" height="34" rx="3" fill="#333"/><rect class="hit" x="560" y="254" width="22" height="50"/></g>
+<g class="zone" data-id="paumelles"><rect class="f" x="406" y="180" width="8" height="18" fill="#777"/><rect class="f" x="406" y="350" width="8" height="18" fill="#777"/><rect class="hit" x="400" y="174" width="20" height="30"/><rect class="hit" x="400" y="344" width="20" height="30"/></g>
+<g class="zone" data-id="rejet"><rect class="f" x="412" y="386" width="172" height="9" fill="#E5E7EA"/><rect class="hit" x="410" y="382" width="176" height="16"/></g>
+<g class="zone" data-id="busettes"><rect class="f" x="450" y="410" width="14" height="5" fill="#333"/><rect class="f" x="530" y="410" width="14" height="5" fill="#333"/><rect class="f" x="270" y="410" width="14" height="5" fill="#333"/><rect class="hit" x="262" y="404" width="30" height="16"/><rect class="hit" x="444" y="404" width="108" height="16"/></g>
+<text x="400" y="448" class="titreP" text-anchor="middle">Vue depuis l'extérieur</text>
+</svg><svg class="planche" data-p="coupe" viewBox="0 0 800 460" role="img" aria-label="Coupe verticale d'une fenêtre posée en applique intérieure"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<text x="120" y="30" class="titreP">EXTÉRIEUR</text><text x="610" y="30" class="titreP">INTÉRIEUR</text>
+<rect x="300" y="40" width="100" height="90" fill="url(#pMac)" stroke="#4A4A4A"/>
+<rect x="300" y="130" width="100" height="30" fill="url(#pBeton)" stroke="#4A4A4A"/><text x="350" y="150" font-size="11" text-anchor="middle" fill="#333">linteau</text>
+<rect x="294" y="40" width="6" height="120" fill="#F3EAD7" stroke="#4A4A4A"/>
+<rect x="300" y="378" width="100" height="82" fill="url(#pMac)" stroke="#4A4A4A"/><rect x="294" y="378" width="6" height="82" fill="#F3EAD7" stroke="#4A4A4A"/>
+<polygon points="250,372 400,362 400,378 250,382" fill="#D8D2C4" stroke="#4A4A4A"/><text x="300" y="398" font-size="11" fill="#333"></text>
+<rect x="400" y="40" width="50" height="130" fill="url(#pIsol)" stroke="#4A4A4A"/><rect x="450" y="40" width="10" height="130" fill="#FFFFFF" stroke="#4A4A4A"/>
+<rect x="400" y="372" width="50" height="88" fill="url(#pIsol)" stroke="#4A4A4A"/><rect x="450" y="372" width="10" height="88" fill="#FFFFFF" stroke="#4A4A4A"/>
+<g class="zone" data-id="coffre"><rect class="f" x="300" y="160" width="100" height="48" fill="#F1F1F1"/></g>
+<g class="zone" data-id="tablier"><circle class="f" cx="345" cy="184" r="18" fill="#C9CDD3"/><line x1="314" y1="200" x2="314" y2="208" stroke="#4A4A4A"/><rect class="f" x="310" y="208" width="8" height="150" fill="#C9CDD3" stroke-dasharray="4 3"/></g>
+<g class="zone" data-id="pose"><rect class="f" x="400" y="208" width="34" height="18" fill="#FFFFFF"/><rect class="f" x="400" y="346" width="34" height="18" fill="#FFFFFF"/><text x="417" y="380" font-size="1" fill="#fff">.</text></g>
+<g class="zone" data-id="tapee"><rect class="f" x="434" y="170" width="26" height="56" fill="#FFFFFF"/><rect class="f" x="434" y="346" width="26" height="26" fill="#FFFFFF"/></g>
+<g class="zone" data-id="ouvrant"><rect class="f" x="404" y="226" width="30" height="16" fill="#F7F7F7"/><rect class="f" x="404" y="326" width="30" height="20" fill="#F7F7F7"/></g>
+<g class="zone" data-id="vitrage"><rect class="f" x="412" y="242" width="4" height="84" fill="#BFE0F5"/><rect class="f" x="422" y="242" width="4" height="84" fill="#BFE0F5"/><rect x="416" y="242" width="6" height="84" fill="#EAF6FD"/><rect class="hit" x="408" y="242" width="22" height="84"/></g>
+<g class="zone" data-id="rejet_c"><polygon class="f" points="404,336 392,344 392,348 404,346" fill="#E5E7EA"/><rect class="hit" x="386" y="330" width="22" height="22"/></g>
+<g class="zone" data-id="busettes_c"><rect class="f" x="400" y="356" width="10" height="4" fill="#333"/><rect class="hit" x="394" y="350" width="22" height="16"/></g>
+<g class="zone" data-id="mousse"><path class="la" d="M399 208 V226 M399 346 V364" fill="none" stroke-width="5" stroke-linecap="round"/><path class="hitl" d="M399 208 V226 M399 346 V364" stroke-width="16"/></g>
+<text x="430" y="420" font-size="11" fill="#5F6B7A">doublage</text>
+</svg><svg class="planche" data-p="ouvertures" viewBox="0 0 800 460" role="img" aria-label="Symboles des types d'ouverture en façade"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs><g class="zone" data-id="t_fr"><rect class="f" x="80" y="55" width="140" height="110" fill="#FFFFFF" stroke-width="2"/><rect x="86" y="61" width="62" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><rect x="152" y="61" width="62" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><polyline points="148,61 86,110 148,159" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/><polyline points="152,61 214,110 152,159" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/><rect class="hit" x="70" y="45" width="160" height="150"/></g><g class="zone" data-id="t_osc"><rect class="f" x="330" y="55" width="140" height="110" fill="#FFFFFF" stroke-width="2"/><rect x="336" y="61" width="128" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><polyline points="464,61 336,110 464,159" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/><polyline points="336,61 400,159 464,61" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/><rect class="hit" x="320" y="45" width="160" height="150"/></g><g class="zone" data-id="t_sou"><rect class="f" x="580" y="55" width="140" height="110" fill="#FFFFFF" stroke-width="2"/><rect x="586" y="61" width="128" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><polyline points="586,61 650,159 714,61" fill="none" stroke="#1F3A68" stroke-width="1.3" stroke-dasharray="7 4"/><rect class="hit" x="570" y="45" width="160" height="150"/></g><g class="zone" data-id="t_cou"><rect class="f" x="80" y="265" width="140" height="110" fill="#FFFFFF" stroke-width="2"/><rect x="86" y="271" width="66" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><rect x="148" y="275" width="66" height="90" fill="#CFE8F7" stroke="#4A4A4A"/><line x1="110" y1="320" x2="132" y2="320" stroke="#1F3A68" stroke-width="2" marker-end="url(#fl)"/><line x1="190" y1="320" x2="168" y2="320" stroke="#1F3A68" stroke-width="2" marker-end="url(#fl)"/><rect class="hit" x="70" y="255" width="160" height="150"/></g><g class="zone" data-id="t_gal"><rect class="f" x="350" y="265" width="140" height="110" fill="#FFFFFF" stroke-width="2"/><rect x="290" y="265" width="60" height="110" fill="#E2DDD5" stroke="#4A4A4A" stroke-dasharray="5 3"/><rect x="356" y="271" width="128" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><line x1="440" y1="320" x2="320" y2="320" stroke="#1F3A68" stroke-width="2" marker-end="url(#fl)"/><rect class="hit" x="340" y="255" width="160" height="150"/></g><g class="zone" data-id="t_fix"><rect class="f" x="580" y="265" width="140" height="110" fill="#FFFFFF" stroke-width="2"/><rect x="586" y="271" width="128" height="98" fill="#CFE8F7" stroke="#4A4A4A"/><text x="650" y="327" font-size="16" text-anchor="middle" fill="#6C8BA3">F</text><rect class="hit" x="570" y="255" width="160" height="150"/></g></svg></div><div id="panneau"></div></div>
+</main>
+<footer>BTS MEC · Autoformation · Connaissances mobilisées : technologie des menuiseries extérieures, performances thermiques et dispositions constructives associées.</footer>
+</div>
+<script>
+const PL=[["elevation", "Fenêtre en façade"], ["coupe", "Coupe de pose"], ["ouvertures", "Types d'ouverture"]];
+const RAW={"entree_air": ["elevation", "Entrée d'air", "Grille placée sur la traverse haute du dormant.", "Elle fait entrer l'air neuf nécessaire à la VMC. On en place dans les pièces sèches : séjour, chambres."], "soufflet": ["elevation", "Imposte à soufflet", "Partie haute de la fenêtre, qui bascule vers l'intérieur, articulée en bas.", "Le triangle a sa pointe en bas : c'est le côté des articulations."], "traverse": ["elevation", "Traverse", "Élément horizontal qui divise la menuiserie.", "Ici, elle sépare l'imposte de la partie basse de la fenêtre."], "chassis_fixe": ["elevation", "Châssis fixe", "Partie vitrée qui ne s'ouvre pas, repérée par la lettre F.", "Il apporte de la lumière à moindre coût, mais ne permet pas d'aérer."], "meneau": ["elevation", "Meneau", "Montant fixe vertical qui sépare deux parties de la fenêtre.", "Il ne bouge pas, contrairement au battement central d'une fenêtre à deux vantaux."], "ouvrant_fr": ["elevation", "Ouvrant à la française", "Vantail qui pivote vers l'intérieur sur des paumelles verticales.", "Le triangle a sa pointe du côté des paumelles : ici à gauche. La poignée est à l'opposé."], "cremone": ["elevation", "Crémone (poignée)", "Mécanisme de fermeture actionné par la poignée.", "Elle verrouille l'ouvrant en un ou plusieurs points : on parle de fermeture multipoint."], "paumelles": ["elevation", "Paumelles", "Charnières qui portent l'ouvrant et permettent sa rotation.", "Elles sont du côté de la pointe du triangle d'ouverture."], "rejet": ["elevation", "Rejet d'eau", "Profil en saillie en bas de l'ouvrant, côté extérieur.", "Il écarte l'eau de pluie de la jonction entre l'ouvrant et le dormant."], "busettes": ["elevation", "Busettes (drainage)", "Petites ouvertures en bas du dormant, côté extérieur.", "Elles évacuent l'eau qui s'est infiltrée dans la feuillure malgré les joints."], "coffre": ["coupe", "Coffre de volet roulant", "Caisson qui loge le volet enroulé, ici intégré sous le linteau (coffre tunnel).", "Un coffre mal isolé est un pont thermique fréquent : on choisit des coffres isolés et étanches à l'air."], "tablier": ["coupe", "Tablier du volet roulant", "Ensemble des lames du volet, enroulées dans le coffre et guidées par des coulisses.", "Le volet roulant protège du soleil et améliore la sécurité et l'isolation la nuit."], "pose": ["coupe", "Dormant posé en applique intérieure", "Le dormant est fixé contre la face intérieure du mur.", "Cette pose place la fenêtre dans la continuité de l'isolant intérieur : c'est la pose courante en neuf avec ITI."], "tapee": ["coupe", "Tapée d'isolation", "Profilé qui prolonge le dormant jusqu'au nu du doublage.", "Sa largeur dépend de l'épaisseur de l'isolant et de la plaque de plâtre."], "ouvrant": ["coupe", "Ouvrant", "Cadre mobile qui porte le vitrage.", "Il vient en appui sur le dormant, avec des joints qui assurent l'étanchéité."], "vitrage": ["coupe", "Double vitrage", "Deux verres séparés par une lame d'air ou d'argon (ex. 4/16/4).", "La couche faible émissivité et le gaz argon améliorent l'isolation."], "rejet_c": ["coupe", "Rejet d'eau", "Profil en saillie en bas de l'ouvrant, côté extérieur.", "Il projette l'eau de pluie loin de la jonction entre l'ouvrant et le dormant."], "busettes_c": ["coupe", "Trou de drainage", "Lumière percée dans la traverse basse du dormant, côté extérieur.", "Il évacue l'eau qui a pénétré dans la feuillure."], "mousse": ["coupe", "Mousse imprégnée", "Joint comprimé entre le dormant et le mur (en rouge).", "Il assure l'étanchéité à l'air et à l'eau de la jonction, contrôlée par le test d'infiltrométrie."], "t_fr": ["ouvertures", "À la française", "Deux vantaux qui pivotent vers l'intérieur, chacun sur ses paumelles.", "Les pointes des triangles sont côté paumelles, donc vers l'extérieur de la fenêtre."], "t_osc": ["ouvertures", "Oscillo-battant", "Un vantail qui s'ouvre à la française ou bascule par le haut.", "On superpose les deux symboles : triangle latéral et triangle pointe en bas."], "t_sou": ["ouvertures", "À soufflet", "Ouvrant qui bascule vers l'intérieur, articulé en partie basse.", "Triangle pointe en bas. Fréquent en imposte ou en salle de bains."], "t_cou": ["ouvertures", "Coulissant", "Vantaux qui glissent l'un devant l'autre.", "On le représente par des flèches horizontales. L'ouverture se limite à environ la moitié de la baie."], "t_gal": ["ouvertures", "À galandage", "Vantail qui coulisse et disparaît dans l'épaisseur du mur.", "La partie de mur qui reçoit le vantail (en pointillés) doit être prévue dès la conception."], "t_fix": ["ouvertures", "Châssis fixe", "Menuiserie vitrée qui ne s'ouvre pas.", "On la repère par la lettre F, ou par l'absence de symbole d'ouverture."]};
+const EL={};for(const k in RAW)EL[k]={p:RAW[k][0],n:RAW[k][1],r:RAW[k][2],s:RAW[k][3]};
+const IDS=Object.keys(EL),NBD=12;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const panneau=document.getElementById('panneau'),zones=[...document.querySelectorAll('.zone')];
+let mode='exp',cur='facade',vus=new Set(),defi=null;
+const zone=id=>document.querySelector('.zone[data-id="'+id+'"]');
+const nettoyer=()=>zones.forEach(z=>z.classList.remove('sel','vrai','erreur'));
+function montrer(p){cur=p;document.querySelectorAll('.planche').forEach(s=>s.style.display=s.dataset.p===p?'block':'none');
+ const pb=document.getElementById('planches');pb.style.display=mode==='exp'?'flex':'none';
+ pb.innerHTML=PL.map(([id,t])=>`<button data-p="${id}" class="${id===p?'actif':''}">${t}</button>`).join('');
+ pb.querySelectorAll('button').forEach(b=>b.onclick=()=>{nettoyer();montrer(b.dataset.p);if(mode==='exp')vueExplorer()})}
+zones.forEach(z=>z.addEventListener('click',()=>mode==='exp'?explorer(z.dataset.id):repondre(z.dataset.id)));
+function onglets(){oExp.classList.toggle('actif',mode==='exp');oDef.classList.toggle('actif',mode==='def')}
+function vueExplorer(){mode='exp';onglets();montrer(cur);
+ const ids=IDS.filter(i=>EL[i].p===cur);
+ panneau.innerHTML=`<p class="aide">Cliquez sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
+ panneau.querySelectorAll('.puce').forEach(b=>b.onclick=()=>explorer(b.dataset.id));compteur()}
+function explorer(id){nettoyer();zone(id).classList.add('sel');vus.add(id);const e=EL[id];
+ document.getElementById('fiche').innerHTML=`<div class="fiche"><h2>${e.n}</h2><p>${e.r}</p><p class="savoir"><strong>À savoir :</strong> ${e.s}</p></div>`;compteur()}
+function compteur(){const c=document.getElementById('cpt');if(!c)return;
+ c.textContent=`Éléments découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — vous êtes prêt(e) pour le défi.':'');
+ panneau.querySelectorAll('.puce').forEach(b=>b.classList.toggle('vu',vus.has(b.dataset.id)))}
+function vueDefi(){mode='def';onglets();defi={liste:shuffle(IDS).slice(0,NBD),i:0,score:0,fait:false};question()}
+function question(){nettoyer();const d=defi;d.fait=false;const id=d.liste[d.i];montrer(EL[id].p);
+ panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Cliquez sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
+function repondre(id){const d=defi;if(!d||d.fait)return;d.fait=true;const c=d.liste[d.i],ok=id===c;if(ok)d.score++;
+ zone(c).classList.add('vrai');if(!ok)zone(id).classList.add('erreur');
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Vous avez désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('suiv').onclick=()=>{d.i++;d.i<d.liste.length?question():finDefi()}}
+function finDefi(){nettoyer();const d=defi,p=d.score/d.liste.length;
+ panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?'Excellent : vous savez lire et décrire une menuiserie extérieure.':p>=.5?'Bon début. Revenez en mode Découvrir pour revoir les éléments manqués.':'Prenez le temps d\'explorer les trois planches, puis retentez le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
+ document.getElementById('rej').onclick=vueDefi;document.getElementById('ret').onclick=()=>{mode='exp';vueExplorer()}}
+const oExp=document.getElementById('oExp'),oDef=document.getElementById('oDef');
+oExp.onclick=()=>{nettoyer();vueExplorer()};oDef.onclick=vueDefi;
+vueExplorer();
+</script><script>window.addEventListener("load",function(){var p=document.querySelectorAll("svg.planche");if(p.length&&!Array.prototype.some.call(p,function(s){return getComputedStyle(s).display!=="none"})){var b=document.querySelector(".planches button");if(b)b.click()}});</script></body></html>

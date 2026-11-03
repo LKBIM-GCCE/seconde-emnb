@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Accessibilité PMR en ERP : découvrir</title>
+<style>
+:root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
+*{box-sizing:border-box}
+body{margin:0;padding:8px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--encre);background:#FAFAF7;line-height:1.45;font-size:16px}
+.cadre{max-width:1000px;margin:0 auto;border:6px solid var(--jaune);border-radius:10px;background:#fff;overflow:hidden}
+header{background:var(--jaune);padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.2rem;line-height:1.2}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#fff;padding:3px 9px;border-radius:20px}
+main{padding:14px}
+.consigne{background:var(--jaune-clair);border-left:4px solid var(--jaune);padding:8px 12px;border-radius:4px;margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid #C9CED6;background:#fff;color:var(--encre);border-radius:8px;padding:8px 12px}
+button:hover:not(:disabled){border-color:var(--bleu)}
+.btn{background:var(--bleu);color:#fff;border-color:var(--bleu);font-weight:600}
+.progression{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gris);margin-bottom:4px}
+.barre{height:6px;background:var(--ligne);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.barre div{height:100%;background:var(--jaune);transition:width .3s}
+.question{font-size:1.08rem;font-weight:600;margin:6px 0 12px}
+.feedback{padding:10px 12px;border-radius:6px;margin:12px 0}
+.feedback.ok{background:var(--vert-clair);border-left:4px solid var(--vert)}
+.feedback.ko{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.resultat{text-align:center;padding:10px}
+.resultat .note{font-size:2.4rem;font-weight:800;margin:4px 0;color:var(--bleu)}
+footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid var(--ligne)}
+.onglets{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.onglets button.actif{background:var(--bleu);color:#fff;border-color:var(--bleu)}
+.grille{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:760px){.grille{grid-template-columns:1fr}}
+#inutile{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.zone{cursor:pointer}
+.zone .f{stroke:#4A4A4A;stroke-width:1}
+.zone:hover .f{stroke:var(--bleu);stroke-width:2}
+.zone.sel .f{stroke:var(--bleu);stroke-width:3.5}
+.zone.vrai .f{stroke:var(--vert);stroke-width:4}
+.zone.erreur .f{stroke:var(--rouge);stroke-width:4}
+.zone .l{stroke:#8B5A2B}
+.zone .lc{stroke:#B5532E}
+.zone:hover .l,.zone:hover .lc,.zone.sel .l,.zone.sel .lc{stroke:var(--bleu)}
+.zone.vrai .l,.zone.vrai .lc{stroke:var(--vert)}
+.zone.erreur .l,.zone.erreur .lc{stroke:var(--rouge)}
+.hit{fill:transparent;stroke:none}
+.hitl{stroke:transparent;fill:none}
+.lbl{font-size:12px;fill:#7A7A7A}
+.fiche{border:1px solid var(--ligne);border-left:4px solid var(--bleu);border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.fiche h2{margin:0 0 6px;font-size:1.05rem;color:var(--bleu)}
+.fiche p{margin:0 0 6px}
+.savoir{font-size:.92rem;color:#3B4652}
+.aide{color:var(--gris);margin-top:0}
+.puces{display:flex;flex-wrap:wrap;gap:5px}
+.puce{font-size:.8rem;padding:4px 9px;border-radius:14px}
+.puce.vu{background:var(--vert-clair);border-color:var(--vert)}
+.compteur{font-size:.85rem;color:var(--gris);margin:6px 0}
+.planche{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.planches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.planches button{font-size:.85rem;padding:5px 10px}
+.planches button.actif{background:var(--jaune);border-color:var(--jaune);font-weight:700}
+.zone .lt{stroke:#1F3A68}.zone .la{stroke:#C62828}
+.zone:hover .lt,.zone.sel .lt,.zone:hover .la,.zone.sel .la{stroke:#E07A00}
+.zone.vrai .lt,.zone.vrai .la{stroke:var(--vert)}.zone.erreur .lt,.zone.erreur .la{stroke:var(--rouge)}
+.titreP{font-size:13px;fill:#5F6B7A;font-weight:600}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><style>:root{--jaune:#ffc52e;--jaune-clair:#fff4d1;--encre:#13223f;--gris:#55637e;--vert:#1f8a5b;--vert-clair:#ddf3e8;--rouge:#c62828;--rouge-clair:#fdecea;--bleu:#1f55d6;--ligne:#cfd9e8}
+body{font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:16.5px;background:#eef3f9}
+h1,h2,.question,.resultat .note{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif}
+.cadre{border:1.5px solid var(--bleu);border-radius:10px;box-shadow:0 5px 0 var(--jaune)}
+header{background:#0f2c6e;color:#fff}.badge{background:var(--jaune);color:var(--encre)}
+.consigne{background:var(--jaune-clair);border-left-color:#f2600f}
+.btn,.onglets button.actif{background:var(--bleu);border-color:var(--bleu)}
+button:hover:not(:disabled){border-color:#f2600f}
+.barre{height:10px;border-radius:5px}.barre div{background:linear-gradient(90deg,var(--jaune),#f2600f)}
+.resultat .note{color:#f2600f}.fiche{border-left-color:#f2600f}.fiche h2{color:#0f2c6e}footer{background:#f6f9fd}</style></head><body><div class="cadre">
+<header><h1>Accessibilité PMR en ERP · Découvrir</h1><div class="badges"><span class="badge">Autoformation</span><span class="badge">BTS MEC</span></div></header>
+<main>
+<p class="consigne">Deux plans pour découvrir les règles d'accessibilité d'un ERP neuf : les abords et l'entrée, puis l'intérieur. <strong>Découvrir</strong> : cliquez sur chaque élément pour lire sa règle chiffrée. <strong>Défi</strong> : retrouvez les éléments demandés.</p>
+<div class="onglets"><button id="oExp" class="actif">1. Découvrir</button><button id="oDef">2. Défi (12 questions)</button></div>
+<div class="grille"><div><div class="planches" id="planches"></div><svg class="planche" data-p="exterieur" viewBox="0 0 800 460" role="img" aria-label="Plan des abords d'un ERP"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="0" y="0" width="800" height="460" fill="#EEF1EA"/>
+<rect x="20" y="30" width="250" height="150" fill="#D5D8DC"/>
+<line x1="95" y1="30" x2="95" y2="180" stroke="#fff" stroke-width="3"/><line x1="170" y1="30" x2="170" y2="180" stroke="#fff" stroke-width="3"/>
+<g class="zone" data-id="place"><rect class="f" x="170" y="30" width="99" height="150" fill="#DCE7F5"/><rect x="236" y="30" width="33" height="150" fill="url(#pGrav)" opacity=".0"/><rect x="186" y="80" width="34" height="34" rx="4" fill="#2F6DB5"/><text x="203" y="103" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">PMR</text><line x1="172" y1="170" x2="267" y2="170" stroke="#1F3A68" stroke-width="1" marker-start="url(#fl)" marker-end="url(#fl)"/><text x="219.5" y="164.0" font-size="12" text-anchor="middle" fill="#1F3A68">3,30 m</text></g>
+<g class="zone" data-id="cheminement"><path class="f" d="M180 180 H222 V258 H330 V300 H180 Z" fill="#F5E9CF"/><line x1="180" y1="242" x2="222" y2="242" stroke="#1F3A68" stroke-width="1" marker-start="url(#fl)" marker-end="url(#fl)"/><text x="201.0" y="238.0" font-size="12" text-anchor="middle" fill="#1F3A68">1,40</text></g>
+<g class="zone" data-id="palier"><rect class="f" x="330" y="258" width="42" height="36" fill="#E8DDC4"/></g>
+<g class="zone" data-id="rampe"><rect class="f" x="372" y="258" width="150" height="36" fill="#E3D3B4"/><line x1="385" y1="276" x2="505" y2="276" stroke="#1F3A68" stroke-width="1.5" marker-end="url(#fl)"/><text x="447" y="252" font-size="12" text-anchor="middle" fill="#1F3A68">5 %</text></g>
+<g class="zone" data-id="espace_porte"><rect class="f" x="522" y="258" width="51" height="36" fill="#DCE7F5" stroke-dasharray="5 3"/></g>
+<rect x="573" y="40" width="8" height="222" fill="#333"/><rect x="573" y="289" width="8" height="150" fill="#333"/>
+<g class="zone" data-id="porte"><line class="lt" x1="581" y1="262" x2="608" y2="262" stroke-width="3"/><path d="M608 262 A27 27 0 0 1 581 289" fill="none" stroke="#1F3A68" stroke-dasharray="3 2"/><rect class="hit" x="576" y="258" width="36" height="34"/></g>
+<g class="zone" data-id="seuil"><rect class="f" x="571" y="262" width="12" height="27" fill="#8A8F96"/></g>
+<g class="zone" data-id="eclairage"><circle class="f" cx="300" cy="230" r="9" fill="#FFE27A"/><circle cx="300" cy="230" r="3" fill="#555"/></g>
+<text x="680" y="250" class="titreP" text-anchor="middle">ERP</text><text x="145" y="22" class="titreP" text-anchor="middle">Parc de stationnement</text>
+</svg><svg class="planche" data-p="interieur" viewBox="0 0 800 460" role="img" aria-label="Plan intérieur d'un ERP"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="20" y="20" width="760" height="420" fill="#FFFFFF" stroke="#333" stroke-width="8"/>
+<rect x="540" y="20" width="6" height="160" fill="#333"/><rect x="540" y="174" width="80" height="6" fill="#333"/><rect x="650" y="174" width="130" height="6" fill="#333"/>
+<g class="zone" data-id="banque"><path class="f" d="M100 120 H240 V150 H130 V220 H100 Z" fill="#D8C8B0"/><rect class="f" x="200" y="120" width="40" height="30" fill="#9CC3E6"/></g>
+<g class="zone" data-id="demi_tour"><circle class="lt" cx="300" cy="320" r="22.5" fill="#DCE7F5" fill-opacity=".5" stroke-width="1.5" stroke-dasharray="4 3"/><text x="300" y="324" font-size="10" text-anchor="middle" fill="#1F3A68">Ø1,50</text><circle class="hit" cx="300" cy="320" r="26"/></g>
+<g class="zone" data-id="cuvette"><rect class="f" x="556" y="30" width="22" height="34" rx="8" fill="#F4F4F4"/></g>
+<g class="zone" data-id="barre"><path class="lt" d="M550 50 V92" fill="none" stroke-width="4" stroke-linecap="round"/><path class="hitl" d="M550 50 V92" stroke-width="16"/></g>
+<g class="zone" data-id="espace_wc"><rect class="f" x="580" y="30" width="24" height="39" fill="#DCE7F5" stroke-dasharray="4 3"/></g>
+<g class="zone" data-id="lavabo"><rect class="f" x="740" y="60" width="28" height="36" rx="6" fill="#F4F4F4"/></g>
+<g class="zone" data-id="demi_wc"><circle class="lt" cx="680" cy="120" r="22.5" fill="none" stroke-width="1.5" stroke-dasharray="4 3"/><circle class="hit" cx="680" cy="120" r="26"/></g>
+<line x1="620" y1="177" x2="650" y2="177" stroke="#fff" stroke-width="7"/><path d="M620 177 A27 27 0 0 0 647 150" fill="none" stroke="#1F3A68" stroke-dasharray="3 2"/>
+<g class="zone" data-id="escalier"><rect class="f" x="360" y="80" width="42" height="120" fill="#EFE7DA"/><line x1="360" y1="80" x2="402" y2="80" stroke="#4A4A4A"/><line x1="360" y1="89" x2="402" y2="89" stroke="#4A4A4A"/><line x1="360" y1="98" x2="402" y2="98" stroke="#4A4A4A"/><line x1="360" y1="107" x2="402" y2="107" stroke="#4A4A4A"/><line x1="360" y1="116" x2="402" y2="116" stroke="#4A4A4A"/><line x1="360" y1="125" x2="402" y2="125" stroke="#4A4A4A"/><line x1="360" y1="134" x2="402" y2="134" stroke="#4A4A4A"/><line x1="360" y1="143" x2="402" y2="143" stroke="#4A4A4A"/><line x1="360" y1="152" x2="402" y2="152" stroke="#4A4A4A"/><line x1="360" y1="161" x2="402" y2="161" stroke="#4A4A4A"/><line x1="360" y1="170" x2="402" y2="170" stroke="#4A4A4A"/><line x1="360" y1="179" x2="402" y2="179" stroke="#4A4A4A"/><line x1="360" y1="188" x2="402" y2="188" stroke="#4A4A4A"/><line x1="360" y1="197" x2="402" y2="197" stroke="#4A4A4A"/><line class="lt" x1="356" y1="68" x2="356" y2="210" stroke-width="3"/><line class="lt" x1="406" y1="68" x2="406" y2="210" stroke-width="3"/><text x="381" y="215" font-size="10" text-anchor="middle" fill="#333">descente ↓</text></g>
+<g class="zone" data-id="bande_eveil"><rect class="f" x="360" y="58" width="42" height="9" fill="#F2C200"/><circle cx="364" cy="62.5" r="1.6" fill="#7A5F00"/><circle cx="370" cy="62.5" r="1.6" fill="#7A5F00"/><circle cx="376" cy="62.5" r="1.6" fill="#7A5F00"/><circle cx="382" cy="62.5" r="1.6" fill="#7A5F00"/><circle cx="388" cy="62.5" r="1.6" fill="#7A5F00"/><circle cx="394" cy="62.5" r="1.6" fill="#7A5F00"/><circle cx="400" cy="62.5" r="1.6" fill="#7A5F00"/><rect class="hit" x="356" y="54" width="50" height="17"/></g>
+<g class="zone" data-id="ascenseur"><rect class="f" x="430" y="40" width="40" height="50" fill="#E6E8EB"/><line x1="430" y1="40" x2="470" y2="90" stroke="#4A4A4A"/><line x1="470" y1="40" x2="430" y2="90" stroke="#4A4A4A"/><rect x="438" y="90" width="24" height="4" fill="#1F3A68"/></g>
+<g class="zone" data-id="commande"><circle class="f" cx="476" cy="100" r="5" fill="#2F6DB5"/><rect class="hit" x="468" y="92" width="16" height="16"/></g>
+<g class="zone" data-id="boucle"><g class="lt" fill="none" stroke-width="1.5"><path d="M160 180 q8 -8 16 0"/><path d="M156 186 q12 -14 24 0"/></g><text x="168" y="200" font-size="9" text-anchor="middle" fill="#1F3A68">T</text><rect class="hit" x="150" y="170" width="36" height="34"/></g>
+<text x="200" y="100" class="titreP" text-anchor="middle">Accueil</text><text x="660" y="196" class="titreP" text-anchor="middle">Cabinet adapté</text><text x="300" y="390" class="titreP" text-anchor="middle">Hall</text>
+</svg></div><div id="panneau"></div></div>
+</main>
+<footer>BTS MEC · Autoformation · Connaissances mobilisées : principes de la réglementation accessibilité des ERP. Valeurs : arrêté du 20 avril 2017 (ERP neufs).</footer>
+</div>
+<script>
+const PL=[["exterieur", "Abords et entrée"], ["interieur", "Intérieur"]];
+const RAW={"place": ["exterieur", "Place de stationnement adaptée", "Largeur 3,30 m minimum, longueur 5,00 m, repérée par un marquage au sol et un panneau.", "Il en faut 2 % du nombre de places (arrondi au supérieur), au plus près de l'entrée."], "cheminement": ["exterieur", "Cheminement accessible", "Largeur 1,40 m en ERP neuf, sol non meuble et non glissant, dévers ≤ 2 %.", "Rétrécissement ponctuel toléré entre 1,20 et 1,40 m. En ERP existant, la largeur est de 1,20 m."], "palier": ["exterieur", "Palier de repos", "Surface horizontale de 1,20 m × 1,40 m minimum, en bas et en haut de chaque rampe.", "Sur une rampe de 4 % ou plus, il faut un palier tous les 10 m."], "rampe": ["exterieur", "Rampe (plan incliné)", "Pente de 5 % maximum.", "Tolérances : 8 % sur 2 m maximum, 10 % sur 0,50 m maximum. Pour 40 cm de dénivelé à 5 %, il faut 8 m de rampe."], "espace_porte": ["exterieur", "Espace de manœuvre de porte", "Rectangle de 1,20 m de large devant la porte : 1,70 m côté poussant, 2,20 m côté tirant.", "Ici, la porte s'ouvre vers l'intérieur : l'extérieur est le côté poussant. Cet espace peut se confondre avec le palier haut."], "porte": ["exterieur", "Porte d'entrée", "Largeur nominale 0,90 m (passage utile 0,83 m) pour un local de moins de 100 personnes.", "1,40 m de passage utile à partir de 100 personnes. Effort d'ouverture ≤ 50 N, poignée à plus de 0,40 m d'un angle rentrant."], "seuil": ["exterieur", "Seuil", "Ressaut de 2 cm maximum, ou 4 cm s'il est chanfreiné à moins de 33 %.", "Les ressauts successifs (« pas d'âne ») sont interdits sur un cheminement."], "eclairage": ["exterieur", "Éclairage extérieur", "20 lux minimum en moyenne sur le cheminement et dans le parc de stationnement.", "Il doit éviter les zones d'ombre et l'éblouissement, notamment aux changements de direction."], "banque": ["interieur", "Banque d'accueil", "Une partie au moins (en bleu) a un plateau entre 0,70 et 0,80 m de haut, avec un vide d'au moins 0,70 m de haut en dessous.", "Elle permet d'être reçu en position assise. Éclairage au poste d'accueil : 200 lux."], "boucle": ["interieur", "Boucle d'induction magnétique", "Dispositif qui transmet le son de l'accueil directement aux appareils auditifs (repère T).", "Obligatoire dans les ERP de 1re à 4e catégorie et dans les établissements de service public."], "demi_tour": ["interieur", "Espace de demi-tour", "Cercle de 1,50 m de diamètre libre de tout obstacle.", "On le dessine sur les plans pour vérifier qu'un fauteuil peut faire demi-tour, notamment devant les portes et en fin de circulation."], "cuvette": ["interieur", "Cuvette adaptée", "Assise entre 0,45 et 0,50 m de haut.", "Il faut au moins un cabinet adapté par niveau accessible, pour chaque sexe si les sanitaires sont séparés."], "barre": ["interieur", "Barre d'appui", "Barre horizontale fixée entre 0,70 et 0,80 m de haut, à côté de la cuvette.", "Elle aide au transfert depuis le fauteuil et au relevage."], "espace_wc": ["interieur", "Espace d'usage latéral", "Rectangle de 0,80 m × 1,30 m à côté de la cuvette.", "Il permet de placer le fauteuil à côté de la cuvette pour un transfert latéral."], "lavabo": ["interieur", "Lave-mains", "Hauteur maximale 0,85 m, avec un vide en dessous pour les genoux.", "Il doit être accessible depuis le fauteuil, avec un espace d'usage devant lui."], "demi_wc": ["interieur", "Demi-tour dans le cabinet", "Cercle de 1,50 m de diamètre, à l'intérieur du cabinet ou devant sa porte.", "Il permet de ressortir en marche avant."], "escalier": ["interieur", "Escalier", "Largeur ≥ 1,20 m entre mains courantes, marches de 16 cm maximum, giron de 28 cm minimum.", "Mains courantes des deux côtés, entre 0,80 et 1,00 m, prolongées. Première et dernière contremarches contrastées."], "bande_eveil": ["interieur", "Bande d'éveil de vigilance", "Revêtement en relief placé en haut de l'escalier, à 0,50 m de la première marche.", "Détectable au pied et à la canne, elle prévient les personnes malvoyantes du danger de chute."], "ascenseur": ["interieur", "Ascenseur", "Obligatoire à partir de 50 personnes accueillies en étage (100 en enseignement), ou si les prestations ne sont pas offertes au rez-de-chaussée.", "Ses commandes sont accessibles en position assise."], "commande": ["interieur", "Commande (bouton d'appel)", "Placée entre 0,90 et 1,30 m de haut, à plus de 0,40 m d'un angle rentrant.", "Même règle pour les interrupteurs, interphones et digicodes."]};
+const EL={};for(const k in RAW)EL[k]={p:RAW[k][0],n:RAW[k][1],r:RAW[k][2],s:RAW[k][3]};
+const IDS=Object.keys(EL),NBD=12;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const panneau=document.getElementById('panneau'),zones=[...document.querySelectorAll('.zone')];
+let mode='exp',cur='facade',vus=new Set(),defi=null;
+const zone=id=>document.querySelector('.zone[data-id="'+id+'"]');
+const nettoyer=()=>zones.forEach(z=>z.classList.remove('sel','vrai','erreur'));
+function montrer(p){cur=p;document.querySelectorAll('.planche').forEach(s=>s.style.display=s.dataset.p===p?'block':'none');
+ const pb=document.getElementById('planches');pb.style.display=mode==='exp'?'flex':'none';
+ pb.innerHTML=PL.map(([id,t])=>`<button data-p="${id}" class="${id===p?'actif':''}">${t}</button>`).join('');
+ pb.querySelectorAll('button').forEach(b=>b.onclick=()=>{nettoyer();montrer(b.dataset.p);if(mode==='exp')vueExplorer()})}
+zones.forEach(z=>z.addEventListener('click',()=>mode==='exp'?explorer(z.dataset.id):repondre(z.dataset.id)));
+function onglets(){oExp.classList.toggle('actif',mode==='exp');oDef.classList.toggle('actif',mode==='def')}
+function vueExplorer(){mode='exp';onglets();montrer(cur);
+ const ids=IDS.filter(i=>EL[i].p===cur);
+ panneau.innerHTML=`<p class="aide">Cliquez sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
+ panneau.querySelectorAll('.puce').forEach(b=>b.onclick=()=>explorer(b.dataset.id));compteur()}
+function explorer(id){nettoyer();zone(id).classList.add('sel');vus.add(id);const e=EL[id];
+ document.getElementById('fiche').innerHTML=`<div class="fiche"><h2>${e.n}</h2><p>${e.r}</p><p class="savoir"><strong>À savoir :</strong> ${e.s}</p></div>`;compteur()}
+function compteur(){const c=document.getElementById('cpt');if(!c)return;
+ c.textContent=`Éléments découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — vous êtes prêt(e) pour le défi.':'');
+ panneau.querySelectorAll('.puce').forEach(b=>b.classList.toggle('vu',vus.has(b.dataset.id)))}
+function vueDefi(){mode='def';onglets();defi={liste:shuffle(IDS).slice(0,NBD),i:0,score:0,fait:false};question()}
+function question(){nettoyer();const d=defi;d.fait=false;const id=d.liste[d.i];montrer(EL[id].p);
+ panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Cliquez sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
+function repondre(id){const d=defi;if(!d||d.fait)return;d.fait=true;const c=d.liste[d.i],ok=id===c;if(ok)d.score++;
+ zone(c).classList.add('vrai');if(!ok)zone(id).classList.add('erreur');
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Vous avez désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('suiv').onclick=()=>{d.i++;d.i<d.liste.length?question():finDefi()}}
+function finDefi(){nettoyer();const d=defi,p=d.score/d.liste.length;
+ panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?"Excellent : vous savez repérer les dispositifs d'accessibilité d'un ERP.":p>=.5?'Bon début. Revenez en mode Découvrir pour revoir les éléments manqués.':'Prenez le temps d\'explorer les deux plans, puis retentez le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
+ document.getElementById('rej').onclick=vueDefi;document.getElementById('ret').onclick=()=>{mode='exp';vueExplorer()}}
+const oExp=document.getElementById('oExp'),oDef=document.getElementById('oDef');
+oExp.onclick=()=>{nettoyer();vueExplorer()};oDef.onclick=vueDefi;
+vueExplorer();
+</script><script>window.addEventListener("load",function(){var p=document.querySelectorAll("svg.planche");if(p.length&&!Array.prototype.some.call(p,function(s){return getComputedStyle(s).display!=="none"})){var b=document.querySelector(".planches button");if(b)b.click()}});</script></body></html>

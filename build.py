@@ -374,7 +374,7 @@ def main():
     if SORTIE.exists():
         shutil.rmtree(SORTIE)
     SORTIE.mkdir()
-    for d in ("assets", "media", "fiches", "jeux", "plans"):
+    for d in ("assets", "media", "fiches", "jeux", "plans", "bts-mec"):
         if (RACINE / d).exists():
             shutil.copytree(RACINE / d, SORTIE / d, dirs_exist_ok=True)
     (SORTIE / ".nojekyll").touch()

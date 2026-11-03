@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lexique : découvrir</title>
+<style>
+:root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
+*{box-sizing:border-box}
+body{margin:0;padding:8px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--encre);background:#FAFAF7;line-height:1.45;font-size:16px}
+.cadre{max-width:1000px;margin:0 auto;border:6px solid var(--jaune);border-radius:10px;background:#fff;overflow:hidden}
+header{background:var(--jaune);padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.2rem;line-height:1.2}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#fff;padding:3px 9px;border-radius:20px}
+main{padding:14px}
+.consigne{background:var(--jaune-clair);border-left:4px solid var(--jaune);padding:8px 12px;border-radius:4px;margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid #C9CED6;background:#fff;color:var(--encre);border-radius:8px;padding:8px 12px}
+button:hover:not(:disabled){border-color:var(--bleu)}
+.btn{background:var(--bleu);color:#fff;border-color:var(--bleu);font-weight:600}
+.progression{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gris);margin-bottom:4px}
+.barre{height:6px;background:var(--ligne);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.barre div{height:100%;background:var(--jaune);transition:width .3s}
+.question{font-size:1.08rem;font-weight:600;margin:6px 0 12px}
+.feedback{padding:10px 12px;border-radius:6px;margin:12px 0}
+.feedback.ok{background:var(--vert-clair);border-left:4px solid var(--vert)}
+.feedback.ko{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.resultat{text-align:center;padding:10px}
+.resultat .note{font-size:2.4rem;font-weight:800;margin:4px 0;color:var(--bleu)}
+footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid var(--ligne)}
+.onglets{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.onglets button.actif{background:var(--bleu);color:#fff;border-color:var(--bleu)}
+.grille{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:760px){.grille{grid-template-columns:1fr}}
+#inutile{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.zone{cursor:pointer}
+.zone .f{stroke:#4A4A4A;stroke-width:1}
+.zone:hover .f{stroke:var(--bleu);stroke-width:2}
+.zone.sel .f{stroke:var(--bleu);stroke-width:3.5}
+.zone.vrai .f{stroke:var(--vert);stroke-width:4}
+.zone.erreur .f{stroke:var(--rouge);stroke-width:4}
+.zone .l{stroke:#8B5A2B}
+.zone .lc{stroke:#B5532E}
+.zone:hover .l,.zone:hover .lc,.zone.sel .l,.zone.sel .lc{stroke:var(--bleu)}
+.zone.vrai .l,.zone.vrai .lc{stroke:var(--vert)}
+.zone.erreur .l,.zone.erreur .lc{stroke:var(--rouge)}
+.hit{fill:transparent;stroke:none}
+.hitl{stroke:transparent;fill:none}
+.lbl{font-size:12px;fill:#7A7A7A}
+.fiche{border:1px solid var(--ligne);border-left:4px solid var(--bleu);border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.fiche h2{margin:0 0 6px;font-size:1.05rem;color:var(--bleu)}
+.fiche p{margin:0 0 6px}
+.savoir{font-size:.92rem;color:#3B4652}
+.aide{color:var(--gris);margin-top:0}
+.puces{display:flex;flex-wrap:wrap;gap:5px}
+.puce{font-size:.8rem;padding:4px 9px;border-radius:14px}
+.puce.vu{background:var(--vert-clair);border-color:var(--vert)}
+.compteur{font-size:.85rem;color:var(--gris);margin:6px 0}
+.planche{width:100%;height:auto;display:block;background:#F5F9FD;border:1px solid var(--ligne);border-radius:8px}
+.planches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.planches button{font-size:.85rem;padding:5px 10px}
+.planches button.actif{background:var(--jaune);border-color:var(--jaune);font-weight:700}
+.zone .lt{stroke:#1F3A68}
+.zone:hover .lt,.zone.sel .lt{stroke:#E07A00}
+.zone.vrai .lt{stroke:var(--vert)}.zone.erreur .lt{stroke:var(--rouge)}
+.titreP{font-size:13px;fill:#5F6B7A;font-weight:600}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><style>:root{--jaune:#ffc52e;--jaune-clair:#fff4d1;--encre:#13223f;--gris:#55637e;--vert:#1f8a5b;--vert-clair:#ddf3e8;--rouge:#c62828;--rouge-clair:#fdecea;--bleu:#1f55d6;--ligne:#cfd9e8}
+body{font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:16.5px;background:#eef3f9}
+h1,h2,.question,.resultat .note{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif}
+.cadre{border:1.5px solid var(--bleu);border-radius:10px;box-shadow:0 5px 0 var(--jaune)}
+header{background:#0f2c6e;color:#fff}.badge{background:var(--jaune);color:var(--encre)}
+.consigne{background:var(--jaune-clair);border-left-color:#f2600f}
+.btn,.onglets button.actif{background:var(--bleu);border-color:var(--bleu)}
+button:hover:not(:disabled){border-color:#f2600f}
+.barre{height:10px;border-radius:5px}.barre div{background:linear-gradient(90deg,var(--jaune),#f2600f)}
+.resultat .note{color:#f2600f}.fiche{border-left-color:#f2600f}.fiche h2{color:#0f2c6e}footer{background:#f6f9fd}</style></head><body><div class="cadre">
+<header><h1>Lexique du dessinateur · Découvrir</h1><div class="badges"><span class="badge">Autoformation</span><span class="badge">BTS MEC</span></div></header>
+<main>
+<p class="consigne">Trois planches pour apprendre le vocabulaire du métier. <strong>Découvrir</strong> : choisissez une planche, puis cliquez sur chaque élément pour lire sa définition. <strong>Défi</strong> : retrouvez les éléments demandés, toutes planches confondues.</p>
+<div class="onglets"><button id="oExp" class="actif">1. Découvrir</button><button id="oDef">2. Défi (12 questions)</button></div>
+<div class="grille"><div><div class="planches" id="planches"></div><svg class="planche" data-p="facade" viewBox="0 0 800 460" role="img" aria-label="Façades d'une maison"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="0" y="400" width="800" height="60" fill="#EADFC8"/>
+<g class="zone" data-id="pignon"><polygon class="f" points="40,400 40,230 150,130 260,230 260,400" fill="#F3EAD7"/></g>
+<g class="zone" data-id="rive"><path class="lc" d="M28 240 L150 122 L272 240" fill="none" stroke-width="8" stroke-linecap="round"/><path class="hitl" d="M28 240 L150 122 L272 240" stroke-width="16"/></g>
+<g class="zone" data-id="gouttereau"><rect class="f" x="320" y="236" width="450" height="164" fill="#F3EAD7"/></g>
+<rect x="310" y="132" width="470" height="104" fill="#C9794F" stroke="#6B3A22"/><line x1="310" y1="148" x2="780" y2="148" stroke="#A55E3A" stroke-width="1"/><line x1="310" y1="162" x2="780" y2="162" stroke="#A55E3A" stroke-width="1"/><line x1="310" y1="176" x2="780" y2="176" stroke="#A55E3A" stroke-width="1"/><line x1="310" y1="190" x2="780" y2="190" stroke="#A55E3A" stroke-width="1"/><line x1="310" y1="204" x2="780" y2="204" stroke="#A55E3A" stroke-width="1"/><line x1="310" y1="218" x2="780" y2="218" stroke="#A55E3A" stroke-width="1"/><line x1="310" y1="232" x2="780" y2="232" stroke="#A55E3A" stroke-width="1"/>
+<g class="zone" data-id="faitage"><path class="l" d="M306 132 H784" fill="none" stroke-width="7" stroke-linecap="round"/><path class="hitl" d="M306 132 H784" stroke-width="16"/></g>
+<g class="zone" data-id="egout"><rect class="f" x="304" y="236" width="482" height="9" rx="3" fill="#777"/><rect class="hit" x="300" y="228" width="490" height="22"/></g>
+<rect x="380" y="270" width="70" height="70" fill="#CFE8F7" stroke="#4A4A4A"/><line x1="415" y1="270" x2="415" y2="340" stroke="#4A4A4A"/>
+<rect x="520" y="270" width="70" height="70" fill="#CFE8F7" stroke="#4A4A4A"/><line x1="555" y1="270" x2="555" y2="340" stroke="#4A4A4A"/>
+<rect x="512" y="256" width="86" height="14" fill="#DCD5C5" stroke="#4A4A4A"/><rect x="512" y="340" width="86" height="8" fill="#D8D2C4" stroke="#4A4A4A"/>
+<g class="zone" data-id="linteau"><rect class="f" x="372" y="256" width="86" height="14" fill="#DCD5C5"/></g>
+<g class="zone" data-id="appui"><rect class="f" x="372" y="340" width="86" height="8" fill="#D8D2C4"/><rect class="hit" x="368" y="336" width="94" height="14"/></g>
+<g class="zone" data-id="allege"><rect class="f" x="380" y="349" width="70" height="51" fill="#F3EAD7" stroke-dasharray="5 3"/></g>
+<g class="zone" data-id="trumeau"><rect class="f" x="459" y="256" width="52" height="92" fill="#F3EAD7" stroke-dasharray="5 3"/></g>
+<rect x="652" y="258" width="76" height="14" fill="#DCD5C5" stroke="#4A4A4A"/><rect x="660" y="300" width="60" height="96" fill="#A0785A" stroke="#4A4A4A"/><circle cx="710" cy="350" r="3" fill="#333"/>
+<g class="zone" data-id="imposte"><rect class="f" x="660" y="272" width="60" height="28" fill="#CFE8F7"/></g>
+<g class="zone" data-id="seuil"><rect class="f" x="652" y="396" width="76" height="6" fill="#8A8F96"/><rect class="hit" x="648" y="390" width="84" height="16"/></g>
+<g class="zone" data-id="tn"><path class="l" d="M0 400 H800" fill="none" stroke-width="3" stroke-linecap="round"/><path class="hitl" d="M0 400 H800" stroke-width="16"/></g>
+<text x="150" y="440" class="titreP" text-anchor="middle">Façade latérale</text><text x="545" y="440" class="titreP" text-anchor="middle">Façade principale</text>
+</svg><svg class="planche" data-p="escalier" viewBox="0 0 800 460" role="img" aria-label="Coupe sur un escalier"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<rect x="40" y="400" width="720" height="16" fill="url(#pBeton)" stroke="#4A4A4A"/>
+<rect x="40" y="200" width="280" height="22" fill="url(#pBeton)" stroke="#4A4A4A"/>
+<g class="zone" data-id="limon"><polygon class="f" points="300,400 597,200 597,228 340,400" fill="#C79A6B"/></g>
+<polygon points="300,400.0 300,381.8 327,381.8" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="327,381.8 327,363.6 354,363.6" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="354,363.6 354,345.5 381,345.5" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="381,345.5 381,327.3 408,327.3" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="408,327.3 408,309.1 435,309.1" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="435,309.1 435,290.9 462,290.9" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="462,290.9 462,272.7 489,272.7" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="489,272.7 489,254.5 516,254.5" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="516,254.5 516,236.4 543,236.4" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="543,236.4 543,218.2 570,218.2" fill="#E7C9A0" stroke="#8B5A2B"/><polygon points="570,218.2 570,200.0 597,200.0" fill="#E7C9A0" stroke="#8B5A2B"/><g class="zone" data-id="giron"><path class="lt" d="M462 272.7 H489" fill="none" stroke-width="5" stroke-linecap="round"/><path class="hitl" d="M462 272.7 H489" stroke-width="16"/></g><g class="zone" data-id="hauteur"><path class="lt" d="M381 345.5 V327.3" fill="none" stroke-width="5" stroke-linecap="round"/><path class="hitl" d="M381 345.5 V327.3" stroke-width="16"/></g>
+<g class="zone" data-id="chevetre"><rect class="f" x="320" y="200" width="10" height="22" fill="#5F656E"/><rect class="hit" x="316" y="196" width="18" height="30"/></g>
+<g class="zone" data-id="tremie"><rect class="f" x="330" y="200" width="267" height="22" fill="#EEF2F8" stroke-dasharray="6 4"/></g>
+<g class="zone" data-id="palier"><rect class="f" x="597" y="200" width="163" height="22" fill="url(#pBeton)"/></g>
+<g class="zone" data-id="echappee"><line class="lt" x1="350" y1="224" x2="350" y2="361.6" stroke-width="2" marker-start="url(#fl)" marker-end="url(#fl)"/><path class="hitl" d="M350 222 V363.6" stroke-width="18"/></g>
+<g class="zone" data-id="niveau"><g class="f" fill="none" stroke-width="1.5"><polygon points="90,400 81,385 99,385"/><polygon points="90,200 81,185 99,185"/></g><text x="104" y="384" font-size="14" fill="#1F2933">±0,00</text><text x="104" y="184" font-size="14" fill="#1F2933">+2,80</text><rect class="hit" x="75" y="168" width="80" height="235"/></g>
+<text x="60" y="440" class="titreP">RDC</text><text x="60" y="240" class="titreP">R+1</text>
+</svg><svg class="planche" data-p="baie" viewBox="0 0 800 460" role="img" aria-label="Fenêtre vue en plan"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
+<text x="400" y="110" class="titreP" text-anchor="middle">EXTÉRIEUR</text><text x="400" y="390" class="titreP" text-anchor="middle">INTÉRIEUR</text>
+<rect x="40" y="160" width="260" height="10" fill="#F3EAD7" stroke="#4A4A4A"/><rect x="40" y="170" width="260" height="120" fill="url(#pMac)" stroke="#4A4A4A"/><rect x="40" y="290" width="260" height="24" fill="url(#pIsol)" stroke="#4A4A4A"/><rect x="40" y="314" width="260" height="6" fill="#FFFFFF" stroke="#4A4A4A"/><rect x="500" y="160" width="260" height="10" fill="#F3EAD7" stroke="#4A4A4A"/><rect x="500" y="170" width="260" height="120" fill="url(#pMac)" stroke="#4A4A4A"/><rect x="500" y="290" width="260" height="24" fill="url(#pIsol)" stroke="#4A4A4A"/><rect x="500" y="314" width="260" height="6" fill="#FFFFFF" stroke="#4A4A4A"/>
+<rect x="300" y="148" width="200" height="114" fill="#EEE8DC" stroke="#4A4A4A"/>
+<rect x="300" y="294" width="10" height="26" fill="url(#pIsol)" stroke="#4A4A4A"/><rect x="490" y="294" width="10" height="26" fill="url(#pIsol)" stroke="#4A4A4A"/>
+<g class="zone" data-id="tableau"><path class="lt" d="M300 160 V262 M500 160 V262" fill="none" stroke-width="5" stroke-linecap="round"/><path class="hitl" d="M300 160 V262 M500 160 V262" stroke-width="16"/></g>
+<g class="zone" data-id="embrasure"><path class="lt" d="M310 294 V320 M490 294 V320" fill="none" stroke-width="5" stroke-linecap="round"/><path class="hitl" d="M310 294 V320 M490 294 V320" stroke-width="16"/></g>
+<g class="zone" data-id="dormant"><rect class="f" x="300" y="262" width="16" height="32" fill="#FFFFFF"/><rect class="f" x="484" y="262" width="16" height="32" fill="#FFFFFF"/></g>
+<g class="zone" data-id="ouvrant"><rect class="f" x="316" y="270" width="84" height="16" fill="#CFE8F7"/><rect class="f" x="400" y="270" width="84" height="16" fill="#CFE8F7"/><line x1="316" y1="278" x2="484" y2="278" stroke="#6C8BA3"/></g>
+<g class="zone" data-id="nuext"><path class="lt" d="M40 160 H300 M500 160 H760" fill="none" stroke-width="4" stroke-linecap="round"/><path class="hitl" d="M40 160 H300 M500 160 H760" stroke-width="16"/></g>
+<g class="zone" data-id="nuint"><path class="lt" d="M40 320 H300 M500 320 H760" fill="none" stroke-width="4" stroke-linecap="round"/><path class="hitl" d="M40 320 H300 M500 320 H760" stroke-width="16"/></g>
+</svg></div><div id="panneau"></div></div>
+</main>
+<footer>BTS MEC · Autoformation · Connaissances mobilisées : vocabulaire du bâtiment, conventions de représentation et de cotation.</footer>
+</div>
+<script>
+const PL=[["facade", "Façades"], ["escalier", "Escalier en coupe"], ["baie", "Fenêtre en plan"]];
+const RAW={"pignon": ["facade", "Mur pignon", "Mur extérieur dont la partie haute suit la pente du toit : il a souvent une forme triangulaire.", "Il ne porte pas de gouttière : les bords de toiture situés au-dessus s'appellent les rives."], "rive": ["facade", "Rive", "Bord latéral d'un versant de toiture, au-dessus du pignon.", "Elle est finie par des tuiles de rive ou une planche de rive, pour résister au vent et à la pluie."], "faitage": ["facade", "Faîtage", "Ligne la plus haute du toit, à la rencontre des deux versants.", "Le PLU fixe souvent une hauteur maximale au faîtage, mesurée depuis le terrain naturel."], "egout": ["facade", "Égout", "Ligne basse du versant, où l'eau de pluie s'écoule vers la gouttière.", "La « hauteur à l'égout » du PLU se mesure à ce niveau."], "gouttereau": ["facade", "Mur gouttereau", "Mur extérieur situé sous l'égout du toit : il reçoit la gouttière.", "Sur une maison à deux versants, les deux longues façades sont en général des murs gouttereaux."], "allege": ["facade", "Allège", "Partie de mur comprise entre le sol et l'appui d'une fenêtre.", "À l'étage, une allège trop basse impose un garde-corps (norme NF P01-012)."], "trumeau": ["facade", "Trumeau", "Partie de mur pleine située entre deux baies voisines.", "Il porte la charge du mur situé au-dessus : on le vérifie avant d'élargir des ouvertures."], "linteau": ["facade", "Linteau", "Élément horizontal au-dessus d'une baie, qui reprend la charge du mur.", "En façade, il est souvent masqué par l'enduit. En plan, il n'apparaît pas : il est au-dessus du plan de coupe."], "appui": ["facade", "Appui de fenêtre", "Rebord sous la fenêtre, en pente vers l'extérieur, qui rejette l'eau de pluie.", "Son dessous comporte une goutte d'eau (larmier) pour que l'eau ne coule pas sur la façade."], "imposte": ["facade", "Imposte", "Partie fixe ou ouvrante située au-dessus d'une porte ou d'une fenêtre.", "Elle apporte de la lumière ou de la ventilation sans agrandir la porte."], "seuil": ["facade", "Seuil", "Partie basse d'une porte, au sol.", "Pour l'accessibilité, le ressaut du seuil est limité à 2 cm (4 cm s'il est chanfreiné)."], "tn": ["facade", "Terrain naturel (TN)", "Niveau du terrain avant travaux.", "Les hauteurs du PLU se mesurent souvent depuis le TN. Les coupes du permis montrent le terrain avant et après travaux."], "giron": ["escalier", "Giron", "Profondeur horizontale d'une marche, mesurée sur la ligne de foulée.", "Confort : 2h + g compris entre 60 et 64 cm (formule de Blondel)."], "hauteur": ["escalier", "Hauteur de marche", "Hauteur entre deux marches successives. La face verticale s'appelle la contremarche.", "On l'obtient en divisant la hauteur à monter par le nombre de marches."], "echappee": ["escalier", "Échappée", "Hauteur libre entre le nez de marche et le plancher ou la trémie au-dessus.", "On retient au moins 2 m pour ne pas se cogner la tête."], "tremie": ["escalier", "Trémie", "Ouverture réservée dans le plancher pour le passage de l'escalier.", "Sa longueur dépend de l'échappée à respecter et de la pente de l'escalier."], "chevetre": ["escalier", "Chevêtre", "Élément qui borde la trémie et reprend les charges du plancher interrompu.", "En plancher bois, c'est une pièce posée entre deux solives. En béton, la rive de trémie est renforcée par des armatures."], "limon": ["escalier", "Limon", "Pièce inclinée qui porte les marches sur le côté de l'escalier.", "On distingue le limon, côté vide, et le faux limon, côté mur."], "palier": ["escalier", "Palier", "Plateforme horizontale en haut ou au milieu d'un escalier.", "Un palier intermédiaire permet de couper une volée trop longue."], "niveau": ["escalier", "Cotes de niveau", "Altitudes des planchers finis par rapport à la référence ±0,00.", "La différence entre les deux cotes donne la hauteur à monter. Exemple : 2,80 m ÷ 16 marches = 17,5 cm par marche (le dessin est schématique)."], "tableau": ["baie", "Tableau", "Face latérale de la baie côté extérieur, entre la menuiserie et le nu extérieur du mur.", "Il est enduit comme la façade."], "embrasure": ["baie", "Embrasure", "Face latérale de la baie côté intérieur, entre la menuiserie et le nu intérieur.", "Avec une isolation par l'intérieur, l'isolant revient en embrasure pour limiter le pont thermique."], "dormant": ["baie", "Dormant", "Cadre fixe de la fenêtre, fixé dans la maçonnerie.", "Il reçoit les ouvrants et assure l'étanchéité avec le mur (joint, mousse imprégnée)."], "ouvrant": ["baie", "Ouvrant (vantail)", "Partie mobile de la fenêtre, qui porte le vitrage.", "Une fenêtre à deux vantaux possède deux ouvrants."], "nuext": ["baie", "Nu extérieur", "Plan de la face extérieure finie du mur, ici la surface de l'enduit.", "On cote les façades et le plan de masse au nu extérieur."], "nuint": ["baie", "Nu intérieur", "Plan de la face intérieure finie du mur, ici la surface du doublage.", "La surface de plancher se mesure au nu intérieur des façades."]};
+const EL={};for(const k in RAW)EL[k]={p:RAW[k][0],n:RAW[k][1],r:RAW[k][2],s:RAW[k][3]};
+const IDS=Object.keys(EL),NBD=12;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const panneau=document.getElementById('panneau'),zones=[...document.querySelectorAll('.zone')];
+let mode='exp',cur='facade',vus=new Set(),defi=null;
+const zone=id=>document.querySelector('.zone[data-id="'+id+'"]');
+const nettoyer=()=>zones.forEach(z=>z.classList.remove('sel','vrai','erreur'));
+function montrer(p){cur=p;document.querySelectorAll('.planche').forEach(s=>s.style.display=s.dataset.p===p?'block':'none');
+ const pb=document.getElementById('planches');pb.style.display=mode==='exp'?'flex':'none';
+ pb.innerHTML=PL.map(([id,t])=>`<button data-p="${id}" class="${id===p?'actif':''}">${t}</button>`).join('');
+ pb.querySelectorAll('button').forEach(b=>b.onclick=()=>{nettoyer();montrer(b.dataset.p);if(mode==='exp')vueExplorer()})}
+zones.forEach(z=>z.addEventListener('click',()=>mode==='exp'?explorer(z.dataset.id):repondre(z.dataset.id)));
+function onglets(){oExp.classList.toggle('actif',mode==='exp');oDef.classList.toggle('actif',mode==='def')}
+function vueExplorer(){mode='exp';onglets();montrer(cur);
+ const ids=IDS.filter(i=>EL[i].p===cur);
+ panneau.innerHTML=`<p class="aide">Cliquez sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
+ panneau.querySelectorAll('.puce').forEach(b=>b.onclick=()=>explorer(b.dataset.id));compteur()}
+function explorer(id){nettoyer();zone(id).classList.add('sel');vus.add(id);const e=EL[id];
+ document.getElementById('fiche').innerHTML=`<div class="fiche"><h2>${e.n}</h2><p>${e.r}</p><p class="savoir"><strong>À savoir :</strong> ${e.s}</p></div>`;compteur()}
+function compteur(){const c=document.getElementById('cpt');if(!c)return;
+ c.textContent=`Mots découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — vous êtes prêt(e) pour le défi.':'');
+ panneau.querySelectorAll('.puce').forEach(b=>b.classList.toggle('vu',vus.has(b.dataset.id)))}
+function vueDefi(){mode='def';onglets();defi={liste:shuffle(IDS).slice(0,NBD),i:0,score:0,fait:false};question()}
+function question(){nettoyer();const d=defi;d.fait=false;const id=d.liste[d.i];montrer(EL[id].p);
+ panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Cliquez sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
+function repondre(id){const d=defi;if(!d||d.fait)return;d.fait=true;const c=d.liste[d.i],ok=id===c;if(ok)d.score++;
+ zone(c).classList.add('vrai');if(!ok)zone(id).classList.add('erreur');
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Vous avez désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('suiv').onclick=()=>{d.i++;d.i<d.liste.length?question():finDefi()}}
+function finDefi(){nettoyer();const d=defi,p=d.score/d.liste.length;
+ panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?'Excellent : vous parlez le langage du dessinateur de projet.':p>=.5?'Bon début. Revenez en mode Découvrir pour revoir les mots manqués.':'Prenez le temps d\'explorer les trois planches, puis retentez le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
+ document.getElementById('rej').onclick=vueDefi;document.getElementById('ret').onclick=()=>{mode='exp';vueExplorer()}}
+const oExp=document.getElementById('oExp'),oDef=document.getElementById('oDef');
+oExp.onclick=()=>{nettoyer();vueExplorer()};oDef.onclick=vueDefi;
+vueExplorer();
+</script><script>window.addEventListener("load",function(){var p=document.querySelectorAll("svg.planche");if(p.length&&!Array.prototype.some.call(p,function(s){return getComputedStyle(s).display!=="none"})){var b=document.querySelector(".planches button");if(b)b.click()}});</script></body></html>

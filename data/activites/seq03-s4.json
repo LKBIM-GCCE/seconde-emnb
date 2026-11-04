@@ -121,6 +121,10 @@
      ]
     },
     {
+     "type": "texte",
+     "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>🧊 <b>La composition</b> du mur : dans la <b>maquette</b> (clique sur un mur de façade).<br>📄 <b>La finition</b> (l'aspect extérieur après travaux) : sur les <b>plans PDF</b>, planches <b>Façades — État projeté</b> (PC 05-2 et PC 05-3, pages 11 et 12). Les matériaux sont écrits à côté des élévations.<br>⚠️ Les façades <b>État existant</b> montrent le bâtiment d'aujourd'hui : ce n'est pas la réponse.</p>"
+    },
+    {
      "type": "qcm",
      "critere": "t1",
      "questions": [
@@ -190,6 +194,10 @@
      "maquettes": [
       "agence-architecte"
      ]
+    },
+    {
+     "type": "texte",
+     "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>📄 Sur les <b>plans PDF</b> : la cote d'altitude « Acrotère … m/TN » est écrite sur les <b>coupes</b> (PC 03-1, page 7) et les <b>façades</b> (PC 05-2, page 11), état projeté.<br>🧊 Tu peux vérifier dans la maquette : clique sur un mur « Acrotère » du niveau Toiture terrasse.</p>"
     },
     {
      "type": "qcm",
@@ -374,14 +382,35 @@
    "duree": "5 min",
    "verbe": "Justifier",
    "demandeur": "Client",
-   "consigne": "En classe, tu présenteras en 2 minutes UN ticket au client (ton professeur). Tu devras JUSTIFIER ta source et ta forme de réponse.",
+   "consigne": "En fin de séance, tu présentes à ton professeur (qui joue le client) UN ticket au choix, en 2 minutes, puis tu réponds à 1 question. Prépare ici ce que tu vas dire : tu dois JUSTIFIER ta source et ta forme de réponse.",
    "parties": [
     {
      "type": "redaction",
      "critere": "oral",
-     "titre": "Mon plan d'oral",
-     "question": "Quel ticket vas-tu présenter ? Note en 2 ou 3 phrases : la demande, ta réponse, ta source et pourquoi tu as choisi cette forme de réponse.",
-     "min": 40
+     "titre": "1. Le ticket choisi et la demande",
+     "question": "Quel ticket présentes-tu ? Qui l'a envoyé et que veut-il savoir ?",
+     "min": 20
+    },
+    {
+     "type": "redaction",
+     "critere": "oral",
+     "titre": "2. Ma réponse",
+     "question": "Ta réponse : la valeur avec son unité, le nom ou ce que montre ta capture.",
+     "min": 15
+    },
+    {
+     "type": "redaction",
+     "critere": "oral",
+     "titre": "3. Ma source",
+     "question": "Où as-tu trouvé l'information ? (maquette : quel objet, quelle propriété ? ou plan : quelle planche ?)",
+     "min": 20
+    },
+    {
+     "type": "redaction",
+     "critere": "oral",
+     "titre": "4. Pourquoi cette forme de réponse",
+     "question": "Pourquoi cette forme (valeur, phrase, capture) est-elle la plus utile pour ce demandeur ?",
+     "min": 20
     }
    ]
   }

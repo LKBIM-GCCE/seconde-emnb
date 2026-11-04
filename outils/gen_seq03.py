@@ -280,6 +280,7 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
           {"id": "t1", "type": "exercice", "titre": "Ticket 1 — Les façades", "duree": "8 min", **V("Identifier", "Client"),
            "consigne": "Le client te demande d'IDENTIFIER les matériaux des murs de façade et leur finition, en précisant où tu as trouvé chaque information.",
            "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "texte", "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>🧊 <b>La composition</b> du mur : dans la <b>maquette</b> (clique sur un mur de façade).<br>📄 <b>La finition</b> (l'aspect extérieur après travaux) : sur les <b>plans PDF</b>, planches <b>Façades — État projeté</b> (PC 05-2 et PC 05-3, pages 11 et 12). Les matériaux sont écrits à côté des élévations.<br>⚠️ Les façades <b>État existant</b> montrent le bâtiment d'aujourd'hui : ce n'est pas la réponse.</p>"},
                        {"type": "qcm", "critere": "t1", "questions": [
                            q("Composition des murs de façade", ["Brique 20 cm + enduit", "Maçonnerie existante de 33 cm", "Mur Duomur (béton + isolant)", "Ossature bois + bardage"], "Maçonnerie existante de 33 cm",
                              "Type « 00- Ext Mur existant 33cm » : on garde les murs du bâtiment existant."),
@@ -290,6 +291,7 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
           {"id": "t2", "type": "exercice", "titre": "Ticket 2 — L'acrotère", "duree": "8 min", **V("Relever", "Conducteur de travaux"),
            "consigne": "Le conducteur de travaux te demande de RELEVER la hauteur de l'acrotère le plus haut, par rapport au terrain naturel (TN).",
            "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "texte", "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>📄 Sur les <b>plans PDF</b> : la cote d'altitude « Acrotère … m/TN » est écrite sur les <b>coupes</b> (PC 03-1, page 7) et les <b>façades</b> (PC 05-2, page 11), état projeté.<br>🧊 Tu peux vérifier dans la maquette : clique sur un mur « Acrotère » du niveau Toiture terrasse.</p>"},
                        {"type": "qcm", "critere": "t2-source", "questions": [
                            q("Où trouves-tu cette hauteur le plus directement ?", SOURCES, "Le plan PDF", "La cote altimétrique « Acrotère … m/TN » est écrite sur les façades.")]},
                        {"type": "nombre", "critere": "t2-valeur", "items": [
@@ -322,8 +324,11 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
                        {"type": "texte", "html": "<ol><li>Choisis une vue où l'on voit bien la terrasse et les toitures terrasses (tourne, utilise la coupe ou le filtre Niveau).</li><li>Clique sur <b>📷 Capture</b> : l'image est téléchargée.</li><li>Annote-la (Paint ou l'outil Capture de Windows) : flèches, noms des éléments, légende.</li><li>Transmets-la à ton professeur avec ton certificat.</li></ol>"},
                        {"type": "redaction", "critere": "t5", "titre": "Justifie ton choix", "question": "En une ou deux phrases : pourquoi as-tu choisi cette vue, et pourquoi une capture est-elle la bonne forme de réponse pour ce ticket ?", "min": 30}]},
           {"id": "oral", "type": "exercice", "titre": "Préparer l'oral au client", "duree": "5 min", **V("Justifier", "Client"),
-           "consigne": "En classe, tu présenteras en 2 minutes UN ticket au client (ton professeur). Tu devras JUSTIFIER ta source et ta forme de réponse.",
-           "parties": [{"type": "redaction", "critere": "oral", "titre": "Mon plan d'oral", "question": "Quel ticket vas-tu présenter ? Note en 2 ou 3 phrases : la demande, ta réponse, ta source et pourquoi tu as choisi cette forme de réponse.", "min": 40}]}]}
+           "consigne": "En fin de séance, tu présentes à ton professeur (qui joue le client) UN ticket au choix, en 2 minutes, puis tu réponds à 1 question. Prépare ici ce que tu vas dire : tu dois JUSTIFIER ta source et ta forme de réponse.",
+           "parties": [{"type": "redaction", "critere": "oral", "titre": "1. Le ticket choisi et la demande", "question": "Quel ticket présentes-tu ? Qui l'a envoyé et que veut-il savoir ?", "min": 20},
+                       {"type": "redaction", "critere": "oral", "titre": "2. Ma réponse", "question": "Ta réponse : la valeur avec son unité, le nom ou ce que montre ta capture.", "min": 15},
+                       {"type": "redaction", "critere": "oral", "titre": "3. Ma source", "question": "Où as-tu trouvé l'information ? (maquette : quel objet, quelle propriété ? ou plan : quelle planche ?)", "min": 20},
+                       {"type": "redaction", "critere": "oral", "titre": "4. Pourquoi cette forme de réponse", "question": "Pourquoi cette forme (valeur, phrase, capture) est-elle la plus utile pour ce demandeur ?", "min": 20}]}]}
 
 for s in (s1, s2, s3, s4):
     if s["id"] in ("seq03-s2", "seq03-s3", "seq03-s4"):

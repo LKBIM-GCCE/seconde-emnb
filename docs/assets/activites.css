@@ -300,3 +300,21 @@ body.large main { max-width: 1440px; }
 .trois-attendus i { font-style: normal; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--chantier); color: #fff; font: 800 13px var(--titre); margin-right: 6px; }
 .trois-attendus b { font-family: var(--titre); font-size: 16px; }
 .trois-attendus small { display: block; color: var(--doux); margin-top: 4px; }
+
+/* S4 : documents, états, oral */
+.docs-s4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 8px 0 12px; }
+@media (max-width: 700px) { .docs-s4 { grid-template-columns: 1fr; } }
+.doc-carte { background: var(--carte); border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; }
+.doc-carte b { font-family: var(--titre); font-size: 17px; margin-right: 8px; }
+.doc-carte p { margin: 8px 0 0; }
+.etat { display: inline-block; font: 700 12px/1 var(--texte); padding: 4px 8px; border-radius: 12px; background: #e6e6e6; color: #333; vertical-align: middle; }
+.etat.projete { background: #ddf3e8; color: #1f8a5b; }
+.attention-etats { border: 1.5px solid var(--chantier); background: var(--chantier-pale); }
+.attention-etats ul { margin: 6px 0 0; }
+.oral-s4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 8px 0 12px; }
+@media (max-width: 800px) { .oral-s4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.oral-s4 div { background: var(--carte); border: 1px solid var(--trait); border-top: 4px solid var(--plan); border-radius: 8px; padding: 10px 12px; }
+.oral-s4 b { font-family: var(--titre); }
+.oral-s4 p { margin: 4px 0 0; font-size: 15px; }
+.oral-plan li { margin: 4px 0; }
+.coup-pouce { background: var(--plan-pale); border-left: 4px solid var(--plan); border-radius: 6px; padding: 10px 12px; margin: 0; line-height: 1.6; }

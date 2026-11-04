@@ -6,11 +6,26 @@
 <g fill="#fff" font-size="12"><text x="94" y="92">Qui demande ? Quoi ?</text><text x="274" y="92">De quoi ai-je besoin ?</text><text x="454" y="92">maquette ou plan</text><text x="634" y="92">objet, propriété, plan</text></g></g></svg>
 <figcaption>Demande → donnée nécessaire → recherche → source.</figcaption></figure>
 <h4>Où trouver une information ?</h4>
-<div class="table-scroll"><table class="table-cours"><thead><tr><th>Je cherche…</th><th>Je regarde…</th><th>Exemple</th></tr></thead><tbody>
-<tr><td>Ce qu'est un objet</td><td>Sa <b>classe</b></td><td>IfcDoor = une porte</td></tr>
-<tr><td>Où il se trouve</td><td>L'<b>arborescence</b> (niveau)</td><td>Projet › … › RDC › Porte</td></tr>
-<tr><td>Sa composition, ses dimensions types</td><td>Le <b>nom du type</b> et les matériaux</td><td>« MUR(END20+BRI200) » = enduit 2 cm + brique 20 cm</td></tr>
-<tr><td>S'il est extérieur ou porteur</td><td>Le <b>Pset</b> (Pset_WallCommon…)</td><td>IsExternal = Oui</td></tr>
-<tr><td>Une longueur, une surface, un volume</td><td>Les <b>quantités</b> (Qto, Cotes)</td><td>Surface = 40,27 m²</td></tr>
-<tr><td>Une info absente de la maquette</td><td>Les <b>plans PDF</b></td><td>Une cote, une note</td></tr></tbody></table></div>
+<p>Quand tu cliques sur un objet, l'<b>inspecteur</b> de la visionneuse affiche tout ce que la maquette sait sur lui. Chaque information a <b>sa place</b> : repère le numéro.</p>
+<div class="ou-trouver">
+<div class="insp-mini" aria-hidden="true">
+  <div class="im-titre">👆 L'inspecteur quand tu cliques sur un mur</div>
+  <div class="im-l"><i>1</i><b>IfcWall</b> Mur</div>
+  <div class="im-l im-nom">Mur de base:MUR(END20+BRI200)</div>
+  <div class="im-l im-chemin"><i>2</i>Projet › Site › Bâtiment › <u>RDC</u> › Mur</div>
+  <div class="im-l"><i>3</i><span class="im-k">Type</span> MUR(END20+BRI200)</div>
+  <div class="im-bloc"><i>4</i><span class="im-t">Pset_WallCommon</span><span class="im-k">Extérieur ?</span> Oui · <span class="im-k">Porteur ?</span> Non</div>
+  <div class="im-bloc"><i>5</i><span class="im-t">Matériaux</span>Enduit monocouche + Brique</div>
+  <div class="im-bloc"><i>6</i><span class="im-t">Cotes</span><span class="im-k">Longueur</span> 8,19 m · <span class="im-k">Surface</span> 28,79 m²</div>
+</div>
+<ol class="ou-liste">
+  <li><i>1</i><div><b>Ce qu'est l'objet</b><span>→ sa <em>classe</em></span><small>IfcDoor = une porte · IfcSpace = une pièce</small></div></li>
+  <li><i>2</i><div><b>Où il se trouve</b><span>→ l'<em>arborescence</em> (le niveau)</span><small>Projet › … › RDC › Porte</small></div></li>
+  <li><i>3</i><div><b>Ses dimensions types</b><span>→ le <em>nom du type</em></span><small>« PP (0.83m x 2.04m) » = porte de 0,83 × 2,04 m</small></div></li>
+  <li><i>4</i><div><b>S'il est extérieur ou porteur</b><span>→ le <em>Pset</em> (Oui / Non)</span><small>Pset_WallCommon › IsExternal = Oui</small></div></li>
+  <li><i>5</i><div><b>De quoi il est fait</b><span>→ ses <em>matériaux</em> (une propriété)</span><small>Enduit monocouche + Brique</small></div></li>
+  <li><i>6</i><div><b>Combien : longueur, surface, volume</b><span>→ les <em>quantités</em> (Cotes, Qto)</span><small>Surface = 40,27 m²</small></div></li>
+  <li class="ou-pdf"><i>📄</i><div><b>Ce que la maquette ne dit pas</b><span>→ les <em>plans PDF</em></span><small>une cote d'altitude, une teinte, une note</small></div></li>
+</ol>
+</div>
 <div class="encadre retenir"><h4>⚠️ Ticket vigilance</h4><p>Une maquette peut contenir des <b>erreurs</b> (propriété mal renseignée à l'export, pièce sans nom…). Quand une donnée te paraît bizarre : vérifie sur le plan et <b>signale-le</b>. Note toujours ta source.</p></div>

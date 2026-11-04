@@ -69,13 +69,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
        "r": 2,
-       "explication": ""
+       "explication": "Le type « 00- Ext Mur existant 33cm » donne la nature et l'épaisseur du mur."
       },
       {
        "q": "Finition des façades dans le projet",
@@ -93,8 +93,8 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
@@ -124,8 +124,8 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],

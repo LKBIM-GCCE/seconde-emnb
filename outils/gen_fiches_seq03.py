@@ -230,7 +230,8 @@ f.blanc()
 f.tableau(["JE CHERCHE…", "JE REGARDE…", "EXEMPLE"], [
     ["Ce qu'est un objet", "Sa classe", "IfcDoor = une porte"],
     ["Où il se trouve", "L'arborescence (niveau)", "Projet › … › RDC › Porte"],
-    ["Sa composition", "Le nom du type, les matériaux", "MUR(END20+BRI200) = enduit 2 cm + brique 20 cm"],
+    ["Ses dimensions types", "Le nom du type", "PP (0.83m x 2.04m) = porte de 0,83 × 2,04 m"],
+    ["De quoi il est fait", "Ses matériaux (une propriété)", "Enduit monocouche + Brique"],
     ["S'il est extérieur ou porteur", "Le Pset (Pset_WallCommon…)", "IsExternal = Oui"],
     ["Une longueur, une surface, un volume", "Les quantités (Qto / Cotes)", "Surface = 40,27 m²"],
     ["Une info absente de la maquette", "Les plans PDF", "Une cote, une note, le cartouche"],
@@ -256,7 +257,7 @@ f.deux(("⚠  TICKET VIGILANCE", ["Pièce **sans nom** (toutes appelées « Surf
 f.blanc()
 f.retiens(["**Ticket** → une demande d'un partenaire, traitée avec la même méthode à chaque fois.",
            "**Méthode** → demande → donnée nécessaire → recherche → source.",
-           "**Classe** = quoi · **arborescence** = où · **Pset** = oui/non · **quantités** = combien.",
+           "**Classe** = quoi · **arborescence** = où · **type** = dimensions · **Pset / matériaux** = caractéristiques · **quantités** = combien.",
            "**Plans PDF** → pour ce que la maquette ne dit pas (cotes, notes, cartouche).",
            "**Vigilance** → une maquette peut contenir des erreurs : je vérifie et je signale."])
 p2 = f.enregistrer("seq03-s2")

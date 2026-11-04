@@ -186,7 +186,7 @@
         "Parpaing 20 cm sans isolant"
        ],
        "r": 0,
-       "explication": "Clique sur un mur de façade : le nom du type et les matériaux donnent sa composition."
+       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
       }
      ]
     },
@@ -256,7 +256,7 @@
         "Parpaing 20 cm sans isolant"
        ],
        "r": 0,
-       "explication": "Clique sur un mur de façade : le nom du type et les matériaux donnent sa composition."
+       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
       }
      ]
     },
@@ -326,7 +326,7 @@
         "Parpaing 20 cm sans isolant"
        ],
        "r": 1,
-       "explication": "Clique sur un mur de façade : le nom du type et les matériaux donnent sa composition."
+       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
       }
      ]
     },
@@ -396,7 +396,7 @@
         "Parpaing 20 cm sans isolant"
        ],
        "r": 0,
-       "explication": "Clique sur un mur de façade : le nom du type et les matériaux donnent sa composition."
+       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
       }
      ]
     },
@@ -495,13 +495,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
-       "r": 2,
-       "explication": ""
+       "r": 3,
+       "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
        "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
@@ -519,13 +519,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
        "r": 2,
-       "explication": ""
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
        "q": "Ticket 3 — MOA : « À quel niveau se trouve le séjour ? »",
@@ -543,8 +543,8 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
@@ -612,13 +612,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
-       "r": 2,
-       "explication": ""
+       "r": 3,
+       "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
        "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
@@ -636,13 +636,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
        "r": 2,
-       "explication": ""
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
        "q": "Ticket 3 — MOA : « À quel niveau se trouve la pièce n° 10 ? »",
@@ -663,8 +663,8 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
@@ -732,13 +732,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
-       "r": 2,
-       "explication": ""
+       "r": 3,
+       "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
        "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
@@ -756,13 +756,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
        "r": 2,
-       "explication": ""
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
        "q": "Ticket 3 — MOA : « À quel niveau se trouve la salle polyvalente 2 ? »",
@@ -781,8 +781,8 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
@@ -850,13 +850,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
-       "r": 2,
-       "explication": ""
+       "r": 3,
+       "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
        "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
@@ -874,13 +874,13 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],
        "r": 2,
-       "explication": ""
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
        "q": "Ticket 3 — MOA : « À quel niveau se trouve la reprographie ? »",
@@ -898,8 +898,8 @@
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
-        "Le nom du type / les matériaux",
-        "Une propriété Pset (Oui / Non)",
+        "Le nom du type",
+        "Les propriétés (Pset / Matériaux)",
         "Les quantités (Qto / Cotes)",
         "Le plan PDF"
        ],

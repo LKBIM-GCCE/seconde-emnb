@@ -34,7 +34,7 @@ def rd(x, n=2):
     return round(float(x), n)
 
 
-SOURCES = ["La classe de l'objet", "L'arborescence (le niveau)", "Le nom du type / les matériaux", "Une propriété Pset (Oui / Non)", "Les quantités (Qto / Cotes)", "Le plan PDF"]
+SOURCES = ["La classe de l'objet", "L'arborescence (le niveau)", "Le nom du type", "Les propriétés (Pset / Matériaux)", "Les quantités (Qto / Cotes)", "Le plan PDF"]
 
 # ------------------------------------------------------------------ projets des groupes
 PROJETS = [
@@ -119,7 +119,7 @@ def fiche_identite(pid):
         {"type": "qcm", "pour": [pid], "titre": "1. Le projet", "questions": [
             q("Quel est l'usage du bâtiment ?", USAGES, r["usage"]),
             q("Quel type de toiture a ce bâtiment ?", TOITS, r["toiture"], "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."),
-            q("De quoi sont faits les murs extérieurs principaux ?", MURS, r["mur"], "Clique sur un mur de façade : le nom du type et les matériaux donnent sa composition.")]},
+            q("De quoi sont faits les murs extérieurs principaux ?", MURS, r["mur"], "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type.")]},
         {"type": "nombre", "pour": [pid], "titre": "2. Les chiffres clés (onglet Arborescence)", "items": [
             {"texte": "Nombre d'objets IfcSpace (pièces)", "valeur": r["nb_spaces"], "tolerance": 0, "unite": "u"},
             {"texte": "Nombre de portes (IfcDoor)", "valeur": r["nb_portes"], "tolerance": 0, "unite": "u"},
@@ -130,9 +130,9 @@ def tickets_info(pid):
     r = REF[pid]
     t = [{"type": "qcm", "pour": [pid], "titre": "Tickets du maître d'ouvrage et du conducteur de travaux", "questions": [
         q("Ticket 1 — MOA : « De quoi seront faits les murs de façade ? » Réponse :", MURS, r["mur"]),
-        q("Ticket 1 — Où as-tu trouvé cette information ?", SOURCES, "Le nom du type / les matériaux"),
+        q("Ticket 1 — Où as-tu trouvé cette information ?", SOURCES, "Les propriétés (Pset / Matériaux)", "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."),
         q("Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »", PORTES, r["porte"], "Le nom du type de porte contient ses dimensions (largeur × hauteur)."),
-        q("Ticket 2 — Où as-tu trouvé cette information ?", SOURCES, "Le nom du type / les matériaux"),
+        q("Ticket 2 — Où as-tu trouvé cette information ?", SOURCES, "Le nom du type", "Le nom du type de porte contient ses dimensions (largeur × hauteur)."),
         q(f"Ticket 3 — MOA : « À quel niveau se trouve {r.get('piece_t3_lib', r['piece_lib'])} ? »", [n["nom"] for n in D[pid]["niveaux"]],
           piece(D[pid], r["piece_t3"])["niveau"] if r.get("piece_t3") else r["niveau_piece"], "Le chemin de l'inspecteur indique le niveau."),
         q("Ticket 3 — Où as-tu trouvé cette information ?", SOURCES, "L'arborescence (le niveau)")]},
@@ -250,7 +250,7 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
                        {"type": "qcm", "titre": "Ticket 1 — Client : « De quoi sont faits les murs de façade, et quelle sera leur finition ? »", "questions": [
                            q("Composition des murs de façade", ["Brique 20 cm + enduit", "Maçonnerie existante de 33 cm", "Mur Duomur (béton + isolant)", "Ossature bois + bardage"], "Maçonnerie existante de 33 cm",
                              "Type « 00- Ext Mur existant 33cm » : on garde les murs du bâtiment existant."),
-                           q("Source de la composition", SOURCES, "Le nom du type / les matériaux"),
+                           q("Source de la composition", SOURCES, "Le nom du type", "Le type « 00- Ext Mur existant 33cm » donne la nature et l'épaisseur du mur."),
                            q("Finition des façades dans le projet", ["Briquette en terre cuite apparente", "Enduit gratté fin, teinte beige (RAL 1014)", "Bardage bois", "Peinture blanche"], "Enduit gratté fin, teinte beige (RAL 1014)",
                              "Indiqué sur les façades « état projeté » et dans la notice du permis de construire."),
                            q("Source de la finition", SOURCES, "Le plan PDF", "La maquette ne contient pas la teinte de l'enduit : il faut le plan.")]},

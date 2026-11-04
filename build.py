@@ -200,16 +200,24 @@ def bloc_grille(s, x):
         return ""
     g = json.loads(f.read_text(encoding="utf-8"))
     pts = lambda v: str(v).replace(".", ",").removesuffix(",0")
-    lignes, total = "", 0
+    ech = g.get("echelle", [])
+    tete_niv = "".join(f'<th class="g-niv" title="{e(n)}">{e(c)}<small>{e(n)} ({v})</small></th>' for c, n, v in ech)
+    ncol = 3 + len(ech)
+    lignes = ""
     for gr in g["groupes"]:
-        total += gr["points"]
-        lignes += f'<tr class="g-comp"><th colspan="2"><b>{e(gr["code"])}</b> {e(gr["nom"])}</th><td>/ {pts(gr["points"])}</td></tr>'
-        lignes += "".join(f'<tr><th scope="row">{e(c)}</th><td>{e(ind)}</td><td>{pts(p)} pt</td></tr>' for c, ind, p in gr["criteres"])
-    lignes += f'<tr class="g-total"><th colspan="2">Total</th><td>/ {pts(total)}</td></tr>'
+        lignes += f'<tr class="g-comp"><th colspan="{ncol}"><b>{e(gr["code"])}</b> {e(gr["nom"])} <span>→ note /{pts(gr["points"])}</span></th></tr>'
+        lignes += "".join(f'<tr><th scope="row">{e(c)}</th><td>{e(ind)}</td>' + "".join('<td class="g-case" aria-hidden="true">○</td>' for _ in ech)
+                          + f'<td>/{pts(p)}</td></tr>' for c, ind, p in gr["criteres"])
+    conv = ""
+    if g.get("conversion"):
+        conv = ('<h3>De mes niveaux à ma note</h3><div class="tableau"><table class="g-conv"><thead><tr><th>Compétence</th><th>Points des critères</th><th>Note</th></tr></thead><tbody>'
+                + "".join(f'<tr{" class=\"g-total\"" if c == "Total" else ""}><th>{e(c)}</th><td>{e(a)}</td><td>{e(n)}</td></tr>' for c, a, n in g["conversion"])
+                + "</tbody></table></div>")
     return f'''<section class="bloc grille-eval" id="grille"><h2>📋 {e(g["titre"])}</h2><p>{e(g["intro"])}</p>
-<div class="tableau"><table><thead><tr><th>Critère</th><th>Ce qu'on attend de moi</th><th>Barème</th></tr></thead><tbody>{lignes}</tbody></table></div>
-<p class="aide">{e(g["niveaux"])}</p><p class="aide"><b>{e(g["note"])}</b></p>
+<div class="tableau"><table><thead><tr><th>Critère</th><th>Ce qu'on attend de moi</th>{tete_niv}<th>Points</th></tr></thead><tbody>{lignes}</tbody></table></div>
+{conv}<p class="aide">{e(g["niveaux"])}</p><p class="aide"><b>{e(g["note"])}</b></p>
 <button class="btn-imprimer" type="button" onclick="window.print()">🖨 Imprimer la grille</button></section>'''
+
 
 def page_seance(s, i):
     x = s["seances"][i]

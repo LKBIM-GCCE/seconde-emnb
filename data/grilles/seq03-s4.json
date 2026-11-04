@@ -1,19 +1,107 @@
 {
  "titre": "Grille d'évaluation — Les futurs bureaux de l'agence",
- "intro": "Voici ce que ton professeur va regarder. Lis-la avant de commencer : chaque ligne te dit ce qu'on attend de toi.",
+ "intro": "Voici ce que ton professeur va regarder. Pour chaque critère, il te place sur un niveau, de NA à M. La note sur 10 est calculée ensuite à partir de ces niveaux.",
  "groupes": [
-  {"code": "C2.2.1", "nom": "Identifier les données nécessaires à l'activité", "points": 3, "criteres": [
-    ["Ticket 1 — Façades", "Je distingue la composition du mur et sa finition, et je cite 2 sources : la maquette et le plan PDF.", 1],
-    ["Ticket 2 — Acrotère", "Je repère qu'il faut une cote de hauteur par rapport au terrain naturel (TN) et je la cherche sur les plans.", 1],
-    ["Ticket 4 — Surfaces", "Je choisis les bons objets : les pièces (IfcSpace) des deux niveaux, sans les dalles ni les terrasses.", 1]]},
-  {"code": "C2.2.3", "nom": "Choisir les données numériques ou graphiques", "points": 7, "criteres": [
-    ["Ticket 2 — Valeur", "Je donne la valeur avec son unité et sa référence (m/TN).", 1],
-    ["Ticket 3 — Pièce n° 43", "Je réponds par une phrase courte : le nom de la pièce et son niveau.", 1],
-    ["Ticket 4 — Total", "Je donne la surface totale juste, en m², avec 2 chiffres après la virgule.", 1.5],
-    ["Ticket vigilance", "Je repère ce qui ne doit pas être compté, je l'exclus et je le signale dans ma réponse.", 1],
-    ["Ticket 5 — Capture annotée", "Ma vue montre bien ce qui est demandé, avec repères et légende : on la comprend sans moi.", 1.5],
-    ["Oral client (2 min)", "J'explique ma source et ma forme de réponse, et je réponds à la question du client.", 1]]}
+  {
+   "code": "C2.2.1",
+   "nom": "Identifier les données nécessaires à l'activité",
+   "points": 3,
+   "criteres": [
+    [
+     "Ticket 1 — Façades",
+     "Je distingue la composition du mur et sa finition, et je cite 2 sources : la maquette et le plan PDF.",
+     3
+    ],
+    [
+     "Ticket 2 — Acrotère",
+     "Je repère qu'il faut une cote de hauteur par rapport au terrain naturel (TN) et je la cherche sur les plans.",
+     3
+    ],
+    [
+     "Ticket 4 — Surfaces",
+     "Je choisis les bons objets : les pièces (IfcSpace) des deux niveaux, sans les dalles ni les terrasses.",
+     3
+    ]
+   ]
+  },
+  {
+   "code": "C2.2.3",
+   "nom": "Choisir les données numériques ou graphiques",
+   "points": 7,
+   "criteres": [
+    [
+     "Ticket 2 — Valeur",
+     "Je donne la valeur avec son unité et sa référence (m/TN).",
+     3
+    ],
+    [
+     "Ticket 3 — Pièce n° 43",
+     "Je réponds par une phrase courte : le nom de la pièce et son niveau.",
+     3
+    ],
+    [
+     "Ticket 4 — Total",
+     "Je donne la surface totale juste, en m², avec 2 chiffres après la virgule.",
+     3
+    ],
+    [
+     "Ticket vigilance",
+     "Je repère ce qui ne doit pas être compté, je l'exclus et je le signale dans ma réponse.",
+     3
+    ],
+    [
+     "Ticket 5 — Capture annotée",
+     "Ma vue montre bien ce qui est demandé, avec repères et légende : on la comprend sans moi.",
+     3
+    ],
+    [
+     "Oral client (2 min)",
+     "J'explique ma source et ma forme de réponse, et je réponds à la question du client.",
+     3
+    ]
+   ]
+  }
  ],
- "niveaux": "Pour chaque ligne : tout le point = acquis · la moitié = en partie · 0 = pas fait ou faux.",
- "note": "Le score du certificat en ligne n'est pas ta note : la note vient de cette grille, de ta capture et de ton oral."
+ "niveaux": "Ton niveau sur une compétence = la moyenne de tes niveaux sur ses critères, arrondie (0 = NA · 1 = ECA · 2 = A · 3 = M).",
+ "note": "Le score du certificat en ligne n'est pas ta note : la note vient de cette grille, de ta capture et de ton oral.",
+ "mode": "competences",
+ "echelle": [
+  [
+   "NA",
+   "Non acquis",
+   0
+  ],
+  [
+   "ECA",
+   "En cours d'acquisition",
+   1
+  ],
+  [
+   "A",
+   "Acquis",
+   2
+  ],
+  [
+   "M",
+   "Maîtrisé",
+   3
+  ]
+ ],
+ "conversion": [
+  [
+   "C2.2.1",
+   "3 critères → /9",
+   "(total /9) × 3 ÷ 9 → /3"
+  ],
+  [
+   "C2.2.3",
+   "6 critères → /18",
+   "(total /18) × 7 ÷ 18 → /7"
+  ],
+  [
+   "Total",
+   "",
+   "/10"
+  ]
+ ]
 }

@@ -337,3 +337,12 @@ table { border-collapse: collapse; }
 .btn-imprimer { margin-top: 10px; font: 700 15px var(--texte); background: var(--plan); color: #fff; border: 0; border-radius: 8px; padding: 8px 14px; cursor: pointer; }
 .lien-grille { display: inline-block; margin-top: 10px; font-weight: 700; color: var(--chantier); }
 @media print { .grille-eval .btn-imprimer { display: none; } }
+.grille-eval .g-niv { text-align: center; white-space: normal; width: 64px; font-weight: 800; color: var(--encre); }
+.grille-eval .g-niv small { display: block; font-weight: 400; font-size: 11px; color: var(--doux); line-height: 1.2; }
+.grille-eval .g-case { text-align: center !important; color: var(--doux); font-size: 18px; font-weight: 400 !important; }
+.grille-eval .g-comp span { float: right; }
+.grille-eval h3 { font-size: 17px; margin: 18px 0 4px; color: var(--plan-fonce); }
+.grille-eval .g-conv td:last-child { text-align: left; }
+.grille-eval .g-comp th { text-align: left !important; white-space: normal; }
+.grille-eval .g-comp span { float: none; margin-left: 8px; color: var(--chantier); }
+.grille-eval .g-conv th:last-child, .grille-eval .g-conv td:last-child { text-align: left; }

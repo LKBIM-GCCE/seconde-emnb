@@ -91,7 +91,7 @@ s1 = {"id": "seq03-s1", "sequence": "seq03", "seance": "s1", "titre": "Pourquoi 
           {"id": "lancement", "type": "exercice", "titre": "Lancement — Le fichier illisible", "duree": "15 min",
            "consigne": "Le gérant de l'agence t'écrit : « Le bureau d'études n'arrive pas à ouvrir notre maquette .rvt, il n'a pas Revit. Comment lui envoyer le projet ? » Donne ton avis avant de lire le cours.",
            "parties": [{"type": "qcm", "questions": [
-               q("Pourquoi le bureau d'études ne peut-il pas ouvrir le fichier .rvt ?", ["Le fichier est abîmé", "C'est le format natif de Revit : il faut Revit pour l'ouvrir", "Le fichier est trop gros", "Il faut un mot de passe"], "C'est le format natif de Revit : il faut Revit pour l'ouvrir", "Un fichier natif ne s'ouvre qu'avec le logiciel qui l'a créé."),
+               q("Pourquoi le bureau d'études ne peut-il pas ouvrir le fichier .rvt ?", ["Le fichier est abîmé", "C'est le format natif de Revit : il faut Revit pour l'ouvrir", "Le fichier est trop gros", "La version du fichier ne correspond pas à ma version de Revit plus ancienne"], "C'est le format natif de Revit : il faut Revit pour l'ouvrir", "Un fichier natif ne s'ouvre qu'avec le logiciel qui l'a créé."),
                q("Quelle solution te paraît la meilleure ?", ["Imprimer tous les plans", "Lui acheter Revit", "Exporter la maquette dans un format ouvert, lisible par tous", "Lui envoyer des photos de l'écran"], "Exporter la maquette dans un format ouvert, lisible par tous", "C'est le rôle du format IFC.")]},
                {"type": "redaction", "titre": "Ton hypothèse", "question": "Avec tes mots : comment envoyer une maquette à quelqu'un qui n'a pas Revit ?", "min": 30}]},
           {"id": "cours", "type": "cours", "titre": "Cours — Le format IFC", "duree": "15 min", "fichier": "seq03-s1-cours.html"},
@@ -224,7 +224,7 @@ s3 = {"id": "seq03-s3", "sequence": "seq03", "seance": "s3", "titre": "Répondre
                q("Une surface « brute » de dalle est plus grande que la surface « nette » des pièces. Pourquoi ?", ["La surface brute compte aussi l'emprise des murs", "C'est une erreur", "La surface nette compte les meubles"], "La surface brute compte aussi l'emprise des murs"),
                q("Le plan et la maquette donnent deux valeurs très différentes. Que fais-tu ?", ["Je choisis au hasard", "Je note les deux valeurs, leur source, et je signale l'écart", "Je prends toujours la plus grande"], "Je note les deux valeurs, leur source, et je signale l'écart")]}]},
           {"id": "capture", "type": "exercice", "titre": "Mission — La capture annotée", "duree": "15 min",
-           "consigne": "Ticket du conducteur de travaux : « Montre-moi où se trouvent les portes du RDC. » Dans la visionneuse : choisis le niveau RDC, descends la coupe, clique sur une porte, puis clique sur « 📷 Capture ». Annote l'image (Paint, ou l'outil Capture de Windows) et dépose-la sur l'ENT.",
+           "consigne": "Ticket du conducteur de travaux : « Montre-moi où se trouvent les portes du RDC. » Dans la visionneuse : choisis le niveau RDC, descends la coupe, clique sur une porte, puis clique sur « 📷 Capture ». Annote l'image (Paint, ou l'outil Capture de Windows) et transmets-la à ton professeur.",
            "parties": [{"type": "projet", "choix": PROJETS}, {"type": "visionneuse"},
                        {"type": "redaction", "titre": "Justifie ton choix", "question": "En une ou deux phrases : pourquoi une capture annotée est-elle la bonne forme de réponse pour ce ticket ?", "min": 40,
                         "exemple": "Le conducteur de travaux doit voir où sont les portes : une image annotée se comprend sans moi, plus vite qu'une liste."}]}]}
@@ -271,7 +271,7 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
                            q(f"Ticket vigilance — Au R+1, une terrasse accessible de {str(rd(surf(terrasse))).replace('.', ',')} m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
                              ["Oui, c'est une surface du bâtiment", "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse", "Oui, mais seulement la moitié"],
                              "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse", "Lire ce que l'on additionne, pas seulement le total.")]},
-                       {"type": "redaction", "titre": "Ticket 5 — Capture annotée", "question": "Le conducteur de travaux veut voir où se trouvent la terrasse accessible et les toitures terrasses. Fais une capture annotée (bouton 📷) et dépose-la sur l'ENT. Ici, explique en une phrase pourquoi tu as choisi cette vue.", "min": 30}]}]}
+                       {"type": "redaction", "titre": "Ticket 5 — Capture annotée", "question": "Le conducteur de travaux veut voir où se trouvent la terrasse accessible et les toitures terrasses. Fais une capture annotée (bouton 📷) et transmets-la à ton professeur. Ici, explique en une phrase pourquoi tu as choisi cette vue.", "min": 30}]}]}
 
 for s in (s1, s2, s3, s4):
     if s["id"] in ("seq03-s2", "seq03-s3", "seq03-s4"):

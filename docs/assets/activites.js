@@ -68,8 +68,15 @@
     return { el: h("div", {}, div, pdf ? h("a", { class: "lien-plans", href: "../" + pdf, target: "_blank", rel: "noopener" }, "📄 Ouvrir les plans PDF du projet") : null), manque: () => null, score: () => [0, 0] };
   };
   P.jeu = (p) => ({
-    el: h("div", { class: "jeu" }, h("iframe", { src: p.src, title: p.titreJeu || "Jeu", loading: "lazy", allow: "fullscreen" }),
-      h("a", { class: "lien-plans", href: p.src, target: "_blank", rel: "noopener" }, "↗ Ouvrir le jeu en plein écran")),
+    el: (() => {
+      const fr = h("iframe", { src: p.src, title: p.titreJeu || "Jeu", loading: "lazy", allow: "fullscreen", allowfullscreen: "" });
+      const bt = h("button", { type: "button", class: "btn-plein-ecran" }, "⛶ Jouer en plein écran");
+      bt.addEventListener("click", () => {
+        const f = fr.requestFullscreen || fr.webkitRequestFullscreen;
+        if (f) f.call(fr); else fr.scrollIntoView({ behavior: "smooth" });
+      });
+      return h("div", { class: "jeu" }, h("div", { class: "jeu-barre" }, bt, h("span", { class: "aide" }, "Ta progression est conservée. Touche Échap pour revenir à la page.")), fr);
+    })(),
     manque: () => null, score: () => [0, 0]
   });
 
@@ -369,7 +376,7 @@
         total ? h("p", { class: "certif-total" }, total) : null,
         h("p", { class: "certif-pied" }, `${date} à ${heure} · Code de contrôle : `, h("b", {}, c))),
         h("div", { class: "pied-bloc" }, h("button", { class: "btn", onclick: () => imageCertificat({ lignes, textes, total, pied: `${date} à ${heure}`, code: c }) }, "⬇ Télécharger mon certificat (image)"),
-          h("span", { class: "aide" }, "Puis dépose le fichier sur l'ENT.")));
+          h("span", { class: "aide" }, "Garde-le : ton professeur te dira comment le lui transmettre.")));
     } }, "Afficher mon certificat")), cible);
   }
 

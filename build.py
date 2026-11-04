@@ -230,7 +230,7 @@ def page_seance(s, i):
     if act:
         nb = sum(1 for b in act["blocs"] if b["type"] != "cours")
         cta = f'''<a class="cta-seance" href="{x["id"]}-en-ligne.html"><span class="cta-play" aria-hidden="true">▶</span>
-<span><b>Faire la séance en ligne</b><small>{nb} activités corrigées tout de suite, puis ton certificat à déposer sur l'ENT</small></span>
+<span><b>Faire la séance en ligne</b><small>{nb} activités corrigées tout de suite, puis ton certificat de fin de séance</small></span>
 <span class="pas-etat" data-act="{act["id"]}" data-nb="{nb}"></span></a>'''
     prec = s["seances"][i - 1] if i > 0 else None
     suiv = s["seances"][i + 1] if i + 1 < len(s["seances"]) else None

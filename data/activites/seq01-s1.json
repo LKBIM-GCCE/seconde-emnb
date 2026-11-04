@@ -3,7 +3,7 @@
  "sequence": "seq01",
  "seance": "s1",
  "titre": "Découvrir les acteurs de la construction",
- "intro": "Lis les deux cours et fais les 3 activités. Chaque activité est corrigée tout de suite. À la fin, télécharge ton certificat et dépose-le sur l'ENT.",
+ "intro": "Lis les deux cours et fais les 3 activités. Chaque activité est corrigée tout de suite. À la fin, télécharge ton certificat et transmets-le à ton professeur.",
  "blocs": [
   {
    "id": "cours01",

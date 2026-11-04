@@ -21,7 +21,7 @@
         "Le fichier est abîmé",
         "C'est le format natif de Revit : il faut Revit pour l'ouvrir",
         "Le fichier est trop gros",
-        "Il faut un mot de passe"
+        "La version du fichier ne correspond pas à ma version de Revit plus ancienne"
        ],
        "r": 1,
        "explication": "Un fichier natif ne s'ouvre qu'avec le logiciel qui l'a créé."

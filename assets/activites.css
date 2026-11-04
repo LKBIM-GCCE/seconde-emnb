@@ -203,7 +203,7 @@
 .sel-projet { font-weight: 700; }
 .lien-plans { display: inline-block; margin: 2px 0 8px; font-weight: 700; color: var(--plan); text-decoration: none; }
 .lien-plans:hover { text-decoration: underline; }
-.jeu iframe { width: 100%; height: 720px; border: 1.5px solid var(--plan); border-radius: 8px; background: #fff; display: block; }
+.jeu iframe { width: 100%; height: 860px; border: 1.5px solid var(--plan); border-radius: 8px; background: #fff; display: block; }
 @media (max-width: 700px) { .jeu iframe { height: 620px; } }
 .trois-notions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .trois-notions .encadre { margin: 0; }
@@ -221,3 +221,8 @@ body.large main { max-width: 1440px; }
   .col-maquette .choix-projet { margin-bottom: 10px; }
   .col-questions > .partie:first-child .sous { margin-top: 0; }
 }
+
+.jeu-barre { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.btn-plein-ecran { font: 700 15px var(--texte); background: var(--chantier); color: #fff; border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer; }
+.btn-plein-ecran:hover { background: var(--plan-fonce); }
+.jeu iframe:fullscreen { height: 100vh; border: 0; border-radius: 0; }

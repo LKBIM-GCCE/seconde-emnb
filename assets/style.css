@@ -323,3 +323,17 @@ table { border-collapse: collapse; }
 .accueil-jeux span { opacity: .85; font-size: 15px; }
 .accueil-jeux .aj-go { margin-left: auto; background: var(--signal); color: #13223f; font-weight: 800; padding: 8px 16px; border-radius: 20px; opacity: 1; }
 .accueil-jeux:hover .aj-go { background: #fff; }
+
+/* Grille d'évaluation */
+.grille-eval { border: 1.5px solid var(--chantier); }
+.grille-eval h2 { color: var(--chantier); }
+.grille-eval .tableau { margin: 12px 0; }
+.grille-eval td:last-child, .grille-eval th:last-child { white-space: nowrap; text-align: right; font-weight: 700; }
+.grille-eval tbody th { font-weight: 700; width: 26%; }
+.grille-eval .g-comp th, .grille-eval .g-comp td { background: var(--plan-pale); color: var(--plan-fonce); }
+.grille-eval .g-comp b { margin-right: 6px; }
+.grille-eval .g-total th, .grille-eval .g-total td { background: var(--signal); color: #13223f; font-size: 16px; }
+.grille-eval .aide { margin: 4px 0; }
+.btn-imprimer { margin-top: 10px; font: 700 15px var(--texte); background: var(--plan); color: #fff; border: 0; border-radius: 8px; padding: 8px 14px; cursor: pointer; }
+.lien-grille { display: inline-block; margin-top: 10px; font-weight: 700; color: var(--chantier); }
+@media print { .grille-eval .btn-imprimer { display: none; } }

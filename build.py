@@ -193,6 +193,24 @@ def page_sequence(s):
 {fiche_seq}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])
 
 
+
+def bloc_grille(s, x):
+    f = RACINE / "data" / "grilles" / f'{s["id"]}-{x["id"]}.json'
+    if not f.exists():
+        return ""
+    g = json.loads(f.read_text(encoding="utf-8"))
+    pts = lambda v: str(v).replace(".", ",").removesuffix(",0")
+    lignes, total = "", 0
+    for gr in g["groupes"]:
+        total += gr["points"]
+        lignes += f'<tr class="g-comp"><th colspan="2"><b>{e(gr["code"])}</b> {e(gr["nom"])}</th><td>/ {pts(gr["points"])}</td></tr>'
+        lignes += "".join(f'<tr><th scope="row">{e(c)}</th><td>{e(ind)}</td><td>{pts(p)} pt</td></tr>' for c, ind, p in gr["criteres"])
+    lignes += f'<tr class="g-total"><th colspan="2">Total</th><td>/ {pts(total)}</td></tr>'
+    return f'''<section class="bloc grille-eval" id="grille"><h2>📋 {e(g["titre"])}</h2><p>{e(g["intro"])}</p>
+<div class="tableau"><table><thead><tr><th>Critère</th><th>Ce qu'on attend de moi</th><th>Barème</th></tr></thead><tbody>{lignes}</tbody></table></div>
+<p class="aide">{e(g["niveaux"])}</p><p class="aide"><b>{e(g["note"])}</b></p>
+<button class="btn-imprimer" type="button" onclick="window.print()">🖨 Imprimer la grille</button></section>'''
+
 def page_seance(s, i):
     x = s["seances"][i]
     act = ACTS.get((s["id"], x["id"]))
@@ -217,6 +235,7 @@ def page_seance(s, i):
 <section class="bloc"><h2>À la fin de la séance, je sais…</h2><ul class="coche">{objectifs}</ul></section>
 <section class="bloc"><h2>Compétences travaillées</h2><ul class="liste-comp">{comps}</ul><p class="eval">Évaluation : {e(x["evaluation"])}</p></section>
 </div>
+{bloc_grille(s, x)}
 <details class="bloc deroule"><summary>Voir le déroulé de la séance</summary><ol class="frise">{deroule}</ol></details>
 {nav}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"Séance {i+1}", None)])
 
@@ -293,7 +312,7 @@ def page_en_ligne(s, i, a):
     donnees = json.dumps({k: v for k, v in a.items() if k != "_cours"}, ensure_ascii=False).replace("</", "<\\/")
     contenu = f'''
 <section class="titre-seance en-ligne"><p class="numero-seq">{e(s["numero"])} · séance {i+1} en ligne</p><h1>{e(x["titre"])}</h1>
-<p class="chapo">{e(a["intro"])}</p></section>
+<p class="chapo">{e(a["intro"])}</p>{(f'<p><a class="lien-grille" href="{x["id"]}.html#grille">📋 Lire la grille d\'évaluation avant de commencer</a></p>' if bloc_grille(s, x) else "")}</section>
 <div id="activite"><nav id="etapes" aria-label="Étapes de la séance"></nav><section id="zone" aria-live="polite"></section></div>
 <div class="bas-seance">{bouton_fiche(s["id"], x["id"], "../")}<button class="lien-raz" id="raz">Effacer mes réponses et tout recommencer</button></div>
 <script type="application/json" id="activite-data">{donnees}</script>

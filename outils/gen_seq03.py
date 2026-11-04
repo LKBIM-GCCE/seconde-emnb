@@ -112,6 +112,33 @@ s1 = {"id": "seq03-s1", "sequence": "seq03", "seance": "s1", "titre": "Pourquoi 
                    q("Où lit-on la surface d'une dalle ?", ["Dans les quantités (Qto / Cotes)", "Dans la classe", "Dans le nom du projet"], "Dans les quantités (Qto / Cotes)"),
                    q("Pourquoi l'agence transmet-elle un IFC plutôt qu'un fichier Revit ?", ["Parce que c'est plus joli", "Parce que l'IFC est un format ouvert que tous les partenaires peuvent lire", "Parce que l'IFC est plus léger que tout"], "Parce que l'IFC est un format ouvert que tous les partenaires peuvent lire")]}]}]}
 
+
+def prise_en_main(pid):
+    """Vrai / faux propres à chaque maquette : on ne peut répondre qu'en explorant SON projet."""
+    d = D[pid]
+    niv = [n["nom"] for n in d["niveaux"]]
+    a = lambda c: nb(d, c)
+    F = {
+        "villa-sabonnere": [
+            ("La maquette a un niveau « R+1 » (un étage).", "R+1" in niv, f"Niveaux : {', '.join(niv)}. La maison est de plain-pied."),
+            ("La maquette contient des meubles (IfcFurnishingElement).", a("IfcFurnishingElement") > 0, f"{a('IfcFurnishingElement')} meubles : regarde l'onglet Arborescence."),
+            ("Les fondations sont rangées sur un niveau à part, sous le RDC.", "FONDATION" in niv, "Le niveau FONDATION contient les semelles (IfcFooting).")],
+        "villa-goyrans": [
+            ("La maquette a un niveau « SOU SOL » sous le RDC.", "SOU SOL" in niv, "Choisis le niveau SOU SOL dans le menu Niveau."),
+            ("Il n'y a aucun poteau (IfcColumn) dans la maquette.", a("IfcColumn") == 0, f"Il y a {a('IfcColumn')} poteaux (IfcColumn)."),
+            ("La toiture est faite de plusieurs objets IfcRoof.", a("IfcRoof") > 1, f"{a('IfcRoof')} objets IfcRoof : la maison a plusieurs pans et volumes de toiture.")],
+        "maison-quartier": [
+            ("La maquette contient des poteaux (IfcColumn).", a("IfcColumn") > 0, f"{a('IfcColumn')} poteaux : regarde l'onglet Arborescence."),
+            ("La maquette contient des meubles (IfcFurnishingElement).", a("IfcFurnishingElement") > 0, "Aucun meuble n'a été exporté dans cette maquette."),
+            ("Le bâtiment a un étage « R+1 ».", "R+1" in niv, f"Niveaux : {', '.join(niv)}. Toutes les pièces sont au RDC.")],
+        "siege-social": [
+            ("La maquette a un niveau « R+1 » avec des pièces.", any(e["cls"] == "IfcSpace" and e["niveau"] == "R+1" for e in d["elements"]), "Choisis R+1 dans le menu Niveau et active « Pièces »."),
+            ("La maquette contient des meubles (IfcFurnishingElement).", a("IfcFurnishingElement") > 0, "Aucun meuble n'a été exporté : les bureaux sont vides."),
+            ("Les fondations sont rangées sur un niveau à part, sous le RDC.", "Fondation" in niv, "Le niveau Fondation contient les semelles (IfcFooting).")],
+    }[pid]
+    return {"type": "vraifaux", "pour": [pid], "titre": "Ta maquette : vrai ou faux ?",
+            "items": [{"texte": tx, "reponse": bool(rep), "explication": ex} for tx, rep, ex in F]}
+
 # ================================================================== S2
 def fiche_identite(pid):
     r = REF[pid]
@@ -119,7 +146,9 @@ def fiche_identite(pid):
         {"type": "qcm", "pour": [pid], "titre": "1. Le projet", "questions": [
             q("Quel est l'usage du bâtiment ?", USAGES, r["usage"]),
             q("Quel type de toiture a ce bâtiment ?", TOITS, r["toiture"], "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."),
-            q("De quoi sont faits les murs extérieurs principaux ?", MURS, r["mur"], "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type.")]},
+            q("Le bâtiment a-t-il un escalier ?", ["Oui : au moins un escalier (IfcStair) relie deux niveaux", "Non : il n'y a pas d'escalier dans la maquette"],
+              "Oui : au moins un escalier (IfcStair) relie deux niveaux" if nb(D[pid], "IfcStair") else "Non : il n'y a pas d'escalier dans la maquette",
+              "Regarde la classe IfcStair dans l'onglet Arborescence.")]},
         {"type": "nombre", "pour": [pid], "titre": "2. Les chiffres clés (onglet Arborescence)", "items": [
             {"texte": "Nombre d'objets IfcSpace (pièces)", "valeur": r["nb_spaces"], "tolerance": 0, "unite": "u"},
             {"texte": "Nombre de portes (IfcDoor)", "valeur": r["nb_portes"], "tolerance": 0, "unite": "u"},
@@ -182,11 +211,10 @@ s2 = {"id": "seq03-s2", "sequence": "seq03", "seance": "s2", "titre": "Lire la m
           {"id": "prise", "type": "exercice", "titre": "Prise en main de la visionneuse", "duree": "20 min",
            "consigne": "Choisis le projet de ton groupe. Fais tourner la maquette, choisis un niveau, déplace le curseur « Coupe » pour voir à l'intérieur, active « Pièces », clique sur des objets. Ouvre l'onglet Arborescence.",
            "parties": [{"type": "projet", "choix": PROJETS}, {"type": "visionneuse"},
-                       {"type": "vraifaux", "titre": "As-tu trouvé ?", "items": [
+                       {"type": "vraifaux", "titre": "Les gestes de base", "items": [
                            {"texte": "Le curseur « Coupe » permet de voir l'intérieur du bâtiment, comme un plan de niveau.", "reponse": True, "explication": "C'est une coupe horizontale."},
-                           {"texte": "Le chemin bleu de l'inspecteur indique Projet › Site › Bâtiment › Niveau › Élément.", "reponse": True, "explication": "C'est l'arborescence IFC."},
-                           {"texte": "L'onglet Arborescence compte les objets de chaque classe, niveau par niveau.", "reponse": True, "explication": "Le nombre jaune à côté de chaque classe."},
-                           {"texte": "Le bouton « Pièces » ajoute des meubles dans la maquette.", "reponse": False, "explication": "Il affiche les pièces (IfcSpace), en bleu transparent."}]}]},
+                           {"texte": "Le bouton « Pièces » ajoute des meubles dans la maquette.", "reponse": False, "explication": "Il affiche les pièces (IfcSpace), en bleu transparent."}]}]
+                      + [prise_en_main(p["id"]) for p in PROJETS]},
           {"id": "identite", "type": "exercice", "titre": "Mission — La fiche d'identité du projet", "duree": "20 min",
            "consigne": "Complète la fiche d'identité de ton projet en cherchant dans la maquette.", "parties": s2_parties_id},
           {"id": "cours", "type": "cours", "titre": "Cours — La méthode du ticket", "duree": "10 min", "fichier": "seq03-s2-cours.html"},

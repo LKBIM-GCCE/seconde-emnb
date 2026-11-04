@@ -86,7 +86,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "As-tu trouvé ?",
+     "titre": "Les gestes de base",
      "items": [
       {
        "texte": "Le curseur « Coupe » permet de voir l'intérieur du bâtiment, comme un plan de niveau.",
@@ -94,19 +94,105 @@
        "explication": "C'est une coupe horizontale."
       },
       {
-       "texte": "Le chemin bleu de l'inspecteur indique Projet › Site › Bâtiment › Niveau › Élément.",
-       "reponse": true,
-       "explication": "C'est l'arborescence IFC."
-      },
-      {
-       "texte": "L'onglet Arborescence compte les objets de chaque classe, niveau par niveau.",
-       "reponse": true,
-       "explication": "Le nombre jaune à côté de chaque classe."
-      },
-      {
        "texte": "Le bouton « Pièces » ajoute des meubles dans la maquette.",
        "reponse": false,
        "explication": "Il affiche les pièces (IfcSpace), en bleu transparent."
+      }
+     ]
+    },
+    {
+     "type": "vraifaux",
+     "pour": [
+      "villa-sabonnere"
+     ],
+     "titre": "Ta maquette : vrai ou faux ?",
+     "items": [
+      {
+       "texte": "La maquette a un niveau « R+1 » (un étage).",
+       "reponse": false,
+       "explication": "Niveaux : FONDATION, RDC, PLAFOND, SABLIERE. La maison est de plain-pied."
+      },
+      {
+       "texte": "La maquette contient des meubles (IfcFurnishingElement).",
+       "reponse": true,
+       "explication": "17 meubles : regarde l'onglet Arborescence."
+      },
+      {
+       "texte": "Les fondations sont rangées sur un niveau à part, sous le RDC.",
+       "reponse": true,
+       "explication": "Le niveau FONDATION contient les semelles (IfcFooting)."
+      }
+     ]
+    },
+    {
+     "type": "vraifaux",
+     "pour": [
+      "villa-goyrans"
+     ],
+     "titre": "Ta maquette : vrai ou faux ?",
+     "items": [
+      {
+       "texte": "La maquette a un niveau « SOU SOL » sous le RDC.",
+       "reponse": true,
+       "explication": "Choisis le niveau SOU SOL dans le menu Niveau."
+      },
+      {
+       "texte": "Il n'y a aucun poteau (IfcColumn) dans la maquette.",
+       "reponse": false,
+       "explication": "Il y a 8 poteaux (IfcColumn)."
+      },
+      {
+       "texte": "La toiture est faite de plusieurs objets IfcRoof.",
+       "reponse": true,
+       "explication": "10 objets IfcRoof : la maison a plusieurs pans et volumes de toiture."
+      }
+     ]
+    },
+    {
+     "type": "vraifaux",
+     "pour": [
+      "maison-quartier"
+     ],
+     "titre": "Ta maquette : vrai ou faux ?",
+     "items": [
+      {
+       "texte": "La maquette contient des poteaux (IfcColumn).",
+       "reponse": true,
+       "explication": "7 poteaux : regarde l'onglet Arborescence."
+      },
+      {
+       "texte": "La maquette contient des meubles (IfcFurnishingElement).",
+       "reponse": false,
+       "explication": "Aucun meuble n'a été exporté dans cette maquette."
+      },
+      {
+       "texte": "Le bâtiment a un étage « R+1 ».",
+       "reponse": false,
+       "explication": "Niveaux : FONDATION, RDC, Plafond, TOITURE 01, TOITURE 02. Toutes les pièces sont au RDC."
+      }
+     ]
+    },
+    {
+     "type": "vraifaux",
+     "pour": [
+      "siege-social"
+     ],
+     "titre": "Ta maquette : vrai ou faux ?",
+     "items": [
+      {
+       "texte": "La maquette a un niveau « R+1 » avec des pièces.",
+       "reponse": true,
+       "explication": "Choisis R+1 dans le menu Niveau et active « Pièces »."
+      },
+      {
+       "texte": "La maquette contient des meubles (IfcFurnishingElement).",
+       "reponse": false,
+       "explication": "Aucun meuble n'a été exporté : les bureaux sont vides."
+      },
+      {
+       "texte": "Les fondations sont rangées sur un niveau à part, sous le RDC.",
+       "reponse": true,
+       "explication": "Le niveau Fondation contient les semelles (IfcFooting)."
       }
      ]
     }
@@ -177,16 +263,13 @@
        "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
-       "q": "De quoi sont faits les murs extérieurs principaux ?",
+       "q": "Le bâtiment a-t-il un escalier ?",
        "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
+        "Oui : au moins un escalier (IfcStair) relie deux niveaux",
+        "Non : il n'y a pas d'escalier dans la maquette"
        ],
-       "r": 0,
-       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
+       "r": 1,
+       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -247,16 +330,13 @@
        "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
-       "q": "De quoi sont faits les murs extérieurs principaux ?",
+       "q": "Le bâtiment a-t-il un escalier ?",
        "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
+        "Oui : au moins un escalier (IfcStair) relie deux niveaux",
+        "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 0,
-       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
+       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -317,16 +397,13 @@
        "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
-       "q": "De quoi sont faits les murs extérieurs principaux ?",
+       "q": "Le bâtiment a-t-il un escalier ?",
        "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
+        "Oui : au moins un escalier (IfcStair) relie deux niveaux",
+        "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 1,
-       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
+       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -387,16 +464,13 @@
        "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
-       "q": "De quoi sont faits les murs extérieurs principaux ?",
+       "q": "Le bâtiment a-t-il un escalier ?",
        "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
+        "Oui : au moins un escalier (IfcStair) relie deux niveaux",
+        "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 0,
-       "explication": "Clique sur un mur de façade : sa composition est dans ses propriétés (bloc Matériaux) et son épaisseur dans le nom du type."
+       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },

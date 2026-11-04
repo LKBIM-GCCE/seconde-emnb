@@ -318,3 +318,4 @@ body.large main { max-width: 1440px; }
 .oral-s4 p { margin: 4px 0 0; font-size: 15px; }
 .oral-plan li { margin: 4px 0; }
 .coup-pouce { background: var(--plan-pale); border-left: 4px solid var(--plan); border-radius: 6px; padding: 10px 12px; margin: 0; line-height: 1.6; }
+.certif-textes p { overflow-wrap: anywhere; }

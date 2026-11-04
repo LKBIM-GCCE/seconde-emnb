@@ -25,6 +25,8 @@
   // ---------- état ----------
   let etat = { nom: "", res: {}, essais: {} };
   try { etat = Object.assign(etat, JSON.parse(localStorage.getItem(CLE)) || {}); } catch (e) {}
+  // séance modifiée depuis la dernière visite : on oublie les réponses des activités qui n'existent plus
+  { const ids = new Set(A.blocs.map(b => b.id)); for (const k of Object.keys(etat.res)) if (!ids.has(k)) { delete etat.res[k]; delete etat.essais[k]; } }
   const sauver = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) {} };
   function melange(arr, graine) {
     const a = arr.slice(); let s = graine * 7919 + 13;
@@ -406,7 +408,9 @@
     const W = 1200, F = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
     const tmp = document.createElement("canvas").getContext("2d");
     const couper = (t, px, larg) => { tmp.font = `400 ${px}px ${F}`; const out = []; let l = "";
-      for (const m of t.split(" ")) { const e = l ? l + " " + m : m; if (tmp.measureText(e).width > larg && l) { out.push(l); l = m; } else l = e; } if (l) out.push(l); return out; };
+      const mots = [];
+      for (const m of t.split(" ")) { let r = m; while (tmp.measureText(r).width > larg && r.length > 1) { let n = r.length - 1; while (n > 1 && tmp.measureText(r.slice(0, n)).width > larg) n--; mots.push(r.slice(0, n)); r = r.slice(n); } mots.push(r); }
+      for (const m of mots) { const e = l ? l + " " + m : m; if (tmp.measureText(e).width > larg && l) { out.push(l); l = m; } else l = e; } if (l) out.push(l); return out; };
     const blocsTxt = d.textes.map(t => couper("« " + t + " »", 20, W - 300));
     const H = 700 + d.lignes.length * 56 + blocsTxt.reduce((s, b) => s + b.length * 28 + 14, 0);
     const cv = document.createElement("canvas"); cv.width = W; cv.height = H;

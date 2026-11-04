@@ -3,14 +3,82 @@
  "sequence": "seq03",
  "seance": "s4",
  "titre": "Évaluation : les futurs bureaux de l'agence",
- "intro": "L'agence a acheté un bâtiment d'habitation pour le transformer en bureaux. Tu travailles seul, avec la maquette IFC et les plans PDF du permis de construire : traite les tickets en indiquant ta source et la forme de ta réponse. Le passage à l'oral devant le client se fait ensuite en classe.",
+ "intro": "Tu es assistant(e) à la cellule BIM Desk de l'agence Atelier Équerre. Le client, l'économiste et le conducteur de travaux t'envoient des questions (tickets) sur le projet des futurs bureaux. Tu dois y répondre seul(e), à partir de la maquette numérique IFC et des plans PDF.",
+ "grille": [
+  {
+   "code": "C2.2.1",
+   "nom": "Identifier les données nécessaires à l'activité",
+   "criteres": [
+    {
+     "id": "t1",
+     "nom": "Ticket 1 — Façades",
+     "prof": false
+    },
+    {
+     "id": "t2-source",
+     "nom": "Ticket 2 — Acrotère",
+     "prof": false
+    },
+    {
+     "id": "t4-objets",
+     "nom": "Ticket 4 — Surfaces",
+     "prof": false
+    }
+   ]
+  },
+  {
+   "code": "C2.2.3",
+   "nom": "Choisir les données numériques ou graphiques",
+   "criteres": [
+    {
+     "id": "t2-valeur",
+     "nom": "Ticket 2 — Valeur",
+     "prof": false
+    },
+    {
+     "id": "t3",
+     "nom": "Ticket 3 — Pièce n° 43",
+     "prof": false
+    },
+    {
+     "id": "t4-total",
+     "nom": "Ticket 4 — Total",
+     "prof": false
+    },
+    {
+     "id": "vigilance",
+     "nom": "Ticket vigilance",
+     "prof": true
+    },
+    {
+     "id": "t5",
+     "nom": "Ticket 5 — Capture annotée",
+     "prof": true
+    },
+    {
+     "id": "oral",
+     "nom": "Oral client (2 min)",
+     "prof": true
+    }
+   ]
+  }
+ ],
  "blocs": [
+  {
+   "id": "mission",
+   "type": "cours",
+   "titre": "Ta mission et ce qu'on attend de toi",
+   "duree": "5 min",
+   "fichier": "seq03-s4-cours.html"
+  },
   {
    "id": "decouverte",
    "type": "exercice",
-   "titre": "Découverte du projet",
+   "titre": "Découverte du projet (non noté)",
    "duree": "15 min",
-   "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF.",
+   "verbe": "Explorer",
+   "demandeur": "Toi",
+   "consigne": "Avant de traiter les tickets, explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF. Cette partie n'est pas notée.",
    "parties": [
     {
      "type": "visionneuse",
@@ -38,10 +106,13 @@
    ]
   },
   {
-   "id": "info",
+   "id": "t1",
    "type": "exercice",
-   "titre": "Tickets « information »",
-   "duree": "25 min",
+   "titre": "Ticket 1 — Les façades",
+   "duree": "8 min",
+   "verbe": "Identifier",
+   "demandeur": "Client",
+   "consigne": "Le client te demande d'IDENTIFIER les matériaux des murs de façade et leur finition, en précisant où tu as trouvé chaque information.",
    "parties": [
     {
      "type": "visionneuse",
@@ -51,7 +122,7 @@
     },
     {
      "type": "qcm",
-     "titre": "Ticket 1 — Client : « De quoi sont faits les murs de façade, et quelle sera leur finition ? »",
+     "critere": "t1",
      "questions": [
       {
        "q": "Composition des murs de façade",
@@ -102,25 +173,30 @@
        "explication": "La maquette ne contient pas la teinte de l'enduit : il faut le plan."
       }
      ]
-    },
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "type": "exercice",
+   "titre": "Ticket 2 — L'acrotère",
+   "duree": "8 min",
+   "verbe": "Relever",
+   "demandeur": "Conducteur de travaux",
+   "consigne": "Le conducteur de travaux te demande de RELEVER la hauteur de l'acrotère le plus haut, par rapport au terrain naturel (TN).",
+   "parties": [
     {
-     "type": "nombre",
-     "titre": "Ticket 2 — Conducteur de travaux : « Quelle est la hauteur de l'acrotère le plus haut, par rapport au terrain naturel ? »",
-     "items": [
-      {
-       "texte": "Hauteur de l'acrotère le plus haut",
-       "valeur": 5.82,
-       "tolerance": 0.01,
-       "unite": "m",
-       "explication": "Cote « Acrotère 5,82 m/TN » sur les façades du permis de construire (dans la maquette : haut des murs « Acrotère 20 » du niveau Toiture terrasse)."
-      }
+     "type": "visionneuse",
+     "maquettes": [
+      "agence-architecte"
      ]
     },
     {
      "type": "qcm",
+     "critere": "t2-source",
      "questions": [
       {
-       "q": "Ticket 2 — Source la plus directe",
+       "q": "Où trouves-tu cette hauteur le plus directement ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -130,10 +206,46 @@
         "Le plan PDF"
        ],
        "r": 5,
-       "explication": "La cote altimétrique est écrite sur les façades."
-      },
+       "explication": "La cote altimétrique « Acrotère … m/TN » est écrite sur les façades."
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "critere": "t2-valeur",
+     "items": [
       {
-       "q": "Ticket 3 — Client : « À quoi servira la pièce n° 43, et à quel niveau est-elle ? »",
+       "texte": "Hauteur de l'acrotère le plus haut (par rapport au TN)",
+       "valeur": 5.82,
+       "tolerance": 0.01,
+       "unite": "m",
+       "explication": "Cote « Acrotère 5,82 m/TN » sur les façades du permis de construire (dans la maquette : haut des murs « Acrotère 20 » du niveau Toiture terrasse)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "type": "exercice",
+   "titre": "Ticket 3 — La pièce n° 43",
+   "duree": "6 min",
+   "verbe": "Localiser",
+   "demandeur": "Client",
+   "consigne": "Le client te demande de LOCALISER la pièce n° 43 et d'IDENTIFIER son usage.",
+   "parties": [
+    {
+     "type": "visionneuse",
+     "maquettes": [
+      "agence-architecte"
+     ]
+    },
+    {
+     "type": "qcm",
+     "critere": "t3",
+     "questions": [
+      {
+       "q": "Usage et niveau de la pièce n° 43",
        "choix": [
         "Bureau direction, au R+1",
         "Pôle économie et travaux, au R+1",
@@ -144,11 +256,11 @@
        "explication": "Active « Pièces », clique sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."
       },
       {
-       "q": "Ticket 3 — Forme de réponse la plus adaptée",
+       "q": "Quelle forme de réponse est la plus adaptée pour le client ?",
        "choix": [
-        "Réponse numérique",
-        "Réponse écrite courte (nom + niveau)",
-        "Capture annotée"
+        "Un tableau de valeurs",
+        "Une phrase courte (nom + niveau)",
+        "Une capture annotée"
        ],
        "r": 1,
        "explication": ""
@@ -158,10 +270,13 @@
    ]
   },
   {
-   "id": "quanti",
+   "id": "t4",
    "type": "exercice",
-   "titre": "Tickets quantitatifs",
-   "duree": "25 min",
+   "titre": "Ticket 4 — La surface des locaux",
+   "duree": "12 min",
+   "verbe": "Calculer",
+   "demandeur": "Économiste",
+   "consigne": "L'économiste te demande de CALCULER la surface totale des locaux clos et couverts, et de lui SIGNALER ce que tu n'as pas compté.",
    "parties": [
     {
      "type": "visionneuse",
@@ -170,10 +285,28 @@
      ]
     },
     {
+     "type": "qcm",
+     "critere": "t4-objets",
+     "questions": [
+      {
+       "q": "Quels objets additionnes-tu ?",
+       "choix": [
+        "Les dalles (IfcSlab) du RDC et du R+1",
+        "Les pièces (IfcSpace) du RDC et du R+1",
+        "Les pièces (IfcSpace) du RDC seulement",
+        "Les toitures (IfcRoof)"
+       ],
+       "r": 1,
+       "explication": "Un local clos et couvert = une pièce (IfcSpace). Une dalle compte aussi l'emprise des murs."
+      }
+     ]
+    },
+    {
      "type": "nombre",
+     "critere": "t4-total",
      "items": [
       {
-       "texte": "Ticket 4 — Économiste : « Surface totale des locaux clos et couverts ? » (additionne les IfcSpace des deux niveaux)",
+       "texte": "Surface totale des locaux clos et couverts",
        "valeur": 188.21,
        "tolerance": 0.6,
        "unite": "m²",
@@ -183,9 +316,10 @@
     },
     {
      "type": "qcm",
+     "critere": "vigilance",
      "questions": [
       {
-       "q": "Ticket vigilance — Au R+1, une terrasse accessible de 21,12 m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
+       "q": "Au R+1, une terrasse accessible de 21,12 m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
        "choix": [
         "Oui, c'est une surface du bâtiment",
         "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse",
@@ -198,9 +332,56 @@
     },
     {
      "type": "redaction",
-     "titre": "Ticket 5 — Capture annotée",
-     "question": "Le conducteur de travaux veut voir où se trouvent la terrasse accessible et les toitures terrasses. Fais une capture annotée (bouton 📷) et transmets-la à ton professeur. Ici, explique en une phrase pourquoi tu as choisi cette vue.",
+     "titre": "Ta réponse à l'économiste",
+     "question": "Rédige ta réponse comme un message : la surface avec son unité, sa source, et ce que tu as exclu.",
+     "min": 40,
+     "exemple": "Surface des locaux clos et couverts : … m² (somme des IfcSpace du RDC et du R+1). Je n'ai pas compté …"
+    }
+   ]
+  },
+  {
+   "id": "t5",
+   "type": "exercice",
+   "titre": "Ticket 5 — La capture annotée",
+   "duree": "12 min",
+   "verbe": "Produire",
+   "demandeur": "Conducteur de travaux",
+   "consigne": "Le conducteur de travaux te demande de PRODUIRE une capture annotée qui localise la terrasse accessible et les toitures terrasses.",
+   "parties": [
+    {
+     "type": "visionneuse",
+     "maquettes": [
+      "agence-architecte"
+     ]
+    },
+    {
+     "type": "texte",
+     "html": "<ol><li>Choisis une vue où l'on voit bien la terrasse et les toitures terrasses (tourne, utilise la coupe ou le filtre Niveau).</li><li>Clique sur <b>📷 Capture</b> : l'image est téléchargée.</li><li>Annote-la (Paint ou l'outil Capture de Windows) : flèches, noms des éléments, légende.</li><li>Transmets-la à ton professeur avec ton certificat.</li></ol>"
+    },
+    {
+     "type": "redaction",
+     "critere": "t5",
+     "titre": "Justifie ton choix",
+     "question": "En une ou deux phrases : pourquoi as-tu choisi cette vue, et pourquoi une capture est-elle la bonne forme de réponse pour ce ticket ?",
      "min": 30
+    }
+   ]
+  },
+  {
+   "id": "oral",
+   "type": "exercice",
+   "titre": "Préparer l'oral au client",
+   "duree": "5 min",
+   "verbe": "Justifier",
+   "demandeur": "Client",
+   "consigne": "En classe, tu présenteras en 2 minutes UN ticket au client (ton professeur). Tu devras JUSTIFIER ta source et ta forme de réponse.",
+   "parties": [
+    {
+     "type": "redaction",
+     "critere": "oral",
+     "titre": "Mon plan d'oral",
+     "question": "Quel ticket vas-tu présenter ? Note en 2 ou 3 phrases : la demande, ta réponse, ta source et pourquoi tu as choisi cette forme de réponse.",
+     "min": 40
     }
    ]
   }

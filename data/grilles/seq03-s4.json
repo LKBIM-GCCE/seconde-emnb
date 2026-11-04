@@ -10,17 +10,23 @@
     [
      "Ticket 1 — Façades",
      "Je distingue la composition du mur et sa finition, et je cite 2 sources : la maquette et le plan PDF.",
-     3
+     3,
+     "t1",
+     false
     ],
     [
      "Ticket 2 — Acrotère",
      "Je repère qu'il faut une cote de hauteur par rapport au terrain naturel (TN) et je la cherche sur les plans.",
-     3
+     3,
+     "t2-source",
+     false
     ],
     [
      "Ticket 4 — Surfaces",
      "Je choisis les bons objets : les pièces (IfcSpace) des deux niveaux, sans les dalles ni les terrasses.",
-     3
+     3,
+     "t4-objets",
+     false
     ]
    ]
   },
@@ -32,32 +38,44 @@
     [
      "Ticket 2 — Valeur",
      "Je donne la valeur avec son unité et sa référence (m/TN).",
-     3
+     3,
+     "t2-valeur",
+     false
     ],
     [
      "Ticket 3 — Pièce n° 43",
      "Je réponds par une phrase courte : le nom de la pièce et son niveau.",
-     3
+     3,
+     "t3",
+     false
     ],
     [
      "Ticket 4 — Total",
      "Je donne la surface totale juste, en m², avec 2 chiffres après la virgule.",
-     3
+     3,
+     "t4-total",
+     false
     ],
     [
      "Ticket vigilance",
      "Je repère ce qui ne doit pas être compté, je l'exclus et je le signale dans ma réponse.",
-     3
+     3,
+     "vigilance",
+     true
     ],
     [
      "Ticket 5 — Capture annotée",
      "Ma vue montre bien ce qui est demandé, avec repères et légende : on la comprend sans moi.",
-     3
+     3,
+     "t5",
+     true
     ],
     [
      "Oral client (2 min)",
      "J'explique ma source et ma forme de réponse, et je réponds à la question du client.",
-     3
+     3,
+     "oral",
+     true
     ]
    ]
   }

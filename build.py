@@ -207,7 +207,7 @@ def bloc_grille(s, x):
     for gr in g["groupes"]:
         lignes += f'<tr class="g-comp"><th colspan="{ncol}"><b>{e(gr["code"])}</b> {e(gr["nom"])} <span>→ note /{pts(gr["points"])}</span></th></tr>'
         lignes += "".join(f'<tr><th scope="row">{e(c)}</th><td>{e(ind)}</td>' + "".join('<td class="g-case" aria-hidden="true">○</td>' for _ in ech)
-                          + f'<td>/{pts(p)}</td></tr>' for c, ind, p in gr["criteres"])
+                          + f'<td>/{pts(p)}</td></tr>' for c, ind, p, *_ in gr["criteres"])
     conv = ""
     if g.get("conversion"):
         conv = ('<h3>De mes niveaux à ma note</h3><div class="tableau"><table class="g-conv"><thead><tr><th>Compétence</th><th>Points des critères</th><th>Note</th></tr></thead><tbody>'
@@ -350,7 +350,13 @@ const ok=code(act+"|"+f.get("nom").trim()+"|"+ligne+"|"+f.get("date").trim())===
 const r=document.getElementById("vr");r.textContent=ok?"✔ Certificat authentique":"✘ Le code ne correspond pas : certificat modifié ou mal recopié";r.className="score "+(ok?"ok":"ko");};
 </script>'''
     opts = "".join(f'<option value="{e(a["id"])}">{e(a["id"])} — {e(a["titre"])}</option>' for a in ACTS.values())
-    ids = {a["id"]: [b["id"] for b in a["blocs"] if b["type"] != "cours" and any(x["type"] in ("ordre", "indices", "associer", "grille", "vraifaux", "qcm", "saisie", "nombre", "schema") for x in b["parties"])] for a in ACTS.values()}
+    NOTES = ("ordre", "indices", "associer", "grille", "vraifaux", "qcm", "saisie", "nombre", "schema")
+    def ids_verif(a):
+        if a.get("grille"):
+            auto = {p["critere"] for b in a["blocs"] for p in b.get("parties", []) if p.get("critere") and p["type"] in NOTES}
+            return [c["id"] for g in a["grille"] for c in g["criteres"] if c["id"] in auto]
+        return [b["id"] for b in a["blocs"] if b["type"] != "cours" and any(x["type"] in NOTES for x in b["parties"])]
+    ids = {a["id"]: ids_verif(a) for a in ACTS.values()}
     contenu = contenu.replace("ACTS_OPTIONS", opts).replace("ACTS_IDS", json.dumps(ids))
     return page("Vérifier un certificat", contenu, extra_tete='<link rel="stylesheet" href="assets/activites.css"><meta name="robots" content="noindex">')
 

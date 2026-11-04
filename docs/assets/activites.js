@@ -288,6 +288,7 @@
     const b = blocs[i];
     zone.innerHTML = "";
     zone.append(h("header", { class: "bloc-tete" }, h("h2", {}, b.titre), b.duree ? h("span", { class: "duree" }, "⏱ " + b.duree) : null));
+    if (b.verbe) zone.append(h("p", { class: "ticket-tete" }, h("span", { class: "verbe" }, "🎯 " + b.verbe), b.demandeur ? h("span", { class: "demandeur" }, "Demandeur : " + b.demandeur) : null));
     if (b.consigne) zone.append(h("p", { class: "consigne" }, b.consigne));
     if (b.type === "cours") cours(b); else if (b.type === "certificat") certificat(); else exercice(b);
     if (defile) window.scrollTo({ top: $("#activite").offsetTop - 70, behavior: "smooth" });
@@ -362,16 +363,37 @@
       if (faits.length < notes.length) return alerte(`Il te reste ${notes.length - faits.length} activité(s) à valider avant d'obtenir ton certificat.`);
       const now = new Date(), date = now.toLocaleDateString("fr-FR"), heure = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
       const notees = faits.filter(b => etat.res[b.id].max);
-      const tot = notees.reduce((s, b) => s + etat.res[b.id].pts, 0), max = notees.reduce((s, b) => s + etat.res[b.id].max, 0);
-      const c = code(`${A.id}|${etat.nom}|${notees.map(b => `${b.id}:${etat.res[b.id].pts}/${etat.res[b.id].max}`).join(";")}|${date}`);
-      const lignes = faits.map(b => [b.titre, etat.res[b.id].max ? `${etat.res[b.id].pts} / ${etat.res[b.id].max}` : "fait ✓", `${etat.essais[b.id] || 1} essai(s)`]);
+      let tot = notees.reduce((s, b) => s + etat.res[b.id].pts, 0), max = notees.reduce((s, b) => s + etat.res[b.id].max, 0);
+      let c = code(`${A.id}|${etat.nom}|${notees.map(b => `${b.id}:${etat.res[b.id].pts}/${etat.res[b.id].max}`).join(";")}|${date}`);
+      let lignes = faits.map(b => [b.titre, etat.res[b.id].max ? `${etat.res[b.id].pts} / ${etat.res[b.id].max}` : "fait ✓", `${etat.essais[b.id] || 1} essai(s)`]);
+      if (A.grille) {
+        // une ligne par critère de la grille d'évaluation
+        const parCrit = {}, essaisCrit = {};
+        for (const b of A.blocs) (b.parties || []).forEach((p, k) => {
+          if (!p.critere || !etat.res[b.id]) return;
+          const x = (etat.res[b.id].detailParts || [])[k] || [0, 0];
+          const s = parCrit[p.critere] = parCrit[p.critere] || [0, 0]; s[0] += x[0]; s[1] += x[1];
+          essaisCrit[p.critere] = etat.essais[b.id] || 1;
+        });
+        lignes = []; const auto = []; tot = 0; max = 0;
+        for (const g of A.grille) {
+          lignes.push([`${g.code} · ${g.nom}`, "", "", "h"]);
+          for (const cr of g.criteres) {
+            const s = parCrit[cr.id] || [0, 0];
+            if (s[1]) { auto.push(`${cr.id}:${s[0]}/${s[1]}`); tot += s[0]; max += s[1]; }
+            const val = s[1] ? `${s[0]} / ${s[1]}` + (cr.prof ? " + prof" : "") : "Évalué par le prof";
+            lignes.push([cr.nom, val, s[1] ? `${essaisCrit[cr.id]} essai(s)` : ""]);
+          }
+        }
+        c = code(`${A.id}|${etat.nom}|${auto.join(";")}|${date}`);
+      }
       const textes = faits.flatMap(b => etat.res[b.id].textes || []);
-      const total = max ? `Total : ${tot} / ${max}  (${Math.round(tot / max * 100)} %)` : "";
+      const total = max ? (A.grille ? `Réponses corrigées automatiquement : ${tot} / ${max}` : `Total : ${tot} / ${max}  (${Math.round(tot / max * 100)} %)`) : "";
       cible.innerHTML = "";
       cible.append(h("div", { class: "certif" },
         h("p", { class: "certif-sur" }, "Seconde EMNB · Lycée des métiers Urbain Vitry"), h("h3", {}, "Certificat de séance"),
         h("p", { class: "certif-seance" }, A.titre + (projetNom() ? " — " + projetNom() : "")), h("p", { class: "certif-nom" }, etat.nom),
-        h("table", {}, ...lignes.map(([t, s, e]) => h("tr", {}, h("td", {}, t), h("td", {}, s), h("td", { class: "ess" }, e)))),
+        h("table", {}, ...lignes.map(([t, s, e, hd]) => hd ? h("tr", { class: "certif-comp" }, h("td", { colspan: "3" }, t)) : h("tr", {}, h("td", {}, t), h("td", {}, s), h("td", { class: "ess" }, e)))),
         textes.length ? h("div", { class: "certif-textes" }, ...textes.map(t => h("p", {}, "« " + t + " »"))) : null,
         total ? h("p", { class: "certif-total" }, total) : null,
         h("p", { class: "certif-pied" }, `${date} à ${heure} · Code de contrôle : `, h("b", {}, c))),
@@ -399,7 +421,8 @@
     txt(A.titre + (projetNom() ? " — " + projetNom() : ""), 28, 298, { p: 600 });
     txt(etat.nom, 60, 388, { p: 800 });
     let y = 460; x.strokeStyle = "#dedad0"; x.lineWidth = 1.5;
-    d.lignes.forEach(([t, s, e]) => { txt(t.length > 52 ? t.slice(0, 50) + "…" : t, 24, y, { a: "left", x: 140 }); txt(s, 26, y, { a: "right", x: 900, p: 700 }); txt(e, 18, y, { a: "right", x: W - 140, c: "#5d6670" });
+    d.lignes.forEach(([t, s, e, hd]) => { if (hd) { x.fillStyle = "#e6ecf7"; x.fillRect(130, y - 34, W - 260, 46); txt(t.length > 70 ? t.slice(0, 68) + "…" : t, 22, y, { a: "left", x: 140, p: 800, c: "#1f3a68" }); y += 56; return; }
+      txt(t.length > 52 ? t.slice(0, 50) + "…" : t, 24, y, { a: "left", x: 140 }); txt(s, 26, y, { a: "right", x: 900, p: 700 }); txt(e, 18, y, { a: "right", x: W - 140, c: "#5d6670" });
       x.beginPath(); x.moveTo(140, y + 20); x.lineTo(W - 140, y + 20); x.stroke(); y += 56; });
     blocsTxt.forEach(b => { y += 14; b.forEach(l => { txt(l, 20, y + 10, { c: "#24527a" }); y += 28; }); });
     if (d.total) txt(d.total, 34, y + 46, { p: 800 });

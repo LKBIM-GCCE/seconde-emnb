@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vérifier un certificat · Seconde EMNB</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=3fcda5fa"><link rel="stylesheet" href="assets/activites.css?v=cc4c9b11"><meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/style.css?v=3fcda5fa"><link rel="stylesheet" href="assets/activites.css?v=fc05b8eb"><meta name="robots" content="noindex">
 </head><body class="">
 <header class="entete">
   <a class="marque" href="index.html"><span class="logo" aria-hidden="true">2<small>de</small></span>
@@ -21,7 +21,7 @@
 <label>Code lu sur le certificat <input name="code" required placeholder="AB-12CD"></label>
 <button class="btn">Vérifier</button></form><p id="vr" class="score"></p></section>
 <script>
-const IDS = {"seq01-s1": ["td01", "td02", "td03"], "seq01-s2": ["td04", "td05", "td06", "quiz"], "seq01-s3": ["bugs", "dossier", "tableau"], "seq01-s4": ["role", "bim", "qcm"], "seq02-s1": ["classer", "situation", "masse"], "seq02-s2": ["defi", "niveaux", "facades"], "seq02-s3": ["traits", "coupeA", "hauteurs", "echelles"], "seq02-s4": ["phase", "etude", "quiz"], "seq03-s1": ["lancement", "bilan"], "seq03-s2": ["flash", "prise", "identite", "tickets"], "seq03-s3": ["defi", "quanti", "ecarts"], "seq03-s4": ["decouverte", "info", "quanti"]};
+const IDS = {"seq01-s1": ["td01", "td02", "td03"], "seq01-s2": ["td04", "td05", "td06", "quiz"], "seq01-s3": ["bugs", "dossier", "tableau"], "seq01-s4": ["role", "bim", "qcm"], "seq02-s1": ["classer", "situation", "masse"], "seq02-s2": ["defi", "niveaux", "facades"], "seq02-s3": ["traits", "coupeA", "hauteurs", "echelles"], "seq02-s4": ["phase", "etude", "quiz"], "seq03-s1": ["lancement", "bilan"], "seq03-s2": ["flash", "prise", "identite", "tickets"], "seq03-s3": ["defi", "quanti", "ecarts"], "seq03-s4": ["t1", "t2-source", "t4-objets", "t2-valeur", "t3", "t4-total", "vigilance"]};
 function code(t){let x=2166136261;for(const ch of t+"|emnb-urbain-vitry"){x^=ch.charCodeAt(0);x=Math.imul(x,16777619)>>>0;}const s=x.toString(36).toUpperCase().padStart(7,"0");return s.slice(0,2)+"-"+s.slice(2,6);}
 document.getElementById("v").onsubmit=ev=>{ev.preventDefault();const f=new FormData(ev.target);const act=f.get("act");
 const sc=f.get("sc").trim().split(/\s+/);const ligne=IDS[act].map((id,k)=>id+":"+(sc[k]||"")).join(";");

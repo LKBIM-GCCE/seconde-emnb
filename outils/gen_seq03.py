@@ -264,42 +264,66 @@ niv_pieces_b = len({e["niveau"] for e in esp_b})
 terrasse = next(e for e in B["elements"] if e["cls"] == "IfcSlab" and e["type"].endswith("00- Terrasse"))
 p43 = next(e for e in esp_b if e.get("numero") == "43")
 EVAL = ["agence-architecte"]
+GRILLE_S4 = json.load(open(SITE / "data" / "grilles" / "seq03-s4.json"))
+V = lambda verbe, qui: {"verbe": verbe, "demandeur": qui}
 s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluation : les futurs bureaux de l'agence",
-      "intro": "L'agence a acheté un bâtiment d'habitation pour le transformer en bureaux. Tu travailles seul, avec la maquette IFC et les plans PDF du permis de construire : traite les tickets en indiquant ta source et la forme de ta réponse. Le passage à l'oral devant le client se fait ensuite en classe.",
+      "intro": "Tu es assistant(e) à la cellule BIM Desk de l'agence Atelier Équerre. Le client, l'économiste et le conducteur de travaux t'envoient des questions (tickets) sur le projet des futurs bureaux. Tu dois y répondre seul(e), à partir de la maquette numérique IFC et des plans PDF.",
+      "grille": [{"code": g["code"], "nom": g["nom"], "criteres": [{"id": c[3], "nom": c[0], "prof": c[4]} for c in g["criteres"]]} for g in GRILLE_S4["groupes"]],
       "blocs": [
-          {"id": "decouverte", "type": "exercice", "titre": "Découverte du projet", "duree": "15 min",
-           "consigne": "Explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF.",
+          {"id": "mission", "type": "cours", "titre": "Ta mission et ce qu'on attend de toi", "duree": "5 min", "fichier": "seq03-s4-cours.html"},
+          {"id": "decouverte", "type": "exercice", "titre": "Découverte du projet (non noté)", "duree": "15 min", **V("Explorer", "Toi"),
+           "consigne": "Avant de traiter les tickets, explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF. Cette partie n'est pas notée.",
            "parties": [{"type": "visionneuse", "maquettes": EVAL},
                        {"type": "nombre", "items": [
                            {"texte": "Nombre de niveaux qui contiennent des pièces (IfcSpace)", "valeur": niv_pieces_b, "tolerance": 0, "unite": "u"},
                            {"texte": "Nombre de locaux (IfcSpace) dans tout le bâtiment", "valeur": len(esp_b), "tolerance": 0, "unite": "u"}]}]},
-          {"id": "info", "type": "exercice", "titre": "Tickets « information »", "duree": "25 min",
+          {"id": "t1", "type": "exercice", "titre": "Ticket 1 — Les façades", "duree": "8 min", **V("Identifier", "Client"),
+           "consigne": "Le client te demande d'IDENTIFIER les matériaux des murs de façade et leur finition, en précisant où tu as trouvé chaque information.",
            "parties": [{"type": "visionneuse", "maquettes": EVAL},
-                       {"type": "qcm", "titre": "Ticket 1 — Client : « De quoi sont faits les murs de façade, et quelle sera leur finition ? »", "questions": [
+                       {"type": "qcm", "critere": "t1", "questions": [
                            q("Composition des murs de façade", ["Brique 20 cm + enduit", "Maçonnerie existante de 33 cm", "Mur Duomur (béton + isolant)", "Ossature bois + bardage"], "Maçonnerie existante de 33 cm",
                              "Type « 00- Ext Mur existant 33cm » : on garde les murs du bâtiment existant."),
                            q("Source de la composition", SOURCES, "Le nom du type", "Le type « 00- Ext Mur existant 33cm » donne la nature et l'épaisseur du mur."),
                            q("Finition des façades dans le projet", ["Briquette en terre cuite apparente", "Enduit gratté fin, teinte beige (RAL 1014)", "Bardage bois", "Peinture blanche"], "Enduit gratté fin, teinte beige (RAL 1014)",
                              "Indiqué sur les façades « état projeté » et dans la notice du permis de construire."),
-                           q("Source de la finition", SOURCES, "Le plan PDF", "La maquette ne contient pas la teinte de l'enduit : il faut le plan.")]},
-                       {"type": "nombre", "titre": "Ticket 2 — Conducteur de travaux : « Quelle est la hauteur de l'acrotère le plus haut, par rapport au terrain naturel ? »", "items": [
-                           {"texte": "Hauteur de l'acrotère le plus haut", "valeur": 5.82, "tolerance": 0.01, "unite": "m",
-                            "explication": "Cote « Acrotère 5,82 m/TN » sur les façades du permis de construire (dans la maquette : haut des murs « Acrotère 20 » du niveau Toiture terrasse)."}]},
-                       {"type": "qcm", "questions": [
-                           q("Ticket 2 — Source la plus directe", SOURCES, "Le plan PDF", "La cote altimétrique est écrite sur les façades."),
-                           q(f"Ticket 3 — Client : « À quoi servira la pièce n° 43, et à quel niveau est-elle ? »",
-                             ["Bureau direction, au R+1", f"{p43['nom']}, au {p43['niveau']}", "Salle de réunion, au RDC", "Archives, au RDC"], f"{p43['nom']}, au {p43['niveau']}",
-                             "Active « Pièces », clique sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."),
-                           q("Ticket 3 — Forme de réponse la plus adaptée", ["Réponse numérique", "Réponse écrite courte (nom + niveau)", "Capture annotée"], "Réponse écrite courte (nom + niveau)")]}]},
-          {"id": "quanti", "type": "exercice", "titre": "Tickets quantitatifs", "duree": "25 min",
+                           q("Source de la finition", SOURCES, "Le plan PDF", "La maquette ne contient pas la teinte de l'enduit : il faut le plan.")]}]},
+          {"id": "t2", "type": "exercice", "titre": "Ticket 2 — L'acrotère", "duree": "8 min", **V("Relever", "Conducteur de travaux"),
+           "consigne": "Le conducteur de travaux te demande de RELEVER la hauteur de l'acrotère le plus haut, par rapport au terrain naturel (TN).",
            "parties": [{"type": "visionneuse", "maquettes": EVAL},
-                       {"type": "nombre", "items": [{"texte": "Ticket 4 — Économiste : « Surface totale des locaux clos et couverts ? » (additionne les IfcSpace des deux niveaux)", "valeur": surf_locaux, "tolerance": 0.6, "unite": "m²",
-                                                      "explication": f"{len(esp_b)} locaux : RDC + R+1. Les terrasses ne sont pas des locaux."}]},
-                       {"type": "qcm", "questions": [
-                           q(f"Ticket vigilance — Au R+1, une terrasse accessible de {str(rd(surf(terrasse))).replace('.', ',')} m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
+                       {"type": "qcm", "critere": "t2-source", "questions": [
+                           q("Où trouves-tu cette hauteur le plus directement ?", SOURCES, "Le plan PDF", "La cote altimétrique « Acrotère … m/TN » est écrite sur les façades.")]},
+                       {"type": "nombre", "critere": "t2-valeur", "items": [
+                           {"texte": "Hauteur de l'acrotère le plus haut (par rapport au TN)", "valeur": 5.82, "tolerance": 0.01, "unite": "m",
+                            "explication": "Cote « Acrotère 5,82 m/TN » sur les façades du permis de construire (dans la maquette : haut des murs « Acrotère 20 » du niveau Toiture terrasse)."}]}]},
+          {"id": "t3", "type": "exercice", "titre": "Ticket 3 — La pièce n° 43", "duree": "6 min", **V("Localiser", "Client"),
+           "consigne": "Le client te demande de LOCALISER la pièce n° 43 et d'IDENTIFIER son usage.",
+           "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "qcm", "critere": "t3", "questions": [
+                           q("Usage et niveau de la pièce n° 43", ["Bureau direction, au R+1", f"{p43['nom']}, au {p43['niveau']}", "Salle de réunion, au RDC", "Archives, au RDC"], f"{p43['nom']}, au {p43['niveau']}",
+                             "Active « Pièces », clique sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."),
+                           q("Quelle forme de réponse est la plus adaptée pour le client ?", ["Un tableau de valeurs", "Une phrase courte (nom + niveau)", "Une capture annotée"], "Une phrase courte (nom + niveau)")]}]},
+          {"id": "t4", "type": "exercice", "titre": "Ticket 4 — La surface des locaux", "duree": "12 min", **V("Calculer", "Économiste"),
+           "consigne": "L'économiste te demande de CALCULER la surface totale des locaux clos et couverts, et de lui SIGNALER ce que tu n'as pas compté.",
+           "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "qcm", "critere": "t4-objets", "questions": [
+                           q("Quels objets additionnes-tu ?", ["Les dalles (IfcSlab) du RDC et du R+1", "Les pièces (IfcSpace) du RDC et du R+1", "Les pièces (IfcSpace) du RDC seulement", "Les toitures (IfcRoof)"], "Les pièces (IfcSpace) du RDC et du R+1",
+                             "Un local clos et couvert = une pièce (IfcSpace). Une dalle compte aussi l'emprise des murs.")]},
+                       {"type": "nombre", "critere": "t4-total", "items": [{"texte": "Surface totale des locaux clos et couverts", "valeur": surf_locaux, "tolerance": 0.6, "unite": "m²",
+                                                                          "explication": f"{len(esp_b)} locaux : RDC + R+1. Les terrasses ne sont pas des locaux."}]},
+                       {"type": "qcm", "critere": "vigilance", "questions": [
+                           q(f"Au R+1, une terrasse accessible de {str(rd(surf(terrasse))).replace('.', ',')} m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
                              ["Oui, c'est une surface du bâtiment", "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse", "Oui, mais seulement la moitié"],
                              "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse", "Lire ce que l'on additionne, pas seulement le total.")]},
-                       {"type": "redaction", "titre": "Ticket 5 — Capture annotée", "question": "Le conducteur de travaux veut voir où se trouvent la terrasse accessible et les toitures terrasses. Fais une capture annotée (bouton 📷) et transmets-la à ton professeur. Ici, explique en une phrase pourquoi tu as choisi cette vue.", "min": 30}]}]}
+                       {"type": "redaction", "titre": "Ta réponse à l'économiste", "question": "Rédige ta réponse comme un message : la surface avec son unité, sa source, et ce que tu as exclu.", "min": 40,
+                        "exemple": "Surface des locaux clos et couverts : … m² (somme des IfcSpace du RDC et du R+1). Je n'ai pas compté …"}]},
+          {"id": "t5", "type": "exercice", "titre": "Ticket 5 — La capture annotée", "duree": "12 min", **V("Produire", "Conducteur de travaux"),
+           "consigne": "Le conducteur de travaux te demande de PRODUIRE une capture annotée qui localise la terrasse accessible et les toitures terrasses.",
+           "parties": [{"type": "visionneuse", "maquettes": EVAL},
+                       {"type": "texte", "html": "<ol><li>Choisis une vue où l'on voit bien la terrasse et les toitures terrasses (tourne, utilise la coupe ou le filtre Niveau).</li><li>Clique sur <b>📷 Capture</b> : l'image est téléchargée.</li><li>Annote-la (Paint ou l'outil Capture de Windows) : flèches, noms des éléments, légende.</li><li>Transmets-la à ton professeur avec ton certificat.</li></ol>"},
+                       {"type": "redaction", "critere": "t5", "titre": "Justifie ton choix", "question": "En une ou deux phrases : pourquoi as-tu choisi cette vue, et pourquoi une capture est-elle la bonne forme de réponse pour ce ticket ?", "min": 30}]},
+          {"id": "oral", "type": "exercice", "titre": "Préparer l'oral au client", "duree": "5 min", **V("Justifier", "Client"),
+           "consigne": "En classe, tu présenteras en 2 minutes UN ticket au client (ton professeur). Tu devras JUSTIFIER ta source et ta forme de réponse.",
+           "parties": [{"type": "redaction", "critere": "oral", "titre": "Mon plan d'oral", "question": "Quel ticket vas-tu présenter ? Note en 2 ou 3 phrases : la demande, ta réponse, ta source et pourquoi tu as choisi cette forme de réponse.", "min": 40}]}]}
 
 for s in (s1, s2, s3, s4):
     if s["id"] in ("seq03-s2", "seq03-s3", "seq03-s4"):

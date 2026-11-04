@@ -275,3 +275,28 @@ body.large main { max-width: 1440px; }
 .table-cours th { background: var(--plan-fonce); color: #fff; text-align: left; padding: 8px 10px; }
 .table-cours td { padding: 8px 10px; border-top: 1px solid var(--trait); vertical-align: top; }
 .table-cours tbody tr:nth-child(even) td { background: var(--calque); }
+
+/* Tickets : verbe d'action et demandeur */
+.ticket-tete { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 10px; }
+.verbe { display: inline-block; background: var(--chantier); color: #fff; font: 800 15px/1 var(--titre); text-transform: uppercase; letter-spacing: .04em; padding: 7px 12px; border-radius: 6px; }
+.tickets-s4 .verbe { font-size: 12px; padding: 4px 8px; }
+.demandeur { background: var(--plan-pale); color: var(--plan-fonce); font-weight: 700; font-size: 14px; padding: 6px 10px; border-radius: 6px; }
+.certif .certif-comp td { background: var(--plan-pale); color: var(--plan-fonce); font-weight: 800; }
+
+/* Cours S4 : mission */
+.mission-pro { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 14px; margin-bottom: 16px; }
+@media (max-width: 760px) { .mission-pro { grid-template-columns: 1fr; } }
+.mp-cartouche { border: 1.5px solid var(--plan); border-radius: 10px; padding: 14px 16px; background: var(--carte); box-shadow: 0 4px 0 var(--signal); }
+.mp-cartouche h4 { margin: 2px 0 6px; font-size: 19px; }
+.mp-cartouche p { margin: 0; }
+.mp-tag { font: 700 12px/1 var(--texte); text-transform: uppercase; letter-spacing: .05em; color: var(--chantier) !important; margin-bottom: 4px !important; }
+.mp-acteurs { display: grid; gap: 8px; }
+.mp-acteurs div { display: grid; grid-template-columns: 34px 1fr; column-gap: 8px; align-items: center; background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 8px 10px; }
+.mp-acteurs span { grid-row: span 2; font-size: 24px; }
+.mp-acteurs small { color: var(--doux); }
+.trois-attendus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 8px 0 16px; }
+@media (max-width: 700px) { .trois-attendus { grid-template-columns: 1fr; } }
+.trois-attendus div { background: var(--carte); border: 1px solid var(--trait); border-top: 4px solid var(--chantier); border-radius: 8px; padding: 10px 12px; }
+.trois-attendus i { font-style: normal; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--chantier); color: #fff; font: 800 13px var(--titre); margin-right: 6px; }
+.trois-attendus b { font-family: var(--titre); font-size: 16px; }
+.trois-attendus small { display: block; color: var(--doux); margin-top: 4px; }

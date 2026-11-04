@@ -83,7 +83,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "1. Compter (onglet Arborescence)",
+     "titre": "1. Compter (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -126,7 +126,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "1. Compter (onglet Arborescence)",
+     "titre": "1. Compter (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -169,7 +169,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "1. Compter (onglet Arborescence)",
+     "titre": "1. Compter (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de poteaux (IfcColumn)",
@@ -212,7 +212,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "1. Compter (onglet Arborescence)",
+     "titre": "1. Compter (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",

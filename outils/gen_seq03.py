@@ -224,7 +224,7 @@ s2 = {"id": "seq03-s2", "sequence": "seq03", "seance": "s2", "titre": "Lire la m
 # ================================================================== S3
 def tickets_quanti(pid):
     r = REF[pid]
-    return [{"type": "nombre", "pour": [pid], "titre": "1. Compter (onglet Arborescence)", "items": [
+    return [{"type": "nombre", "pour": [pid], "titre": "1. Compter (Arborescence › Par type d'objet)", "items": [
         ({"texte": "Nombre de fenêtres (IfcWindow)", "valeur": r["nb_fenetres"], "tolerance": 0, "unite": "u"} if r["nb_fenetres"]
          else {"texte": "Nombre de poteaux (IfcColumn)", "valeur": nb(D[pid], "IfcColumn"), "tolerance": 0, "unite": "u"}),
         {"texte": "Nombre de portes (IfcDoor) au RDC", "valeur": r["portes_rdc"], "tolerance": 0, "unite": "u"}]},

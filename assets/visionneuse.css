@@ -37,3 +37,9 @@
 .v-charge[hidden] { display: none; }
 .v-partie { margin: 0 0 4px; font-size: 13px; color: var(--doux); } .v-partie b { font-family: ui-monospace, Consolas, monospace; color: var(--chantier); }
 .v-projet[hidden] { display: none; }
+.v-modes { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 8px; }
+.v-modes button { flex: 1 1 140px; font: 700 13px/1.25 var(--texte, system-ui); text-align: left; padding: 6px 9px; border-radius: 8px; border: 1.5px solid var(--plan, #1f55d6); background: #fff; color: var(--plan, #1f55d6); cursor: pointer; }
+.v-modes button small { display: block; font-weight: 400; font-size: 11px; color: var(--doux, #55637e); }
+.v-modes button[aria-pressed="true"] { background: var(--plan, #1f55d6); color: #fff; }
+.v-modes button[aria-pressed="true"] small { color: #dfe8fb; }
+.v-mode-aide { font-size: 12.5px; color: var(--doux, #55637e); margin: 0 0 8px; }

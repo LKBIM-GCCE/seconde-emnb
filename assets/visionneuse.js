@@ -150,23 +150,45 @@
       z.innerHTML = h;
     }
 
+    let modeArbo = "niveau";
     function arbo() {
       const z = $(".v-arbo");
-      let h = `<p class="v-racine">${esc(D.arbo.Projet)} › ${esc(D.arbo.Site)} › ${esc(D.arbo["Bâtiment"])}</p>`;
-      for (const n of D.niveaux) {
-        const els = D.elements.filter(e => e.niveau === n.nom);
-        if (!els.length) continue;
-        const parCls = {};
-        els.forEach(e => (parCls[e.cls] = parCls[e.cls] || []).push(e));
-        h += `<details class="v-niv"><summary>${esc(n.nom)} <small>(${String(n.altitude).replace(".", ",")} m)</small></summary>`;
-        for (const [c, l] of Object.entries(parCls).sort()) {
-          h += `<details class="v-cls"><summary><b>${esc(nomCls(c))}</b> <span class="v-mono">${c}</span> <span class="v-nb">${l.length}</span></summary><ul>` +
-            l.map(e => `<li><button type="button" data-id="${e.id}">${esc(e.nom || e.id)}</button></li>`).join("") + `</ul></details>`;
+      let h = `<div class="v-modes" role="group" aria-label="Type d'arborescence">
+<button type="button" data-m="niveau" aria-pressed="${modeArbo === "niveau"}">🏢 Par niveau <small>(structure spatiale)</small></button>
+<button type="button" data-m="type" aria-pressed="${modeArbo === "type"}">🧱 Par type d'objet <small>(classes)</small></button></div>`;
+      const ligne = (e, avecNiv) => `<li><button type="button" data-id="${e.id}">${esc(e.nom || e.id)}${avecNiv && e.niveau ? ` <small class="v-mono">${esc(e.niveau)}</small>` : ""}</button></li>`;
+      if (modeArbo === "niveau") {
+        h += `<p class="v-racine">${esc(D.arbo.Projet)} › ${esc(D.arbo.Site)} › ${esc(D.arbo["Bâtiment"])}</p><p class="v-mode-aide">Les objets sont rangés <b>là où ils se trouvent</b> : bâtiment › niveau › classe.</p>`;
+        for (const n of D.niveaux) {
+          const els = D.elements.filter(e => e.niveau === n.nom);
+          if (!els.length) continue;
+          const parCls = {};
+          els.forEach(e => (parCls[e.cls] = parCls[e.cls] || []).push(e));
+          h += `<details class="v-niv"><summary>${esc(n.nom)} <small>(${String(n.altitude).replace(".", ",")} m)</small> <span class="v-nb">${els.length}</span></summary>`;
+          for (const [c, l] of Object.entries(parCls).sort()) {
+            h += `<details class="v-cls"><summary><b>${esc(nomCls(c))}</b> <span class="v-mono">${c}</span> <span class="v-nb">${l.length}</span></summary><ul>` +
+              l.map(e => ligne(e, false)).join("") + `</ul></details>`;
+          }
+          h += `</details>`;
         }
-        h += `</details>`;
+      } else {
+        h += `<p class="v-mode-aide">Les objets sont rangés <b>par ce qu'ils sont</b> : classe › type, tous niveaux confondus. Pratique pour <b>compter</b>.</p>`;
+        const parCls = {};
+        D.elements.forEach(e => (parCls[e.cls] = parCls[e.cls] || []).push(e));
+        for (const [c, l] of Object.entries(parCls).sort((a, b) => nomCls(a[0]).localeCompare(nomCls(b[0]), "fr"))) {
+          const parType = {};
+          l.forEach(e => (parType[e.type || "(sans type)"] = parType[e.type || "(sans type)"] || []).push(e));
+          h += `<details class="v-niv"><summary><b>${esc(nomCls(c))}</b> <span class="v-mono">${c}</span> <span class="v-nb">${l.length}</span></summary>`;
+          for (const [ty, lt] of Object.entries(parType).sort()) {
+            h += `<details class="v-cls"><summary>${esc(ty.replace(/^[^:]*:/, ""))} <span class="v-nb">${lt.length}</span></summary><ul>` +
+              lt.map(e => ligne(e, true)).join("") + `</ul></details>`;
+          }
+          h += `</details>`;
+        }
       }
       z.innerHTML = h;
       z.querySelectorAll("button[data-id]").forEach(b => b.onclick = () => { choisir(b.dataset.id); onglet("insp"); });
+      z.querySelectorAll(".v-modes button").forEach(b => b.onclick = () => { modeArbo = b.dataset.m; arbo(); });
     }
     function onglet(o) {
       root.querySelectorAll(".v-onglets button").forEach(b => b.classList.toggle("on", b.dataset.o === o));

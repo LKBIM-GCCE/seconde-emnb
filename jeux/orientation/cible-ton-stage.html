@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cible ton stage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout : une planche de plan avec cartouche en tête ; chaque niveau = une planche. Mono = annotations de plan. */
+:root{
+  --paper:#f3f4f0; --sheet:#fbfbf8; --ink:#1d2a3a; --muted:#5d6876; --line:#c9cdc6; --grid:#e4e6e0;
+  --ee:#b0601c; --ee-soft:#f4e3d2; --aa:#2c5f8d; --aa-soft:#dbe6f1; --both:#5b4a86; --both-soft:#e6e1f0;
+  --ok:#2f7d4f; --ok-soft:#dcefe3; --ko:#b23a3a; --ko-soft:#f6dede;
+  --f-display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --f-body:"Barlow","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141a22; --sheet:#1b222c; --ink:#e7ebf0; --muted:#9aa5b2; --line:#33404e; --grid:#222b36;
+  --ee:#e39352; --ee-soft:#3a2a1c; --aa:#7fb0dd; --aa-soft:#1d2e40; --both:#ab9be0; --both-soft:#2b2640;
+  --ok:#6cc391; --ok-soft:#1c3326; --ko:#ea7d7d; --ko-soft:#3a2020; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141a22; --sheet:#1b222c; --ink:#e7ebf0; --muted:#9aa5b2; --line:#33404e; --grid:#222b36;
+  --ee:#e39352; --ee-soft:#3a2a1c; --aa:#7fb0dd; --aa-soft:#1d2e40; --both:#ab9be0; --both-soft:#2b2640;
+  --ok:#6cc391; --ok-soft:#1c3326; --ko:#ea7d7d; --ko-soft:#3a2020; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;}
+.wrap{max-width:960px;margin:0 auto;padding-block:24px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:700;letter-spacing:.01em;text-transform:uppercase}
+h2{font-size:1.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+h3{font-size:1.25rem;font-weight:600}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* Cartouche */
+.cartouche{background:var(--sheet);border:2px solid var(--ink);display:grid;grid-template-columns:1fr auto}
+.cart-main{padding:18px 20px;border-right:2px solid var(--ink);display:flex;flex-direction:column;gap:8px;min-width:0}
+.cart-side{display:grid;grid-template-rows:repeat(3,1fr);min-width:150px}
+.cart-side div{padding:8px 14px;border-bottom:1px solid var(--ink);display:flex;flex-direction:column;justify-content:center}
+.cart-side div:last-child{border-bottom:0}
+.cart-side b{font-family:var(--f-mono);font-size:1rem}
+.lede{color:var(--muted);max-width:62ch}
+@media (max-width:620px){.cartouche{grid-template-columns:1fr}.cart-main{border-right:0;border-bottom:2px solid var(--ink)}
+  .cart-side{grid-template-rows:none;grid-template-columns:repeat(3,1fr);min-width:0}.cart-side div{border-bottom:0;border-right:1px solid var(--ink)}.cart-side div:last-child{border-right:0}}
+
+/* Légende des spécialités */
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.leg{background:var(--sheet);border:1px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.leg .tag{align-self:flex-start}
+.leg p{font-size:.9rem;color:var(--muted)}
+@media (max-width:720px){.legend{grid-template-columns:1fr}}
+.tag{font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.05em;padding:3px 8px;border:1.5px solid currentColor;text-transform:uppercase;white-space:nowrap}
+.t-ee{color:var(--ee);background:var(--ee-soft)}
+.t-aa{color:var(--aa);background:var(--aa-soft)}
+.t-both{color:var(--both);background:repeating-linear-gradient(135deg,var(--ee-soft) 0 6px,var(--aa-soft) 6px 12px)}
+
+/* Onglets planches */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+.tab{font:600 1rem var(--f-display);text-transform:uppercase;letter-spacing:.04em;background:transparent;color:var(--muted);
+  border:2px solid transparent;border-bottom:0;padding:10px 16px;cursor:pointer;margin-bottom:-2px;display:flex;gap:8px;align-items:baseline}
+.tab .n{font-family:var(--f-mono);font-size:.75rem}
+.tab[aria-selected="true"]{background:var(--sheet);color:var(--ink);border-color:var(--ink)}
+.tab:focus-visible,.btn:focus-visible,.opt:focus-visible{outline:3px solid var(--aa);outline-offset:2px}
+.tab .done{color:var(--ok);font-family:var(--f-mono);font-size:.8rem}
+
+.sheet{background:var(--sheet);border:2px solid var(--ink);border-top:0;padding:22px;display:flex;flex-direction:column;gap:18px}
+@media (max-width:520px){.sheet{padding:16px}}
+.sheet-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.consigne{color:var(--muted);max-width:65ch}
+
+/* Progression */
+.progress{display:flex;gap:4px}
+.progress i{flex:1;height:6px;background:var(--grid);border:1px solid var(--line)}
+.progress i.ok{background:var(--ok);border-color:var(--ok)}
+.progress i.ko{background:var(--ko);border-color:var(--ko)}
+.progress i.cur{background:var(--ink);border-color:var(--ink)}
+
+/* Carte question */
+.card{border:1.5px solid var(--ink);padding:20px;display:flex;flex-direction:column;gap:14px;position:relative;background:var(--sheet)}
+.card .ref{position:absolute;top:-11px;left:14px;background:var(--sheet);padding:0 6px}
+.card .big{font-family:var(--f-display);font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:700;line-height:1.1}
+.card .sub{color:var(--muted)}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:560px){.choices{grid-template-columns:1fr}}
+.opt{font:600 1rem var(--f-body);text-align:left;padding:12px 14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:4px;min-height:56px}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt.ee{border-left:6px solid var(--ee)} .opt.aa{border-left:6px solid var(--aa)} .opt.both{border-left:6px solid var(--both)}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--ko-soft);border-color:var(--ko)}
+.opt:disabled{cursor:default}
+.opt small{font-weight:400;color:var(--muted);font-size:.85rem}
+.feedback{border-left:4px solid var(--ok);background:var(--ok-soft);padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.feedback.bad{border-color:var(--ko);background:var(--ko-soft)}
+.feedback b{font-family:var(--f-display);font-size:1.15rem;text-transform:uppercase}
+.feedback .metiers{font-size:.92rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 1rem var(--f-display);text-transform:uppercase;letter-spacing:.05em;padding:10px 18px;border:2px solid var(--ink);background:var(--ink);color:var(--sheet);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{filter:brightness(1.1)}
+
+/* Plan de synthèse niveau 1 */
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:720px){.board{grid-template-columns:1fr}}
+.col{border:1.5px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h3{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.col ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+.col.ee{border-top:6px solid var(--ee)} .col.aa{border-top:6px solid var(--aa)} .col.both{border-top:6px solid var(--both)}
+
+.score{font-family:var(--f-display);font-size:3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.result{display:flex;flex-direction:column;gap:14px}
+.targets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:720px){.targets{grid-template-columns:1fr}}
+.target{border:1.5px solid var(--ink);padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.target .where{font-size:.9rem;color:var(--muted)}
+.target .metiers{font-size:.9rem}
+.note{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.copybox{width:100%;min-height:150px;font-family:var(--f-mono);font-size:.8rem;background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:10px;resize:vertical}
+.total{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:var(--sheet);border:2px solid var(--ink);padding:14px 18px}
+.total .mono{display:block}
+.footer{font-size:.8rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.card,.feedback,.result{animation:in .25s ease-out}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+</head>
+<body>
+<nav style="max-width:960px;margin:12px auto 0;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap;font:600 15px/1 var(--f-body)">
+<a href="../../jeux.html" style="background:var(--ink);color:var(--sheet);text-decoration:none;padding:8px 12px">🏠 La maison des jeux</a>
+<a href="../../index.html" style="color:var(--ink);padding:8px 4px">Accueil du site</a></nav>
+
+<div class="wrap">
+  <header class="cartouche">
+    <div class="cart-main">
+      <span class="mono">Seconde EMNB · Soutien au parcours · Recherche de PFMP</span>
+      <h1>Cible ton stage</h1>
+      <p class="lede">Où travaille un technicien d'études du bâtiment ? Trie les structures, aide des élèves à choisir, puis trouve les 3 types d'entreprises que tu vas démarcher.</p>
+    </div>
+    <div class="cart-side">
+      <div><span class="mono">Planches</span><b>3</b></div>
+      <div><span class="mono">Source</span><b>ONISEP</b></div>
+      <div><span class="mono">Score</span><b id="scoreTop">0 / 21</b></div>
+    </div>
+  </header>
+
+  <section class="legend" aria-label="Légende">
+    <div class="leg"><span class="tag t-ee">TEB-EE</span><h3>Études et économie</h3><p>Métreur, assistant de l'économiste, assistant du chef de chantier, dessinateur BTP (CAO).</p></div>
+    <div class="leg"><span class="tag t-aa">TEB-AA</span><h3>Assistant en architecture</h3><p>Assistant d'architecte, dessinateur en architecture, collaborateur d'agence, modeleur BIM.</p></div>
+    <div class="leg"><span class="tag t-both">Les deux</span><h3>Structures communes</h3><p>Des lieux qui accueillent les deux options : idéal si tu hésites encore.</p></div>
+  </section>
+
+  <main>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-1" aria-selected="true" data-p="1"><span class="n">PL.01</span>Qui embauche ?<span class="done" id="d1"></span></button>
+      <button class="tab" role="tab" id="tab-2" aria-selected="false" data-p="2"><span class="n">PL.02</span>Le bon endroit<span class="done" id="d2"></span></button>
+      <button class="tab" role="tab" id="tab-3" aria-selected="false" data-p="3"><span class="n">PL.03</span>Ma cible<span class="done" id="d3"></span></button>
+    </div>
+
+    <section class="sheet" id="p1" role="tabpanel" aria-labelledby="tab-1">
+      <div class="sheet-head">
+        <div><span class="mono">Planche 01 · Tri des structures</span><h2>Qui embauche ?</h2></div>
+        <span class="mono" id="c1">1 / 11</span>
+      </div>
+      <p class="consigne">Pour chaque structure, indique quelle option du bac pro TEB y travaille d'après l'ONISEP : <b>EE</b>, <b>AA</b> ou <b>les deux</b>.</p>
+      <div class="progress" id="pg1"></div>
+      <div id="z1"></div>
+    </section>
+
+    <section class="sheet" id="p2" role="tabpanel" aria-labelledby="tab-2" hidden>
+      <div class="sheet-head">
+        <div><span class="mono">Planche 02 · Mises en situation</span><h2>Le bon endroit</h2></div>
+        <span class="mono" id="c2">1 / 10</span>
+      </div>
+      <p class="consigne">Ces élèves de seconde cherchent leur stage. Conseille à chacun la structure la plus adaptée à son projet.</p>
+      <div class="progress" id="pg2"></div>
+      <div id="z2"></div>
+    </section>
+
+    <section class="sheet" id="p3" role="tabpanel" aria-labelledby="tab-3" hidden>
+      <div class="sheet-head">
+        <div><span class="mono">Planche 03 · Mon profil</span><h2>Ma cible de stage</h2></div>
+        <span class="mono" id="c3">1 / 6</span>
+      </div>
+      <p class="consigne">Réponds sincèrement : il n'y a pas de bonne réponse. Tu obtiens 3 types de structures à démarcher et où trouver leurs coordonnées.</p>
+      <div class="progress" id="pg3"></div>
+      <div id="z3"></div>
+    </section>
+  </main>
+
+  <div class="total">
+    <div><span class="mono">Score planches 01 + 02</span><span class="score" id="scoreBig">0</span><span class="mono">sur 21 points</span></div>
+    <button class="btn ghost" id="resetAll" type="button">Recommencer le jeu</button>
+  </div>
+  <p class="footer">Débouchés d'après les fiches ONISEP des bacs pro Technicien d'études du bâtiment, option A études et économie et option B assistant en architecture.</p>
+</div>
+
+<script>
+const LABEL={ee:"TEB-EE",aa:"TEB-AA",both:"Les deux"};
+const TAGC={ee:"t-ee",aa:"t-aa",both:"t-both"};
+
+/* Planche 1 : structures */
+const S=[
+ {n:"Cabinet d'économie de la construction",d:"Il estime le coût des projets et rédige les pièces écrites (CCTP, DPGF).",a:"ee",m:"Métreur, assistant de l'économiste.",w:"Annuaire de l'UNTEC (untec.com), Google Maps : « économiste de la construction »"},
+ {n:"Agence d'architecture",d:"Elle conçoit les projets, du croquis au permis de construire.",a:"aa",m:"Assistant d'architecte, dessinateur, modeleur BIM.",w:"Annuaire de l'Ordre des architectes (architectes.org)"},
+ {n:"Bureau d'études techniques (BET)",d:"Il calcule la structure, les réseaux, le chauffage, et produit les plans techniques.",a:"ee",m:"Dessinateur BTP (CAO), technicien d'études.",w:"Google Maps : « bureau d'études structure » ou « BET fluides », annuaire CINOV"},
+ {n:"Entreprise artisanale du bâtiment",d:"Petite entreprise de maçonnerie, charpente, plâtrerie… qui chiffre et réalise ses chantiers.",a:"ee",m:"Assistant du chef de chantier, métreur.",w:"CAPEB de ton département (capeb.fr), artisans de ton quartier"},
+ {n:"PME ou grande entreprise du BTP",d:"Elle a un service études de prix et des conducteurs de travaux.",a:"ee",m:"Métreur, technicien études de prix, assistant du chef de chantier.",w:"FFB de ton département (ffbatiment.fr), pages carrières des entreprises"},
+ {n:"Architecte paysagiste",d:"Il conçoit les jardins, parcs et espaces publics extérieurs.",a:"aa",m:"Dessinateur, assistant de projet paysage.",w:"Fédération française du paysage, Google Maps : « paysagiste concepteur »"},
+ {n:"Architecte d'intérieur",d:"Il aménage les espaces intérieurs : commerces, bureaux, logements.",a:"aa",m:"Dessinateur, assistant en aménagement intérieur.",w:"Conseil français des architectes d'intérieur (CFAI), Google Maps"},
+ {n:"Cabinet de maîtrise d'œuvre",d:"Il conçoit et suit les travaux pour le compte du client.",a:"both",m:"EE : métreur, dessinateur. AA : assistant de projet, dessinateur.",w:"Google Maps : « maîtrise d'œuvre bâtiment », Ordre des architectes"},
+ {n:"Services techniques d'une collectivité",d:"Mairie, métropole, département : ils gèrent écoles, gymnases, bâtiments publics.",a:"both",m:"EE : bureau d'études, métrés. AA : dessin, plans des bâtiments publics.",w:"Site de ta mairie ou de la métropole, rubrique services techniques ou stages"},
+ {n:"Maître d'ouvrage (bailleur social, promoteur)",d:"C'est le client qui finance et commande le projet.",a:"both",m:"EE : suivi des coûts. AA : suivi des projets, plans.",w:"Sites des bailleurs sociaux de ta ville, promoteurs locaux"},
+ {n:"Grand groupe public ou privé",d:"Service immobilier ou patrimoine d'une grande entreprise ou d'un organisme public.",a:"both",m:"EE : grandes entreprises du BTP. AA : grands groupes publics et privés.",w:"Pages « carrières » ou « stages » des grands groupes"}
+];
+const WHY={
+ ee:"L'ONISEP cite cette structure pour l'option A études et économie.",
+ aa:"L'ONISEP cite cette structure pour l'option B assistant en architecture.",
+ both:"L'ONISEP cite cette structure pour les deux options."
+};
+
+/* Planche 2 : mises en situation (index de S) */
+const Q=[
+ {who:"Inès",t:"aime compter, mesurer sur plan et travailler sur Excel. Elle veut découvrir le métier de métreur.",o:[0,5,6],c:0},
+ {who:"Yanis",t:"veut dessiner des plans de permis de construire et modéliser des maisons sur Revit.",o:[3,1,2],c:1},
+ {who:"Lucas",t:"veut rester dans les études tout en allant sur le chantier : préparer des quantités, aider à suivre les travaux.",o:[6,5,4],c:4},
+ {who:"Sarah",t:"s'intéresse aux jardins, aux places et aux aménagements extérieurs.",o:[5,0,4],c:5},
+ {who:"Noah",t:"aime les matériaux, la décoration et l'aménagement des espaces intérieurs.",o:[2,6,3],c:6},
+ {who:"Emma",t:"veut travailler pour le service public, sur les écoles et les gymnases de sa ville.",o:[8,6,3],c:8},
+ {who:"Adam",t:"veut comprendre comment on dimensionne une poutre ou un réseau de chauffage, et dessiner en CAO.",o:[1,2,5],c:2},
+ {who:"Léa",t:"veut savoir comment un client prépare et finance la construction de logements.",o:[6,3,9],c:9},
+ {who:"Rayan",t:"habite à la campagne, loin des grandes agences. Il aime le concret et les petites équipes.",o:[10,3,5],c:3},
+ {who:"Chloé",t:"hésite encore entre EE et AA et veut un lieu de stage où elle verra les deux métiers.",o:[7,0,6],c:7}
+];
+
+/* Planche 3 : profil */
+const P=[
+ {q:"Sur un projet, ce que je préfère faire :",o:[["Calculer et chiffrer",{ee:2}],["Dessiner et imaginer des espaces",{aa:2}],["Un peu des deux",{ee:1,aa:1}]]},
+ {q:"La matière où je me sens le plus à l'aise :",o:[["Les maths",{ee:2}],["Le dessin, les arts plastiques",{aa:2}],["La techno, le numérique",{ee:1,aa:1}]]},
+ {q:"Devant un bâtiment, je me demande d'abord :",o:[["Combien il a coûté",{ee:2}],["Comment il a été construit",{ee:1}],["Pourquoi il a cette forme",{aa:2}]]},
+ {q:"Mon outil idéal :",o:[["Un tableur et un logiciel de métré",{ee:2}],["Revit, le croquis, les images 3D",{aa:2}],["Les deux me tentent",{ee:1,aa:1}]]},
+ {q:"Où je me vois travailler :",o:[["Près du chantier",{ee:2,site:1}],["Au bureau, dans une agence",{aa:1}],["Ça m'est égal",{}]]},
+ {q:"Le type de structure qui m'attire :",o:[["Une petite entreprise, une équipe réduite",{ee:1,small:1}],["Une grande organisation (mairie, groupe)",{big:1}],["Une agence créative",{aa:2}]]}
+];
+
+let st={};
+function fresh(){return{i1:0,a1:[],i2:0,a2:[],i3:0,a3:[],tab:1};}
+try{const s=sessionStorage.getItem("cts");st=s?JSON.parse(s):fresh();}catch(e){st=fresh();}
+function save(){try{sessionStorage.setItem("cts",JSON.stringify(st));}catch(e){}}
+
+const $=id=>document.getElementById(id);
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+
+function score(){
+  const s1=st.a1.filter((a,i)=>a===S[i].a).length;
+  const s2=st.a2.filter((a,i)=>a===Q[i].c).length;
+  return s1+s2;
+}
+function renderScore(){const s=score();$("scoreTop").textContent=s+" / 21";$("scoreBig").textContent=s;
+  $("d1").textContent=st.a1.length===S.length?"✓":"";$("d2").textContent=st.a2.length===Q.length?"✓":"";$("d3").textContent=st.a3.length===P.length?"✓":"";}
+
+function bar(el,total,answers,cur,check){
+  let h="";for(let i=0;i<total;i++){let c="";if(i<answers.length)c=check(i)?"ok":"ko";else if(i===cur)c="cur";h+=`<i class="${c}"></i>`;}
+  el.innerHTML=h;
+}
+
+/* ---------- Planche 1 ---------- */
+function r1(){
+  const i=st.i1, done=st.a1.length===S.length;
+  bar($("pg1"),S.length,st.a1,i,k=>st.a1[k]===S[k].a);
+  $("c1").textContent=done?"Terminé":(i+1)+" / "+S.length;
+  if(done){
+    const ok=st.a1.filter((a,k)=>a===S[k].a).length;
+    const col=t=>`<div class="col ${t}"><h3>${LABEL[t]}<span class="tag ${TAGC[t]}">${S.filter(s=>s.a===t).length}</span></h3><ul>${S.filter(s=>s.a===t).map(s=>`<li>${esc(s.n)}</li>`).join("")}</ul></div>`;
+    $("z1").innerHTML=`<div class="result"><div class="row"><span class="score">${ok}/${S.length}</span><p>Voici le plan de synthèse des lieux de stage possibles. Recopie-le dans ton carnet d'orientation.</p></div>
+      <div class="board">${col("ee")}${col("both")}${col("aa")}</div>
+      <div class="row"><button class="btn" type="button" data-go="2">Planche suivante</button><button class="btn ghost" type="button" id="re1">Rejouer la planche</button></div></div>`;
+    $("re1").onclick=()=>{st.i1=0;st.a1=[];save();r1();renderScore();};
+    return;
+  }
+  const s=S[i], ans=st.a1[i];
+  let h=`<div class="card"><span class="ref mono">Structure ${String(i+1).padStart(2,"0")}</span>
+    <div class="big">${esc(s.n)}</div><p class="sub">${esc(s.d)}</p><div class="choices">`;
+  ["ee","both","aa"].forEach(k=>{
+    let cls="opt "+k; if(ans!==undefined){if(k===s.a)cls+=" right";else if(k===ans)cls+=" wrong";}
+    h+=`<button class="${cls}" type="button" data-a="${k}" ${ans!==undefined?"disabled":""}>${LABEL[k]}</button>`;
+  });
+  h+=`</div>`;
+  if(ans!==undefined){
+    const good=ans===s.a;
+    h+=`<div class="feedback ${good?"":"bad"}"><b>${good?"Bonne réponse":"Réponse : "+LABEL[s.a]}</b><p>${WHY[s.a]}</p><p class="metiers"><b style="font-size:.95rem">Métiers :</b> ${esc(s.m)}</p></div>
+      <div class="row"><button class="btn" type="button" id="n1">${i+1<S.length?"Structure suivante":"Voir le plan de synthèse"}</button></div>`;
+  }
+  h+=`</div>`;
+  $("z1").innerHTML=h;
+  $("z1").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{st.a1[i]=b.dataset.a;save();r1();renderScore();});
+  if($("n1"))$("n1").onclick=()=>{st.i1++;save();r1();};
+}
+
+/* ---------- Planche 2 ---------- */
+function r2(){
+  const i=st.i2, done=st.a2.length===Q.length;
+  bar($("pg2"),Q.length,st.a2,i,k=>st.a2[k]===Q[k].c);
+  $("c2").textContent=done?"Terminé":(i+1)+" / "+Q.length;
+  if(done){
+    const ok=st.a2.filter((a,k)=>a===Q[k].c).length;
+    $("z2").innerHTML=`<div class="result"><div class="row"><span class="score">${ok}/${Q.length}</span><p>${ok>=8?"Tu sais associer un projet à une structure. À toi maintenant.":"Relis les fiches de la planche 01, puis rejoue pour progresser."}</p></div>
+      <div class="row"><button class="btn" type="button" data-go="3">Trouver ma cible</button><button class="btn ghost" type="button" id="re2">Rejouer la planche</button></div></div>`;
+    $("re2").onclick=()=>{st.i2=0;st.a2=[];save();r2();renderScore();};
+    return;
+  }
+  const q=Q[i], ans=st.a2[i];
+  let h=`<div class="card"><span class="ref mono">Élève ${String(i+1).padStart(2,"0")}</span>
+    <div class="big">${q.who}</div><p class="sub">${esc(q.who)} ${esc(q.t)}</p><div class="choices">`;
+  q.o.forEach(k=>{
+    const s=S[k]; let cls="opt"; if(ans!==undefined){if(k===q.c)cls+=" right";else if(k===ans)cls+=" wrong";}
+    h+=`<button class="${cls}" type="button" data-k="${k}" ${ans!==undefined?"disabled":""}>${esc(s.n)}</button>`;
+  });
+  h+=`</div>`;
+  if(ans!==undefined){
+    const good=ans===q.c, s=S[q.c];
+    h+=`<div class="feedback ${good?"":"bad"}"><b>${good?"Bon conseil":"Meilleur choix : "+esc(s.n)}</b>
+      <p><span class="tag ${TAGC[s.a]}">${LABEL[s.a]}</span> ${esc(s.d)}</p><p class="metiers"><b style="font-size:.95rem">Métiers :</b> ${esc(s.m)}</p></div>
+      <div class="row"><button class="btn" type="button" id="n2">${i+1<Q.length?"Élève suivant":"Voir mon score"}</button></div>`;
+  }
+  h+=`</div>`;
+  $("z2").innerHTML=h;
+  $("z2").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{st.a2[i]=+b.dataset.k;save();r2();renderScore();});
+  if($("n2"))$("n2").onclick=()=>{st.i2++;save();r2();};
+}
+
+/* ---------- Planche 3 ---------- */
+function profile(){
+  const t={ee:0,aa:0,site:0,small:0,big:0};
+  st.a3.forEach((a,i)=>{const w=P[i].o[a][1];for(const k in w)t[k]+=w[k];});
+  let spe="both"; if(t.ee-t.aa>=2)spe="ee"; else if(t.aa-t.ee>=2)spe="aa";
+  let picks;
+  if(spe==="ee") picks=[0, t.site>=1||t.small? (t.small?3:4) : 2, t.big?8:7];
+  else if(spe==="aa") picks=[1, t.big?8:7, t.aa>=9?6:5];
+  else picks=[7, t.big?8:9, t.ee>t.aa?0:1];
+  picks=[...new Set(picks)]; const fill=[7,8,0,1,2]; for(const f of fill){if(picks.length>=3)break;if(!picks.includes(f))picks.push(f);}
+  return{t,spe,picks:picks.slice(0,3)};
+}
+function r3(){
+  const i=st.i3, done=st.a3.length===P.length;
+  bar($("pg3"),P.length,st.a3,i,()=>true);
+  $("c3").textContent=done?"Terminé":(i+1)+" / "+P.length;
+  if(done){
+    const r=profile();
+    const lib={ee:"Ton profil penche vers l'option études et économie.",aa:"Ton profil penche vers l'option assistant en architecture.",both:"Ton profil est partagé entre les deux options. Vise une structure commune pour comparer."};
+    const txt=`MA CIBLE DE STAGE — Seconde EMNB\nProfil : ${LABEL[r.spe]}\n`+r.picks.map((k,n)=>`${n+1}. ${S[k].n}\n   Où chercher : ${S[k].w}`).join("\n")+`\nMa stratégie : □ conforter mon choix  □ découvrir un autre métier`;
+    $("z3").innerHTML=`<div class="result">
+      <div class="row"><span class="tag ${TAGC[r.spe]}" style="font-size:.9rem">${LABEL[r.spe]}</span><p><b>${lib[r.spe]}</b> Points EE : ${r.t.ee} · Points AA : ${r.t.aa}</p></div>
+      <div class="targets">${r.picks.map((k,n)=>{const s=S[k];return`<div class="target"><span class="mono">Cible ${n+1}</span><h3>${esc(s.n)}</h3><span class="tag ${TAGC[s.a]}" style="align-self:flex-start">${LABEL[s.a]}</span><p class="metiers">${esc(s.m)}</p><p class="where"><b>Où chercher :</b> ${esc(s.w)}</p></div>`;}).join("")}</div>
+      <p class="note">Ce résultat est une piste, pas une décision. Avec ton professeur, choisis ta stratégie : conforter ton choix ou découvrir l'autre option pendant ta PFMP.</p>
+      <label class="mono" for="copytxt">À recopier dans ton carnet ou ton tableau de prospection</label>
+      <textarea class="copybox" id="copytxt" readonly>${esc(txt)}</textarea>
+      <div class="row"><button class="btn" type="button" id="cp">Copier</button><button class="btn ghost" type="button" id="re3">Refaire le profil</button><span class="mono" id="cpmsg" aria-live="polite"></span></div></div>`;
+    $("cp").onclick=()=>{const ta=$("copytxt");const ok=()=>$("cpmsg").textContent="Copié";
+      const fb=()=>{ta.focus();ta.select();$("cpmsg").textContent="Texte sélectionné : Ctrl+C";};
+      try{navigator.clipboard.writeText(ta.value).then(ok,fb);}catch(e){fb();}};
+    $("re3").onclick=()=>{st.i3=0;st.a3=[];save();r3();renderScore();};
+    return;
+  }
+  const p=P[i];
+  let h=`<div class="card"><span class="ref mono">Question ${String(i+1).padStart(2,"0")}</span><div class="big">${esc(p.q)}</div><div class="choices">`;
+  p.o.forEach((o,k)=>{h+=`<button class="opt" type="button" data-k="${k}">${esc(o[0])}</button>`;});
+  h+=`</div>${i>0?`<div class="row"><button class="btn ghost" type="button" id="b3">Question précédente</button></div>`:""}</div>`;
+  $("z3").innerHTML=h;
+  $("z3").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{st.a3[i]=+b.dataset.k;st.i3++;save();r3();renderScore();});
+  if($("b3"))$("b3").onclick=()=>{st.i3--;st.a3=st.a3.slice(0,st.i3);save();r3();renderScore();};
+}
+
+function show(n){
+  st.tab=n;save();
+  [1,2,3].forEach(k=>{$("p"+k).hidden=k!==n;$("tab-"+k).setAttribute("aria-selected",k===n?"true":"false");});
+}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>show(+t.dataset.p));
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){show(+g.dataset.go);window.scrollTo({top:0,behavior:"smooth"});}});
+$("resetAll").onclick=()=>{st=fresh();save();r1();r2();r3();show(1);renderScore();};
+
+r1();r2();r3();show(st.tab||1);renderScore();
+</script>
+</body>
+</html>

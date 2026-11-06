@@ -399,6 +399,10 @@ var c=document.querySelector('.mj-compteur');if(c){c.querySelector('b').textCont
 <figure class="mj-maison"><svg viewBox="0 0 1000 640" role="img" aria-labelledby="mj-titre"><title id="mj-titre">Coupe d'une maison : chaque partie ouvre un jeu</title>{DECOR}{zones}</svg>
 <figcaption><span class="mj-maison-hint">👆 Touche une pastille jaune, ou choisis un jeu dans la liste plus bas.</span>Astuce : chaque jeu a jusqu'à 3 étapes — <b>Découvrir</b> (explorer les planches), <b>S'entraîner</b> (questions qui changent à chaque partie), <b>Se défier</b> (un défi pour aller plus loin).</figcaption></figure>
 <section><h2 class="titre-section">Tous les jeux {cote(f"{len(entrees)} thèmes")}</h2><ul class="mj-cartes">{cartes}</ul></section>
+<section class="mj-bonus"><h2 class="titre-section">En plus : prépare ton stage {cote("soutien au parcours")}</h2>
+<a class="mj-bonus-carte" href="jeux/orientation/cible-ton-stage.html"><span class="mj-emo" aria-hidden="true">🎯</span>
+<div><h3>Cible ton stage</h3><p>Où travaille un technicien d'études du bâtiment ? Trie les structures, conseille des élèves, puis trouve les 3 types d'entreprises à démarcher pour ta PFMP.</p>
+<span class="mj-etape">▶ Jouer · 3 planches</span></div></a></section>
 {script}""", fil=[("Accueil", "index.html"), ("Jeux", None)], classe="p-accueil")
 
 

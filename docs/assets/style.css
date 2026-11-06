@@ -346,3 +346,8 @@ table { border-collapse: collapse; }
 .grille-eval .g-comp th { text-align: left !important; white-space: normal; }
 .grille-eval .g-comp span { float: none; margin-left: 8px; color: var(--chantier); }
 .grille-eval .g-conv th:last-child, .grille-eval .g-conv td:last-child { text-align: left; }
+.mj-bonus { margin-top: 30px; }
+.mj-bonus-carte { display: flex; gap: 16px; align-items: flex-start; text-decoration: none; color: inherit; background: var(--carte); border: 1.5px solid var(--chantier); border-radius: 10px; padding: 16px 18px; box-shadow: 0 5px 0 var(--signal); }
+.mj-bonus-carte h3 { margin: 0 0 4px; font-size: 20px; }
+.mj-bonus-carte p { margin: 0 0 10px; color: var(--doux); }
+.mj-bonus-carte:hover .mj-etape { background: var(--plan); color: #fff; }

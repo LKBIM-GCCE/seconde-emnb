@@ -4,6 +4,7 @@
    Les réponses restent dans le navigateur (localStorage) ; la fin de séance produit un certificat PNG. */
 (function () {
   const A = JSON.parse(document.getElementById("activite-data").textContent);
+  const DOSSIER_JS = (document.currentScript && document.currentScript.src || "").replace(/activites\.js.*$/, "");
   const CLE = "emnb-" + A.id;
   const $ = (s, el = document) => el.querySelector(s);
   const h = (tag, attrs = {}, ...kids) => {
@@ -23,10 +24,11 @@
   const affiche = rep => Array.isArray(rep) ? rep.join(" ou ") : rep;
 
   // ---------- état ----------
-  let etat = { nom: "", res: {}, essais: {} };
+  let etat = { nom: "", res: {}, essais: {}, prem: {} };
   try { etat = Object.assign(etat, JSON.parse(localStorage.getItem(CLE)) || {}); } catch (e) {}
   // séance modifiée depuis la dernière visite : on oublie les réponses des activités qui n'existent plus
-  { const ids = new Set(A.blocs.map(b => b.id)); for (const k of Object.keys(etat.res)) if (!ids.has(k)) { delete etat.res[k]; delete etat.essais[k]; } }
+  etat.prem = etat.prem || {};
+  { const ids = new Set(A.blocs.map(b => b.id)); for (const k of Object.keys(etat.res)) if (!ids.has(k)) { delete etat.res[k]; delete etat.essais[k]; delete etat.prem[k]; } }
   const sauver = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) {} };
   function melange(arr, graine) {
     const a = arr.slice(); let s = graine * 7919 + 13;
@@ -335,6 +337,7 @@
         etat.essais[b.id] = (etat.essais[b.id] || 0) + 1;
         etat.res[b.id] = { pts: parts.reduce((s, x) => s + x[0], 0), max: parts.reduce((s, x) => s + x[1], 0), detail: det, detailParts: parts,
           textes: objs.map(o => o.texte ? o.texte() : null).filter(Boolean) };
+        if (!etat.prem[b.id]) etat.prem[b.id] = JSON.parse(JSON.stringify({ pts: etat.res[b.id].pts, max: etat.res[b.id].max, detail: det, projet: lireProjet() }));
         sauver(); ouvrir(courant, false);
       } }, "Valider mes réponses"));
     }
@@ -399,12 +402,13 @@
         textes.length ? h("div", { class: "certif-textes" }, ...textes.map(t => h("p", {}, "« " + t + " »"))) : null,
         total ? h("p", { class: "certif-total" }, total) : null,
         h("p", { class: "certif-pied" }, `${date} à ${heure} · Code de contrôle : `, h("b", {}, c))),
-        h("div", { class: "pied-bloc" }, h("button", { class: "btn", onclick: () => imageCertificat({ lignes, textes, total, pied: `${date} à ${heure}`, code: c }) }, "⬇ Télécharger mon certificat (image)"),
+        h("div", { class: "pied-bloc" }, h("button", { class: "btn", onclick: ev => dossierPDF({ lignes, textes, total, pied: `${date} à ${heure}`, code: c }, ev.currentTarget) }, "⬇ Télécharger mon dossier de séance (PDF)"),
+          h("button", { class: "btn sec", onclick: () => imageCertificat({ lignes, textes, total, pied: `${date} à ${heure}`, code: c }) }, "Certificat seul (image)"),
           h("span", { class: "aide" }, "Garde-le : ton professeur te dira comment le lui transmettre.")));
     } }, "Afficher mon certificat")), cible);
   }
 
-  function imageCertificat(d) {
+  function imageCertificat(d, retour) {
     const W = 1200, F = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
     const tmp = document.createElement("canvas").getContext("2d");
     const couper = (t, px, larg) => { tmp.font = `400 ${px}px ${F}`; const out = []; let l = "";
@@ -431,8 +435,115 @@
     blocsTxt.forEach(b => { y += 14; b.forEach(l => { txt(l, 20, y + 10, { c: "#24527a" }); y += 28; }); });
     if (d.total) txt(d.total, 34, y + 46, { p: 800 });
     txt(`${d.pied}  ·  Code de contrôle : ${d.code}`, 22, y + 100, { c: "#5d6670" });
+    if (retour) return cv;
     const fichier = `certificat_${A.id}_${norm(etat.nom).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.png`;
     cv.toBlob(blob => { const a = h("a", { href: URL.createObjectURL(blob), download: fichier }); document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); }, "image/png");
+  }
+
+
+  // ---------- dossier de séance (PDF) : certificat + toutes les réponses (1er essai et réponse finale) ----------
+  const vu = (v, vide = "—") => (v == null || v === "" ? vide : String(v));
+  function resume(p, d) {
+    d = d || {};
+    const L = [];
+    const ligne = (q, r, ok, corr) => L.push({ q, r, ok, corr: ok === false ? corr : "" });
+    switch (p.type) {
+      case "ordre": p.cartes.forEach((c, k) => ligne("Case " + (k + 1), (d.place || [])[k] != null ? p.cartes[d.place[k]].nom : "—", (d.place || [])[k] === k, c.nom)); break;
+      case "indices": p.dossiers.forEach((x, i) => ligne(x.titre || (p.titreDossier || "Dossier n° ") + (i + 1), vu((d.ph || [])[i]) + ((d.ind || [])[i] != null ? "  (indice : " + x.indices[d.ind[i]] + ")" : ""), accepte(x.reponse, (d.ph || [])[i]), affiche(x.reponse))); break;
+      case "associer": p.items.forEach((it, i) => ligne(it.texte, vu((d.v || [])[i]), accepte(it.reponse, (d.v || [])[i]), affiche(it.reponse))); break;
+      case "grille": p.lignes.forEach((l, i) => { const g = (d.g || [])[i] || []; const coche = p.colonnes.filter((_, k) => g[k]); const att = p.colonnes.filter((_, k) => l.cases[k] === "●");
+        ligne(l.acteur, coche.join(", ") || "rien coché", [...l.cases].every((a, k) => a === "○" || (a === "●") === !!g[k]), att.join(", ")); }); break;
+      case "vraifaux": p.items.forEach((it, i) => { const v = (d.v || [])[i]; ligne(it.texte, v == null ? "—" : v ? "Vrai" : "Faux", v === it.reponse, it.reponse ? "Vrai" : "Faux"); }); break;
+      case "qcm": p.questions.forEach((q, i) => { const v = (d.v || [])[i]; ligne(q.q, v == null ? "—" : q.choix[v], v === q.r, q.choix[q.r]); }); break;
+      case "saisie": p.items.forEach((it, i) => { const v = " " + norm((d.v || [])[i]) + " "; ligne(it.texte, vu((d.v || [])[i]), it.motscles.every(gr => gr.some(m => v.includes(norm(m)))), it.reponse); }); break;
+      case "nombre": p.items.forEach((it, i) => { const s = (d.v || [])[i]; const n = parseFloat(String(s || "").replace(",", ".").replace(/[\s+]/g, ""));
+        ligne(it.texte, vu(s) + (s ? " " + (it.unite || "") : ""), Math.abs(n - it.valeur) <= (it.tolerance ?? 0.005), String(it.valeur).replace(".", ",") + " " + (it.unite || "")); }); break;
+      case "redaction": ligne(p.question, vu((d.t || "").trim()), null, ""); break;
+      case "schema": p.cases.forEach(c => ligne("Case " + (c.indice || c.id), vu((d.c || {})[c.id]), c.accepte.includes((d.c || {})[c.id]), c.accepte.join(" / "))); break;
+    }
+    return L;
+  }
+
+  function pagesReponses(entete) {
+    const W = 1240, H = 1754, M = 80, F = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+    const pages = []; let cv, x, y;
+    const mesure = document.createElement("canvas").getContext("2d");
+    const couper = (t, px, larg, p = 400) => { mesure.font = `${p} ${px}px ${F}`; const out = []; let l = "";
+      for (let m of String(t).split(/\s+/)) { while (mesure.measureText(m).width > larg && m.length > 1) { let n = m.length - 1; while (n > 1 && mesure.measureText(m.slice(0, n)).width > larg) n--; if (l) { out.push(l); l = ""; } out.push(m.slice(0, n)); m = m.slice(n); }
+        const e = l ? l + " " + m : m; if (mesure.measureText(e).width > larg && l) { out.push(l); l = m; } else l = e; } if (l) out.push(l); return out.length ? out : [""]; };
+    const ecrire = (t, px, xx, yy, o = {}) => { x.font = `${o.p || 400} ${px}px ${F}`; x.fillStyle = o.c || "#1c2228"; x.textAlign = o.a || "left"; x.fillText(t, xx, yy); };
+    const nouvelle = () => {
+      cv = document.createElement("canvas"); cv.width = W; cv.height = H; x = cv.getContext("2d");
+      x.fillStyle = "#fff"; x.fillRect(0, 0, W, H);
+      ecrire("Dossier de séance — " + A.titre + (projetNom() ? " — " + projetNom() : ""), 22, M, M - 30, { p: 700, c: "#c4521f" });
+      ecrire(entete, 17, M, M - 4, { c: "#5d6670" });
+      x.strokeStyle = "#c4521f"; x.lineWidth = 2; x.beginPath(); x.moveTo(M, M + 8); x.lineTo(W - M, M + 8); x.stroke();
+      ecrire("Page " + (pages.length + 2), 16, W / 2, H - 40, { a: "center", c: "#5d6670" });
+      pages.push(cv); y = M + 34;
+    };
+    const place = hauteur => { if (y + hauteur > H - 80) nouvelle(); };
+    nouvelle();
+    const C = [M, M + 330, M + 640, M + 760, W - M];   // question | 1er essai | essais | réponse finale
+    for (const b of A.blocs) {
+      if (b.type === "cours" || !etat.res[b.id]) continue;
+      const res = etat.res[b.id], pr = etat.prem[b.id] || res, n = etat.essais[b.id] || 1;
+      place(110);
+      x.fillStyle = "#eef3f9"; x.fillRect(M, y, W - 2 * M, 54);
+      ecrire(b.titre, 24, M + 14, y + 36, { p: 800, c: "#0f2c6e" });
+      const sc = res.max ? `1er essai : ${pr.pts}/${pr.max}   ·   Final : ${res.pts}/${res.max}   ·   ${n} essai(s)` : `${n} essai(s)`;
+      ecrire(sc, 17, W - M - 14, y + 35, { a: "right", c: "#55637e", p: 600 });
+      y += 70;
+      const multi = n > 1;
+      C[1] = multi ? M + 330 : M + 600;
+      b.parties.forEach((p, k) => {
+        if (p.pour && !p.pour.includes(pr.projet || lireProjet())) return;
+        const fin = resume(p, (res.detail || [])[k]), deb = resume(p, (pr.detail || [])[k]);
+        if (!fin.length) return;
+        if (p.titre) { place(40); ecrire(p.titre, 18, M, y + 20, { p: 700, c: "#1f55d6" }); y += 34; }
+        place(30);
+        ecrire("Question", 14, C[0], y + 14, { p: 700, c: "#55637e" });
+        ecrire(multi ? "1er essai" : "Réponse", 14, C[1], y + 14, { p: 700, c: "#55637e" });
+        if (multi) ecrire("Réponse finale", 14, C[3], y + 14, { p: 700, c: "#55637e" });
+        y += 24;
+        fin.forEach((l, i) => {
+          const d0 = deb[i] || l;
+          const larg = multi ? [C[1] - C[0] - 16, C[3] - C[1] - 16, C[4] - C[3]] : [C[1] - C[0] - 16, C[4] - C[1]];
+          const lq = couper(l.q, 17, larg[0]), l1 = couper(d0.r + (d0.ok === false && !multi ? "   → " + d0.corr : ""), 17, larg[1], 600),
+            l2 = multi ? couper(l.r + (l.ok === false ? "   → " + l.corr : ""), 17, larg[2], 600) : [];
+          const hh = Math.max(lq.length, l1.length, l2.length) * 23 + 14;
+          place(hh);
+          const coul = ok => ok == null ? "#1c2228" : ok ? "#1f7a4a" : "#b3261e";
+          const sym = ok => ok == null ? "" : ok ? "✓ " : "✗ ";
+          lq.forEach((s, j) => ecrire(s, 17, C[0], y + 18 + j * 23));
+          l1.forEach((s, j) => ecrire((j ? "" : sym(d0.ok)) + s, 17, C[1], y + 18 + j * 23, { p: 600, c: coul(d0.ok) }));
+          l2.forEach((s, j) => ecrire((j ? "" : sym(l.ok)) + s, 17, C[3], y + 18 + j * 23, { p: 600, c: coul(l.ok) }));
+          y += hh; x.strokeStyle = "#e3e8ef"; x.lineWidth = 1; x.beginPath(); x.moveTo(M, y - 6); x.lineTo(W - M, y - 6); x.stroke();
+        });
+        y += 14;
+      });
+      y += 10;
+    }
+    return pages;
+  }
+
+  function chargerJsPDF() {
+    if (window.jspdf) return Promise.resolve(window.jspdf);
+    return new Promise((ok, ko) => { const s = document.createElement("script"); s.src = DOSSIER_JS + "vendor/jspdf.umd.min.js";
+      s.onload = () => ok(window.jspdf); s.onerror = () => ko(new Error("jsPDF")); document.head.append(s); });
+  }
+
+  async function dossierPDF(d, bouton) {
+    const lib = bouton.textContent; bouton.disabled = true; bouton.textContent = "Préparation du PDF…";
+    try {
+      const { jsPDF } = await chargerJsPDF();
+      const cert = imageCertificat(d, true);
+      const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
+      const lw = 190, lh = Math.min(277, lw * cert.height / cert.width);
+      pdf.addImage(cert.toDataURL("image/jpeg", 0.92), "JPEG", (210 - lw * lh / (lw * cert.height / cert.width)) / 2, 10, lw * lh / (lw * cert.height / cert.width), lh);
+      for (const pg of pagesReponses(`${etat.nom} · ${d.pied} · code ${d.code}`)) { pdf.addPage(); pdf.addImage(pg.toDataURL("image/jpeg", 0.9), "JPEG", 0, 0, 210, 297); }
+      pdf.save(`dossier_${A.id}_${norm(etat.nom).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.pdf`);
+    } catch (e) { alerte("Le PDF n'a pas pu être créé. Télécharge le certificat (image) à la place."); }
+    bouton.disabled = false; bouton.textContent = lib;
   }
 
   function alerte(msg) {
@@ -440,6 +551,6 @@
     a.textContent = msg; a.classList.add("vu"); clearTimeout(a._t); a._t = setTimeout(() => a.classList.remove("vu"), 3500);
   }
 
-  $("#raz").onclick = () => { if (confirm("Effacer toutes tes réponses de cette séance ?")) { etat = { nom: "", res: {}, essais: {} }; sauver(); ouvrir(0); } };
+  $("#raz").onclick = () => { if (confirm("Effacer toutes tes réponses de cette séance ?")) { etat = { nom: "", res: {}, essais: {}, prem: {} }; sauver(); ouvrir(0); } };
   ouvrir(0, false);
 })();

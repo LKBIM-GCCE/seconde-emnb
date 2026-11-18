@@ -464,65 +464,105 @@
     return L;
   }
 
-  function pagesReponses(entete) {
-    const W = 1240, H = 1754, M = 80, F = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+  function pagesReponses(info, logo, cert) {
+    const W = 1240, H = 1754, M = 70, F = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+    const BLEU = "#0f2c6e", PLAN = "#1f55d6", ORANGE = "#f2600f", JAUNE = "#ffc52e", DOUX = "#55637e", VERT = "#1f7a4a", ROUGE = "#b3261e";
+    const S = A._seq || {};
     const pages = []; let cv, x, y;
     const mesure = document.createElement("canvas").getContext("2d");
     const couper = (t, px, larg, p = 400) => { mesure.font = `${p} ${px}px ${F}`; const out = []; let l = "";
       for (let m of String(t).split(/\s+/)) { while (mesure.measureText(m).width > larg && m.length > 1) { let n = m.length - 1; while (n > 1 && mesure.measureText(m.slice(0, n)).width > larg) n--; if (l) { out.push(l); l = ""; } out.push(m.slice(0, n)); m = m.slice(n); }
         const e = l ? l + " " + m : m; if (mesure.measureText(e).width > larg && l) { out.push(l); l = m; } else l = e; } if (l) out.push(l); return out.length ? out : [""]; };
     const ecrire = (t, px, xx, yy, o = {}) => { x.font = `${o.p || 400} ${px}px ${F}`; x.fillStyle = o.c || "#1c2228"; x.textAlign = o.a || "left"; x.fillText(t, xx, yy); };
+    const rect = (xx, yy, w, hh, fond, trait, ep = 2) => { if (fond) { x.fillStyle = fond; x.fillRect(xx, yy, w, hh); } if (trait) { x.strokeStyle = trait; x.lineWidth = ep; x.strokeRect(xx, yy, w, hh); } };
+    const pastille = (t, xx, yy, fond, coul, px = 16) => { x.font = `700 ${px}px ${F}`; const w = x.measureText(t).width + 22; x.fillStyle = fond;
+      x.beginPath(); x.roundRect ? x.roundRect(xx - w, yy - px - 6, w, px + 14, 12) : x.rect(xx - w, yy - px - 6, w, px + 14); x.fill(); ecrire(t, px, xx - w + 11, yy, { p: 700, c: coul }); return w; };
+    // ---- en-tête « cartouche » et pied de page
+    const HT = 190;
     const nouvelle = () => {
       cv = document.createElement("canvas"); cv.width = W; cv.height = H; x = cv.getContext("2d");
       x.fillStyle = "#fff"; x.fillRect(0, 0, W, H);
-      ecrire("Dossier de séance — " + A.titre + (projetNom() ? " — " + projetNom() : ""), 22, M, M - 30, { p: 700, c: "#c4521f" });
-      ecrire(entete, 17, M, M - 4, { c: "#5d6670" });
-      x.strokeStyle = "#c4521f"; x.lineWidth = 2; x.beginPath(); x.moveTo(M, M + 8); x.lineTo(W - M, M + 8); x.stroke();
-      ecrire("Page " + (pages.length + 2), 16, W / 2, H - 40, { a: "center", c: "#5d6670" });
-      pages.push(cv); y = M + 34;
+      const y0 = 50, wl = 230, wr = 300, xm = M + wl, xr = W - M - wr;
+      rect(M, y0, W - 2 * M, HT, null, BLEU, 3);
+      x.strokeStyle = BLEU; x.lineWidth = 2; x.beginPath(); x.moveTo(xm, y0); x.lineTo(xm, y0 + HT); x.moveTo(xr, y0); x.lineTo(xr, y0 + HT); x.stroke();
+      if (logo) { const lh = 100, lw = lh * logo.width / logo.height; x.drawImage(logo, M + (wl - lw) / 2, y0 + (HT - lh) / 2 - 10, lw, lh); }
+      ecrire("2de EMNB", 16, M + wl / 2, y0 + HT - 18, { a: "center", p: 700, c: DOUX });
+      ecrire("DOSSIER DE SÉANCE", 40, xm + 24, y0 + 56, { p: 800, c: ORANGE });
+      ecrire(`${S.numero || ""} · ${S.titre || ""}`.toUpperCase(), 19, xm + 24, y0 + 96, { p: 700, c: BLEU });
+      couper(`${S.seance || ""} · ${A.titre}${projetNom() ? " — " + projetNom() : ""}`, 19, xr - xm - 48, 600).slice(0, 2).forEach((l, k) => ecrire(l, 19, xm + 24, y0 + 128 + k * 26, { p: 600 }));
+      const cases = [["ÉLÈVE", etat.nom], ["DATE", info.date], ["CODE DE CONTRÔLE", info.code]];
+      cases.forEach(([lab, val], k) => { const yy = y0 + k * HT / 3; if (k) { x.strokeStyle = BLEU; x.lineWidth = 1.5; x.beginPath(); x.moveTo(xr, yy); x.lineTo(W - M, yy); x.stroke(); }
+        ecrire(lab, 13, xr + 16, yy + 22, { p: 700, c: DOUX }); ecrire(couper(val, 20, wr - 30, 700)[0], 20, xr + 16, yy + 50, { p: 700, c: k === 2 ? ORANGE : "#1c2228" }); });
+      // ligne de cote sous le cartouche
+      const yc = y0 + HT + 26; x.strokeStyle = ORANGE; x.lineWidth = 2;
+      x.beginPath(); x.moveTo(M, yc); x.lineTo(W - M, yc); x.moveTo(M, yc - 9); x.lineTo(M, yc + 9); x.moveTo(W - M, yc - 9); x.lineTo(W - M, yc + 9); x.stroke();
+      const lib = "  " + (S.annee ? S.annee + " · " : "") + "ÉTUDES ET MODÉLISATION NUMÉRIQUE DU BÂTIMENT  "; x.font = `700 14px ${F}`; const lw2 = x.measureText(lib).width;
+      x.fillStyle = "#fff"; x.fillRect(W / 2 - lw2 / 2, yc - 10, lw2, 20); ecrire(lib, 14, W / 2, yc + 5, { a: "center", p: 700, c: ORANGE });
+      pages.push(cv); y = yc + 40;
     };
-    const place = hauteur => { if (y + hauteur > H - 80) nouvelle(); };
+    const place = hauteur => { if (y + hauteur > H - 90) nouvelle(); };
+    // ---- page 1 : le certificat
     nouvelle();
-    const C = [M, M + 330, M + 640, M + 760, W - M];   // question | 1er essai | essais | réponse finale
+    { const lw = W - 2 * M, lh = Math.min(H - y - 110, lw * cert.height / cert.width), lw2 = lh * cert.width / cert.height;
+      x.drawImage(cert, (W - lw2) / 2, y, lw2, lh); }
+    // ---- pages suivantes : les réponses
+    nouvelle();
+    ecrire("MES RÉPONSES, ACTIVITÉ PAR ACTIVITÉ", 22, M, y + 6, { p: 800, c: BLEU });
+    ecrire("✓ juste   ✗ à revoir   → bonne réponse attendue", 16, W - M, y + 6, { a: "right", c: DOUX });
+    y += 34;
+    const C = [M, 0, 0, M + 760, W - M];
+    let num = 0;
     for (const b of A.blocs) {
       if (b.type === "cours" || !etat.res[b.id]) continue;
-      const res = etat.res[b.id], pr = etat.prem[b.id] || res, n = etat.essais[b.id] || 1;
-      place(110);
-      x.fillStyle = "#eef3f9"; x.fillRect(M, y, W - 2 * M, 54);
-      ecrire(b.titre, 24, M + 14, y + 36, { p: 800, c: "#0f2c6e" });
-      const sc = res.max ? `1er essai : ${pr.pts}/${pr.max}   ·   Final : ${res.pts}/${res.max}   ·   ${n} essai(s)` : `${n} essai(s)`;
-      ecrire(sc, 17, W - M - 14, y + 35, { a: "right", c: "#55637e", p: 600 });
-      y += 70;
-      const multi = n > 1;
-      C[1] = multi ? M + 330 : M + 600;
+      const res = etat.res[b.id], pr = etat.prem[b.id] || res, n = etat.essais[b.id] || 1, multi = n > 1;
+      C[1] = multi ? M + 330 : M + 560;
+      num++;
+      place(130);
+      rect(M, y, W - 2 * M, 58, BLEU);
+      x.fillStyle = JAUNE; x.fillRect(M, y, 58, 58); ecrire(String(num), 28, M + 29, y + 39, { a: "center", p: 800, c: BLEU });
+      ecrire(couper(b.titre, 23, W - 2 * M - 470, 800)[0], 23, M + 76, y + 38, { p: 800, c: "#fff" });
+      let xp = W - M - 14;
+      xp -= pastille(`${n} essai${n > 1 ? "s" : ""}`, xp, y + 37, "#2c4a85", "#fff", 15) + 8;
+      if (res.max) { xp -= pastille(`Final ${res.pts}/${res.max}`, xp, y + 37, res.pts === res.max ? "#ddf3e8" : "#fde9dc", res.pts === res.max ? VERT : ORANGE, 15) + 8;
+        if (multi) pastille(`1er essai ${pr.pts}/${pr.max}`, xp, y + 37, "#e9edf5", BLEU, 15); }
+      y += 76;
       b.parties.forEach((p, k) => {
         if (p.pour && !p.pour.includes(pr.projet || lireProjet())) return;
         const fin = resume(p, (res.detail || [])[k]), deb = resume(p, (pr.detail || [])[k]);
         if (!fin.length) return;
-        if (p.titre) { place(40); ecrire(p.titre, 18, M, y + 20, { p: 700, c: "#1f55d6" }); y += 34; }
-        place(30);
-        ecrire("Question", 14, C[0], y + 14, { p: 700, c: "#55637e" });
-        ecrire(multi ? "1er essai" : "Réponse", 14, C[1], y + 14, { p: 700, c: "#55637e" });
-        if (multi) ecrire("Réponse finale", 14, C[3], y + 14, { p: 700, c: "#55637e" });
-        y += 24;
+        if (p.titre) { place(44); x.fillStyle = ORANGE; x.fillRect(M, y + 4, 5, 22); ecrire(p.titre, 18, M + 14, y + 22, { p: 700, c: PLAN }); y += 38; }
+        place(34);
+        rect(M, y, W - 2 * M, 30, "#eef3f9");
+        ecrire("QUESTION", 13, C[0] + 10, y + 20, { p: 700, c: DOUX });
+        ecrire(multi ? "1ER ESSAI" : "MA RÉPONSE", 13, C[1], y + 20, { p: 700, c: DOUX });
+        if (multi) ecrire("RÉPONSE FINALE", 13, C[3], y + 20, { p: 700, c: DOUX });
+        y += 34;
         fin.forEach((l, i) => {
           const d0 = deb[i] || l;
-          const larg = multi ? [C[1] - C[0] - 16, C[3] - C[1] - 16, C[4] - C[3]] : [C[1] - C[0] - 16, C[4] - C[1]];
-          const lq = couper(l.q, 17, larg[0]), l1 = couper(d0.r + (d0.ok === false && !multi ? "   → " + d0.corr : ""), 17, larg[1], 600),
-            l2 = multi ? couper(l.r + (l.ok === false ? "   → " + l.corr : ""), 17, larg[2], 600) : [];
-          const hh = Math.max(lq.length, l1.length, l2.length) * 23 + 14;
-          place(hh);
-          const coul = ok => ok == null ? "#1c2228" : ok ? "#1f7a4a" : "#b3261e";
+          const larg = multi ? [C[1] - C[0] - 26, C[3] - C[1] - 20, C[4] - C[3] - 10] : [C[1] - C[0] - 26, C[4] - C[1] - 10];
           const sym = ok => ok == null ? "" : ok ? "✓ " : "✗ ";
-          lq.forEach((s, j) => ecrire(s, 17, C[0], y + 18 + j * 23));
-          l1.forEach((s, j) => ecrire((j ? "" : sym(d0.ok)) + s, 17, C[1], y + 18 + j * 23, { p: 600, c: coul(d0.ok) }));
-          l2.forEach((s, j) => ecrire((j ? "" : sym(l.ok)) + s, 17, C[3], y + 18 + j * 23, { p: 600, c: coul(l.ok) }));
-          y += hh; x.strokeStyle = "#e3e8ef"; x.lineWidth = 1; x.beginPath(); x.moveTo(M, y - 6); x.lineTo(W - M, y - 6); x.stroke();
+          const coul = ok => ok == null ? "#1c2228" : ok ? VERT : ROUGE;
+          const lq = couper(l.q, 17, larg[0]);
+          const l1 = couper(sym(d0.ok) + d0.r + (d0.ok === false && !multi ? "  → " + d0.corr : ""), 17, larg[1], 600);
+          const l2 = multi ? couper(sym(l.ok) + l.r + (l.ok === false ? "  → " + l.corr : ""), 17, larg[2], 600) : [];
+          const hh = Math.max(lq.length, l1.length, l2.length) * 23 + 16;
+          place(hh);
+          if (i % 2) rect(M, y, W - 2 * M, hh, "#f7f9fc");
+          lq.forEach((s, j) => ecrire(s, 17, C[0] + 10, y + 21 + j * 23));
+          l1.forEach((s, j) => ecrire(s, 17, C[1], y + 21 + j * 23, { p: 600, c: coul(d0.ok) }));
+          l2.forEach((s, j) => ecrire(s, 17, C[3], y + 21 + j * 23, { p: 600, c: coul(l.ok) }));
+          y += hh;
         });
-        y += 14;
+        x.strokeStyle = "#d8dee8"; x.lineWidth = 1; x.beginPath(); x.moveTo(M, y); x.lineTo(W - M, y); x.stroke();
+        y += 16;
       });
-      y += 10;
+      y += 14;
     }
+    // ---- pieds de page (numérotation sur le total)
+    pages.forEach((c, k) => { x = c.getContext("2d");
+      x.strokeStyle = BLEU; x.lineWidth = 1.5; x.beginPath(); x.moveTo(M, H - 62); x.lineTo(W - M, H - 62); x.stroke();
+      ecrire(["2DE EMNB", S.etab, S.prof].filter(Boolean).join(" · ").toUpperCase(), 14, M, H - 36, { p: 700, c: DOUX });
+      ecrire(`Page ${k + 1} / ${pages.length}`, 14, W - M, H - 36, { a: "right", p: 700, c: BLEU }); });
     return pages;
   }
 
@@ -536,13 +576,12 @@
     const lib = bouton.textContent; bouton.disabled = true; bouton.textContent = "Préparation du PDF…";
     try {
       const { jsPDF } = await chargerJsPDF();
-      const cert = imageCertificat(d, true);
+      const logo = await new Promise(ok => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = DOSSIER_JS + "logo-lycee.jpg"; });
+      const pages = pagesReponses({ date: d.pied, code: d.code }, logo, imageCertificat(d, true));
       const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
-      const lw = 190, lh = Math.min(277, lw * cert.height / cert.width);
-      pdf.addImage(cert.toDataURL("image/jpeg", 0.92), "JPEG", (210 - lw * lh / (lw * cert.height / cert.width)) / 2, 10, lw * lh / (lw * cert.height / cert.width), lh);
-      for (const pg of pagesReponses(`${etat.nom} · ${d.pied} · code ${d.code}`)) { pdf.addPage(); pdf.addImage(pg.toDataURL("image/jpeg", 0.9), "JPEG", 0, 0, 210, 297); }
+      pages.forEach((pg, k) => { if (k) pdf.addPage(); pdf.addImage(pg.toDataURL("image/jpeg", 0.9), "JPEG", 0, 0, 210, 297); });
       pdf.save(`dossier_${A.id}_${norm(etat.nom).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.pdf`);
-    } catch (e) { alerte("Le PDF n'a pas pu être créé. Télécharge le certificat (image) à la place."); }
+    } catch (e) { console.error(e); alerte("Le PDF n'a pas pu être créé. Télécharge le certificat (image) à la place."); }
     bouton.disabled = false; bouton.textContent = lib;
   }
 

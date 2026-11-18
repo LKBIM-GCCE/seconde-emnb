@@ -317,7 +317,8 @@ def VIS(a):
 
 def page_en_ligne(s, i, a):
     x = s["seances"][i]
-    donnees = json.dumps({k: v for k, v in a.items() if k != "_cours"}, ensure_ascii=False).replace("</", "<\\/")
+    meta = {"_seq": {"numero": s["numero"], "titre": s["titre"], "seance": f"S{i+1:02d}", "seanceTitre": x["titre"], "annee": SITE.get("annee", ""), "etab": SITE.get("etablissement", ""), "prof": SITE.get("enseignant", "")}}
+    donnees = json.dumps({**{k: v for k, v in a.items() if k != "_cours"}, **meta}, ensure_ascii=False).replace("</", "<\\/")
     contenu = f'''
 <section class="titre-seance en-ligne"><p class="numero-seq">{e(s["numero"])} · séance {i+1} en ligne</p><h1>{e(x["titre"])}</h1>
 <p class="chapo">{e(a["intro"])}</p>{(f'<p><a class="lien-grille" href="{x["id"]}.html#grille">📋 Lire la grille d\'évaluation avant de commencer</a></p>' if bloc_grille(s, x) else "")}</section>

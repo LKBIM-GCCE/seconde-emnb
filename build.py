@@ -187,7 +187,7 @@ def page_sequence(s):
   <div><p class="numero-seq">{e(s["numero"])}</p><h1>{e(s["titre"])}</h1>{cote(f'{s["periode"]} — {s["duree"]}')}</div>
   <div class="illu grande">{ILLUS.get(s["id"], "")}</div>
 </section>
-<section class="bulle"><h2>La question de la séquence</h2><p>{e(s["problematique"])}</p></section>
+<section class="bulle"><h2>Problématique liée au métier :</h2><p>{e(s["problematique"])}</p></section>
 <section class="mission"><h2>Ta mission</h2><p>{e(s["contexte"])}</p></section>
 <section><h2 class="titre-section">Les séances {cote(f'{len(s["seances"])} × 2 h')}</h2><ol class="chemin">{lignes}</ol></section>
 {fiche_seq}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])

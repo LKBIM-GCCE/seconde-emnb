@@ -9,7 +9,7 @@
    "id": "lancement",
    "type": "exercice",
    "titre": "Lancement — Le fichier illisible",
-   "duree": "15 min",
+   "duree": "10 min",
    "consigne": "Le gérant de l'agence t'écrit : « Le bureau d'études n'arrive pas à ouvrir notre maquette .rvt, il n'a pas Revit. Comment lui envoyer le projet ? » Donne ton avis avant de lire le cours.",
    "parties": [
     {
@@ -51,14 +51,14 @@
    "id": "cours",
    "type": "cours",
    "titre": "Cours — Le format IFC",
-   "duree": "15 min",
+   "duree": "10 min",
    "fichier": "seq03-s1-cours.html"
   },
   {
    "id": "jeu",
    "type": "exercice",
    "titre": "Mission IFC — Le jeu",
-   "duree": "65 min",
+   "duree": "30 min",
    "consigne": "Joue les 4 missions : Explorer, Chasse aux objets, Arborescence, Propriétés. À la fin du jeu, recopie ton score ci-dessous.",
    "parties": [
     {
@@ -75,10 +75,213 @@
    ]
   },
   {
+   "id": "plan",
+   "type": "exercice",
+   "titre": "Du plan à la maquette",
+   "duree": "20 min",
+   "consigne": "Voici les plans de la maison du jeu. Sur un plan, un objet est dessiné avec un symbole ; dans la maquette, c'est un objet IFC avec une classe. Pour chaque repère, retrouve l'objet (rouvre le jeu si besoin) et donne sa classe IFC.",
+   "parties": [
+    {
+     "type": "associer",
+     "titre": "1. Rez-de-chaussée : quelle est la classe IFC de chaque repère ?",
+     "image": "../media/seq03/maison-jeu-rdc.png",
+     "alt": "Plan du rez-de-chaussée de la maison du jeu avec 7 repères",
+     "choix": [
+      "IfcWall",
+      "IfcSlab",
+      "IfcDoor",
+      "IfcWindow",
+      "IfcStair",
+      "IfcColumn",
+      "IfcBeam",
+      "IfcRoof"
+     ],
+     "vide": "— quelle classe ? —",
+     "items": [
+      {
+       "texte": "Repère n° 1",
+       "reponse": "IfcWall",
+       "explication": "Le mur extérieur Nord : un trait épais hachuré, c'est un mur.",
+       "x": 27.6,
+       "y": 17.8
+      },
+      {
+       "texte": "Repère n° 2",
+       "reponse": "IfcWall",
+       "explication": "Le mur de refend entre la cuisine et le séjour.",
+       "x": 57.5,
+       "y": 33.6
+      },
+      {
+       "texte": "Repère n° 3",
+       "reponse": "IfcDoor",
+       "explication": "La porte d'entrée : on voit le battant et son arc d'ouverture.",
+       "x": 38.4,
+       "y": 71.2
+      },
+      {
+       "texte": "Repère n° 4",
+       "reponse": "IfcWindow",
+       "explication": "La baie vitrée du séjour : 3 traits fins dans le mur.",
+       "x": 72.4,
+       "y": 71.2
+      },
+      {
+       "texte": "Repère n° 5",
+       "reponse": "IfcStair",
+       "explication": "L'escalier : les marches et la flèche « monte ».",
+       "x": 18.7,
+       "y": 48.6
+      },
+      {
+       "texte": "Repère n° 6",
+       "reponse": "IfcColumn",
+       "explication": "Un poteau de la terrasse : petit carré plein.",
+       "x": 85.1,
+       "y": 86.3
+      },
+      {
+       "texte": "Repère n° 7",
+       "reponse": "IfcSlab",
+       "explication": "La dalle de terrasse.",
+       "x": 69.4,
+       "y": 78.8
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "2. Étage : quelle est la classe IFC de chaque repère ?",
+     "image": "../media/seq03/maison-jeu-r1.png",
+     "alt": "Plan de l'étage de la maison du jeu avec 5 repères",
+     "choix": [
+      "IfcWall",
+      "IfcSlab",
+      "IfcDoor",
+      "IfcWindow",
+      "IfcStair",
+      "IfcColumn",
+      "IfcBeam",
+      "IfcRoof"
+     ],
+     "vide": "— quelle classe ? —",
+     "items": [
+      {
+       "texte": "Repère n° 1",
+       "reponse": "IfcWall",
+       "explication": "La cloison entre les chambres : un IfcWall, même si elle est fine et non porteuse.",
+       "x": 53.6,
+       "y": 49.1
+      },
+      {
+       "texte": "Repère n° 2",
+       "reponse": "IfcWindow",
+       "explication": "La fenêtre de la chambre 2.",
+       "x": 67.9,
+       "y": 89.7
+      },
+      {
+       "texte": "Repère n° 3",
+       "reponse": "IfcWindow",
+       "explication": "La fenêtre de la salle de bains.",
+       "x": 69.4,
+       "y": 22.4
+      },
+      {
+       "texte": "Repère n° 4",
+       "reponse": "IfcSlab",
+       "explication": "Le sol de l'étage est le plancher : une dalle (IfcSlab) rangée au R+1.",
+       "x": 38.1,
+       "y": 75.0
+      },
+      {
+       "texte": "Repère n° 5",
+       "reponse": "IfcWall",
+       "explication": "Le mur extérieur Est de l'étage.",
+       "x": 86.6,
+       "y": 40.5
+      }
+     ]
+    },
+    {
+     "type": "associer",
+     "titre": "3. Dans quel niveau la maquette range-t-elle ces objets ?",
+     "choix": [
+      "RDC",
+      "R+1"
+     ],
+     "vide": "— quel niveau ? —",
+     "items": [
+      {
+       "texte": "L'escalier",
+       "reponse": "RDC",
+       "explication": "Il est rangé au niveau où il commence : le RDC, même s'il monte au R+1."
+      },
+      {
+       "texte": "La dalle de terrasse",
+       "reponse": "RDC"
+      },
+      {
+       "texte": "Le plancher (le sol de l'étage)",
+       "reponse": "R+1",
+       "explication": "Le plancher porte l'étage : il est rangé au R+1."
+      },
+      {
+       "texte": "La toiture",
+       "reponse": "R+1"
+      },
+      {
+       "texte": "La fenêtre de la salle de bains",
+       "reponse": "R+1"
+      }
+     ]
+    },
+    {
+     "type": "qcm",
+     "titre": "4. Le plan et la maquette se complètent",
+     "questions": [
+      {
+       "q": "Sur le plan, la porte d'entrée est cotée 0,90. Dans la maquette, quelle propriété le confirme ?",
+       "choix": [
+        "OverallWidth = 0,90 m",
+        "Width = 0,20 m",
+        "FireRating",
+        "IsExternal = Oui"
+       ],
+       "r": 0,
+       "explication": "La largeur d'une porte est dans Qto_DoorBaseQuantities › OverallWidth."
+      },
+      {
+       "q": "Sur le plan, le repère 2 du RDC est un mur. Que t'apprend la maquette en plus ?",
+       "choix": [
+        "Qu'il est porteur (LoadBearing = Oui)",
+        "Que c'est une fenêtre",
+        "Rien de plus que le plan",
+        "Sa couleur"
+       ],
+       "r": 0,
+       "explication": "Le plan montre la forme ; la maquette ajoute des informations : porteur, matériau, résistance au feu."
+      },
+      {
+       "q": "Quelle information trouves-tu dans la maquette mais pas sur le plan ?",
+       "choix": [
+        "Le coefficient Uw de la baie vitrée",
+        "La largeur de la maison",
+        "La position des fenêtres",
+        "Le nom des pièces"
+       ],
+       "r": 0,
+       "explication": "Les performances (Uw), les matériaux ou le caractère porteur ne se dessinent pas : ils sont dans les propriétés."
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "bilan",
    "type": "exercice",
    "titre": "Mise en commun — Les 3 notions",
-   "duree": "15 min",
+   "duree": "10 min",
    "consigne": "Vérifie que tu as compris les trois notions vues dans le jeu.",
    "parties": [
     {

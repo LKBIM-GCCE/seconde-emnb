@@ -351,3 +351,7 @@ table { border-collapse: collapse; }
 .mj-bonus-carte h3 { margin: 0 0 4px; font-size: 20px; }
 .mj-bonus-carte p { margin: 0 0 10px; color: var(--doux); }
 .mj-bonus-carte:hover .mj-etape { background: var(--plan); color: #fff; }
+
+/* Prérequis de séance */
+.prerequis { border-left: 5px solid var(--plan); }
+.prerequis ul { margin: 0; }

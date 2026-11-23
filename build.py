@@ -219,6 +219,13 @@ def bloc_grille(s, x):
 <button class="btn-imprimer" type="button" onclick="window.print()">🖨 Imprimer la grille</button></section>'''
 
 
+def bloc_prerequis(x):
+    if not x.get("prerequis"):
+        return ""
+    items = "".join(f"<li>{e(p)}</li>" for p in x["prerequis"])
+    return f'''<section class="bloc prerequis"><h2>🧰 Ce que je dois déjà savoir</h2><ul>{items}</ul></section>'''
+
+
 def page_seance(s, i):
     x = s["seances"][i]
     act = ACTS.get((s["id"], x["id"]))
@@ -243,6 +250,7 @@ def page_seance(s, i):
 <section class="bloc"><h2>À la fin de la séance, je sais…</h2><ul class="coche">{objectifs}</ul></section>
 <section class="bloc"><h2>Compétences travaillées</h2><ul class="liste-comp">{comps}</ul><p class="eval">Évaluation : {e(x["evaluation"])}</p></section>
 </div>
+{bloc_prerequis(x)}
 {bloc_grille(s, x)}
 <details class="bloc deroule"><summary>Voir le déroulé de la séance</summary><ol class="frise">{deroule}</ol></details>
 {nav}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], f'{s["id"]}/index.html'), (f"Séance {i+1}", None)])

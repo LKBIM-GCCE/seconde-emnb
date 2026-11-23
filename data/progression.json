@@ -949,59 +949,78 @@
           "id": "s1",
           "deroule": [
             {
-              "temps": "15 min",
+              "temps": "10 min",
+              "etape": "Rappel des prérequis - Questions flash",
+              "eleves": [
+                "Répondre à l'oral aux 10 questions flash (diaporama) : acteurs, phases, types de plans, lecture d'un plan",
+                "Citer les acteurs qui auront besoin des informations du projet"
+              ]
+            },
+            {
+              "temps": "10 min",
               "etape": "Lancement - Le fichier illisible",
               "eleves": [
-                "Découvrir la situation : arrivée dans la cellule BIM Desk de l'agence Atelier Équerre",
-                "Observer la tentative d'ouverture du fichier .rvt chez un partenaire (message d'erreur)",
-                "Répondre à la question : « Comment envoyer la maquette à quelqu'un qui n'a pas Revit ? »"
+                "Découvrir la situation : la cellule BIM Desk de l'agence Atelier Équerre et le message du gérant",
+                "Relever les contraintes du fichier natif et les besoins des partenaires",
+                "Répondre en ligne aux 3 questions du lancement (hypothèses)"
+              ]
+            },
+            {
+              "temps": "10 min",
+              "etape": "Cours - Le format IFC",
+              "eleves": [
+                "Lire le cours en ligne",
+                "Vérifier son hypothèse du lancement"
+              ]
+            },
+            {
+              "temps": "30 min",
+              "etape": "Mission IFC - Le jeu",
+              "eleves": [
+                "Jouer les 4 missions : Explorer, Chasse aux objets, Arborescence, Propriétés",
+                "Recopier son score final"
               ]
             },
             {
               "temps": "20 min",
-              "etape": "Mission IFC - 1. Explorer",
+              "etape": "Transfert - Du plan à la maquette",
               "eleves": [
-                "Lancer le jeu Mission IFC (mission 1 « Explorer »)",
-                "Faire tourner la maquette, filtrer par niveau, masquer des classes",
-                "Découvrir au moins 7 classes sur 9 : IfcWall, IfcDoor, IfcSlab…"
+                "Donner la classe IFC de 12 repères sur les plans RDC et R+1 de la maison du jeu",
+                "Indiquer le niveau où la maquette range 5 objets",
+                "Répondre à 3 questions plan / maquette (largeur de porte, mur porteur, Uw)"
               ]
             },
             {
-              "temps": "25 min",
-              "etape": "Mission IFC - 2. Chasse aux objets + 3. Arborescence",
-              "eleves": [
-                "Retrouver les 9 objets demandés : porte d'entrée, fenêtre du R+1, escalier…",
-                "Vérifier le niveau d'un objet grâce au chemin affiché dans l'inspecteur",
-                "Ranger les 5 étiquettes de l'arborescence dans le bon ordre"
-              ]
-            },
-            {
-              "temps": "20 min",
-              "etape": "Mission IFC - 4. Propriétés",
-              "eleves": [
-                "Sélectionner l'objet demandé puis lire la réponse dans l'inspecteur",
-                "Répondre aux 7 questions : épaisseur de mur, largeur de porte, marches, Uw, porteur, matériau, surface",
-                "Capturer le certificat de fin de mission"
-              ]
-            },
-            {
-              "temps": "15 min",
+              "temps": "10 min",
               "etape": "Correction - Mise en commun",
               "eleves": [
-                "Comparer ses scores et ses erreurs avec la correction projetée",
-                "Expliquer à l'oral une question ratée et la bonne méthode",
-                "Compléter le schéma de l'arborescence sur la fiche"
+                "Faire le bloc « Mise en commun : les 3 notions »",
+                "Expliquer à l'oral une question ratée et la bonne méthode"
               ]
             },
             {
               "temps": "15 min",
-              "etape": "Apport structurant",
+              "etape": "Synthèse élèves",
               "eleves": [
-                "Citer : IFC = format ouvert, lisible avec une visionneuse gratuite",
-                "Nommer les 3 notions : classe, arborescence, propriétés",
-                "Répondre à la question de départ : « Comment envoyer la maquette à un partenaire ? »"
+                "En binôme, compléter le schéma à trous sans document : natif / IFC, arborescence, 3 notions",
+                "Comparer avec la fiche synthèse S01 et corriger au stylo vert",
+                "Répondre en une phrase à la question de départ"
+              ]
+            },
+            {
+              "temps": "15 min",
+              "etape": "Quiz Wayground",
+              "eleves": [
+                "Répondre au quiz (16 questions)",
+                "Lire l'explication des questions ratées",
+                "Répondre au sondage final"
               ]
             }
+          ],
+          "prerequis": [
+            "SEQ01 : les acteurs et les phases de la construction",
+            "SEQ02 : lire un plan, connaître les différents types de plans et leur utilité",
+            "Utiliser un navigateur et ouvrir un fichier"
           ]
         },
         {

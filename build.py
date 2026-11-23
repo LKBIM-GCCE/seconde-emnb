@@ -20,6 +20,24 @@ for f in sorted((RACINE / "data" / "activites").glob("*.json")):
     a["_cours"] = {b["id"]: (f.parent / b["fichier"]).read_text(encoding="utf-8") for b in a["blocs"] if b["type"] == "cours"}
     ACTS[(a["sequence"], a["seance"])] = a
 
+# Synthèse de la séance : dernière mission de chaque séance en ligne (10 min, non notée)
+SYNTH = json.loads((RACINE / "data" / "syntheses.json").read_text(encoding="utf-8"))
+for a in ACTS.values():
+    sy = SYNTH.get(a["id"])
+    if not sy or any(b["id"] == "synthese" for b in a["blocs"]):
+        continue
+    a["blocs"].append({
+        "id": "synthese", "type": "exercice", "titre": "Synthèse de la séance", "duree": "10 min",
+        "consigne": "Non notée. Elle se fait en 3 temps, avec toute la classe : suis le rythme de ton professeur.",
+        "parties": [
+            {"type": "retenir", "titre": "1. Seul(e) · 2 min — Ce que je retiens de la séance, sans regarder mes documents",
+             "cases": [["Une notion", "ex : ce qu'est une classe IFC"], ["Une méthode", "ex : comment je trouve une information"], ["Un mot de vocabulaire", "le mot et sa définition"]]},
+            {"type": "texte", "html": '<div class="synth-ensemble"><b>2. Tous ensemble · 5 min</b><p>Chacun propose ce qu\'il a écrit. La classe trie au tableau ce qui est vraiment important : notions, méthode, vocabulaire. Écoute, complète tes idées si besoin.</p></div>'},
+            {"type": "coche", "titre": "3. Avec la fiche synthèse · 3 min — " + ("Lis la fiche distribuée par ton professeur. Pour chaque point clé : l'avais-tu trouvé ?" if sy["fiche"] else "Pour chaque point clé de la séance : l'avais-tu trouvé ?"),
+             "items": sy["points"]},
+        ],
+    })
+
 # fiches synthèse A4 (PDF dans fiches/) : une par séance
 FICHES = {(f.stem.split("-")[0], f.stem.split("-")[1]): f.name for f in (RACINE / "fiches").glob("seq0?-s?.pdf")}
 

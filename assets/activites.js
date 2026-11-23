@@ -251,6 +251,32 @@
     };
   };
 
+  // retenir : synthèse, 3 champs courts (notion, méthode, vocabulaire), non noté
+  P.retenir = (p, d, fini) => {
+    d.v = d.v || [];
+    const ol = h("ol", { class: "saisies synth-retenir" });
+    p.cases.forEach(([lib, aide], i) => {
+      const inp = h("input", { type: "text", class: "champ", value: d.v[i] || "", placeholder: aide || "", maxlength: "160", disabled: fini, autocomplete: "off" });
+      inp.oninput = () => d.v[i] = inp.value;
+      ol.append(h("li", {}, h("label", {}, h("b", {}, lib), inp)));
+    });
+    return { el: ol, manque: () => p.cases.some((_, i) => String(d.v[i] || "").trim().length < 3) ? "Écris quelque chose dans chacune des 3 cases (étape 1)." : null, score: () => [0, 0] };
+  };
+
+  // coche : points clés de la fiche synthèse, « je l'avais trouvé » ou non, non noté
+  P.coche = (p, d, fini) => {
+    d.v = d.v || [];
+    const OPTS = [[true, "✓ Je l'avais trouvé"], [false, "Je ne l'avais pas trouvé"]];
+    const ol = h("ol", { class: "vf synth-coche" });
+    p.items.forEach((t, i) => {
+      const g = h("span", { class: "vf-btn" });
+      OPTS.forEach(([v, lib]) => g.append(h("button", { class: "pill" + (d.v[i] === v ? " on" : ""), disabled: fini,
+        onclick: () => { d.v[i] = v; [...g.children].forEach(x => x.classList.toggle("on", x.textContent === lib)); } }, lib)));
+      ol.append(h("li", { class: fini ? (d.v[i] ? "trouve" : "a-revoir") : "" }, h("span", {}, t), g));
+    });
+    return { el: ol, manque: () => p.items.some((_, i) => d.v[i] == null) ? "Pour chaque point clé de la fiche, indique si tu l'avais trouvé (étape 3)." : null, score: () => [0, 0] };
+  };
+
   // schema : cases positionnées sur une grille ; on clique une étiquette puis une case
   P.schema = (p, d, fini) => {
     d.c = d.c || {};
@@ -470,6 +496,8 @@
       case "nombre": p.items.forEach((it, i) => { const s = (d.v || [])[i]; const n = parseFloat(String(s || "").replace(",", ".").replace(/[\s+]/g, ""));
         ligne(it.texte, vu(s) + (s ? " " + (it.unite || "") : ""), Math.abs(n - it.valeur) <= (it.tolerance ?? 0.005), String(it.valeur).replace(".", ",") + " " + (it.unite || "")); }); break;
       case "redaction": ligne(p.question, vu((d.t || "").trim()), null, ""); break;
+      case "retenir": p.cases.forEach(([lib], i) => ligne(lib, vu(String((d.v || [])[i] || "").trim()), null, "")); break;
+      case "coche": p.items.forEach((t, i) => { const v = (d.v || [])[i]; ligne(t, v == null ? "—" : v ? "Je l'avais trouvé" : "Je ne l'avais pas trouvé (à revoir)", null, ""); }); break;
       case "schema": p.cases.forEach(c => ligne("Case " + (c.indice || c.id), vu((d.c || {})[c.id]), c.accepte.includes((d.c || {})[c.id]), c.accepte.join(" / "))); break;
     }
     return L;

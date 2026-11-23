@@ -319,3 +319,13 @@ body.large main { max-width: 1440px; }
 .oral-plan li { margin: 4px 0; }
 .coup-pouce { background: var(--plan-pale); border-left: 4px solid var(--plan); border-radius: 6px; padding: 10px 12px; margin: 0; line-height: 1.6; }
 .certif-textes p { overflow-wrap: anywhere; }
+
+/* Synthèse de la séance */
+.synth-ensemble { padding: 12px 16px; border-radius: 10px; background: #fff7d6; border-left: 5px solid var(--signal, #ffc52e); color: #13223f; }
+.synth-ensemble p { margin: 4px 0 0; }
+.synth-coche li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.synth-coche li > span:first-child { flex: 1 1 320px; }
+.synth-coche .vf-btn { margin-left: 0; flex-wrap: wrap; }
+.synth-coche li.trouve { border-color: #1f7a4a; background: #eaf6ef; }
+.synth-coche li.a-revoir { border-color: #e08a1e; background: #fff3e3; }
+.synth-retenir > li { background: #fff; }

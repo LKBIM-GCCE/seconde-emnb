@@ -1,0 +1,75 @@
+{
+ "_info": "Synthèse de la séance (10 min, non notée), ajoutée par build.py à la fin de chaque activité en ligne. « fiche » : true si les points viennent de la fiche synthèse A4 du professeur, false s'ils sont proposés (à valider).",
+ "seq01-s1": {"fiche": true, "points": [
+  "Un acteur intervient dans la conception, la réalisation ou le contrôle d'un projet",
+  "Le MOA commande et finance, le MOE conçoit et coordonne, l'entreprise réalise",
+  "L'architecte est une profession réglementée (Ordre des Architectes) ; la MOE est une mission",
+  "BET, OPC, CSPS et bureau de contrôle ont des missions complémentaires, coordonnées par la MOE",
+  "Dans un projet public, le MOA est une collectivité (commune, région, lycée…)"]},
+ "seq01-s2": {"fiche": true, "points": [
+  "L'ordre des phases : Faisabilité, Programme, ESQ, APS, APD, PRO, DCE, VISA, DET, AOR",
+  "Faisabilité et Programme sont menés par le MOA (souvent avec un AMO), avant la mission du MOE",
+  "La loi MOP (1985) organise les marchés publics ; les projets privés s'en inspirent",
+  "Chaque phase produit ses documents (ex. : plans 1/50 et CCTP en PRO, PV de réception en AOR)",
+  "Pour chaque phase, on sait qui pilote : le MOA, le MOE ou les deux"]},
+ "seq01-s3": {"fiche": false, "points": [
+  "Face à un problème de chantier, je repère la phase et l'acteur concerné",
+  "Les documents d'un projet se rangent dans l'ordre chronologique des phases",
+  "Le tableau croisé acteurs × phases montre qui intervient à quel moment",
+  "Je situe mon futur métier dans ce tableau"]},
+ "seq01-s4": {"fiche": false, "points": [
+  "Chaque acteur réagit à un imprévu selon son rôle et ses responsabilités",
+  "Le passage de la conception à la réalisation : le dossier passe du MOE aux entreprises",
+  "La maquette 3D (BIM) montre ce que le plan 2D ne montre pas et évite des erreurs",
+  "Le BIM sert à partager la même information entre tous les acteurs du projet"]},
+ "seq02-s1": {"fiche": true, "points": [
+  "Les pièces graphiques : plan de situation, plan de masse, plans de niveaux, façades, coupes, détails",
+  "Le plan de situation répond à la question « Où est le terrain ? »",
+  "Le plan de masse répond à la question « Comment le bâtiment est-il implanté ? »",
+  "L'indicateur Nord oriente le bâtiment et permet de nommer les façades",
+  "La légende est la clé de lecture des symboles et des hachures"]},
+ "seq02-s2": {"fiche": true, "points": [
+  "Un plan de niveaux est une coupe horizontale du bâtiment à environ 1 m du sol",
+  "Mur porteur : trait épais haché · cloison : trait fin",
+  "La trémie d'escalier est un rectangle barré d'une croix",
+  "Le cartouche (en bas à droite) donne le titre, l'échelle et les intervenants",
+  "Une façade est une vue extérieure : on y lit les ouvertures et les matériaux, et on la nomme grâce au Nord"]},
+ "seq02-s3": {"fiche": true, "points": [
+  "Une coupe est une section verticale du bâtiment (A-A longitudinale, B-B transversale)",
+  "Le niveau ± 0.00 est la référence de toutes les hauteurs",
+  "La hauteur sous plafond (HSP) ne comprend pas l'épaisseur de la dalle",
+  "L'échelle 1/n est le rapport entre la dimension dessinée et la dimension réelle",
+  "Au 1/50, 1 cm sur le plan = 50 cm en réalité ; la règle à échelles (Kutch) évite le calcul"]},
+ "seq02-s4": {"fiche": true, "points": [
+  "Les phases ESQ, APS, APD, DCE, EXE : le niveau de détail augmente à chaque phase",
+  "L'échelle s'agrandit au fil du projet : 1/500 en esquisse, jusqu'au 1/20 ou 1/5 en exécution",
+  "Le plan APS est schématique, le plan APD est entièrement coté",
+  "Le cartouche indique la phase, l'échelle, la date et l'indice de révision",
+  "La maquette 3D montre des éléments qu'on ne lit pas sur le plan 2D"]},
+ "seq03-s1": {"fiche": true, "points": [
+  "Le fichier natif (.rvt) sert à concevoir ; l'IFC, format ouvert, sert à échanger avec tous les partenaires",
+  "On consulte l'IFC dans une visionneuse ; on ne modifie pas le projet dedans",
+  "La classe dit ce qu'est l'objet : IfcWall, IfcDoor, IfcWindow, IfcSlab, IfcSpace…",
+  "L'arborescence range les objets : Projet › Site › Bâtiment › Niveau › Élément",
+  "Les propriétés (Pset) et les quantités (Qto) décrivent l'objet",
+  "Sur un plan, un objet est un symbole ; dans la maquette, c'est un objet avec une classe"]},
+ "seq03-s2": {"fiche": true, "points": [
+  "Pour trouver une information : je trouve l'objet qui la porte, puis je lis sa fiche",
+  "Les outils de la visionneuse : niveau, coupe, pièces, capture, arborescence, clic sur l'objet",
+  "Je sais où regarder : classe, nom du type, niveau, matériaux, Pset, quantités",
+  "Certaines informations ne sont que sur le plan PDF : cotes, cartouche, légendes",
+  "Je note toujours ma source : la maquette (objet, propriété) ou le plan (planche)",
+  "Face à une donnée bizarre, je compare avec le plan et je la signale"]},
+ "seq03-s3": {"fiche": true, "points": [
+  "Quantifier, c'est compter (arborescence par type d'objet) ou mesurer (Qto / Cotes de l'objet)",
+  "Une réponse = valeur + unité + source, arrondie à 2 décimales",
+  "Avant de répondre, je vérifie : le niveau, l'objet, l'unité, l'ordre de grandeur",
+  "Un écart avec le plan s'explique : brut ou net, arrondi, plan pas à jour",
+  "Réponse numérique pour chiffrer (économiste) · réponse graphique pour localiser (chantier, client)"]},
+ "seq03-s4": {"fiche": false, "points": [
+  "Pourquoi l'IFC : un format ouvert pour échanger avec tous les partenaires",
+  "La structure de la maquette : classe, arborescence (niveaux), propriétés",
+  "Trouver : l'objet et sa fiche, ou le plan PDF (le bon état : existant ou projeté)",
+  "Quantifier : compter ou mesurer, puis répondre valeur + unité + source",
+  "Transmettre : une réponse numérique ou graphique, selon le demandeur"]}
+}

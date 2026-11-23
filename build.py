@@ -20,9 +20,8 @@ for f in sorted((RACINE / "data" / "activites").glob("*.json")):
     a["_cours"] = {b["id"]: (f.parent / b["fichier"]).read_text(encoding="utf-8") for b in a["blocs"] if b["type"] == "cours"}
     ACTS[(a["sequence"], a["seance"])] = a
 
-# fiches synthèse (PDF dans fiches/) : par séance, et une fiche A3 par séquence
+# fiches synthèse A4 (PDF dans fiches/) : une par séance
 FICHES = {(f.stem.split("-")[0], f.stem.split("-")[1]): f.name for f in (RACINE / "fiches").glob("seq0?-s?.pdf")}
-FICHES_SEQ = {f.stem.split("-")[0]: f.name for f in (RACINE / "fiches").glob("seq0?-synthese-*.pdf")}
 
 POLICES = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
            '<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">')
@@ -179,9 +178,6 @@ def page_sequence(s):
         lignes += f'''<li class="pas"><a href="{x["id"]}.html"><span class="borne">S{i}</span>
 <span class="pas-txt"><b>{e(x["titre"])}</b><small>{e(x["duree"])} — {e(x["evaluation"])}</small></span>
 <span class="pas-etat" {f'data-act="{act["id"]}" data-nb="{sum(1 for b in act["blocs"] if b["type"] != "cours")}"' if act else ""}></span></a></li>'''
-    fiche_seq = ""
-    if s["id"] in FICHES_SEQ:
-        fiche_seq = f'<a class="btn-fiche large" href="../fiches/{FICHES_SEQ[s["id"]]}" download><span class="ico-fiche" aria-hidden="true">🗂️</span><span><b>Fiche synthèse A3 de la séquence</b><small>Tout ce qu\'il faut retenir sur une seule page</small></span></a>'
     return page(s["numero"], f'''
 <section class="bandeau-seq">
   <div><p class="numero-seq">{e(s["numero"])}</p><h1>{e(s["titre"])}</h1>{cote(f'{s["periode"]} — {s["duree"]}')}</div>
@@ -190,7 +186,7 @@ def page_sequence(s):
 <section class="bulle"><h2>Problématique liée au métier :</h2><p>{e(s["problematique"])}</p></section>
 <section class="mission"><h2>Ta mission</h2><p>{e(s["contexte"])}</p></section>
 <section><h2 class="titre-section">Les séances {cote(f'{len(s["seances"])} × 110 min')}</h2><ol class="chemin">{lignes}</ol></section>
-{fiche_seq}''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])
+''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])
 
 
 

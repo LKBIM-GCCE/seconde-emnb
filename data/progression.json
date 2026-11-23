@@ -32,7 +32,7 @@
    "seances": [
     {
      "titre": "Découvrir les acteurs de la construction",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C1.1.1"
      ],
@@ -97,7 +97,7 @@
        ]
       },
       {
-       "temps": "25 min",
+       "temps": "20 min",
        "etape": "Découvrir les acteurs d'un projet de construction à travers leurs indices métier",
        "eleves": [
         "En groupe et en vous aidant d'internet et de vos connaissances, retrouver les acteurs de constructions qui correspondent au cartes donnée."
@@ -112,7 +112,7 @@
        ]
       },
       {
-       "temps": "25 min",
+       "temps": "20 min",
        "etape": "Comprendre les missions de chaque acteur et les métiers associés",
        "eleves": [
         "Relier chaque métier (architecte, ingénieur structure,",
@@ -128,7 +128,7 @@
        ]
       },
       {
-       "temps": "25 min",
+       "temps": "20 min",
        "etape": "Restituer les liaisons entre acteurs à partir du cours",
        "eleves": [
         "Compléter le schéma vierge des liaisons :",
@@ -137,12 +137,20 @@
         "— indiquer la nature du lien (contractuel / fonctionnel)",
         "Comparer avec le voisin."
        ]
+      },
+      {
+       "temps": "10 min",
+       "etape": "Synthèse élèves",
+       "eleves": [
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Les rôles des acteurs et les liens contractuels / fonctionnels",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
+       ]
       }
      ]
     },
     {
      "titre": "Les phases de l'acte de construire",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C1.1.1",
       "C1.1.3"
@@ -239,18 +247,17 @@
       },
       {
        "temps": "10 min",
-       "etape": "Fixer les 3 apprentissages essentiels et préparer la suite du cycle",
+       "etape": "Synthèse élèves",
        "eleves": [
-        "Recopier ou compléter la fiche synthèse « À retenir »",
-        "(3 phrases clés).",
-        "Écouter l'annonce de la prochaine séance."
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Les 8 phases dans l'ordre et qui intervient à chaque phase",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ]
     },
     {
      "titre": "Application croisée et résolution de problèmes",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C1.1.1",
       "C1.1.3"
@@ -282,7 +289,7 @@
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Restitution commune",
        "eleves": [
         "Écoute les autres groupes.",
@@ -306,7 +313,7 @@
        ]
       },
       {
-       "temps": "25 min",
+       "temps": "20 min",
        "etape": "Mise en perspective métier",
        "eleves": [
         "Complète la fiche de synthèse documentaire.",
@@ -314,7 +321,7 @@
        ]
       },
       {
-       "temps": "35 min",
+       "temps": "30 min",
        "etape": "Co-construction du tableau",
        "eleves": [
         "Répond aux questions du prof.",
@@ -323,18 +330,18 @@
        ]
       },
       {
-       "temps": "15 min",
-       "etape": "Trace écrite validée",
+       "temps": "10 min",
+       "etape": "Synthèse élèves",
        "eleves": [
-        "Finalise le tableau sur la feuille propre.",
-        "Souligne / surligne les rôles de son futur métier."
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Le rôle des acteurs à chaque phase et son futur métier dans le tableau",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ]
     },
     {
      "titre": "Jeu de rôle, transition numérique et évaluation",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C1.1.1",
       "C1.1.3"
@@ -357,7 +364,7 @@
        ]
       },
       {
-       "temps": "20 min",
+       "temps": "15 min",
        "etape": "Préparation en groupe",
        "eleves": [
         "Rédige ou prépare à l'oral la réaction de son acteur.",
@@ -391,7 +398,7 @@
        ]
       },
       {
-       "temps": "20 min",
+       "temps": "15 min",
        "etape": "QCM numérique (individuel)",
        "eleves": [
         "Répond au QCM sur son poste / tablette / smartphone.",
@@ -408,10 +415,10 @@
       },
       {
        "temps": "10 min",
-       "etape": "Bilan de séquence",
+       "etape": "Synthèse élèves - Bilan de séquence",
        "eleves": [
-        "Participe au bilan.",
-        "Réfléchit à son futur positionnement métier."
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Les acteurs, les phases et ce que le BIM change dans un projet",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       },
       {
@@ -438,7 +445,7 @@
    "seances": [
     {
      "titre": "Découverte du dossier : plan de situation et plan de masse",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C1.2.1",
       "C2.1.1",
@@ -519,7 +526,7 @@
        ]
       },
       {
-       "temps": "25 min",
+       "temps": "30 min",
        "etape": "Mission - Plan de masse",
        "eleves": [
         "Identifier l'indicateur Nord sur le plan de masse",
@@ -538,20 +545,18 @@
        ]
       },
       {
-       "temps": "15 min",
-       "etape": "Apport structurant",
+       "temps": "10 min",
+       "etape": "Synthèse élèves",
        "eleves": [
-        "Citer les 3 types de plans graphiques : plan de situation, plan de masse, plan de niveaux",
-        "Nommer la différence entre plan de situation et plan de masse",
-        "Identifier la fiche de cours dans le dossier distribué",
-        "Classer la fiche de cours dans le porte-documents"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Plan de situation / plan de masse : ce que montre chacun et à quoi il sert",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ]
     },
     {
      "titre": "Plans de niveaux et façades",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C2.1.1",
       "C2.1.2",
@@ -656,7 +661,7 @@
        ]
       },
       {
-       "temps": "20 min",
+       "temps": "25 min",
        "etape": "Mission - Lire et orienter les façades",
        "eleves": [
         "Identifier les ouvertures (baies, portes-fenêtres) sur chaque façade",
@@ -676,19 +681,17 @@
       },
       {
        "temps": "10 min",
-       "etape": "Apport structurant",
+       "etape": "Synthèse élèves",
        "eleves": [
-        "Citer la définition d'un plan de niveaux : coupe horizontale à 1 m du sol",
-        "Nommer les 3 informations lisibles sur une façade : orientation, ouvertures, matériaux",
-        "Identifier la fiche de cours dans le dossier distribué",
-        "Classer la fiche de cours dans le porte-documents (section SEQ02)"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Plan de niveaux (coupe horizontale à 1 m) et façades (orientation, ouvertures, matériaux)",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ]
     },
     {
      "titre": "Les coupes et les échelles",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C2.2.1",
       "C3.2.1"
@@ -796,19 +799,17 @@
       },
       {
        "temps": "10 min",
-       "etape": "Apport structurant",
+       "etape": "Synthèse élèves",
        "eleves": [
-        "Citer la définition d'une coupe : section verticale du bâtiment",
-        "Nommer le niveau de référence : ± 0.00",
-        "Identifier la formule de l'échelle sur la fiche de cours",
-        "Classer la fiche de cours dans le porte-documents"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : La coupe (section verticale), le niveau ± 0.00 et le calcul d'échelle",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ]
     },
     {
      "titre": "Analyse de l'évolution des plans : de l'Esquisse à l'APD",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C2.1.1",
       "C2.2.1"
@@ -900,11 +901,10 @@
       },
       {
        "temps": "10 min",
-       "etape": "Bilan de séquence",
+       "etape": "Synthèse élèves - Bilan de séquence",
        "eleves": [
-        "Citer les 5 types de documents vus dans la séquence : situation, masse, niveaux, façades, coupes",
-        "Identifier les phases Esquisse et APD dans les documents de la séquence",
-        "Classer toutes les fiches de cours dans le porte-documents (ordre S1 → S4)"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Les 5 types de plans vus dans la séquence et les phases Esquisse / APD",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ]
@@ -932,7 +932,7 @@
    "seances": [
     {
      "titre": "Pourquoi l'IFC ? Jeu Mission IFC",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C1.2.1",
       "C1.3.2",
@@ -999,16 +999,15 @@
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Synthèse élèves",
        "eleves": [
-        "En binôme, compléter le schéma à trous sans document : natif / IFC, arborescence, 3 notions",
-        "Comparer avec la fiche synthèse S01 et corriger au stylo vert",
-        "Répondre en une phrase à la question de départ"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Fichier natif / IFC, les 3 notions : classe, niveau (arborescence), propriétés",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Quiz Wayground",
        "eleves": [
         "Répondre au quiz (16 questions)",
@@ -1025,7 +1024,7 @@
     },
     {
      "titre": "Lire la maquette du projet",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C2.1.1",
       "C2.2.1"
@@ -1084,7 +1083,7 @@
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Transfert - Rotation des maquettes",
        "eleves": [
         "Changer de maquette (rotation G1 → G2 → G3 → G4)",
@@ -1101,12 +1100,11 @@
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Synthèse élèves",
        "eleves": [
-        "Par groupe, compléter le tableau « je cherche… → je regarde… » (maquette ou plan)",
-        "Mise en commun : chaque groupe propose 2 lignes au tableau",
-        "Comparer avec la fiche synthèse S02 et compléter en vert"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Le tableau « je cherche… → je regarde… » (maquette ou plan)",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ],
@@ -1117,7 +1115,7 @@
     },
     {
      "titre": "Répondre à l'économiste : tickets quantitatifs",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C2.2.1",
       "C2.2.2",
@@ -1194,7 +1192,7 @@
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Transfert - Tickets bonus sur une autre maquette",
        "eleves": [
         "Changer de maquette (rotation)",
@@ -1203,12 +1201,11 @@
        ]
       },
       {
-       "temps": "15 min",
-       "etape": "Synthèse élèves - Galerie",
+       "temps": "10 min",
+       "etape": "Synthèse élèves",
        "eleves": [
-        "Afficher sa meilleure capture annotée et une réponse « valeur + unité + source »",
-        "Galerie : évaluer 2 productions d'autres groupes avec la check-list",
-        "Comparer avec la fiche synthèse S03 et compléter en vert"
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : Une réponse = valeur + unité + source ; réponse numérique ou graphique",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert"
        ]
       }
      ],
@@ -1220,7 +1217,7 @@
     },
     {
      "titre": "Évaluation : les futurs bureaux de l'agence",
-     "duree": "2 h",
+     "duree": "110 min",
      "competences": [
       "C2.2.1",
       "C2.2.3"
@@ -1235,7 +1232,7 @@
      "id": "s4",
      "deroule": [
       {
-       "temps": "10 min",
+       "temps": "5 min",
        "etape": "Rappel des prérequis - Révision",
        "eleves": [
         "Répondre au quiz de révision Wayground (10 questions S1 → S3)",
@@ -1294,11 +1291,11 @@
        ]
       },
       {
-       "temps": "15 min",
+       "temps": "10 min",
        "etape": "Synthèse élèves - Bilan de séquence",
        "eleves": [
-        "Compléter la carte mentale de la séquence (4 branches : pourquoi l'IFC, structure, trouver, quantifier et transmettre)",
-        "Comparer avec la fiche synthèse A3 et compléter en vert",
+        "Tous ensemble, identifier les éléments importants de la séance (notions, méthode, vocabulaire) : La carte mentale de la séquence : pourquoi l'IFC, structure, trouver, quantifier et transmettre",
+        "Recevoir la fiche synthèse du professeur, la comparer et compléter en vert",
         "Compléter l'auto-évaluation des compétences"
        ]
       }

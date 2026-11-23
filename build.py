@@ -223,7 +223,7 @@ def bloc_prerequis(x):
     if not x.get("prerequis"):
         return ""
     items = "".join(f"<li>{e(p)}</li>" for p in x["prerequis"])
-    return f'''<section class="bloc prerequis"><h2>🧰 Ce que je dois déjà savoir</h2><ul>{items}</ul></section>'''
+    return f'''<section class="bloc prerequis"><h2>🧰 Liste des prérequis</h2><ul>{items}</ul></section>'''
 
 
 def page_seance(s, i):

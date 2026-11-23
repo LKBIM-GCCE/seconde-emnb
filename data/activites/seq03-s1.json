@@ -286,45 +286,43 @@
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Quelle est la classe IFC de chaque objet ?",
+     "titre": "1. Classe, niveau ou propriété ? Range chaque information",
      "choix": [
-      "IfcWall",
-      "IfcSlab",
-      "IfcDoor",
-      "IfcWindow",
-      "IfcRoof",
-      "IfcStair",
-      "IfcSpace"
+      "La classe (quel objet ?)",
+      "Le niveau (où est-il rangé ?)",
+      "Une propriété ou une quantité"
      ],
-     "melanger": false,
+     "vide": "— quelle notion ? —",
      "items": [
       {
-       "texte": "Un mur de façade",
-       "reponse": "IfcWall"
+       "texte": "IfcDoor",
+       "reponse": "La classe (quel objet ?)",
+       "explication": "Une classe IFC dit quel objet c'est : ici, une porte."
       },
       {
-       "texte": "Le plancher du rez-de-chaussée",
-       "reponse": "IfcSlab"
+       "texte": "RDC",
+       "reponse": "Le niveau (où est-il rangé ?)",
+       "explication": "C'est le niveau où l'objet est rangé dans l'arborescence."
       },
       {
-       "texte": "La porte d'entrée",
-       "reponse": "IfcDoor"
+       "texte": "LoadBearing = Oui",
+       "reponse": "Une propriété ou une quantité",
+       "explication": "Une propriété du mur (Pset_WallCommon) : il est porteur."
       },
       {
-       "texte": "Une baie vitrée",
-       "reponse": "IfcWindow"
+       "texte": "OverallWidth = 0,90 m",
+       "reponse": "Une propriété ou une quantité",
+       "explication": "Une quantité de la porte (Qto_DoorBaseQuantities) : sa largeur."
       },
       {
-       "texte": "La toiture",
-       "reponse": "IfcRoof"
+       "texte": "R+1",
+       "reponse": "Le niveau (où est-il rangé ?)",
+       "explication": "Le niveau de l'étage dans l'arborescence."
       },
       {
-       "texte": "L'escalier",
-       "reponse": "IfcStair"
-      },
-      {
-       "texte": "La cuisine (la pièce)",
-       "reponse": "IfcSpace"
+       "texte": "IfcSpace",
+       "reponse": "La classe (quel objet ?)",
+       "explication": "La classe des pièces (cuisine, séjour…)."
       }
      ]
     },
@@ -355,15 +353,15 @@
      "titre": "3. Les propriétés",
      "questions": [
       {
-       "q": "Où lit-on si un mur est porteur ?",
+       "q": "Où lit-on si une fenêtre est en façade (extérieure) ?",
        "choix": [
         "Dans son nom",
-        "Dans le jeu de propriétés Pset_WallCommon (LoadBearing)",
+        "Dans le jeu de propriétés Pset_WindowCommon (IsExternal)",
         "Dans l'arborescence",
         "On ne peut pas le savoir"
        ],
        "r": 1,
-       "explication": ""
+       "explication": "IsExternal = Oui : la fenêtre donne sur l'extérieur. C'est une propriété, pas le nom."
       },
       {
        "q": "Où lit-on la surface d'une dalle ?",
@@ -373,7 +371,7 @@
         "Dans le nom du projet"
        ],
        "r": 0,
-       "explication": ""
+       "explication": "Les surfaces, longueurs et volumes sont dans les quantités (Qto)."
       },
       {
        "q": "Pourquoi l'agence transmet-elle un IFC plutôt qu'un fichier Revit ?",
@@ -383,7 +381,7 @@
         "Parce que l'IFC est plus léger que tout"
        ],
        "r": 1,
-       "explication": ""
+       "explication": "L'IFC est un format ouvert : chaque partenaire le lit avec son propre logiciel, sans avoir Revit."
       }
      ]
     }

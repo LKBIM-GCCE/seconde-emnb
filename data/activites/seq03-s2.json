@@ -53,7 +53,7 @@
    "id": "prise",
    "type": "exercice",
    "titre": "Prise en main de la visionneuse",
-   "duree": "20 min",
+   "duree": "15 min",
    "consigne": "Choisis le projet de ton groupe. Fais tourner la maquette, choisis un niveau, déplace le curseur « Coupe » pour voir à l'intérieur, active « Pièces », clique sur des objets. Ouvre l'onglet Arborescence.",
    "parties": [
     {
@@ -202,8 +202,8 @@
    "id": "identite",
    "type": "exercice",
    "titre": "Mission — La fiche d'identité du projet",
-   "duree": "20 min",
-   "consigne": "Complète la fiche d'identité de ton projet en cherchant dans la maquette.",
+   "duree": "25 min",
+   "consigne": "Complète la fiche d'identité de ton projet : certaines réponses sont dans la maquette, d'autres seulement dans le dossier de plans PDF. Saisis les valeurs que tu lis : seul ton 1er essai compte.",
    "parties": [
     {
      "type": "projet",
@@ -301,6 +301,90 @@
      ]
     },
     {
+     "type": "nombre",
+     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "items": [
+      {
+       "texte": "Longueur totale de la maison (cote du plan RDC)",
+       "valeur": 17.82,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Cote d'ensemble en haut du plan RDC : 17,82 m."
+      }
+     ],
+     "pour": [
+      "villa-sabonnere"
+     ]
+    },
+    {
+     "type": "saisie",
+     "items": [
+      {
+       "texte": "Échelle du plan RDC",
+       "motscles": [
+        [
+         "50"
+        ]
+       ],
+       "reponse": "1/50",
+       "aide": "ex : 1/20"
+      },
+      {
+       "texte": "Nom du client (cartouche)",
+       "motscles": [
+        [
+         "dupont"
+        ]
+       ],
+       "reponse": "Mr Dupont",
+       "aide": "lu dans le cartouche"
+      }
+     ],
+     "pour": [
+      "villa-sabonnere"
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "4. Maquette ou plan : compare la surface du séjour",
+     "items": [
+      {
+       "texte": "Surface du séjour sur le plan",
+       "valeur": 40.27,
+       "tolerance": 0.005,
+       "unite": "m²"
+      },
+      {
+       "texte": "Surface du séjour dans la maquette (Cotes)",
+       "valeur": 40.271,
+       "tolerance": 0.0015,
+       "unite": "m²"
+      }
+     ],
+     "pour": [
+      "villa-sabonnere"
+     ]
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Les deux surfaces sont-elles les mêmes ?",
+       "choix": [
+        "Oui : c'est la même surface, la maquette donne une décimale de plus",
+        "Non : le plan est faux",
+        "Non : la maquette compte l'épaisseur des murs"
+       ],
+       "r": 0,
+       "explication": "Le plan affiche 40,27 m², la maquette 40,271 m² : même valeur, arrondie différemment."
+      }
+     ],
+     "pour": [
+      "villa-sabonnere"
+     ]
+    },
+    {
      "type": "qcm",
      "pour": [
       "villa-goyrans"
@@ -365,6 +449,84 @@
        "tolerance": 0,
        "unite": "u"
       }
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "items": [
+      {
+       "texte": "Longueur totale de la maison (cote verticale, à gauche du plan RDC)",
+       "valeur": 27.5,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Cote d'ensemble : 27,50 m."
+      }
+     ],
+     "pour": [
+      "villa-goyrans"
+     ]
+    },
+    {
+     "type": "saisie",
+     "items": [
+      {
+       "texte": "Échelle du plan RDC",
+       "motscles": [
+        [
+         "50"
+        ]
+       ],
+       "reponse": "1/50",
+       "aide": "ex : 1/20"
+      },
+      {
+       "texte": "Référence de la planche (en bas du cartouche)",
+       "motscles": [
+        [
+         "pcmi"
+        ],
+        [
+         "6"
+        ]
+       ],
+       "reponse": "PCMI 6.1",
+       "aide": "en bas à droite"
+      }
+     ],
+     "pour": [
+      "villa-goyrans"
+     ]
+    },
+    {
+     "type": "qcm",
+     "titre": "4. Maquette ou plan : compare",
+     "questions": [
+      {
+       "q": "Comment sont nommées les pièces ?",
+       "choix": [
+        "Ni sur le plan ni dans la maquette (toutes « Surface ») : je le signale",
+        "Sur le plan seulement",
+        "Dans la maquette seulement",
+        "Sur le plan et dans la maquette"
+       ],
+       "r": 0,
+       "explication": "Le plan RDC ne porte aucun nom de pièce et la maquette les appelle toutes « Surface »."
+      },
+      {
+       "q": "Le cartouche indique « Nom du projet » et « Sans nom ». Que fais-tu ?",
+       "choix": [
+        "Je le signale : le cartouche n'a pas été rempli",
+        "Rien, ce n'est pas important",
+        "Je recopie « Sans nom » comme nom du projet"
+       ],
+       "r": 0,
+       "explication": "Un plan doit être identifiable : un cartouche vide est une anomalie à signaler."
+      }
+     ],
+     "pour": [
+      "villa-goyrans"
      ]
     },
     {
@@ -435,6 +597,84 @@
      ]
     },
     {
+     "type": "saisie",
+     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "items": [
+      {
+       "texte": "Échelle du plan « Repérage sol »",
+       "motscles": [
+        [
+         "100"
+        ]
+       ],
+       "reponse": "1/100",
+       "aide": "ex : 1/20"
+      },
+      {
+       "texte": "Numéro de la feuille (cartouche)",
+       "motscles": [
+        [
+         "a101"
+        ]
+       ],
+       "reponse": "A101"
+      }
+     ],
+     "pour": [
+      "maison-quartier"
+     ]
+    },
+    {
+     "type": "nombre",
+     "items": [
+      {
+       "texte": "Nombre de files repérées par une lettre (A, B, …)",
+       "valeur": 5,
+       "tolerance": 0,
+       "unite": "u",
+       "explication": "Files A, B, C, D et E."
+      }
+     ],
+     "pour": [
+      "maison-quartier"
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "4. Maquette ou plan : compare",
+     "items": [
+      {
+       "texte": "Surface de la salle polyvalente 2 sur le plan",
+       "valeur": 66.28,
+       "tolerance": 0.005,
+       "unite": "m²"
+      },
+      {
+       "texte": "Surface de la salle polyvalente 2 dans la maquette (Cotes)",
+       "valeur": 66.282,
+       "tolerance": 0.005,
+       "unite": "m²"
+      },
+      {
+       "texte": "Nombre de grandes baies vitrées sur l'élévation Nord",
+       "valeur": 3,
+       "tolerance": 0,
+       "unite": "u"
+      },
+      {
+       "texte": "Nombre d'IfcWindow dans la maquette (onglet Arborescence)",
+       "valeur": 0,
+       "tolerance": 0,
+       "unite": "u",
+       "explication": "Les baies sont des murs-rideaux : elles ne sont pas des IfcWindow. Une même chose peut être modélisée autrement."
+      }
+     ],
+     "pour": [
+      "maison-quartier"
+     ]
+    },
+    {
      "type": "qcm",
      "pour": [
       "siege-social"
@@ -500,13 +740,101 @@
        "unite": "u"
       }
      ]
+    },
+    {
+     "type": "nombre",
+     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "items": [
+      {
+       "texte": "Longueur du bâtiment (cote du plan RDC)",
+       "valeur": 25,
+       "tolerance": 0.01,
+       "unite": "m"
+      },
+      {
+       "texte": "Largeur du bâtiment (cote du plan RDC)",
+       "valeur": 10,
+       "tolerance": 0.01,
+       "unite": "m"
+      }
+     ],
+     "pour": [
+      "siege-social"
+     ]
+    },
+    {
+     "type": "saisie",
+     "items": [
+      {
+       "texte": "Nom de l'entreprise (cartouche)",
+       "motscles": [
+        [
+         "lkbim"
+        ]
+       ],
+       "reponse": "Ent. LKBIM"
+      },
+      {
+       "texte": "Échelle des plans",
+       "motscles": [
+        [
+         "100"
+        ]
+       ],
+       "reponse": "1/100",
+       "aide": "ex : 1/20"
+      }
+     ],
+     "pour": [
+      "siege-social"
+     ]
+    },
+    {
+     "type": "nombre",
+     "titre": "4. Maquette ou plan : compare la surface du Bureau 11",
+     "items": [
+      {
+       "texte": "Surface du Bureau 11 sur le plan",
+       "valeur": 17,
+       "tolerance": 0.01,
+       "unite": "m²"
+      },
+      {
+       "texte": "Surface du Bureau 11 dans la maquette (Cotes)",
+       "valeur": 16.737,
+       "tolerance": 0.005,
+       "unite": "m²"
+      }
+     ],
+     "pour": [
+      "siege-social"
+     ]
+    },
+    {
+     "type": "qcm",
+     "questions": [
+      {
+       "q": "Pourquoi les deux valeurs sont-elles différentes ?",
+       "choix": [
+        "Le plan arrondit au m², la maquette donne la valeur précise",
+        "La maquette est fausse",
+        "Le bureau a été agrandi après le plan"
+       ],
+       "r": 0,
+       "explication": "17 m² sur le plan, 16,74 m² dans la maquette : c'est le même bureau, le plan arrondit."
+      }
+     ],
+     "pour": [
+      "siege-social"
+     ]
     }
    ]
   },
   {
    "id": "cours",
    "type": "cours",
-   "titre": "Cours — La méthode du ticket",
+   "titre": "Cours — Trouver une information dans la maquette",
    "duree": "10 min",
    "fichier": "seq03-s2-cours.html"
   },
@@ -514,7 +842,7 @@
    "id": "tickets",
    "type": "exercice",
    "titre": "Mission — Les tickets « information »",
-   "duree": "40 min",
+   "duree": "20 min",
    "consigne": "Pour chaque ticket : identifie la donnée nécessaire, trouve la réponse dans la maquette, puis indique ta source.",
    "parties": [
     {
@@ -546,24 +874,73 @@
      "type": "visionneuse"
     },
     {
+     "type": "saisie",
+     "pour": [
+      "villa-sabonnere"
+     ],
+     "titre": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? »",
+     "items": [
+      {
+       "texte": "Matériau des murs de façade",
+       "motscles": [
+        [
+         "brique"
+        ]
+       ],
+       "reponse": "Brique 20 cm + enduit",
+       "aide": "ex : béton 20 cm"
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "pour": [
+      "villa-sabonnere"
+     ],
+     "titre": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
+     "items": [
+      {
+       "texte": "Largeur",
+       "valeur": 0.83,
+       "tolerance": 0.005,
+       "unite": "m"
+      },
+      {
+       "texte": "Hauteur",
+       "valeur": 2.04,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
+      }
+     ]
+    },
+    {
+     "type": "saisie",
+     "pour": [
+      "villa-sabonnere"
+     ],
+     "titre": "Ticket 3 — MOA : « À quel niveau se trouve le séjour ? »",
+     "items": [
+      {
+       "texte": "Niveau",
+       "motscles": [
+        [
+         "rdc",
+         "rez"
+        ]
+       ],
+       "reponse": "RDC",
+       "aide": "nom du niveau"
+      }
+     ]
+    },
+    {
      "type": "qcm",
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Tickets du maître d'ouvrage et du conducteur de travaux",
+     "titre": "Tes sources",
      "questions": [
-      {
-       "q": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? » Réponse :",
-       "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
-       ],
-       "r": 0,
-       "explication": ""
-      },
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
        "choix": [
@@ -578,17 +955,6 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
-       "choix": [
-        "0,73 m × 2,04 m",
-        "0,83 m × 2,04 m",
-        "0,92 m × 2,13 m",
-        "0,93 m × 2,04 m"
-       ],
-       "r": 1,
-       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
        "q": "Ticket 2 — Où as-tu trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
@@ -600,17 +966,6 @@
        ],
        "r": 2,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
-       "q": "Ticket 3 — MOA : « À quel niveau se trouve le séjour ? »",
-       "choix": [
-        "FONDATION",
-        "RDC",
-        "PLAFOND",
-        "SABLIERE"
-       ],
-       "r": 1,
-       "explication": "Le chemin de l'inspecteur indique le niveau."
       },
       {
        "q": "Ticket 3 — Où as-tu trouvé cette information ?",
@@ -663,24 +1018,73 @@
      ]
     },
     {
+     "type": "saisie",
+     "pour": [
+      "villa-goyrans"
+     ],
+     "titre": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? »",
+     "items": [
+      {
+       "texte": "Matériau des murs de façade",
+       "motscles": [
+        [
+         "brique"
+        ]
+       ],
+       "reponse": "Brique 20 cm + enduit",
+       "aide": "ex : béton 20 cm"
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "pour": [
+      "villa-goyrans"
+     ],
+     "titre": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
+     "items": [
+      {
+       "texte": "Largeur",
+       "valeur": 0.83,
+       "tolerance": 0.005,
+       "unite": "m"
+      },
+      {
+       "texte": "Hauteur",
+       "valeur": 2.04,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
+      }
+     ]
+    },
+    {
+     "type": "saisie",
+     "pour": [
+      "villa-goyrans"
+     ],
+     "titre": "Ticket 3 — MOA : « À quel niveau se trouve la pièce n° 10 ? »",
+     "items": [
+      {
+       "texte": "Niveau",
+       "motscles": [
+        [
+         "rdc",
+         "rez"
+        ]
+       ],
+       "reponse": "RDC",
+       "aide": "nom du niveau"
+      }
+     ]
+    },
+    {
      "type": "qcm",
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Tickets du maître d'ouvrage et du conducteur de travaux",
+     "titre": "Tes sources",
      "questions": [
-      {
-       "q": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? » Réponse :",
-       "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
-       ],
-       "r": 0,
-       "explication": ""
-      },
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
        "choix": [
@@ -695,17 +1099,6 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
-       "choix": [
-        "0,73 m × 2,04 m",
-        "0,83 m × 2,04 m",
-        "0,92 m × 2,13 m",
-        "0,93 m × 2,04 m"
-       ],
-       "r": 1,
-       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
        "q": "Ticket 2 — Où as-tu trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
@@ -717,20 +1110,6 @@
        ],
        "r": 2,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
-       "q": "Ticket 3 — MOA : « À quel niveau se trouve la pièce n° 10 ? »",
-       "choix": [
-        "0.6_champs voisin",
-        "SOU SOL",
-        "0.01 TN",
-        "RDC",
-        "EGOUT",
-        "0.3-niveau chaussée",
-        "FAITAGE"
-       ],
-       "r": 3,
-       "explication": "Le chemin de l'inspecteur indique le niveau."
       },
       {
        "q": "Ticket 3 — Où as-tu trouvé cette information ?",
@@ -783,24 +1162,74 @@
      ]
     },
     {
+     "type": "saisie",
+     "pour": [
+      "maison-quartier"
+     ],
+     "titre": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? »",
+     "items": [
+      {
+       "texte": "Matériau des murs de façade",
+       "motscles": [
+        [
+         "duomur",
+         "beton"
+        ]
+       ],
+       "reponse": "Mur Duomur (béton + isolant)",
+       "aide": "ex : béton 20 cm"
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "pour": [
+      "maison-quartier"
+     ],
+     "titre": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
+     "items": [
+      {
+       "texte": "Largeur",
+       "valeur": 0.93,
+       "tolerance": 0.005,
+       "unite": "m"
+      },
+      {
+       "texte": "Hauteur",
+       "valeur": 2.04,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
+      }
+     ]
+    },
+    {
+     "type": "saisie",
+     "pour": [
+      "maison-quartier"
+     ],
+     "titre": "Ticket 3 — MOA : « À quel niveau se trouve la salle polyvalente 2 ? »",
+     "items": [
+      {
+       "texte": "Niveau",
+       "motscles": [
+        [
+         "rdc",
+         "rez"
+        ]
+       ],
+       "reponse": "RDC",
+       "aide": "nom du niveau"
+      }
+     ]
+    },
+    {
      "type": "qcm",
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Tickets du maître d'ouvrage et du conducteur de travaux",
+     "titre": "Tes sources",
      "questions": [
-      {
-       "q": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? » Réponse :",
-       "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
-       ],
-       "r": 1,
-       "explication": ""
-      },
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
        "choix": [
@@ -815,17 +1244,6 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
-       "choix": [
-        "0,73 m × 2,04 m",
-        "0,83 m × 2,04 m",
-        "0,92 m × 2,13 m",
-        "0,93 m × 2,04 m"
-       ],
-       "r": 3,
-       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
        "q": "Ticket 2 — Où as-tu trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
@@ -837,18 +1255,6 @@
        ],
        "r": 2,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
-       "q": "Ticket 3 — MOA : « À quel niveau se trouve la salle polyvalente 2 ? »",
-       "choix": [
-        "FONDATION",
-        "RDC",
-        "Plafond",
-        "TOITURE 01",
-        "TOITURE 02"
-       ],
-       "r": 1,
-       "explication": "Le chemin de l'inspecteur indique le niveau."
       },
       {
        "q": "Ticket 3 — Où as-tu trouvé cette information ?",
@@ -901,24 +1307,75 @@
      ]
     },
     {
+     "type": "saisie",
+     "pour": [
+      "siege-social"
+     ],
+     "titre": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? »",
+     "items": [
+      {
+       "texte": "Matériau des murs de façade",
+       "motscles": [
+        [
+         "brique"
+        ]
+       ],
+       "reponse": "Brique 20 cm + enduit",
+       "aide": "ex : béton 20 cm"
+      }
+     ]
+    },
+    {
+     "type": "nombre",
+     "pour": [
+      "siege-social"
+     ],
+     "titre": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
+     "items": [
+      {
+       "texte": "Largeur",
+       "valeur": 0.92,
+       "tolerance": 0.005,
+       "unite": "m"
+      },
+      {
+       "texte": "Hauteur",
+       "valeur": 2.13,
+       "tolerance": 0.005,
+       "unite": "m",
+       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
+      }
+     ]
+    },
+    {
+     "type": "saisie",
+     "pour": [
+      "siege-social"
+     ],
+     "titre": "Ticket 3 — MOA : « À quel niveau se trouve la reprographie ? »",
+     "items": [
+      {
+       "texte": "Niveau",
+       "motscles": [
+        [
+         "r+1",
+         "r 1",
+         "r1",
+         "etage"
+        ]
+       ],
+       "reponse": "R+1",
+       "aide": "nom du niveau"
+      }
+     ]
+    },
+    {
      "type": "qcm",
      "pour": [
       "siege-social"
      ],
-     "titre": "Tickets du maître d'ouvrage et du conducteur de travaux",
+     "titre": "Tes sources",
      "questions": [
-      {
-       "q": "Ticket 1 — MOA : « De quoi seront faits les murs de façade ? » Réponse :",
-       "choix": [
-        "Brique 20 cm + enduit",
-        "Mur Duomur (béton + isolant)",
-        "Maçonnerie existante de 33 cm",
-        "Ossature bois + bardage",
-        "Parpaing 20 cm sans isolant"
-       ],
-       "r": 0,
-       "explication": ""
-      },
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
        "choix": [
@@ -933,17 +1390,6 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Conducteur de travaux : « Quelles sont les dimensions des portes intérieures les plus courantes ? »",
-       "choix": [
-        "0,73 m × 2,04 m",
-        "0,83 m × 2,04 m",
-        "0,92 m × 2,13 m",
-        "0,93 m × 2,04 m"
-       ],
-       "r": 2,
-       "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
        "q": "Ticket 2 — Où as-tu trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
@@ -955,17 +1401,6 @@
        ],
        "r": 2,
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
-      },
-      {
-       "q": "Ticket 3 — MOA : « À quel niveau se trouve la reprographie ? »",
-       "choix": [
-        "Fondation",
-        "RDC",
-        "R+1",
-        "EGOUT"
-       ],
-       "r": 2,
-       "explication": "Le chemin de l'inspecteur indique le niveau."
       },
       {
        "q": "Ticket 3 — Où as-tu trouvé cette information ?",

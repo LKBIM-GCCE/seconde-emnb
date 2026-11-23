@@ -37,6 +37,7 @@
   }
   const selectListe = (choix, valeur, vide = "— choisir —") => h("select", { class: "sel" },
     h("option", { value: "" }, vide), ...choix.map(p => { const o = h("option", { value: p }, p); if (p === valeur) o.selected = true; return o; }));
+  let CORR = false; // A : la bonne réponse n'est montrée qu'à partir du 2e essai
   const cls = (fini, ok) => fini ? (ok ? "juste" : "faux") : "";
 
   // ======================================================================
@@ -97,7 +98,7 @@
       d.place.forEach((ci, k) => {
         const c = ci == null ? null : p.cartes[ci];
         frise.append(h("li", { class: "case" + (c ? " pleine " : " ") + cls(fini, ci === k), onclick: () => { if (!fini && c) { d.place[k] = null; dessiner(); } } },
-          h("span", { class: "num" }, String(k + 1)), h("b", {}, c ? c.nom : "…"), fini && ci !== k ? h("small", {}, "Réponse : " + p.cartes[k].nom) : null));
+          h("span", { class: "num" }, String(k + 1)), h("b", {}, c ? c.nom : "…"), CORR && ci !== k ? h("small", {}, "Réponse : " + p.cartes[k].nom) : null));
       });
       if (!fini) pioche.filter(ci => !d.place.includes(ci)).forEach(ci => {
         const c = p.cartes[ci];
@@ -117,8 +118,8 @@
       const ul = h("ul", { class: "indices" });
       dos.indices.forEach((t, k) => ul.append(h("li", { class: d.ind[i] === k ? "choisi" : "", onclick: () => { if (fini) return; d.ind[i] = k; [...ul.children].forEach((li, j) => li.classList.toggle("choisi", j === k)); } }, t)));
       el.append(h("div", { class: "dossier " + cls(fini, accepte(dos.reponse, d.ph[i])) }, h("h4", {}, (dos.titre || (p.titreDossier || "Dossier n° ") + (i + 1))), ul,
-        h("label", { class: "lab" }, (p.libelle || "Phase") + " : ", sel), fini && !accepte(dos.reponse, d.ph[i]) ? h("p", { class: "corr" }, "Réponse : " + affiche(dos.reponse)) : null,
-        fini && dos.explication ? h("small", { class: "expl" }, dos.explication) : null));
+        h("label", { class: "lab" }, (p.libelle || "Phase") + " : ", sel), CORR && !accepte(dos.reponse, d.ph[i]) ? h("p", { class: "corr" }, "Réponse : " + affiche(dos.reponse)) : null,
+        CORR && dos.explication ? h("small", { class: "expl" }, dos.explication) : null));
     });
     return {
       el: h("div", {}, p.surligner === false ? null : h("p", { class: "aide" }, "Clique sur l'indice qui te permet d'être sûr : il sera surligné."), el),
@@ -143,8 +144,8 @@
         ctrl = selectListe(choix, d.v[i], p.vide || "— choisir —"); ctrl.disabled = fini; ctrl.onchange = () => d.v[i] = ctrl.value;
       }
       ol.append(h("li", { class: cls(fini, ok) }, h("span", { class: "it" }, it.texte), ctrl,
-        fini && !ok ? h("small", { class: "corr" }, "→ " + affiche(it.reponse)) : null,
-        fini && it.explication ? h("small", { class: "expl" }, it.explication) : null));
+        CORR && !ok ? h("small", { class: "corr" }, "→ " + affiche(it.reponse)) : null,
+        CORR && it.explication ? h("small", { class: "expl" }, it.explication) : null));
     });
     const el = h("div", {});
     if (p.image) {
@@ -190,20 +191,22 @@
       [[true, "Vrai"], [false, "Faux"]].forEach(([v, lib]) => g.append(h("button", { class: "pill" + (d.v[i] === v ? " on" : ""), disabled: fini,
         onclick: () => { d.v[i] = v; [...g.children].forEach(x => x.classList.toggle("on", x.textContent === lib)); } }, lib)));
       ol.append(h("li", { class: cls(fini, d.v[i] === it.reponse) }, h("span", {}, it.texte), g,
-        fini ? h("small", { class: "expl" }, (it.reponse ? "Vrai. " : "Faux. ") + (it.explication || "")) : null));
+        CORR ? h("small", { class: "expl" }, (it.reponse ? "Vrai. " : "Faux. ") + (it.explication || "")) : null));
     });
     return { el: ol, manque: () => p.items.some((_, i) => d.v[i] == null) ? "Réponds Vrai ou Faux à chaque affirmation." : null, score: () => [p.items.filter((x, i) => d.v[i] === x.reponse).length, p.items.length] };
   };
 
-  P.qcm = (p, d, fini) => {
+  P.qcm = (p, d, fini, g) => {
     d.v = d.v || [];
     const ol = h("ol", { class: "qcm" });
     p.questions.forEach((q, i) => {
       const opts = h("div", { class: "opts" });
-      q.choix.forEach((c, k) => opts.append(h("button", { class: "opt" + (d.v[i] === k ? " on" : "") + (fini && k === q.r ? " bonne" : ""), disabled: fini,
-        onclick: () => { d.v[i] = k; [...opts.children].forEach((x, j) => x.classList.toggle("on", j === k)); } }, c)));
+      // B : l'ordre des propositions change à chaque essai (la réponse stockée reste l'indice d'origine)
+      const ordre = melange(q.choix.map((_, k) => k), (g || 1) * 101 + i * 17 + q.choix.length);
+      ordre.forEach(k => { const c = q.choix[k]; opts.append(h("button", { class: "opt" + (d.v[i] === k ? " on" : "") + (CORR && k === q.r ? " bonne" : ""), disabled: fini, "data-k": String(k),
+        onclick: () => { d.v[i] = k; [...opts.children].forEach(x => x.classList.toggle("on", x.dataset.k === String(k))); } }, c)); });
       ol.append(h("li", { class: cls(fini, d.v[i] === q.r) }, q.image ? h("img", { class: "q-img", src: q.image, alt: "" }) : null, h("p", { class: "q" }, q.q), opts,
-        fini && q.explication ? h("small", { class: "expl" }, q.explication) : null));
+        CORR && q.explication ? h("small", { class: "expl" }, q.explication) : null));
     });
     return { el: ol, manque: () => { const m = p.questions.findIndex((_, i) => d.v[i] == null); return m >= 0 ? `Réponds à la question ${m + 1}.` : null; }, score: () => [p.questions.filter((q, i) => d.v[i] === q.r).length, p.questions.length] };
   };
@@ -216,7 +219,7 @@
     p.items.forEach((it, i) => {
       const inp = h("input", { type: "text", class: "champ", value: d.v[i] || "", placeholder: it.aide || "", disabled: fini, autocomplete: "off" });
       inp.oninput = () => d.v[i] = inp.value;
-      ol.append(h("li", { class: cls(fini, ok(i)) }, h("label", {}, h("b", {}, it.texte), inp), fini && !ok(i) ? h("small", { class: "corr" }, "→ " + it.reponse) : null));
+      ol.append(h("li", { class: cls(fini, ok(i)) }, h("label", {}, h("b", {}, it.texte), inp), CORR && !ok(i) ? h("small", { class: "corr" }, "→ " + it.reponse) : null));
     });
     return { el: ol, manque: () => p.items.some((_, i) => !String(d.v[i] || "").trim()) ? "Complète chaque champ." : null, score: () => [p.items.filter((_, i) => ok(i)).length, p.items.length] };
   };
@@ -231,8 +234,8 @@
       const inp = h("input", { type: "text", inputmode: "decimal", class: "champ court", value: d.v[i] || "", disabled: fini, autocomplete: "off" });
       inp.oninput = () => d.v[i] = inp.value;
       ol.append(h("li", { class: cls(fini, ok(i)) }, h("label", {}, h("b", {}, it.texte), h("span", { class: "nb" }, inp, it.unite ? h("span", { class: "unite" }, it.unite) : null)),
-        fini && !ok(i) ? h("small", { class: "corr" }, `→ ${String(it.valeur).replace(".", ",")} ${it.unite || ""}`) : null,
-        fini && it.explication ? h("small", { class: "expl" }, it.explication) : null));
+        CORR && !ok(i) ? h("small", { class: "corr" }, `→ ${String(it.valeur).replace(".", ",")} ${it.unite || ""}`) : null,
+        CORR && it.explication ? h("small", { class: "expl" }, it.explication) : null));
     });
     return { el: ol, manque: () => p.items.some((_, i) => isNaN(val(i))) ? "Écris un nombre dans chaque case (ex : 2,50)." : null, score: () => [p.items.filter((_, i) => ok(i)).length, p.items.length] };
   };
@@ -260,7 +263,7 @@
       (p.decor || []).forEach(x => sch.append(h("div", { class: "decor", style: `grid-column:${x.col};grid-row:${x.lig}` }, x.t)));
       p.cases.forEach(c => sch.append(h("button", { class: "case-sch " + (d.c[c.id] ? "pleine " : "") + cls(fini, ok(c)), style: `grid-column:${c.col};grid-row:${c.lig}`, disabled: fini,
         onclick: () => { if (actif) { for (const k in d.c) if (d.c[k] === actif) delete d.c[k]; d.c[c.id] = actif; actif = null; } else delete d.c[c.id]; dessiner(); } },
-        d.c[c.id] || (c.indice || "?"), fini && !ok(c) ? h("small", {}, c.accepte.join(" / ")) : null)));
+        d.c[c.id] || (c.indice || "?"), CORR && !ok(c) ? h("small", {}, c.accepte.join(" / ")) : null)));
       if (!fini) p.etiquettes.filter(e => !Object.values(d.c).includes(e)).forEach(e => pool.append(h("button", { class: "pill" + (actif === e ? " on" : ""), onclick: () => { actif = e; dessiner(); } }, e)));
     }
     dessiner();
@@ -307,7 +310,9 @@
 
   function exercice(b) {
     const res = etat.res[b.id], fini = !!res;
-    const det = fini ? res.detail : b.parties.map(() => ({}));
+    CORR = fini && (etat.essais[b.id] || 0) >= 2;
+    etat.brou = etat.brou || {};
+    const det = fini ? res.detail : (etat.brou[b.id] ? JSON.parse(JSON.stringify(etat.brou[b.id])) : b.parties.map(() => ({})));
     const g = 1 + (etat.essais[b.id] || 0);
     const projet = lireProjet();
     let cols = null;
@@ -328,7 +333,10 @@
       const notees = (res.detailParts || []).map((x, k) => x[1] ? `${b.parties[k].titre ? court(b.parties[k].titre) : "Partie " + (k + 1)} : ${x[0]}/${x[1]}` : null).filter(Boolean);
       if (notees.length > 1) zone.append(h("p", { class: "detail-score" }, notees.join(" · ")));
       if (res.max) pied.append(h("p", { class: "score " + (res.pts / res.max >= .7 ? "ok" : "ko") }, `Résultat : ${res.pts} / ${res.max}`));
-      pied.append(h("button", { class: "btn sec", onclick: () => { delete etat.res[b.id]; sauver(); ouvrir(courant, false); } }, "↺ Recommencer"),
+      const prem = etat.prem[b.id];
+      if (res.max && prem && (etat.essais[b.id] || 1) > 1) pied.append(h("p", { class: "aide" }, `Score retenu (1er essai) : ${prem.pts} / ${prem.max}`));
+      if (res.max && !CORR && res.pts < res.max) pied.append(h("p", { class: "aide" }, "Les réponses en rouge sont fausses. Corrige-les : la bonne réponse s'affichera seulement après ton 2e essai. Seul ton 1er essai compte dans ton certificat."));
+      pied.append(h("button", { class: "btn sec", onclick: () => { etat.brou = etat.brou || {}; etat.brou[b.id] = res.detail; delete etat.res[b.id]; sauver(); ouvrir(courant, false); } }, res.max && res.pts < res.max ? "✎ Corriger mes réponses" : "↺ Recommencer"),
         h("button", { class: "btn", onclick: () => ouvrir(courant + 1) }, courant + 1 < blocs.length - 1 ? "Activité suivante →" : "Mon certificat →"));
     } else {
       pied.append(h("button", { class: "btn", onclick: () => {
@@ -337,7 +345,8 @@
         etat.essais[b.id] = (etat.essais[b.id] || 0) + 1;
         etat.res[b.id] = { pts: parts.reduce((s, x) => s + x[0], 0), max: parts.reduce((s, x) => s + x[1], 0), detail: det, detailParts: parts,
           textes: objs.map(o => o.texte ? o.texte() : null).filter(Boolean) };
-        if (!etat.prem[b.id]) etat.prem[b.id] = JSON.parse(JSON.stringify({ pts: etat.res[b.id].pts, max: etat.res[b.id].max, detail: det, projet: lireProjet() }));
+        if (etat.brou) delete etat.brou[b.id];
+        if (!etat.prem[b.id]) etat.prem[b.id] = JSON.parse(JSON.stringify({ pts: etat.res[b.id].pts, max: etat.res[b.id].max, detail: det, detailParts: etat.res[b.id].detailParts, projet: lireProjet() }));
         sauver(); ouvrir(courant, false);
       } }, "Valider mes réponses"));
     }
@@ -368,15 +377,17 @@
       if (faits.length < notes.length) return alerte(`Il te reste ${notes.length - faits.length} activité(s) à valider avant d'obtenir ton certificat.`);
       const now = new Date(), date = now.toLocaleDateString("fr-FR"), heure = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
       const notees = faits.filter(b => etat.res[b.id].max);
-      let tot = notees.reduce((s, b) => s + etat.res[b.id].pts, 0), max = notees.reduce((s, b) => s + etat.res[b.id].max, 0);
-      let c = code(`${A.id}|${etat.nom}|${notees.map(b => `${b.id}:${etat.res[b.id].pts}/${etat.res[b.id].max}`).join(";")}|${date}`);
-      let lignes = faits.map(b => [b.titre, etat.res[b.id].max ? `${etat.res[b.id].pts} / ${etat.res[b.id].max}` : "fait ✓", `${etat.essais[b.id] || 1} essai(s)`]);
+      const R1 = b => etat.prem[b.id] || etat.res[b.id]; // D : le score retenu est celui du 1er essai
+      let tot = notees.reduce((s, b) => s + R1(b).pts, 0), max = notees.reduce((s, b) => s + R1(b).max, 0);
+      let c = code(`${A.id}|${etat.nom}|${notees.map(b => `${b.id}:${R1(b).pts}/${R1(b).max}`).join(";")}|${date}`);
+      let lignes = faits.map(b => { const r = etat.res[b.id], pr = etat.prem[b.id] || r, n = etat.essais[b.id] || 1; return [b.titre, r.max ? `${pr.pts} / ${pr.max}` : "fait ✓", n > 1 && r.max ? `${n} essais (final ${r.pts}/${r.max})` : `${n} essai(s)`]; });
       if (A.grille) {
         // une ligne par critère de la grille d'évaluation
         const parCrit = {}, essaisCrit = {};
         for (const b of A.blocs) (b.parties || []).forEach((p, k) => {
           if (!p.critere || !etat.res[b.id]) return;
-          const x = (etat.res[b.id].detailParts || [])[k] || [0, 0];
+          const r1 = etat.prem[b.id] && etat.prem[b.id].detailParts ? etat.prem[b.id] : etat.res[b.id]; // 1er essai retenu
+          const x = (r1.detailParts || [])[k] || [0, 0];
           const s = parCrit[p.critere] = parCrit[p.critere] || [0, 0]; s[0] += x[0]; s[1] += x[1];
           essaisCrit[p.critere] = etat.essais[b.id] || 1;
         });
@@ -393,7 +404,7 @@
         c = code(`${A.id}|${etat.nom}|${auto.join(";")}|${date}`);
       }
       const textes = faits.flatMap(b => etat.res[b.id].textes || []);
-      const total = max ? (A.grille ? `Réponses corrigées automatiquement : ${tot} / ${max}` : `Total : ${tot} / ${max}  (${Math.round(tot / max * 100)} %)`) : "";
+      const total = max ? (A.grille ? `Réponses corrigées automatiquement : ${tot} / ${max}` : `Total au 1er essai : ${tot} / ${max}  (${Math.round(tot / max * 100)} %)`) : "";
       cible.innerHTML = "";
       cible.append(h("div", { class: "certif" },
         h("p", { class: "certif-sur" }, "Seconde EMNB · Lycée des métiers Urbain Vitry"), h("h3", {}, "Certificat de séance"),

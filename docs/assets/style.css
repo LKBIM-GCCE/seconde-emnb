@@ -124,11 +124,11 @@ a.feuille:hover .illu svg { transform: translateY(-3px); }
 .numero-seq { margin: 0; color: var(--chantier); font: 800 16px/1 var(--titre); }
 .illu.grande svg { max-height: 190px; margin: 0 auto; }
 @media (max-width: 700px) { .bandeau-seq { grid-template-columns: 1fr; } .illu.grande { order: -1; } }
-.bulle { position: relative; margin: 26px 0 0; padding: 18px 22px; background: var(--signal); color: #13223f; border-radius: 14px; max-width: 760px; }
+.bulle { position: relative; margin: 26px 0 0; padding: 18px 22px; background: var(--signal); color: #13223f; border-radius: 14px; }
 .bulle::after { content: ""; position: absolute; left: 40px; bottom: -16px; border: 9px solid transparent; border-top: 9px solid var(--signal); border-left: 9px solid var(--signal); }
 .bulle h2 { margin: 0 0 4px; font-size: 15px; }
 .bulle p { margin: 0; font: 700 clamp(18px, 2.4vw, 22px)/1.35 var(--titre); }
-.mission { margin: 30px 0 0; padding: 0 0 0 18px; border-left: 4px solid var(--plan); max-width: 760px; }
+.mission { margin: 30px 0 0; padding: 0 0 0 18px; border-left: 4px solid var(--plan); }
 .mission h2 { margin: 0 0 4px; font-size: 18px; }
 .mission p { margin: 0; }
 .chemin { list-style: none; padding: 0; margin: 0; position: relative; }

@@ -18,7 +18,7 @@
     },
     {
      "type": "associer",
-     "titre": "1. Quel acteur est en cause ?",
+     "titre": "1. Identifie l'acteur en cause",
      "choix": [
       "Maître d'ouvrage (MOA)",
       "AMO",
@@ -59,7 +59,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Quelle phase n'a pas été respectée ?",
+     "titre": "2. Indique la phase qui n'a pas été respectée",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -110,7 +110,7 @@
     },
     {
      "type": "qcm",
-     "titre": "3. Quelle solution concrète ?",
+     "titre": "3. Sélectionne la solution concrète",
      "questions": [
       {
        "q": "A — Le permis manquant",
@@ -164,7 +164,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "dossier",
@@ -179,7 +180,7 @@
     },
     {
      "type": "ordre",
-     "titre": "1. Remets les documents dans l'ordre chronologique",
+     "titre": "1. Ordonne les documents dans l'ordre chronologique",
      "titreFrise": "Ordre chronologique",
      "cartes": [
       {
@@ -198,7 +199,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. À quelle phase appartient chaque document ?",
+     "titre": "2. Associe chaque document à sa phase",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -231,7 +232,7 @@
     },
     {
      "type": "associer",
-     "titre": "3. Qui produit ce document ?",
+     "titre": "3. Identifie qui produit chaque document",
      "choix": [
       "Maître d'ouvrage (MOA)",
       "AMO",
@@ -268,7 +269,7 @@
     },
     {
      "type": "associer",
-     "titre": "4. Qui le reçoit et l'utilise ?",
+     "titre": "4. Identifie qui reçoit et utilise chaque document",
      "choix": [
       "Maître d'ouvrage (MOA)",
       "AMO",
@@ -300,7 +301,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Ordonner"
   },
   {
    "id": "tableau",
@@ -311,7 +313,7 @@
    "parties": [
     {
      "type": "grille",
-     "titre": "1. Qui intervient à chaque grande étape ?",
+     "titre": "1. Complète le tableau : qui intervient à chaque grande étape ?",
      "aide": "Les interventions ponctuelles sont acceptées cochées ou non.",
      "colonnes": [
       "Amont / Programme",
@@ -340,7 +342,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Qui fait quoi ?",
+     "titre": "2. Associe chaque tâche à son acteur",
      "choix": [
       "MOA",
       "MOE / Architecte",
@@ -383,7 +385,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Compléter"
   }
  ]
 }

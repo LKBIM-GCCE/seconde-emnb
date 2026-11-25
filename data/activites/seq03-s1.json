@@ -41,11 +41,12 @@
     },
     {
      "type": "redaction",
-     "titre": "Ton hypothèse",
-     "question": "Avec tes mots : comment envoyer une maquette à quelqu'un qui n'a pas Revit ?",
+     "titre": "Explique ton hypothèse",
+     "question": "Explique avec tes mots comment envoyer une maquette à quelqu'un qui n'a pas Revit.",
      "min": 30
     }
-   ]
+   ],
+   "verbe": "Expliquer"
   },
   {
    "id": "cours",
@@ -68,11 +69,12 @@
     },
     {
      "type": "redaction",
-     "titre": "Mon résultat",
-     "question": "Recopie ton score final et ton titre (ex. : 260 pts — Modeleur junior IFC).",
+     "titre": "Indique ton résultat",
+     "question": "Indique ton score final et ton titre (ex. : 260 pts — Modeleur junior IFC).",
      "min": 3
     }
-   ]
+   ],
+   "verbe": "Explorer"
   },
   {
    "id": "plan",
@@ -83,7 +85,7 @@
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Rez-de-chaussée : quelle est la classe IFC de chaque repère ?",
+     "titre": "1. Rez-de-chaussée : identifie la classe IFC de chaque repère",
      "image": "../media/seq03/maison-jeu-rdc.png",
      "alt": "Plan du rez-de-chaussée de la maison du jeu avec 7 repères",
      "choix": [
@@ -151,7 +153,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Étage : quelle est la classe IFC de chaque repère ?",
+     "titre": "2. Étage : identifie la classe IFC de chaque repère",
      "image": "../media/seq03/maison-jeu-r1.png",
      "alt": "Plan de l'étage de la maison du jeu avec 5 repères",
      "choix": [
@@ -205,7 +207,7 @@
     },
     {
      "type": "associer",
-     "titre": "3. Dans quel niveau la maquette range-t-elle ces objets ?",
+     "titre": "3. Indique le niveau où la maquette range ces objets",
      "choix": [
       "RDC",
       "R+1"
@@ -238,7 +240,7 @@
     },
     {
      "type": "qcm",
-     "titre": "4. Le plan et la maquette se complètent",
+     "titre": "4. Compare le plan et la maquette",
      "questions": [
       {
        "q": "Sur le plan, la porte d'entrée est cotée 0,90. Dans la maquette, quelle propriété le confirme ?",
@@ -275,7 +277,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "bilan",
@@ -286,7 +289,7 @@
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Classe, niveau ou propriété ? Range chaque information",
+     "titre": "1. Classe chaque information : classe, niveau ou propriété ?",
      "choix": [
       "La classe (quel objet ?)",
       "Le niveau (où est-il rangé ?)",
@@ -328,7 +331,7 @@
     },
     {
      "type": "ordre",
-     "titre": "2. Remets l'arborescence IFC dans l'ordre",
+     "titre": "2. Ordonne l'arborescence IFC",
      "titreFrise": "Du plus grand au plus petit",
      "cartes": [
       {
@@ -350,7 +353,7 @@
     },
     {
      "type": "qcm",
-     "titre": "3. Les propriétés",
+     "titre": "3. Localise les propriétés",
      "questions": [
       {
        "q": "Où lit-on si une fenêtre est en façade (extérieure) ?",
@@ -385,7 +388,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Classer"
   }
  ]
 }

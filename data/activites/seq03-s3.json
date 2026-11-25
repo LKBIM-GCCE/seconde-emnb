@@ -34,7 +34,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Distinguer"
   },
   {
    "id": "cours",
@@ -83,7 +84,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "1. Compter (Arborescence › Par type d'objet)",
+     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -104,7 +105,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "2. Relever des quantités",
+     "titre": "2. Relève les quantités",
      "items": [
       {
        "texte": "Surface de le séjour (active « Pièces » et clique dessus)",
@@ -126,7 +127,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "1. Compter (Arborescence › Par type d'objet)",
+     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -147,7 +148,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "2. Relever des quantités",
+     "titre": "2. Relève les quantités",
      "items": [
       {
        "texte": "Surface de la pièce n° 10 (active « Pièces » et clique dessus)",
@@ -169,7 +170,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "1. Compter (Arborescence › Par type d'objet)",
+     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de poteaux (IfcColumn)",
@@ -190,7 +191,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "2. Relever des quantités",
+     "titre": "2. Relève les quantités",
      "items": [
       {
        "texte": "Surface de la salle polyvalente 2 (active « Pièces » et clique dessus)",
@@ -212,7 +213,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "1. Compter (Arborescence › Par type d'objet)",
+     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -233,7 +234,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "2. Relever des quantités",
+     "titre": "2. Relève les quantités",
      "items": [
       {
        "texte": "Surface de l'accueil (active « Pièces » et clique dessus)",
@@ -250,7 +251,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Relever"
   },
   {
    "id": "ecarts",
@@ -294,7 +296,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Comparer"
   },
   {
    "id": "capture",
@@ -333,12 +336,13 @@
     },
     {
      "type": "redaction",
-     "titre": "Justifie ton choix",
-     "question": "En une ou deux phrases : pourquoi une capture annotée est-elle la bonne forme de réponse pour ce ticket ?",
+     "titre": "Explique ton choix",
+     "question": "Explique en une ou deux phrases pourquoi une capture annotée est la bonne forme de réponse pour ce ticket.",
      "min": 40,
      "exemple": "Le conducteur de travaux doit voir où sont les portes : une image annotée se comprend sans moi, plus vite qu'une liste."
     }
-   ]
+   ],
+   "verbe": "Produire"
   }
  ],
  "plans": {

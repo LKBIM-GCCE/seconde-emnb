@@ -64,7 +64,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Ordonner"
   },
   {
    "id": "td05",
@@ -75,7 +76,7 @@
    "parties": [
     {
      "type": "indices",
-     "titre": "Exercice 1 — Les 8 dossiers",
+     "titre": "Exercice 1 — Identifie la phase de chacun des 8 dossiers",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -202,7 +203,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "td06",
@@ -213,7 +215,7 @@
    "parties": [
     {
      "type": "grille",
-     "titre": "Partie 1 — Coche chaque case où l'acteur intervient",
+     "titre": "Partie 1 — Complète le tableau : coche chaque case où l'acteur intervient",
      "aide": "Les cases où l'acteur n'intervient que ponctuellement sont acceptées cochées ou non.",
      "colonnes": [
       "FAIS.",
@@ -258,7 +260,7 @@
     },
     {
      "type": "associer",
-     "titre": "Partie 2 — Qui est-ce ?",
+     "titre": "Partie 2 — Identifie l'acteur décrit",
      "choix": [
       "MOA",
       "AMO",
@@ -312,7 +314,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "Partie 3 — Vrai ou faux ?",
+     "titre": "Partie 3 — Distingue le vrai du faux",
      "items": [
       {
        "texte": "Le MOA conçoit lui-même les plans architecturaux de son bâtiment.",
@@ -346,7 +348,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Compléter"
   },
   {
    "id": "quiz",
@@ -492,7 +495,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Répondre"
   }
  ]
 }

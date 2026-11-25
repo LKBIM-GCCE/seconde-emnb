@@ -59,7 +59,7 @@
     },
     {
      "type": "associer",
-     "titre": "À quoi sert chaque type de plan ?",
+     "titre": "Associe chaque type de plan à son usage",
      "choix": [
       "Plan de situation",
       "Plan de masse",
@@ -92,7 +92,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Classer"
   },
   {
    "id": "cours",
@@ -116,7 +117,7 @@
     },
     {
      "type": "saisie",
-     "titre": "1. Lis les informations du plan",
+     "titre": "1. Relève les informations du plan",
      "items": [
       {
        "texte": "Nom du cabinet d'architecture",
@@ -221,12 +222,13 @@
     },
     {
      "type": "redaction",
-     "titre": "3. Synthèse",
+     "titre": "3. Explique le rôle du plan",
      "question": "Explique en une ou deux phrases le rôle du plan de situation.",
      "min": 40,
      "exemple": "Le plan de situation sert à localiser le terrain dans la commune : il montre le quartier, les routes et les accès."
     }
-   ]
+   ],
+   "verbe": "Localiser"
   },
   {
    "id": "masse",
@@ -243,7 +245,7 @@
     },
     {
      "type": "saisie",
-     "titre": "1. Informations sur la parcelle",
+     "titre": "1. Relève les informations sur la parcelle",
      "items": [
       {
        "texte": "Numéros des parcelles cadastrales",
@@ -339,7 +341,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "2. Les réseaux représentés",
+     "titre": "2. Identifie les réseaux représentés",
      "items": [
       {
        "texte": "Le raccordement AEP / EDF / Télécom est représenté.",
@@ -365,12 +367,13 @@
     },
     {
      "type": "redaction",
-     "titre": "3. Synthèse",
+     "titre": "3. Distingue les deux plans",
      "question": "Nomme un élément présent sur le plan de masse et absent du plan de situation.",
      "min": 20,
      "exemple": "Les limites de la parcelle, les réseaux, les courbes de niveau ou l'emprise exacte de la maison."
     }
-   ]
+   ],
+   "verbe": "Identifier"
   }
  ]
 }

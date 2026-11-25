@@ -10,7 +10,7 @@
    "type": "exercice",
    "titre": "Défi — Tu viens d'emménager !",
    "duree": "10 min",
-   "consigne": "Tu viens d'emménager dans la Villa Camacho. Pour chaque situation, retrouve la pièce du rez-de-chaussée où tu te trouves.",
+   "consigne": "Tu viens d'emménager dans la Villa Camacho. Pour chaque situation, localise la pièce du rez-de-chaussée où tu te trouves.",
    "parties": [
     {
      "type": "image",
@@ -51,7 +51,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Localiser"
   },
   {
    "id": "niveaux",
@@ -62,7 +63,7 @@
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Rez-de-chaussée : nomme les pièces",
+     "titre": "1. Rez-de-chaussée : identifie et nomme les pièces",
      "image": "../media/seq02/rdc-masque.png",
      "alt": "Plan RDC sans les noms de pièces",
      "choix": [
@@ -150,7 +151,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Étage : nomme les pièces",
+     "titre": "2. Étage : identifie et nomme les pièces",
      "image": "../media/seq02/etage-masque.png",
      "alt": "Plan étage sans les noms de pièces",
      "choix": [
@@ -203,7 +204,7 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Lis les informations du plan RDC",
+     "titre": "3. Relève les informations du plan RDC",
      "items": [
       {
        "texte": "Surface du séjour",
@@ -313,7 +314,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "cours",
@@ -427,12 +429,13 @@
     },
     {
      "type": "redaction",
-     "titre": "Synthèse",
+     "titre": "Explique la différence entre plan et façade",
      "question": "Explique à quelqu'un qui n'a jamais vu de plans la différence entre un plan RDC et une façade.",
      "min": 60,
      "exemple": "Le plan RDC est une vue de dessus du bâtiment coupé à 1 m : il montre les pièces. La façade est une vue de l'extérieur : elle montre les ouvertures, les matériaux et les hauteurs."
     }
-   ]
+   ],
+   "verbe": "Relier"
   }
  ]
 }

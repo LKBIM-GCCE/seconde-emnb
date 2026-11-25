@@ -18,7 +18,7 @@
     },
     {
      "type": "associer",
-     "titre": "1. Quelles sont les conséquences de la terrasse ajoutée ?",
+     "titre": "1. Identifie les conséquences de la terrasse ajoutée",
      "choix": [
       "Maître d'ouvrage",
       "Architecte / MOE",
@@ -52,11 +52,12 @@
     },
     {
      "type": "redaction",
-     "titre": "2. Ma réaction (modèle du tour de table)",
+     "titre": "2. Prépare ta réaction (modèle du tour de table)",
      "question": "Écris la réaction de l'acteur joué par ton groupe en suivant le modèle « En tant que…, à la phase…, je constate que… Par conséquent, je dois… et je préviens… ».",
      "min": 120
     }
-   ]
+   ],
+   "verbe": "Préparer"
   },
   {
    "id": "bim",
@@ -67,7 +68,7 @@
    "parties": [
     {
      "type": "vraifaux",
-     "titre": "1. Vrai ou faux ?",
+     "titre": "1. Distingue le vrai du faux",
      "items": [
       {
        "texte": "Les plans PRO/DCE sont les documents que l'architecte et le BET transmettent aux entreprises.",
@@ -93,12 +94,13 @@
     },
     {
      "type": "redaction",
-     "titre": "2. À quoi sert le BIM ?",
-     "question": "Selon toi, à quoi sert le BIM dans un projet de construction ? Formule une définition avec tes mots.",
+     "titre": "2. Définis le BIM avec tes mots",
+     "question": "Définis avec tes mots à quoi sert le BIM dans un projet de construction.",
      "min": 60,
      "exemple": "Le BIM sert à éviter que les acteurs se parlent dans le vide et à sécuriser le passage de témoin entre les études (la tête) et le chantier (les mains)."
     }
-   ]
+   ],
+   "verbe": "Comparer"
   },
   {
    "id": "qcm",
@@ -262,7 +264,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Répondre"
   },
   {
    "id": "bilan",
@@ -272,10 +275,11 @@
    "parties": [
     {
      "type": "redaction",
-     "question": "Sur ton futur métier : dans quel acteur de la construction te reconnais-tu le plus ? Pourquoi ?",
+     "question": "Indique l'acteur de la construction dans lequel tu te reconnais le plus, puis explique pourquoi.",
      "min": 50
     }
-   ]
+   ],
+   "verbe": "Expliquer"
   }
  ]
 }

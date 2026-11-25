@@ -330,8 +330,8 @@ s4 = {"id": "seq03-s4", "sequence": "seq03", "seance": "s4", "titre": "Évaluati
                        {"type": "redaction", "critere": "oral", "titre": "3. Ma source", "question": "Où as-tu trouvé l'information ? (maquette : quel objet, quelle propriété ? ou plan : quelle planche ?)", "min": 20},
                        {"type": "redaction", "critere": "oral", "titre": "4. Pourquoi cette forme de réponse", "question": "Pourquoi cette forme (valeur, phrase, capture) est-elle la plus utile pour ce demandeur ?", "min": 20}]}]}
 
-# Les S1 et S2 sont maintenues à la main (data/activites/seq03-s1.json et seq03-s2.json) : on ne les régénère pas.
-for s in (s3, s4):
+# Les S1, S2 et S3 sont maintenues à la main (data/activites/seq03-s1.json, -s2, -s3) : on ne les régénère pas.
+for s in (s4,):
     if s["id"] in ("seq03-s2", "seq03-s3", "seq03-s4"):
         s["plans"] = {k: f"plans/{k}.pdf" for k in ("villa-sabonnere", "villa-goyrans", "maison-quartier", "siege-social", "agence-architecte")}
     json.dump(s, open(OUT / f"{s['id']}.json", "w"), ensure_ascii=False, indent=1)

@@ -17,7 +17,7 @@
    "type": "exercice",
    "titre": "Activité 1 — Les traits de coupe",
    "duree": "15 min",
-   "consigne": "Sur les plans, repère les traits de coupe A-A et B-B.",
+   "consigne": "Localise sur les plans les traits de coupe A-A et B-B.",
    "parties": [
     {
      "type": "image",
@@ -86,11 +86,12 @@
     },
     {
      "type": "redaction",
-     "question": "À quoi servent les traits de coupe sur un plan ? Réponds en une phrase.",
+     "question": "Explique en une phrase à quoi servent les traits de coupe sur un plan.",
      "min": 30,
      "exemple": "Ils indiquent où le bâtiment est coupé et dans quel sens on regarde la coupe."
     }
-   ]
+   ],
+   "verbe": "Localiser"
   },
   {
    "id": "coupeA",
@@ -172,14 +173,15 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "hauteurs",
    "type": "exercice",
    "titre": "Activité 3 — Relever les hauteurs",
    "duree": "20 min",
-   "consigne": "Lis les cotes de hauteur sur la coupe A-A. Les cotes sont en centimètres : écris les valeurs en mètres.",
+   "consigne": "Relève les cotes de hauteur sur la coupe A-A. Les cotes sont en centimètres : convertis les valeurs en mètres.",
    "parties": [
     {
      "type": "image",
@@ -257,7 +259,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Relever"
   },
   {
    "id": "echelles",
@@ -268,7 +271,7 @@
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Quelle échelle pour quel plan ?",
+     "titre": "1. Associe chaque plan à son échelle",
      "choix": [
       "1/5 000",
       "1/500",
@@ -302,7 +305,7 @@
     },
     {
      "type": "nombre",
-     "titre": "2. Du réel vers le plan",
+     "titre": "2. Calcule : du réel vers le plan",
      "items": [
       {
        "texte": "6,00 m dessinés à 1/100 →",
@@ -329,7 +332,7 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Du plan vers le réel",
+     "titre": "3. Calcule : du plan vers le réel",
      "items": [
       {
        "texte": "4,8 cm mesurés sur un plan à 1/100 →",
@@ -354,7 +357,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Calculer"
   }
  ]
 }

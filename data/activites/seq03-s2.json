@@ -47,7 +47,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Répondre"
   },
   {
    "id": "prise",
@@ -86,7 +87,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "Les gestes de base",
+     "titre": "Identifie les gestes de base",
      "items": [
       {
        "texte": "Le curseur « Coupe » permet de voir l'intérieur du bâtiment, comme un plan de niveau.",
@@ -105,7 +106,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Ta maquette : vrai ou faux ?",
+     "titre": "Examine ta maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette a un niveau « R+1 » (un étage).",
@@ -129,7 +130,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Ta maquette : vrai ou faux ?",
+     "titre": "Examine ta maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette a un niveau « SOU SOL » sous le RDC.",
@@ -153,7 +154,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Ta maquette : vrai ou faux ?",
+     "titre": "Examine ta maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette contient des poteaux (IfcColumn).",
@@ -177,7 +178,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "Ta maquette : vrai ou faux ?",
+     "titre": "Examine ta maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette a un niveau « R+1 » avec des pièces.",
@@ -196,7 +197,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Manipuler"
   },
   {
    "id": "identite",
@@ -238,7 +240,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "1. Le projet",
+     "titre": "1. Identifie le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -278,7 +280,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "2. Les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -302,7 +304,7 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
      "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
      "items": [
       {
@@ -389,7 +391,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "1. Le projet",
+     "titre": "1. Identifie le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -429,7 +431,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "2. Les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -453,7 +455,7 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
      "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
      "items": [
       {
@@ -534,7 +536,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "1. Le projet",
+     "titre": "1. Identifie le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -574,7 +576,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "2. Les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -598,7 +600,7 @@
     },
     {
      "type": "saisie",
-     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
      "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
      "items": [
       {
@@ -679,7 +681,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "1. Le projet",
+     "titre": "1. Identifie le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -719,7 +721,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "2. Les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -743,7 +745,7 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Le dossier de plans : ouvre le PDF du projet",
+     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
      "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
      "items": [
       {
@@ -829,7 +831,8 @@
       "siege-social"
      ]
     }
-   ]
+   ],
+   "verbe": "Compléter"
   },
   {
    "id": "cours",
@@ -939,7 +942,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Tes sources",
+     "titre": "Indique tes sources",
      "questions": [
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
@@ -1003,7 +1006,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Ticket 5 — Vigilance",
+     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
      "questions": [
       {
        "q": "Clique sur une cloison intérieure (plaque de plâtre). Sa propriété IsExternal (élément extérieur ?) vaut Oui. Que fais-tu ?",
@@ -1083,7 +1086,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Tes sources",
+     "titre": "Indique tes sources",
      "questions": [
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
@@ -1147,7 +1150,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Ticket 5 — Vigilance",
+     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
      "questions": [
       {
        "q": "Active « Pièces » et clique sur une pièce : elles s'appellent toutes « Surface ». Le client te demande la surface de la cuisine. Que fais-tu ?",
@@ -1228,7 +1231,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Tes sources",
+     "titre": "Indique tes sources",
      "questions": [
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
@@ -1292,7 +1295,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Ticket 5 — Vigilance",
+     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
      "questions": [
       {
        "q": "Le MOA demande combien de fenêtres compte le bâtiment. L'arborescence n'affiche aucun IfcWindow. Pourquoi ?",
@@ -1374,7 +1377,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "Tes sources",
+     "titre": "Indique tes sources",
      "questions": [
       {
        "q": "Ticket 1 — Où as-tu trouvé cette information ?",
@@ -1438,7 +1441,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "Ticket 5 — Vigilance",
+     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
      "questions": [
       {
        "q": "Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Le client te demande la surface des sanitaires. Que fais-tu ?",
@@ -1452,7 +1455,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   }
  ],
  "plans": {

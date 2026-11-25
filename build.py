@@ -27,7 +27,7 @@ for a in ACTS.values():
     if not sy or any(b["id"] == "synthese" for b in a["blocs"]):
         continue
     a["blocs"].append({
-        "id": "synthese", "type": "exercice", "titre": "Synthèse de la séance", "duree": "10 min",
+        "id": "synthese", "type": "exercice", "titre": "Synthèse de la séance", "duree": "10 min", "verbe": "Résumer",
         "consigne": "Non notée. Tu construis toi-même la synthèse de la séance, en 3 temps, au rythme de ton professeur.",
         "parties": [
             {"type": "carte", "titre": "1. Carte mentale · 4 min — Construis la carte mentale de la séance",

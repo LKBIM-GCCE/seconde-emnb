@@ -17,7 +17,7 @@
    "type": "exercice",
    "titre": "TD 01 — Qui suis-je ?",
    "duree": "25 min",
-   "consigne": "Le secteur du bâtiment fait intervenir de nombreux acteurs aux rôles bien distincts. À partir des indices de chaque carte (et d'internet si besoin), retrouve l'acteur qui parle.",
+   "consigne": "Identifie l'acteur qui parle, à partir des indices de chaque carte (et d'internet si besoin). Le secteur du bâtiment fait intervenir de nombreux acteurs aux rôles bien distincts.",
    "parties": [
     {
      "type": "associer",
@@ -87,7 +87,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "td02",
@@ -98,7 +99,7 @@
    "parties": [
     {
      "type": "associer",
-     "titre": "Exercice 1 — Relie chaque métier à sa tâche principale",
+     "titre": "Exercice 1 — Associe chaque métier à sa tâche principale",
      "choix": [
       "Concevoir les plans et coordonner la maîtrise d'œuvre",
       "Calculer et dimensionner les structures porteuses",
@@ -156,7 +157,7 @@
     },
     {
      "type": "saisie",
-     "titre": "Exercice 2 — Écris chaque sigle en toutes lettres",
+     "titre": "Exercice 2 — Traduis chaque sigle en toutes lettres",
      "items": [
       {
        "texte": "MOA",
@@ -261,11 +262,12 @@
     },
     {
      "type": "redaction",
-     "titre": "Exercice 3 — Et toi ?",
-     "question": "« Parmi ces métiers, lequel t'attire le plus ? Pourquoi ? » Réponds en 2 à 3 phrases.",
+     "titre": "Exercice 3 — Explique ton choix de métier",
+     "question": "Cite le métier qui t'attire le plus parmi ceux-ci, puis explique pourquoi en 2 à 3 phrases.",
      "min": 60
     }
-   ]
+   ],
+   "verbe": "Associer"
   },
   {
    "id": "cours02",
@@ -283,7 +285,7 @@
    "parties": [
     {
      "type": "schema",
-     "titre": "Exercice 1 — Place chaque acteur dans la bonne case",
+     "titre": "Exercice 1 — Complète le schéma : place chaque acteur dans la bonne case",
      "colonnes": 3,
      "etiquettes": [
       "MOA",
@@ -386,7 +388,7 @@
     },
     {
      "type": "associer",
-     "titre": "Exercice 2 — Contractuel ou fonctionnel ?",
+     "titre": "Exercice 2 — Classe chaque lien : contractuel ou fonctionnel ?",
      "choix": [
       "Contractuel",
       "Fonctionnel"
@@ -440,12 +442,13 @@
     },
     {
      "type": "redaction",
-     "titre": "Exercice 3 — Question de réflexion",
-     "question": "« Parmi toutes ces relations, laquelle te semble la plus importante pour la réussite d'un projet ? Justifie ta réponse. »",
+     "titre": "Exercice 3 — Explique ton choix",
+     "question": "Indique la relation qui te semble la plus importante pour la réussite d'un projet, puis explique pourquoi.",
      "min": 60,
      "exemple": "La relation MOA ↔ MOE est la plus déterminante : elle fixe le cadre de toute l'opération. C'est le maître d'œuvre qui conçoit, coordonne et valide les travaux pour le compte du client."
     }
-   ]
+   ],
+   "verbe": "Compléter"
   }
  ]
 }

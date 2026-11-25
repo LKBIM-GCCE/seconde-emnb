@@ -17,7 +17,7 @@
    "type": "exercice",
    "titre": "Activité 1 — À quelle phase appartient ce plan ?",
    "duree": "10 min",
-   "consigne": "Pour chaque plan décrit, retrouve sa phase à partir de son niveau de détail.",
+   "consigne": "Identifie la phase de chaque plan décrit, à partir de son niveau de détail.",
    "parties": [
     {
      "type": "indices",
@@ -73,7 +73,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Identifier"
   },
   {
    "id": "etude",
@@ -96,7 +97,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "1. Ces évolutions ont-elles eu lieu entre l'APS et l'APD ?",
+     "titre": "1. Compare l'APS et l'APD : ces évolutions ont-elles eu lieu ?",
      "items": [
       {
        "texte": "L'emplacement de la cave du garage a été modifié.",
@@ -147,7 +148,7 @@
     },
     {
      "type": "qcm",
-     "titre": "2. Pourquoi ces évolutions ?",
+     "titre": "2. Explique ces évolutions",
      "questions": [
       {
        "q": "Entre l'APS et l'APD, les différences entre les plans sont…",
@@ -179,7 +180,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Comparer"
   },
   {
    "id": "quiz",
@@ -313,7 +315,8 @@
       }
      ]
     }
-   ]
+   ],
+   "verbe": "Répondre"
   },
   {
    "id": "bilan",
@@ -323,10 +326,11 @@
    "parties": [
     {
      "type": "redaction",
-     "question": "Quelle est, pour toi, la chose la plus importante apprise dans cette séquence sur la lecture de plans ? Pourquoi ?",
+     "question": "Cite la chose la plus importante que tu as apprise dans cette séquence sur la lecture de plans, puis explique pourquoi.",
      "min": 50
     }
-   ]
+   ],
+   "verbe": "Expliquer"
   }
  ]
 }

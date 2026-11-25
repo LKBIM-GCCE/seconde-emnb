@@ -251,6 +251,73 @@
     };
   };
 
+  // carte : carte mentale de synthèse. On clique une étiquette puis la branche où elle va.
+  // Les intrus restent dans la réserve. Non notée ; à la validation, la carte corrigée s'affiche.
+  P.carte = (p, d, fini) => {
+    d.v = d.v || {};
+    const justes = p.branches.flatMap((b, i) => b.etiquettes.map(e => [e, i]));
+    const branche = Object.fromEntries(justes);
+    const toutes = justes.map(x => x[0]).concat(p.intrus || []);
+    if (!d.o || d.o.length !== toutes.length) d.o = toutes.slice().sort(() => Math.random() - .5);
+    let actif = null;
+    const wrap = h("div", { class: "carte-mentale" });
+    const aide = h("p", { class: "aide" });
+    const pool = h("div", { class: "etiquettes carte-reserve" });
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg"); svg.setAttribute("class", "carte-liens");
+    const centre = h("div", { class: "carte-centre" }, p.centre.replace(/ ([?!:;])/g, "\u00a0$1"));
+    const cartes = p.branches.map((b, i) => {
+      const pos = [["1", "1"], ["3", "1"], ["1", "2"], ["3", "2"], ["2", "3"]][i] || ["auto", "auto"];
+      return h("div", { class: "carte-branche c" + i, style: `grid-column:${pos[0]};grid-row:${pos[1]}`, role: "button", tabindex: "0" });
+    });
+    function lier() {
+      if (!wrap.isConnected) return;
+      const R = wrap.getBoundingClientRect(), c = centre.getBoundingClientRect();
+      svg.setAttribute("viewBox", `0 0 ${R.width} ${R.height}`); svg.innerHTML = "";
+      const cx = c.left + c.width / 2 - R.left, cy = c.top + c.height / 2 - R.top;
+      cartes.forEach((el, i) => {
+        const r = el.getBoundingClientRect(), gauche = r.left + r.width / 2 < c.left + c.width / 2;
+        const x = (gauche ? r.right : r.left) - R.left, y = r.top + Math.min(28, r.height / 2) - R.top;
+        const l = document.createElementNS(svgNS, "path");
+        l.setAttribute("d", `M${cx},${cy} C${(cx + x) / 2},${cy} ${(cx + x) / 2},${y} ${x},${y}`);
+        l.setAttribute("class", "c" + i); svg.append(l);
+      });
+    }
+    function dessiner() {
+      pool.innerHTML = "";
+      const restants = d.o.filter(e => d.v[e] == null);
+      if (!fini) restants.forEach(e => pool.append(h("button", { class: "pill" + (actif === e ? " on" : ""), onclick: () => { actif = actif === e ? null : e; dessiner(); } }, e)));
+      const nIntrus = (p.intrus || []).length;
+      aide.textContent = fini ? "Ta synthèse corrigée : ✓ bien placé · ✗ mal placé (la bonne branche est indiquée) · en pointillés : ce qu'il manquait."
+        : `Clique sur une étiquette, puis sur la branche où elle va. Clique sur une étiquette placée pour la remettre dans la réserve. Attention : ${nIntrus} étiquette${nIntrus > 1 ? "s sont des pièges" : " est un piège"} et ${nIntrus > 1 ? "restent" : "reste"} dans la réserve.`;
+      p.branches.forEach((b, i) => {
+        const el = cartes[i]; el.innerHTML = "";
+        el.classList.toggle("cible", !!actif && !fini);
+        el.append(h("b", { class: "carte-titre" }, b.titre));
+        const ul = h("ul", {});
+        d.o.filter(e => d.v[e] === i).forEach(e => {
+          const ok = branche[e] === i;
+          ul.append(h("li", { class: "carte-etiq " + (fini ? (ok ? "juste" : "faux") : ""), onclick: ev => { if (fini || actif) return; ev.stopPropagation(); delete d.v[e]; dessiner(); } },
+            fini ? (ok ? "✓ " : "✗ ") : "", e, fini && !ok ? h("small", { class: "corr" }, branche[e] == null ? " → piège : ne va nulle part" : " → va dans « " + p.branches[branche[e]].titre + " »") : null));
+        });
+        if (fini) b.etiquettes.filter(e => d.v[e] !== i).forEach(e => ul.append(h("li", { class: "carte-etiq manquante" }, e)));
+        el.append(ul);
+        el.onclick = () => { if (fini || !actif) return; d.v[actif] = i; actif = null; dessiner(); };
+        el.onkeydown = ev => { if (ev.key === "Enter") el.onclick(); };
+      });
+      requestAnimationFrame(lier);
+    }
+    wrap.append(svg, centre, ...cartes);
+    dessiner();
+    if (window.ResizeObserver) new ResizeObserver(() => lier()).observe(wrap);
+    const nJustes = () => justes.filter(([e, i]) => d.v[e] === i).length;
+    return {
+      el: h("div", {}, aide, !fini ? pool : null, wrap, fini ? h("p", { class: "carte-bilan" }, `${nJustes()} étiquette(s) bien placée(s) sur ${justes.length}.`) : null),
+      manque: () => Object.keys(d.v).length !== justes.length ? `Place ${justes.length} étiquettes sur la carte. ${(p.intrus || []).length > 1 ? "Les pièges restent" : "Le piège reste"} dans la réserve.` : null,
+      score: () => [0, 0]
+    };
+  };
+
   // retenir : synthèse, 3 champs courts (notion, méthode, vocabulaire), non noté
   P.retenir = (p, d, fini) => {
     d.v = d.v || [];
@@ -496,6 +563,10 @@
       case "nombre": p.items.forEach((it, i) => { const s = (d.v || [])[i]; const n = parseFloat(String(s || "").replace(",", ".").replace(/[\s+]/g, ""));
         ligne(it.texte, vu(s) + (s ? " " + (it.unite || "") : ""), Math.abs(n - it.valeur) <= (it.tolerance ?? 0.005), String(it.valeur).replace(".", ",") + " " + (it.unite || "")); }); break;
       case "redaction": ligne(p.question, vu((d.t || "").trim()), null, ""); break;
+      case "carte": p.branches.forEach((b, i) => {
+        const mis = (d.o || []).filter(e => (d.v || {})[e] === i);
+        ligne(b.titre, mis.length ? mis.join(" · ") : "—", mis.length === b.etiquettes.length && mis.every(e => b.etiquettes.includes(e)), b.etiquettes.join(" · "));
+      }); break;
       case "retenir": p.cases.forEach(([lib], i) => ligne(lib, vu(String((d.v || [])[i] || "").trim()), null, "")); break;
       case "coche": p.items.forEach((t, i) => { const v = (d.v || [])[i]; ligne(t, v == null ? "—" : v ? "Je l'avais trouvé" : "Je ne l'avais pas trouvé (à revoir)", null, ""); }); break;
       case "schema": p.cases.forEach(c => ligne("Case " + (c.indice || c.id), vu((d.c || {})[c.id]), c.accepte.includes((d.c || {})[c.id]), c.accepte.join(" / "))); break;

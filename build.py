@@ -28,13 +28,13 @@ for a in ACTS.values():
         continue
     a["blocs"].append({
         "id": "synthese", "type": "exercice", "titre": "Synthèse de la séance", "duree": "10 min",
-        "consigne": "Non notée. Elle se fait en 3 temps, avec toute la classe : suis le rythme de ton professeur.",
+        "consigne": "Non notée. Tu construis toi-même la synthèse de la séance, en 3 temps, au rythme de ton professeur.",
         "parties": [
-            {"type": "retenir", "titre": "1. Seul(e) · 2 min — Ce que je retiens de la séance, sans regarder mes documents",
-             "cases": [["Une notion", "ex : ce qu'est une classe IFC"], ["Une méthode", "ex : comment je trouve une information"], ["Un mot de vocabulaire", "le mot et sa définition"]]},
-            {"type": "texte", "html": '<div class="synth-ensemble"><b>2. Tous ensemble · 5 min</b><p>Chacun propose ce qu\'il a écrit. La classe trie au tableau ce qui est vraiment important : notions, méthode, vocabulaire. Écoute, complète tes idées si besoin.</p></div>'},
-            {"type": "coche", "titre": "3. Avec la fiche synthèse · 3 min — " + ("Lis la fiche distribuée par ton professeur. Pour chaque point clé : l'avais-tu trouvé ?" if sy["fiche"] else "Pour chaque point clé de la séance : l'avais-tu trouvé ?"),
-             "items": sy["points"]},
+            {"type": "carte", "titre": "1. En binôme · 4 min — Construis la carte mentale de la séance",
+             "centre": sy["centre"], "branches": sy["branches"], "intrus": sy.get("intrus", [])},
+            {"type": "texte", "html": '<div class="synth-ensemble"><b>2. Tous ensemble · 4 min</b><p>Ton professeur projette la carte. Pour chaque branche, la classe propose ses étiquettes et <b>justifie</b> son choix. Tu peux déplacer tes étiquettes pendant la mise en commun.</p></div>'},
+            {"type": "texte", "html": '<div class="synth-ensemble"><b>3. Valide · 2 min</b><p>Clique sur « Valider » : la carte corrigée s\'affiche, c\'est <b>ta synthèse</b>. '
+             + ("Compare-la avec la fiche synthèse que te donne ton professeur." if sy["fiche"] else "Garde-la : elle reprend l'essentiel de la séance.") + '</p></div>'},
         ],
     })
 

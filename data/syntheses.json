@@ -1,75 +1,72 @@
 {
- "_info": "Synthèse de la séance (10 min, non notée), ajoutée par build.py à la fin de chaque activité en ligne. « fiche » : true si les points viennent de la fiche synthèse A4 du professeur, false s'ils sont proposés (à valider).",
- "seq01-s1": {"fiche": true, "points": [
-  "Un acteur intervient dans la conception, la réalisation ou le contrôle d'un projet",
-  "Le MOA commande et finance, le MOE conçoit et coordonne, l'entreprise réalise",
-  "L'architecte est une profession réglementée (Ordre des Architectes) ; la MOE est une mission",
-  "BET, OPC, CSPS et bureau de contrôle ont des missions complémentaires, coordonnées par la MOE",
-  "Dans un projet public, le MOA est une collectivité (commune, région, lycée…)"]},
- "seq01-s2": {"fiche": true, "points": [
-  "L'ordre des phases : Faisabilité, Programme, ESQ, APS, APD, PRO, DCE, VISA, DET, AOR",
-  "Faisabilité et Programme sont menés par le MOA (souvent avec un AMO), avant la mission du MOE",
-  "La loi MOP (1985) organise les marchés publics ; les projets privés s'en inspirent",
-  "Chaque phase produit ses documents (ex. : plans 1/50 et CCTP en PRO, PV de réception en AOR)",
-  "Pour chaque phase, on sait qui pilote : le MOA, le MOE ou les deux"]},
- "seq01-s3": {"fiche": false, "points": [
-  "Face à un problème de chantier, je repère la phase et l'acteur concerné",
-  "Les documents d'un projet se rangent dans l'ordre chronologique des phases",
-  "Le tableau croisé acteurs × phases montre qui intervient à quel moment",
-  "Je situe mon futur métier dans ce tableau"]},
- "seq01-s4": {"fiche": false, "points": [
-  "Chaque acteur réagit à un imprévu selon son rôle et ses responsabilités",
-  "Le passage de la conception à la réalisation : le dossier passe du MOE aux entreprises",
-  "La maquette 3D (BIM) montre ce que le plan 2D ne montre pas et évite des erreurs",
-  "Le BIM sert à partager la même information entre tous les acteurs du projet"]},
- "seq02-s1": {"fiche": true, "points": [
-  "Les pièces graphiques : plan de situation, plan de masse, plans de niveaux, façades, coupes, détails",
-  "Le plan de situation répond à la question « Où est le terrain ? »",
-  "Le plan de masse répond à la question « Comment le bâtiment est-il implanté ? »",
-  "L'indicateur Nord oriente le bâtiment et permet de nommer les façades",
-  "La légende est la clé de lecture des symboles et des hachures"]},
- "seq02-s2": {"fiche": true, "points": [
-  "Un plan de niveaux est une coupe horizontale du bâtiment à environ 1 m du sol",
-  "Mur porteur : trait épais haché · cloison : trait fin",
-  "La trémie d'escalier est un rectangle barré d'une croix",
-  "Le cartouche (en bas à droite) donne le titre, l'échelle et les intervenants",
-  "Une façade est une vue extérieure : on y lit les ouvertures et les matériaux, et on la nomme grâce au Nord"]},
- "seq02-s3": {"fiche": true, "points": [
-  "Une coupe est une section verticale du bâtiment (A-A longitudinale, B-B transversale)",
-  "Le niveau ± 0.00 est la référence de toutes les hauteurs",
-  "La hauteur sous plafond (HSP) ne comprend pas l'épaisseur de la dalle",
-  "L'échelle 1/n est le rapport entre la dimension dessinée et la dimension réelle",
-  "Au 1/50, 1 cm sur le plan = 50 cm en réalité ; la règle à échelles (Kutch) évite le calcul"]},
- "seq02-s4": {"fiche": true, "points": [
-  "Les phases ESQ, APS, APD, DCE, EXE : le niveau de détail augmente à chaque phase",
-  "L'échelle s'agrandit au fil du projet : 1/500 en esquisse, jusqu'au 1/20 ou 1/5 en exécution",
-  "Le plan APS est schématique, le plan APD est entièrement coté",
-  "Le cartouche indique la phase, l'échelle, la date et l'indice de révision",
-  "La maquette 3D montre des éléments qu'on ne lit pas sur le plan 2D"]},
- "seq03-s1": {"fiche": true, "points": [
-  "Le fichier natif (.rvt) sert à concevoir ; l'IFC, format ouvert, sert à échanger avec tous les partenaires",
-  "On consulte l'IFC dans une visionneuse ; on ne modifie pas le projet dedans",
-  "La classe dit ce qu'est l'objet : IfcWall, IfcDoor, IfcWindow, IfcSlab, IfcSpace…",
-  "L'arborescence range les objets : Projet › Site › Bâtiment › Niveau › Élément",
-  "Les propriétés (Pset) et les quantités (Qto) décrivent l'objet",
-  "Sur un plan, un objet est un symbole ; dans la maquette, c'est un objet avec une classe"]},
- "seq03-s2": {"fiche": true, "points": [
-  "Pour trouver une information : je trouve l'objet qui la porte, puis je lis sa fiche",
-  "Les outils de la visionneuse : niveau, coupe, pièces, capture, arborescence, clic sur l'objet",
-  "Je sais où regarder : classe, nom du type, niveau, matériaux, Pset, quantités",
-  "Certaines informations ne sont que sur le plan PDF : cotes, cartouche, légendes",
-  "Je note toujours ma source : la maquette (objet, propriété) ou le plan (planche)",
-  "Face à une donnée bizarre, je compare avec le plan et je la signale"]},
- "seq03-s3": {"fiche": true, "points": [
-  "Quantifier, c'est compter (arborescence par type d'objet) ou mesurer (Qto / Cotes de l'objet)",
-  "Une réponse = valeur + unité + source, arrondie à 2 décimales",
-  "Avant de répondre, je vérifie : le niveau, l'objet, l'unité, l'ordre de grandeur",
-  "Un écart avec le plan s'explique : brut ou net, arrondi, plan pas à jour",
-  "Réponse numérique pour chiffrer (économiste) · réponse graphique pour localiser (chantier, client)"]},
- "seq03-s4": {"fiche": false, "points": [
-  "Pourquoi l'IFC : un format ouvert pour échanger avec tous les partenaires",
-  "La structure de la maquette : classe, arborescence (niveaux), propriétés",
-  "Trouver : l'objet et sa fiche, ou le plan PDF (le bon état : existant ou projeté)",
-  "Quantifier : compter ou mesurer, puis répondre valeur + unité + source",
-  "Transmettre : une réponse numérique ou graphique, selon le demandeur"]}
+ "_info": "Synthèse de la séance : carte mentale à compléter (dernière mission de chaque séance en ligne, 10 min, non notée). centre = sujet de la séance ; branches = titre + étiquettes justes ; intrus = étiquettes pièges qui restent dans la réserve. « fiche » : true si le contenu vient de la fiche synthèse A4 du professeur, false s'il est proposé (à valider).",
+ "seq01-s1": {"fiche": true, "centre": "Les acteurs d'un projet", "branches": [
+  {"titre": "Maître d'ouvrage (MOA)", "etiquettes": ["Commande et finance le projet", "Une collectivité dans un projet public"]},
+  {"titre": "Maître d'œuvre (MOE)", "etiquettes": ["Conçoit le projet et coordonne", "L'architecte : profession réglementée"]},
+  {"titre": "Entreprises", "etiquettes": ["Réalisent les travaux", "Une entreprise par lot (maçonnerie, plomberie…)"]},
+  {"titre": "Autres intervenants", "etiquettes": ["BET : études techniques et calculs", "Bureau de contrôle : solidité et sécurité", "CSPS : santé et sécurité sur le chantier"]}],
+  "intrus": ["Finance le projet à la place du client", "Dessine le permis de construire de l'entreprise"]},
+ "seq01-s2": {"fiche": true, "centre": "Les phases d'un projet", "branches": [
+  {"titre": "Avant la mission du MOE", "etiquettes": ["Faisabilité", "Programme (MOA, souvent avec un AMO)"]},
+  {"titre": "Conception (MOE)", "etiquettes": ["ESQ → APS → APD", "PRO puis DCE"]},
+  {"titre": "Travaux", "etiquettes": ["VISA des plans d'exécution", "DET : direction de l'exécution des travaux"]},
+  {"titre": "Fin de chantier", "etiquettes": ["AOR : réception des travaux", "PV de réception"]}],
+  "intrus": ["Le DCE avant l'esquisse", "La loi MOP pour les maisons des particuliers"]},
+ "seq01-s3": {"fiche": false, "centre": "Qui intervient, et quand ?", "branches": [
+  {"titre": "Quand ? (la phase)", "etiquettes": ["Je repère la phase du problème", "Les documents se rangent dans l'ordre des phases"]},
+  {"titre": "Qui ? (l'acteur)", "etiquettes": ["Je repère l'acteur concerné", "Le tableau croisé acteurs × phases"]},
+  {"titre": "Et moi ?", "etiquettes": ["Je situe mon futur métier dans le tableau"]}],
+  "intrus": ["Tous les acteurs interviennent à toutes les phases"]},
+ "seq01-s4": {"fiche": false, "centre": "Du projet au chantier, avec le BIM", "branches": [
+  {"titre": "Face à un imprévu", "etiquettes": ["Chaque acteur réagit selon son rôle", "Le MOE coordonne la solution"]},
+  {"titre": "De la conception à la réalisation", "etiquettes": ["Le dossier passe du MOE aux entreprises"]},
+  {"titre": "Le BIM", "etiquettes": ["La maquette 3D montre ce que le 2D cache", "Tous les acteurs partagent la même information", "On évite des erreurs avant le chantier"]}],
+  "intrus": ["Le BIM remplace les acteurs du projet", "Le BIM sert seulement à faire de belles images"]},
+ "seq02-s1": {"fiche": true, "centre": "Situer et implanter un projet", "branches": [
+  {"titre": "Plan de situation", "etiquettes": ["Où est le terrain ?", "Le terrain dans la commune"]},
+  {"titre": "Plan de masse", "etiquettes": ["Comment le bâtiment est implanté ?", "Limites du terrain, accès, distances"]},
+  {"titre": "Lire un plan", "etiquettes": ["L'indicateur Nord oriente le plan", "La légende explique symboles et hachures"]},
+  {"titre": "Les pièces graphiques", "etiquettes": ["Situation, masse, niveaux, façades, coupes, détails"]}],
+  "intrus": ["Le plan de masse montre l'intérieur des pièces"]},
+ "seq02-s2": {"fiche": true, "centre": "Plans de niveaux et façades", "branches": [
+  {"titre": "Plan de niveaux", "etiquettes": ["Coupe horizontale à environ 1 m du sol", "Trémie d'escalier : rectangle barré d'une croix"]},
+  {"titre": "Les murs sur le plan", "etiquettes": ["Mur porteur : trait épais haché", "Cloison : trait fin"]},
+  {"titre": "Façades", "etiquettes": ["Vue extérieure : ouvertures et matériaux", "Nommée grâce au Nord"]},
+  {"titre": "Cartouche", "etiquettes": ["En bas à droite : titre, échelle, intervenants"]}],
+  "intrus": ["Une façade se dessine vue de l'intérieur"]},
+ "seq02-s3": {"fiche": true, "centre": "Coupes et échelles", "branches": [
+  {"titre": "La coupe", "etiquettes": ["Section verticale du bâtiment", "A-A longitudinale, B-B transversale"]},
+  {"titre": "Les hauteurs", "etiquettes": ["Le ± 0.00 est la référence", "HSP : sans l'épaisseur de la dalle"]},
+  {"titre": "L'échelle", "etiquettes": ["1/n : dimension dessinée / dimension réelle", "Au 1/50 : 1 cm = 50 cm", "Règle à échelles : pas de calcul"]}],
+  "intrus": ["Au 1/100 : 1 cm = 10 cm"]},
+ "seq02-s4": {"fiche": true, "centre": "Les plans au fil des phases", "branches": [
+  {"titre": "Les phases", "etiquettes": ["ESQ, APS, APD, DCE, EXE", "Le détail augmente à chaque phase"]},
+  {"titre": "L'échelle", "etiquettes": ["1/500 en esquisse", "Jusqu'au 1/20 ou 1/5 en exécution"]},
+  {"titre": "Le plan", "etiquettes": ["APS schématique, APD entièrement coté", "Cartouche : phase, date, indice"]},
+  {"titre": "La maquette 3D", "etiquettes": ["Montre ce que le plan 2D ne montre pas"]}],
+  "intrus": ["L'échelle diminue quand le projet avance"]},
+ "seq03-s1": {"fiche": true, "centre": "La maquette IFC", "branches": [
+  {"titre": "Natif ou IFC ?", "etiquettes": ["Natif (.rvt) : pour concevoir", "IFC : format ouvert pour échanger", "Visionneuse : consulter sans modifier"]},
+  {"titre": "La classe", "etiquettes": ["Dit ce qu'est l'objet", "IfcWall, IfcDoor, IfcSpace…"]},
+  {"titre": "L'arborescence", "etiquettes": ["Projet › Site › Bâtiment › Niveau › Élément", "Range chaque objet sur son niveau"]},
+  {"titre": "Les propriétés", "etiquettes": ["Pset : caractéristiques (porteur, extérieur…)", "Qto : quantités (surface, longueur…)"]}],
+  "intrus": ["L'IFC ne s'ouvre qu'avec Revit", "Le matériau se lit dans la classe"]},
+ "seq03-s2": {"fiche": true, "centre": "Trouver une information", "branches": [
+  {"titre": "La méthode", "etiquettes": ["Je trouve l'objet qui porte l'information", "Puis je lis sa fiche (inspecteur)"]},
+  {"titre": "Les outils", "etiquettes": ["Niveaux, coupe, pièces", "Arborescence, capture"]},
+  {"titre": "Où regarder ?", "etiquettes": ["Matériaux : dans les propriétés (Pset)", "Surfaces : dans les quantités (Qto)"]},
+  {"titre": "Le plan PDF", "etiquettes": ["Cotes, cartouche, légendes", "Je note toujours ma source"]}],
+  "intrus": ["Le matériau est toujours dans le nom du type"]},
+ "seq03-s3": {"fiche": true, "centre": "Quantifier avec la maquette", "branches": [
+  {"titre": "Compter", "etiquettes": ["Arborescence par type d'objet"]},
+  {"titre": "Mesurer", "etiquettes": ["Quantités (Qto / Cotes) de l'objet"]},
+  {"titre": "Répondre", "etiquettes": ["Valeur + unité + source", "Arrondi à 2 décimales", "Numérique pour chiffrer, graphique pour localiser"]},
+  {"titre": "Vérifier", "etiquettes": ["Niveau, objet, unité, ordre de grandeur", "Un écart avec le plan s'explique"]}],
+  "intrus": ["Une surface s'écrit sans unité"]},
+ "seq03-s4": {"fiche": false, "centre": "Répondre à un client avec la maquette", "branches": [
+  {"titre": "Pourquoi l'IFC ?", "etiquettes": ["Format ouvert, lisible par tous les partenaires"]},
+  {"titre": "La structure", "etiquettes": ["Classe, arborescence, propriétés"]},
+  {"titre": "Trouver", "etiquettes": ["Dans la maquette ou le plan PDF", "Existant = avant travaux, projeté = après"]},
+  {"titre": "Quantifier et transmettre", "etiquettes": ["Valeur + unité + source", "Numérique ou graphique selon le demandeur"]}],
+  "intrus": ["Le plan existant répond aux questions du projet"]}
 }

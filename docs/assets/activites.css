@@ -355,3 +355,4 @@ body.large main { max-width: 1440px; }
   .carte-branche { grid-column: 1 !important; grid-row: auto !important; }
   .carte-liens { display: none; }
 }
+.c5 { --cb: #0f7f8c; } .carte-liens path.c5 { stroke: #0f7f8c; }

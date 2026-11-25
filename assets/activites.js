@@ -265,9 +265,9 @@
     const pool = h("div", { class: "etiquettes carte-reserve" });
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg"); svg.setAttribute("class", "carte-liens");
-    const centre = h("div", { class: "carte-centre" }, p.centre.replace(/ ([?!:;])/g, "\u00a0$1"));
+    const centre = h("div", { class: "carte-centre", style: p.branches.length > 5 ? "grid-row:1 / span 3" : "" }, p.centre.replace(/ ([?!:;])/g, "\u00a0$1"));
     const cartes = p.branches.map((b, i) => {
-      const pos = [["1", "1"], ["3", "1"], ["1", "2"], ["3", "2"], ["2", "3"]][i] || ["auto", "auto"];
+      const pos = (p.branches.length > 5 ? [["1", "1"], ["3", "1"], ["1", "2"], ["3", "2"], ["1", "3"], ["3", "3"]] : [["1", "1"], ["3", "1"], ["1", "2"], ["3", "2"], ["2", "3"]])[i] || ["auto", "auto"];
       return h("div", { class: "carte-branche c" + i, style: `grid-column:${pos[0]};grid-row:${pos[1]}`, role: "button", tabindex: "0" });
     });
     function lier() {
@@ -289,7 +289,7 @@
       if (!fini) restants.forEach(e => pool.append(h("button", { class: "pill" + (actif === e ? " on" : ""), onclick: () => { actif = actif === e ? null : e; dessiner(); } }, e)));
       const nIntrus = (p.intrus || []).length;
       aide.textContent = fini ? "Ta synthèse corrigée : ✓ bien placé · ✗ mal placé (la bonne branche est indiquée) · en pointillés : ce qu'il manquait."
-        : `Clique sur une étiquette, puis sur la branche où elle va. Clique sur une étiquette placée pour la remettre dans la réserve. Attention : ${nIntrus} étiquette${nIntrus > 1 ? "s sont des pièges" : " est un piège"} et ${nIntrus > 1 ? "restent" : "reste"} dans la réserve.`;
+        : `Chaque branche pose une question. Clique sur une réponse, puis sur la question à laquelle elle répond. Clique sur une réponse placée pour la remettre dans la réserve. Attention : ${nIntrus} réponse${nIntrus > 1 ? "s sont des pièges" : " est un piège"} et ${nIntrus > 1 ? "restent" : "reste"} dans la réserve.`;
       p.branches.forEach((b, i) => {
         const el = cartes[i]; el.innerHTML = "";
         el.classList.toggle("cible", !!actif && !fini);
@@ -312,8 +312,9 @@
     if (window.ResizeObserver) new ResizeObserver(() => lier()).observe(wrap);
     const nJustes = () => justes.filter(([e, i]) => d.v[e] === i).length;
     return {
-      el: h("div", {}, aide, !fini ? pool : null, wrap, fini ? h("p", { class: "carte-bilan" }, `${nJustes()} étiquette(s) bien placée(s) sur ${justes.length}.`) : null),
-      manque: () => Object.keys(d.v).length !== justes.length ? `Place ${justes.length} étiquettes sur la carte. ${(p.intrus || []).length > 1 ? "Les pièges restent" : "Le piège reste"} dans la réserve.` : null,
+      el: h("div", {}, aide, !fini ? pool : null, wrap, fini ? h("p", { class: "carte-bilan" }, `${nJustes()} réponse(s) bien placée(s) sur ${justes.length}.`) : null),
+      manque: () => { const b = p.branches.find((b, i) => d.o.filter(e => d.v[e] === i).length !== b.etiquettes.length);
+        return b ? (b.etiquettes.length > 1 ? `Il faut ${b.etiquettes.length} réponses sous « ${b.titre} ».` : `Il faut une seule réponse sous « ${b.titre} ».`) : null; },
       score: () => [0, 0]
     };
   };

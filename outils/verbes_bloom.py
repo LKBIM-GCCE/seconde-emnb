@@ -1,4 +1,5 @@
-"""Reformule les consignes des activités en ligne avec des verbes d'action (taxonomie de Bloom,
+"""[Appliqué le 25/11/2026 — ne plus relancer : les textes ont depuis été passés au vouvoiement (vouvoyer.py).]
+Reformule les consignes des activités en ligne avec des verbes d'action (taxonomie de Bloom,
 niveaux 1 à 3 adaptés à la Seconde) et ajoute un badge « verbe » à chaque mission.
 Script idempotent : relançable sans effet si déjà appliqué. La SEQ03 S4 a déjà ses verbes (gen_seq03.py)."""
 import json

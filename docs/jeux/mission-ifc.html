@@ -465,7 +465,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 function val(v){ return v===true?'Oui <span class="muted mono">(TRUE)</span>':v===false?'Non <span class="muted mono">(FALSE)</span>':esc(v); }
 function renderInspector(){
   if(!selected){
-    insp.innerHTML='<div class="eyebrow">Inspecteur IFC</div><p class="insp-empty">Clique sur un objet de la maquette pour lire sa classe IFC et ses propriétés.</p>';
+    insp.innerHTML='<div class="eyebrow">Inspecteur IFC</div><p class="insp-empty">Cliquez sur un objet de la maquette pour lire sa classe IFC et ses propriétés.</p>';
     return;
   }
   const r=selected, c=CLS[r.ifc];
@@ -488,15 +488,15 @@ function renderInspector(){
 /* ---------- Missions ---------- */
 const byKey=k=>els.find(e=>e.key===k);
 const M2Q=[
-  {q:"Trouve la porte d'entrée : une <code>IfcDoor</code> en façade.", ok:e=>e.key==='porte_entree', tip:"Elle est sur la façade Sud, côté rue."},
-  {q:"Trouve une <code>IfcWindow</code> de l'étage (R+1).", ok:e=>e.ifc==='IfcWindow'&&e.storey==='R+1', tip:"Le niveau d'un objet est écrit dans le chemin de l'inspecteur."},
-  {q:"Trouve l'<code>IfcStair</code> qui relie les deux niveaux.", ok:e=>e.ifc==='IfcStair', tip:"Il est à l'intérieur : affiche seulement le RDC avec le filtre Niveau."},
-  {q:"Trouve un mur intérieur : un <code>IfcWall</code> avec <code>IsExternal = Non</code>.", ok:e=>e.ifc==='IfcWall'&&e.psets.Pset_WallCommon.IsExternal===false, tip:"Masque la toiture ou choisis un niveau pour voir l'intérieur."},
-  {q:"Trouve le plancher de l'étage : une <code>IfcSlab</code> du niveau R+1.", ok:e=>e.ifc==='IfcSlab'&&e.storey==='R+1', tip:"Filtre sur R+1 et masque les murs pour le voir en entier."},
-  {q:"Trouve un <code>IfcColumn</code> (poteau).", ok:e=>e.ifc==='IfcColumn', tip:"Regarde du côté de la terrasse."},
-  {q:"Trouve une <code>IfcBeam</code> (poutre).", ok:e=>e.ifc==='IfcBeam', tip:"Les poutres reposent sur les poteaux."},
-  {q:"Trouve l'<code>IfcRoof</code>.", ok:e=>e.ifc==='IfcRoof', tip:"C'est l'élément le plus haut."},
-  {q:"Trouve l'<code>IfcSite</code> : le terrain du projet.", ok:e=>e.ifc==='IfcSite', tip:"Clique à côté de la maison."}
+  {q:"Trouvez la porte d'entrée : une <code>IfcDoor</code> en façade.", ok:e=>e.key==='porte_entree', tip:"Elle est sur la façade Sud, côté rue."},
+  {q:"Trouvez une <code>IfcWindow</code> de l'étage (R+1).", ok:e=>e.ifc==='IfcWindow'&&e.storey==='R+1', tip:"Le niveau d'un objet est écrit dans le chemin de l'inspecteur."},
+  {q:"Trouvez l'<code>IfcStair</code> qui relie les deux niveaux.", ok:e=>e.ifc==='IfcStair', tip:"Il est à l'intérieur : affiche seulement le RDC avec le filtre Niveau."},
+  {q:"Trouvez un mur intérieur : un <code>IfcWall</code> avec <code>IsExternal = Non</code>.", ok:e=>e.ifc==='IfcWall'&&e.psets.Pset_WallCommon.IsExternal===false, tip:"Masquez la toiture ou choisissez un niveau pour voir l'intérieur."},
+  {q:"Trouvez le plancher de l'étage : une <code>IfcSlab</code> du niveau R+1.", ok:e=>e.ifc==='IfcSlab'&&e.storey==='R+1', tip:"Filtre sur R+1 et masquez les murs pour le voir en entier."},
+  {q:"Trouvez un <code>IfcColumn</code> (poteau).", ok:e=>e.ifc==='IfcColumn', tip:"Regardez du côté de la terrasse."},
+  {q:"Trouvez une <code>IfcBeam</code> (poutre).", ok:e=>e.ifc==='IfcBeam', tip:"Les poutres reposent sur les poteaux."},
+  {q:"Trouvez l'<code>IfcRoof</code>.", ok:e=>e.ifc==='IfcRoof', tip:"C'est l'élément le plus haut."},
+  {q:"Trouvez l'<code>IfcSite</code> : le terrain du projet.", ok:e=>e.ifc==='IfcSite', tip:"Cliquez à côté de la maison."}
 ];
 const M3=[
   {c:'IfcProject',fr:'Projet',ex:"Le dossier de départ : il contient tout le projet, ses unités et ses réglages."},
@@ -541,17 +541,17 @@ function render(){
   const k=S.mission; let h='';
   if(k===1){
     const n=S.found.length;
-    h='<div class="eyebrow">Mission 1 · Explorer</div><h2>Découvre les classes IFC</h2>'
-     +'<p>Dans une maquette IFC, chaque objet appartient à une <b>classe</b> qui dit ce qu\'il est. Fais tourner la maison et clique sur les objets. Découvre au moins <b>7 classes</b> sur 9.</p>'
+    h='<div class="eyebrow">Mission 1 · Explorer</div><h2>Découvrez les classes IFC</h2>'
+     +'<p>Dans une maquette IFC, chaque objet appartient à une <b>classe</b> qui dit ce qu\'il est. Faites tourner la maison et cliquez sur les objets. Découvrez au moins <b>7 classes</b> sur 9.</p>'
      +'<div class="progress"><span style="width:'+Math.min(100,n/7*100)+'%"></span></div>'
      +'<div class="classgrid">'+CLS_ORDER.map(c=>S.found.includes(c)?'<div class="cg on"><span class="mono">'+c+'</span>'+CLS[c].fr+'</div>':'<div class="cg"><span class="mono">Ifc???</span>à trouver</div>').join('')+'</div>'
      +'<p class="muted" style="font-size:13px">+10 pts par classe découverte. Astuce : le filtre <b>Niveau</b> et la légende en bas permettent de voir à l\'intérieur.</p>'
-     +(n>=7?fbHtml({t:'ok',h:'Bravo, tu connais maintenant '+n+' classes IFC.'})+nextBtn(2):'');
+     +(n>=7?fbHtml({t:'ok',h:'Bravo, vous connaissez maintenant '+n+' classes IFC.'})+nextBtn(2):'');
   }
   else if(k===2){
     const st=S.m2;
     if(st.i>=M2Q.length){
-      h='<div class="eyebrow">Mission 2 · Chasse aux objets</div><h2>Chasse terminée</h2><p>Tu as retrouvé tous les objets demandés : <b>'+S.pts[2]+' / '+MAX[2]+' pts</b>.</p>'+nextBtn(3);
+      h='<div class="eyebrow">Mission 2 · Chasse aux objets</div><h2>Chasse terminée</h2><p>Vous avez retrouvé tous les objets demandés : <b>'+S.pts[2]+' / '+MAX[2]+' pts</b>.</p>'+nextBtn(3);
     } else {
       const Q=M2Q[st.i];
       h='<div class="eyebrow">Mission 2 · Chasse aux objets · '+(st.i+1)+' / '+M2Q.length+'</div>'
@@ -564,8 +564,8 @@ function render(){
   }
   else if(k===3){
     const st=S.m3;
-    h='<div class="eyebrow">Mission 3 · Arborescence</div><h2>Range la structure spatiale</h2>'
-     +'<p>Un fichier IFC range les objets comme des dossiers emboîtés. Clique sur les étiquettes dans le bon ordre, du plus grand au plus petit.</p><div class="tree">';
+    h='<div class="eyebrow">Mission 3 · Arborescence</div><h2>Rangez la structure spatiale</h2>'
+     +'<p>Un fichier IFC range les objets comme des dossiers emboîtés. Cliquez sur les étiquettes dans le bon ordre, du plus grand au plus petit.</p><div class="tree">';
     M3.forEach((x,i)=>{
       const f=i<st.placed;
       h+='<div class="slot'+(f?' filled':'')+'" style="margin-left:'+(i*14)+'px"><span class="idx">'+(i+1)+'</span>'+(f?'<span><span class="mono">'+x.c+'</span> · '+x.fr+'</span>':'<span>…</span>')+'</div>';
@@ -576,7 +576,7 @@ function render(){
     } else {
       const nR=els.filter(e=>e.storey==='RDC').length, nU=els.filter(e=>e.storey==='R+1').length;
       h+=fbHtml({t:'ok',h:'Structure complète : '+S.pts[3]+' / '+MAX[3]+' pts.'})
-       +'<p>Dans cette maquette, le niveau <b>RDC</b> contient '+nR+' objets et le niveau <b>R+1</b> en contient '+nU+'. Clique sur un objet : son chemin complet s\'affiche dans l\'inspecteur.</p>'+nextBtn(4);
+       +'<p>Dans cette maquette, le niveau <b>RDC</b> contient '+nR+' objets et le niveau <b>R+1</b> en contient '+nU+'. Cliquez sur un objet : son chemin complet s\'affiche dans l\'inspecteur.</p>'+nextBtn(4);
     }
   }
   else if(k===4){
@@ -587,7 +587,7 @@ function render(){
       const Q=M4Q[st.i];
       h='<div class="eyebrow">Mission 4 · Propriétés · '+(st.i+1)+' / '+M4Q.length+'</div>'
        +'<div class="progress"><span style="width:'+(st.i/M4Q.length*100)+'%"></span></div>'
-       +'<p>Sélectionne l\'objet dans la maquette, puis lis la réponse dans l\'inspecteur.</p>'
+       +'<p>Sélectionnez l\'objet dans la maquette, puis lisez la réponse dans l\'inspecteur.</p>'
        +'<p class="q">'+Q.q+'</p><div class="opts">'
        +Q.o.map((o,i)=>{let c='opt'; if(st.ans!==null){ if(i===Q.a)c+=' good'; else if(i===st.ans)c+=' bad'; } return '<button type="button" class="'+c+'" data-o="'+i+'"'+(st.ans!==null?' disabled':'')+'>'+o+'</button>';}).join('')+'</div>';
       if(st.ans===null) h+='<div class="row"><button class="btn sec" type="button" id="show">Me montrer l\'objet</button></div>';
@@ -597,11 +597,11 @@ function render(){
   }
   else if(k===5){
     h='<div class="eyebrow">Bilan</div><div class="cert"><span class="eyebrow">Certificat de modeleur junior IFC</span>'
-     +'<label for="prenom" class="muted" style="font-size:13px">Prénom et nom</label><input id="prenom" type="text" autocomplete="off" placeholder="Écris ton nom" value="'+esc(S.name)+'">'
+     +'<label for="prenom" class="muted" style="font-size:13px">Prénom et nom</label><input id="prenom" type="text" autocomplete="off" placeholder="Écrivez votre nom" value="'+esc(S.name)+'">'
      +'<div class="big">'+total()+' <span style="font-size:22px">/ '+(MAX[1]+MAX[2]+MAX[3]+MAX[4])+'</span></div>'
      +'<table>'+[1,2,3,4].map(i=>'<tr><td>'+i+'. '+TITLES[i]+'</td><td>'+S.pts[i]+' / '+MAX[i]+'</td></tr>').join('')+'</table>'
      +'<p class="muted" style="font-size:13px">'+new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})+'</p></div>'
-     +'<p class="fb info">Fais une capture d\'écran de ce certificat et envoie-la à ton professeur.</p>';
+     +'<p class="fb info">Faites une capture d\'écran de ce certificat et envoyez-la à votre professeur.</p>';
   }
   mis.innerHTML=h; bindGo();
   const skip=document.getElementById('skip'); if(skip) skip.onclick=()=>{S.m2.i++;S.m2.miss=0;S.m2.fb={t:'info',h:'Question passée.'}; if(S.m2.i>=M2Q.length)finish(2); render();};
@@ -622,7 +622,7 @@ function onPick(rec){
       st.i++; st.miss=0; if(st.i>=M2Q.length) finish(2);
     } else {
       st.miss++;
-      st.fb={t:'ko',h:'Ça, c\'est un <span class="mono">'+rec.ifc+'</span> ('+CLS[rec.ifc].fr.toLowerCase()+(rec.storey!=='—'?', niveau '+rec.storey:'')+'). Essaie encore.'};
+      st.fb={t:'ko',h:'Ça, c\'est un <span class="mono">'+rec.ifc+'</span> ('+CLS[rec.ifc].fr.toLowerCase()+(rec.storey!=='—'?', niveau '+rec.storey:'')+'). Essayez encore.'};
     }
     render();
   }

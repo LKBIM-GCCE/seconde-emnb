@@ -3,14 +3,14 @@
  "sequence": "seq02",
  "seance": "s1",
  "titre": "Découverte du dossier : plan de situation et plan de masse",
- "intro": "Tu es assistant(e) en architecture et tu reçois le dossier de la Villa Camacho. Avant toute lecture technique, tu dois classer les plans et te repérer géographiquement.",
+ "intro": "Vous êtes assistant(e) en architecture et vous recevez le dossier de la Villa Camacho. Avant toute lecture technique, vous devez classer les plans et vous repérer géographiquement.",
  "blocs": [
   {
    "id": "classer",
    "type": "exercice",
    "titre": "Activité 1 — Classer le dossier",
    "duree": "25 min",
-   "consigne": "Voici les 8 documents du dossier (noms lus dans les cartouches). Classe chacun dans son type de pièce graphique.",
+   "consigne": "Voici les 8 documents du dossier (noms lus dans les cartouches). Classez chacun dans son type de pièce graphique.",
    "parties": [
     {
      "type": "associer",
@@ -59,7 +59,7 @@
     },
     {
      "type": "associer",
-     "titre": "Associe chaque type de plan à son usage",
+     "titre": "Associer chaque type de plan à son usage",
      "choix": [
       "Plan de situation",
       "Plan de masse",
@@ -107,7 +107,7 @@
    "type": "exercice",
    "titre": "Activité 2 — Le plan de situation",
    "duree": "25 min",
-   "consigne": "Observe attentivement le plan de situation de la Villa Camacho (clique sur « Agrandir » pour le voir en grand), puis réponds.",
+   "consigne": "Observez attentivement le plan de situation de la Villa Camacho (cliquez sur « Agrandir » pour le voir en grand), puis répondez.",
    "parties": [
     {
      "type": "image",
@@ -117,7 +117,7 @@
     },
     {
      "type": "saisie",
-     "titre": "1. Relève les informations du plan",
+     "titre": "1. Relever les informations du plan",
      "items": [
       {
        "texte": "Nom du cabinet d'architecture",
@@ -166,7 +166,7 @@
     },
     {
      "type": "qcm",
-     "titre": "2. Localise le terrain",
+     "titre": "2. Localiser le terrain",
      "questions": [
       {
        "q": "Quel symbole indique la position de la villa ?",
@@ -222,8 +222,8 @@
     },
     {
      "type": "redaction",
-     "titre": "3. Explique le rôle du plan",
-     "question": "Explique en une ou deux phrases le rôle du plan de situation.",
+     "titre": "3. Expliquer le rôle du plan",
+     "question": "Expliquez en une ou deux phrases le rôle du plan de situation.",
      "min": 40,
      "exemple": "Le plan de situation sert à localiser le terrain dans la commune : il montre le quartier, les routes et les accès."
     }
@@ -235,7 +235,7 @@
    "type": "exercice",
    "titre": "Activité 3 — Le plan de masse",
    "duree": "25 min",
-   "consigne": "Observe le plan de masse : l'orientation, la parcelle, les courbes de niveau et les réseaux.",
+   "consigne": "Observez le plan de masse : l'orientation, la parcelle, les courbes de niveau et les réseaux.",
    "parties": [
     {
      "type": "image",
@@ -245,7 +245,7 @@
     },
     {
      "type": "saisie",
-     "titre": "1. Relève les informations sur la parcelle",
+     "titre": "1. Relever les informations sur la parcelle",
      "items": [
       {
        "texte": "Numéros des parcelles cadastrales",
@@ -341,7 +341,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "2. Identifie les réseaux représentés",
+     "titre": "2. Identifier les réseaux représentés",
      "items": [
       {
        "texte": "Le raccordement AEP / EDF / Télécom est représenté.",
@@ -367,8 +367,8 @@
     },
     {
      "type": "redaction",
-     "titre": "3. Distingue les deux plans",
-     "question": "Nomme un élément présent sur le plan de masse et absent du plan de situation.",
+     "titre": "3. Distinguer les deux plans",
+     "question": "Nommez un élément présent sur le plan de masse et absent du plan de situation.",
      "min": 20,
      "exemple": "Les limites de la parcelle, les réseaux, les courbes de niveau ou l'emprise exacte de la maison."
     }

@@ -14,7 +14,7 @@ ZONES = {
                     '<rect x="516" y="420" width="44" height="58" rx="4"/><circle cx="620" cy="410" r="16"/>'),
     "plomberie": ("🚿", "Arrivée d'eau, évacuations, appareils sanitaires.", 330, 318,
                   '<rect x="252" y="320" width="140" height="52" rx="10"/><rect x="408" y="300" width="60" height="72"/>'),
-    "sols": ("🟫", "Carrelage, parquet, sol souple : ce qu'il y a sous tes pieds.", 330, 506,
+    "sols": ("🟫", "Carrelage, parquet, sol souple : ce qu'il y a sous vos pieds.", 330, 506,
              '<rect x="242" y="500" width="258" height="14"/>'),
     "peinture": ("🎨", "Peintures, enduits, défauts à reconnaître : la finition des murs.", 430, 440,
                  '<rect x="380" y="398" width="104" height="96" rx="4"/>'),

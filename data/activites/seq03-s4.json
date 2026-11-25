@@ -3,7 +3,7 @@
  "sequence": "seq03",
  "seance": "s4",
  "titre": "Évaluation : les futurs bureaux de l'agence",
- "intro": "Tu es assistant(e) à la cellule BIM Desk de l'agence Atelier Équerre. Le client, l'économiste et le conducteur de travaux t'envoient des questions (tickets) sur le projet des futurs bureaux. Tu dois y répondre seul(e), à partir de la maquette numérique IFC et des plans PDF.",
+ "intro": "Vous êtes assistant(e) à la cellule BIM Desk de l'agence Atelier Équerre. Le client, l'économiste et le conducteur de travaux vous envoient des questions (tickets) sur le projet des futurs bureaux. Vous devez y répondre seul(e), à partir de la maquette numérique IFC et des plans PDF.",
  "grille": [
   {
    "code": "C2.2.1",
@@ -67,7 +67,7 @@
   {
    "id": "mission",
    "type": "cours",
-   "titre": "Ta mission et ce qu'on attend de toi",
+   "titre": "Votre mission et ce qu'on attend de vous",
    "duree": "5 min",
    "fichier": "seq03-s4-cours.html"
   },
@@ -77,8 +77,8 @@
    "titre": "Découverte du projet (non noté)",
    "duree": "15 min",
    "verbe": "Explorer",
-   "demandeur": "Toi",
-   "consigne": "Avant de traiter les tickets, explore la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvre aussi les plans PDF. Cette partie n'est pas notée.",
+   "demandeur": "Vous",
+   "consigne": "Avant de traiter les tickets, explorez la maquette des futurs bureaux : niveaux, pièces, terrasses. Ouvrez aussi les plans PDF. Cette partie n'est pas notée.",
    "parties": [
     {
      "type": "visionneuse",
@@ -112,7 +112,7 @@
    "duree": "8 min",
    "verbe": "Identifier",
    "demandeur": "Client",
-   "consigne": "Le client te demande d'IDENTIFIER les matériaux des murs de façade et leur finition, en précisant où tu as trouvé chaque information.",
+   "consigne": "Le client vous demande d'IDENTIFIER les matériaux des murs de façade et leur finition, en précisant où vous avez trouvé chaque information.",
    "parties": [
     {
      "type": "visionneuse",
@@ -122,7 +122,7 @@
     },
     {
      "type": "texte",
-     "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>🧊 <b>La composition</b> du mur : dans la <b>maquette</b> (clique sur un mur de façade).<br>📄 <b>La finition</b> (l'aspect extérieur après travaux) : sur les <b>plans PDF</b>, planches <b>Façades — État projeté</b> (PC 05-2 et PC 05-3, pages 11 et 12). Les matériaux sont écrits à côté des élévations.<br>⚠️ Les façades <b>État existant</b> montrent le bâtiment d'aujourd'hui : ce n'est pas la réponse.</p>"
+     "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>🧊 <b>La composition</b> du mur : dans la <b>maquette</b> (cliquez sur un mur de façade).<br>📄 <b>La finition</b> (l'aspect extérieur après travaux) : sur les <b>plans PDF</b>, planches <b>Façades — État projeté</b> (PC 05-2 et PC 05-3, pages 11 et 12). Les matériaux sont écrits à côté des élévations.<br>⚠️ Les façades <b>État existant</b> montrent le bâtiment d'aujourd'hui : ce n'est pas la réponse.</p>"
     },
     {
      "type": "qcm",
@@ -187,7 +187,7 @@
    "duree": "8 min",
    "verbe": "Relever",
    "demandeur": "Conducteur de travaux",
-   "consigne": "Le conducteur de travaux te demande de RELEVER la hauteur de l'acrotère le plus haut, par rapport au terrain naturel (TN).",
+   "consigne": "Le conducteur de travaux vous demande de RELEVER la hauteur de l'acrotère le plus haut, par rapport au terrain naturel (TN).",
    "parties": [
     {
      "type": "visionneuse",
@@ -197,14 +197,14 @@
     },
     {
      "type": "texte",
-     "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>📄 Sur les <b>plans PDF</b> : la cote d'altitude « Acrotère … m/TN » est écrite sur les <b>coupes</b> (PC 03-1, page 7) et les <b>façades</b> (PC 05-2, page 11), état projeté.<br>🧊 Tu peux vérifier dans la maquette : clique sur un mur « Acrotère » du niveau Toiture terrasse.</p>"
+     "html": "<p class=\"coup-pouce\"><b>📍 Où chercher ?</b><br>📄 Sur les <b>plans PDF</b> : la cote d'altitude « Acrotère … m/TN » est écrite sur les <b>coupes</b> (PC 03-1, page 7) et les <b>façades</b> (PC 05-2, page 11), état projeté.<br>🧊 Vous pouvez vérifier dans la maquette : cliquez sur un mur « Acrotère » du niveau Toiture terrasse.</p>"
     },
     {
      "type": "qcm",
      "critere": "t2-source",
      "questions": [
       {
-       "q": "Où trouves-tu cette hauteur le plus directement ?",
+       "q": "Où trouvez-vous cette hauteur le plus directement ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -240,7 +240,7 @@
    "duree": "6 min",
    "verbe": "Localiser",
    "demandeur": "Client",
-   "consigne": "Le client te demande de LOCALISER la pièce n° 43 et d'IDENTIFIER son usage.",
+   "consigne": "Le client vous demande de LOCALISER la pièce n° 43 et d'IDENTIFIER son usage.",
    "parties": [
     {
      "type": "visionneuse",
@@ -261,7 +261,7 @@
         "Archives, au RDC"
        ],
        "r": 1,
-       "explication": "Active « Pièces », clique sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."
+       "explication": "Activez « Pièces », cliquez sur la pièce : son numéro et son nom sont dans l'inspecteur, son niveau dans le chemin."
       },
       {
        "q": "Quelle forme de réponse est la plus adaptée pour le client ?",
@@ -284,7 +284,7 @@
    "duree": "12 min",
    "verbe": "Calculer",
    "demandeur": "Économiste",
-   "consigne": "L'économiste te demande de CALCULER la surface totale des locaux clos et couverts, et de lui SIGNALER ce que tu n'as pas compté.",
+   "consigne": "L'économiste vous demande de CALCULER la surface totale des locaux clos et couverts, et de lui SIGNALER ce que vous n'avez pas compté.",
    "parties": [
     {
      "type": "visionneuse",
@@ -297,7 +297,7 @@
      "critere": "t4-objets",
      "questions": [
       {
-       "q": "Quels objets additionnes-tu ?",
+       "q": "Quels objets additionnez-vous ?",
        "choix": [
         "Les dalles (IfcSlab) du RDC et du R+1",
         "Les pièces (IfcSpace) du RDC et du R+1",
@@ -327,7 +327,7 @@
      "critere": "vigilance",
      "questions": [
       {
-       "q": "Au R+1, une terrasse accessible de 21,12 m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutes-tu au total ?",
+       "q": "Au R+1, une terrasse accessible de 21,12 m² (dalle « Terrasse ») donne sur les bureaux. L'ajoutez-vous au total ?",
        "choix": [
         "Oui, c'est une surface du bâtiment",
         "Non : une terrasse n'est ni close ni couverte, je l'exclus et je le précise dans ma réponse",
@@ -340,8 +340,8 @@
     },
     {
      "type": "redaction",
-     "titre": "Ta réponse à l'économiste",
-     "question": "Rédige ta réponse comme un message : la surface avec son unité, sa source, et ce que tu as exclu.",
+     "titre": "Votre réponse à l'économiste",
+     "question": "Rédigez votre réponse comme un message : la surface avec son unité, sa source, et ce que vous avez exclu.",
      "min": 40,
      "exemple": "Surface des locaux clos et couverts : … m² (somme des IfcSpace du RDC et du R+1). Je n'ai pas compté …"
     }
@@ -354,7 +354,7 @@
    "duree": "12 min",
    "verbe": "Produire",
    "demandeur": "Conducteur de travaux",
-   "consigne": "Le conducteur de travaux te demande de PRODUIRE une capture annotée qui localise la terrasse accessible et les toitures terrasses.",
+   "consigne": "Le conducteur de travaux vous demande de PRODUIRE une capture annotée qui localise la terrasse accessible et les toitures terrasses.",
    "parties": [
     {
      "type": "visionneuse",
@@ -364,13 +364,13 @@
     },
     {
      "type": "texte",
-     "html": "<ol><li>Choisis une vue où l'on voit bien la terrasse et les toitures terrasses (tourne, utilise la coupe ou le filtre Niveau).</li><li>Clique sur <b>📷 Capture</b> : l'image est téléchargée.</li><li>Annote-la (Paint ou l'outil Capture de Windows) : flèches, noms des éléments, légende.</li><li>Transmets-la à ton professeur avec ton certificat.</li></ol>"
+     "html": "<ol><li>Choisissez une vue où l'on voit bien la terrasse et les toitures terrasses (tournez, utilisez la coupe ou le filtre Niveau).</li><li>Cliquez sur <b>📷 Capture</b> : l'image est téléchargée.</li><li>Annotez-la (Paint ou l'outil Capture de Windows) : flèches, noms des éléments, légende.</li><li>Transmettez-la à votre professeur avec votre certificat.</li></ol>"
     },
     {
      "type": "redaction",
      "critere": "t5",
-     "titre": "Justifie ton choix",
-     "question": "En une ou deux phrases : pourquoi as-tu choisi cette vue, et pourquoi une capture est-elle la bonne forme de réponse pour ce ticket ?",
+     "titre": "Justifier votre choix",
+     "question": "En une ou deux phrases : pourquoi avez-vous choisi cette vue, et pourquoi une capture est-elle la bonne forme de réponse pour ce ticket ?",
      "min": 30
     }
    ]
@@ -382,27 +382,27 @@
    "duree": "5 min",
    "verbe": "Justifier",
    "demandeur": "Client",
-   "consigne": "En fin de séance, tu présentes à ton professeur (qui joue le client) UN ticket au choix, en 2 minutes, puis tu réponds à 1 question. Prépare ici ce que tu vas dire : tu dois JUSTIFIER ta source et ta forme de réponse.",
+   "consigne": "En fin de séance, vous présentez à votre professeur (qui joue le client) UN ticket au choix, en 2 minutes, puis vous répondez à 1 question. Préparez ici ce que vous allez dire : vous devez JUSTIFIER votre source et votre forme de réponse.",
    "parties": [
     {
      "type": "redaction",
      "critere": "oral",
      "titre": "1. Le ticket choisi et la demande",
-     "question": "Quel ticket présentes-tu ? Qui l'a envoyé et que veut-il savoir ?",
+     "question": "Quel ticket présentez-vous ? Qui l'a envoyé et que veut-il savoir ?",
      "min": 20
     },
     {
      "type": "redaction",
      "critere": "oral",
      "titre": "2. Ma réponse",
-     "question": "Ta réponse : la valeur avec son unité, le nom ou ce que montre ta capture.",
+     "question": "Votre réponse : la valeur avec son unité, le nom ou ce que montre votre capture.",
      "min": 15
     },
     {
      "type": "redaction",
      "critere": "oral",
      "titre": "3. Ma source",
-     "question": "Où as-tu trouvé l'information ? (maquette : quel objet, quelle propriété ? ou plan : quelle planche ?)",
+     "question": "Où avez-vous trouvé l'information ? (maquette : quel objet, quelle propriété ? ou plan : quelle planche ?)",
      "min": 20
     },
     {

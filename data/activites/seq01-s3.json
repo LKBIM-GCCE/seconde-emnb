@@ -3,7 +3,7 @@
  "sequence": "seq01",
  "seance": "s3",
  "titre": "Application croisée et résolution de problèmes",
- "intro": "Tu vas mobiliser tout ce que tu sais sur les acteurs et les phases pour analyser des dysfonctionnements, remettre un dossier dans l'ordre et construire le tableau de synthèse de la séquence.",
+ "intro": "Vous allez mobiliser tout ce que vous savez sur les acteurs et les phases pour analyser des dysfonctionnements, remettre un dossier dans l'ordre et construire le tableau de synthèse de la séquence.",
  "blocs": [
   {
    "id": "bugs",
@@ -18,7 +18,7 @@
     },
     {
      "type": "associer",
-     "titre": "1. Identifie l'acteur en cause",
+     "titre": "1. Identifier l'acteur en cause",
      "choix": [
       "Maître d'ouvrage (MOA)",
       "AMO",
@@ -59,7 +59,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Indique la phase qui n'a pas été respectée",
+     "titre": "2. Indiquer la phase qui n'a pas été respectée",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -110,7 +110,7 @@
     },
     {
      "type": "qcm",
-     "titre": "3. Sélectionne la solution concrète",
+     "titre": "3. Sélectionner la solution concrète",
      "questions": [
       {
        "q": "A — Le permis manquant",
@@ -172,7 +172,7 @@
    "type": "exercice",
    "titre": "Activité 2 — Du besoin aux clés en main",
    "duree": "45 min",
-   "consigne": "Le dossier du projet est arrivé en désordre. Lis les 4 documents, remets-les dans l'ordre chronologique, puis indique pour chacun qui le produit et qui l'utilise.",
+   "consigne": "Le dossier du projet est arrivé en désordre. Lisez les 4 documents, remettez-les dans l'ordre chronologique, puis indiquez pour chacun qui le produit et qui l'utilise.",
    "parties": [
     {
      "type": "texte",
@@ -180,7 +180,7 @@
     },
     {
      "type": "ordre",
-     "titre": "1. Ordonne les documents dans l'ordre chronologique",
+     "titre": "1. Ordonner les documents dans l'ordre chronologique",
      "titreFrise": "Ordre chronologique",
      "cartes": [
       {
@@ -199,7 +199,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Associe chaque document à sa phase",
+     "titre": "2. Associer chaque document à sa phase",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -232,7 +232,7 @@
     },
     {
      "type": "associer",
-     "titre": "3. Identifie qui produit chaque document",
+     "titre": "3. Identifier qui produit chaque document",
      "choix": [
       "Maître d'ouvrage (MOA)",
       "AMO",
@@ -269,7 +269,7 @@
     },
     {
      "type": "associer",
-     "titre": "4. Identifie qui reçoit et utilise chaque document",
+     "titre": "4. Identifier qui reçoit et utiliser chaque document",
      "choix": [
       "Maître d'ouvrage (MOA)",
       "AMO",
@@ -309,11 +309,11 @@
    "type": "exercice",
    "titre": "Activité 3 — Le grand tableau croisé acteurs × phases",
    "duree": "50 min",
-   "consigne": "Ce tableau devient ta fiche de synthèse de la séquence. Coche les cases, puis retrouve qui fait quoi à chaque étape.",
+   "consigne": "Ce tableau devient votre fiche de synthèse de la séquence. Cochez les cases, puis retrouvez qui fait quoi à chaque étape.",
    "parties": [
     {
      "type": "grille",
-     "titre": "1. Complète le tableau : qui intervient à chaque grande étape ?",
+     "titre": "1. Compléter le tableau : qui intervient à chaque grande étape ?",
      "aide": "Les interventions ponctuelles sont acceptées cochées ou non.",
      "colonnes": [
       "Amont / Programme",
@@ -342,7 +342,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Associe chaque tâche à son acteur",
+     "titre": "2. Associer chaque tâche à son acteur",
      "choix": [
       "MOA",
       "MOE / Architecte",
@@ -360,11 +360,11 @@
        "reponse": "MOE / Architecte"
       },
       {
-       "texte": "Phase PRO : calcule la structure et dimensionne les réseaux.",
+       "texte": "Phase PRO : calculez la structure et dimensionne les réseaux.",
        "reponse": "BET"
       },
       {
-       "texte": "Conception : valide l'APS et l'APD avant de passer à la suite.",
+       "texte": "Conception : validez l'APS et l'APD avant de passer à la suite.",
        "reponse": "MOA"
       },
       {

@@ -1,6 +1,6 @@
 {
  "titre": "Grille d'évaluation — Les futurs bureaux de l'agence",
- "intro": "Voici ce que ton professeur va regarder. Pour chaque critère, il te place sur un niveau, de NA à M. La note sur 10 est calculée ensuite à partir de ces niveaux.",
+ "intro": "Voici ce que votre professeur va regarder. Pour chaque critère, il vous place sur un niveau, de NA à M. La note sur 10 est calculée ensuite à partir de ces niveaux.",
  "groupes": [
   {
    "code": "C2.2.1",
@@ -80,8 +80,8 @@
    ]
   }
  ],
- "niveaux": "Ton niveau sur une compétence = la moyenne de tes niveaux sur ses critères, arrondie (0 = NA · 1 = ECA · 2 = A · 3 = M).",
- "note": "Le score du certificat en ligne n'est pas ta note : la note vient de cette grille, de ta capture et de ton oral.",
+ "niveaux": "Votre niveau sur une compétence = la moyenne de vos niveaux sur ses critères, arrondie (0 = NA · 1 = ECA · 2 = A · 3 = M).",
+ "note": "Le score du certificat en ligne n'est pas votre note : la note vient de cette grille, de votre capture et de votre oral.",
  "mode": "competences",
  "echelle": [
   [

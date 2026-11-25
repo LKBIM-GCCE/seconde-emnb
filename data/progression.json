@@ -27,7 +27,7 @@
    "problematique": "Quelle est ma place dans l'entreprise et quel est le rôle de chaque intervenant selon la phase du projet ?",
    "periode": "Septembre",
    "duree": "8 h",
-   "contexte": "Tu découvres qui fait quoi dans un projet de construction (maître d'ouvrage, maître d'œuvre, bureaux d'études, entreprises) et à quel moment chacun intervient, de l'idée jusqu'à la réception.",
+   "contexte": "Vous découvrez qui fait quoi dans un projet de construction (maître d'ouvrage, maître d'œuvre, bureaux d'études, entreprises) et à quel moment chacun intervient, de l'idée jusqu'à la réception.",
    "statut": "en_ligne",
    "seances": [
     {
@@ -117,7 +117,7 @@
        "eleves": [
         "Relier chaque métier (architecte, ingénieur structure,",
         "économiste…) à son acteur dans le projet.",
-        "« Et toi, tu veux exercer quel métier ? »"
+        "« Et vous, vous voulez exercer quel métier ? »"
        ]
       },
       {
@@ -143,7 +143,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Les acteurs d'un projet » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -251,7 +251,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Les phases d'un projet » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -294,9 +294,9 @@
        "temps": "10 min",
        "etape": "Restitution commune",
        "eleves": [
-        "Écoute les autres groupes.",
+        "Écoutez les autres groupes.",
         "Peut réagir / compléter.",
-        "Note les corrections sur sa fiche."
+        "Notez les corrections sur sa fiche."
        ]
       },
       {
@@ -318,8 +318,8 @@
        "temps": "20 min",
        "etape": "Mise en perspective métier",
        "eleves": [
-        "Complète la fiche de synthèse documentaire.",
-        "Prépare la restitution orale du groupe."
+        "Complétez la fiche de synthèse documentaire.",
+        "Préparez la restitution orale du groupe."
        ]
       },
       {
@@ -327,7 +327,7 @@
        "etape": "Co-construction du tableau",
        "eleves": [
         "Répond aux questions du prof.",
-        "Note les éléments validés sur leur propre matrice.",
+        "Notez les éléments validés sur leur propre matrice.",
         "Participe aux ajustements."
        ]
       },
@@ -336,7 +336,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Qui intervient, et quand ? » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse"
        ]
       }
@@ -363,41 +363,41 @@
        "etape": "Attribution des rôles et scénario",
        "eleves": [
         "Prend connaissance du scénario.",
-        "Identifie son rôle et ses responsabilités dans cette phase."
+        "Identifiez son rôle et ses responsabilités dans cette phase."
        ]
       },
       {
        "temps": "15 min",
        "etape": "Préparation en groupe",
        "eleves": [
-        "Rédige ou prépare à l'oral la réaction de son acteur.",
-        "Consulte ses notes de cours (S01/S02/S03)."
+        "Rédigez ou préparez à l'oral la réaction de son acteur.",
+        "Consultez ses notes de cours (S01/S02/S03)."
        ]
       },
       {
        "temps": "20 min",
        "etape": "Restitution « Réunion de chantier »",
        "eleves": [
-        "Présente la réaction de son acteur.",
+        "Présentez la réaction de son acteur.",
         "Interagit avec les autres groupes.",
-        "Note les impacts identifiés collectivement."
+        "Notez les impacts identifiés collectivement."
        ]
       },
       {
        "temps": "20 min",
        "etape": "Du plan 2D à la maquette 3D",
        "eleves": [
-        "Observe et répond aux questions.",
-        "Note la différence plan 2D / maquette 3D.",
-        "Identifie un exemple concret d'erreur évitée grâce au BIM."
+        "Observez et répond aux questions.",
+        "Notez la différence plan 2D / maquette 3D.",
+        "Identifiez un exemple concret d'erreur évitée grâce au BIM."
        ]
       },
       {
        "temps": "10 min",
        "etape": "Mise en commun « À quoi sert le BIM ? »",
        "eleves": [
-        "Propose une formulation.",
-        "Note la définition validée dans son cours."
+        "Proposez une formulation.",
+        "Notez la définition validée dans son cours."
        ]
       },
       {
@@ -413,7 +413,7 @@
        "etape": "Correction et débrief rapide",
        "eleves": [
         "Prend note des corrections.",
-        "Identifie ses propres erreurs."
+        "Identifiez ses propres erreurs."
        ]
       },
       {
@@ -421,7 +421,7 @@
        "etape": "Synthèse élèves - Bilan de séquence",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Du projet au chantier, avec le BIM » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse"
        ]
       },
@@ -429,7 +429,7 @@
        "temps": "5 min",
        "etape": "Transition vers la suite",
        "eleves": [
-        "Note la suite du programme.",
+        "Notez la suite du programme.",
         "Rangement."
        ]
       }
@@ -445,7 +445,7 @@
    "problematique": "Comment lire et exploiter un dossier de plans pour identifier l'organisation d'un bâtiment, repérer ses dimensions réelles et analyser l'évolution du projet entre ses différentes phases ?",
    "periode": "Septembre – Octobre",
    "duree": "8 h",
-   "contexte": "Assistant(e) en architecture dans un bureau d'études, tu intègres l'équipe du projet Villa Camacho, une maison individuelle. Tu dois t'approprier le dossier graphique complet, de l'Esquisse à l'APD.",
+   "contexte": "Assistant(e) en architecture dans un bureau d'études, vous intégrez l'équipe du projet Villa Camacho, une maison individuelle. Vous devez vous approprier le dossier graphique complet, de l'Esquisse à l'APD.",
    "statut": "en_ligne",
    "seances": [
     {
@@ -554,7 +554,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Situer et implanter un projet » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -690,7 +690,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Plans de niveaux et façades » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -809,14 +809,14 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Coupes et échelles » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
      ]
     },
     {
-     "titre": "Analyse de l'évolution des plans : de l'Esquisse à l'APD",
+     "titre": "Analyser de l'évolution des plans : de l'Esquisse à l'APD",
      "duree": "110 min",
      "competences": [
       "C2.1.1",
@@ -837,7 +837,7 @@
        "integrer": false
       },
       {
-       "nom": "TP 01 — Analyse de l'évolution des plans",
+       "nom": "TP 01 — Analysez de l'évolution des plans",
        "type": "td",
        "fichier_source": "S02-LECTURE DE PLAN/S04-ANALYSE DE L'EVOLUTION DES PLANS/LKBIM-ANALYSE DE L'EVOLUTION DE PLAN-TP01.pdf",
        "lien": "",
@@ -912,7 +912,7 @@
        "etape": "Synthèse élèves - Bilan de séquence",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Les plans au fil des phases » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -928,7 +928,7 @@
    "problematique": "Comment une maquette IFC permet-elle de répondre aux besoins d'information de chaque intervenant d'un projet ?",
    "periode": "Novembre – Décembre",
    "duree": "8 h",
-   "contexte": "Tu rejoins la cellule BIM Desk de l'agence Atelier Équerre Architectes. L'agence conçoit sous Revit, mais ses partenaires reçoivent les maquettes en IFC. Ton groupe travaille sur l'un des 4 projets de l'agence, directement dans la visionneuse 3D du site.",
+   "contexte": "Vous rejoignez la cellule BIM Desk de l'agence Atelier Équerre Architectes. L'agence conçoit sous Revit, mais ses partenaires reçoivent les maquettes en IFC. Votre groupe travaille sur l'un des 4 projets de l'agence, directement dans la visionneuse 3D du site.",
    "statut": "en_ligne",
    "seances": [
     {
@@ -1004,7 +1004,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « La maquette IFC » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       },
@@ -1106,7 +1106,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Trouver une information dans la maquette » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -1208,7 +1208,7 @@
        "etape": "Synthèse élèves",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Quantifier avec la maquette » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse et se compare à la fiche synthèse du professeur"
        ]
       }
@@ -1299,7 +1299,7 @@
        "etape": "Synthèse élèves - Bilan de séquence",
        "eleves": [
         "Carte mentale (4 min), sur le site : construire la carte mentale « Répondre à un client avec la maquette » en plaçant chaque réponse sous la bonne question (attention aux pièges)",
-        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifie le placement de chaque étiquette",
+        "Tous ensemble (4 min) : la carte est projetée, la classe propose et justifiez le placement de chaque étiquette",
         "Valider (2 min) : la carte corrigée devient la synthèse",
         "Compléter l'auto-évaluation des compétences"
        ]

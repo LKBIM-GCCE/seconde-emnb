@@ -3,22 +3,22 @@
  "sequence": "seq01",
  "seance": "s4",
  "titre": "Jeu de rôle, transition numérique et évaluation",
- "intro": "Prépare ton intervention pour la « réunion de chantier », découvre le rôle du BIM, puis passe l'évaluation finale de la séquence (QCM).",
+ "intro": "Préparez votre intervention pour la « réunion de chantier », découvrez le rôle du BIM, puis passez l'évaluation finale de la séquence (QCM).",
  "blocs": [
   {
    "id": "role",
    "type": "exercice",
    "titre": "Phase 1 — Le tour de table",
    "duree": "45 min",
-   "consigne": "Scénario : en phase PRO, le maître d'ouvrage souhaite modifier l'emprise du bâtiment et ajouter une terrasse non prévue. Chaque groupe joue un acteur. Prépare ta réaction en suivant le modèle, puis présente-la lors de la réunion de chantier animée par le professeur.",
+   "consigne": "Scénario : en phase PRO, le maître d'ouvrage souhaite modifier l'emprise du bâtiment et ajouter une terrasse non prévue. Chaque groupe joue un acteur. Préparez votre réaction en suivant le modèle, puis présentez-la lors de la réunion de chantier animée par le professeur.",
    "parties": [
     {
      "type": "texte",
-     "html": "<div class=\"encadre\"><h4>Les 5 rôles</h4><p>Groupe 1 → Maître d'ouvrage · Groupe 2 → Architecte / MOE · Groupe 3 → BET structure · Groupe 4 → Économiste · Groupe 5 → Entreprise de gros œuvre</p></div><div class=\"encadre retenir\"><h4>Le modèle à suivre</h4><p>« En tant que <b>[mon rôle]</b>, à la phase <b>[nom de la phase]</b>, je constate que <b>[le fait / le problème]</b>. Par conséquent, je dois <b>[action technique ou administrative]</b> et je préviens <b>[quel acteur, et pourquoi]</b>. »</p><p>Sois précis : documents produits, délais, coûts.</p></div>"
+     "html": "<div class=\"encadre\"><h4>Les 5 rôles</h4><p>Groupe 1 → Maître d'ouvrage · Groupe 2 → Architecte / MOE · Groupe 3 → BET structure · Groupe 4 → Économiste · Groupe 5 → Entreprise de gros œuvre</p></div><div class=\"encadre retenir\"><h4>Le modèle à suivre</h4><p>« En tant que <b>[mon rôle]</b>, à la phase <b>[nom de la phase]</b>, je constate que <b>[le fait / le problème]</b>. Par conséquent, je dois <b>[action technique ou administrative]</b> et je préviens <b>[quel acteur, et pourquoi]</b>. »</p><p>Soyez précis : documents produits, délais, coûts.</p></div>"
     },
     {
      "type": "associer",
-     "titre": "1. Identifie les conséquences de la terrasse ajoutée",
+     "titre": "1. Identifier les conséquences de la terrasse ajoutée",
      "choix": [
       "Maître d'ouvrage",
       "Architecte / MOE",
@@ -52,8 +52,8 @@
     },
     {
      "type": "redaction",
-     "titre": "2. Prépare ta réaction (modèle du tour de table)",
-     "question": "Écris la réaction de l'acteur joué par ton groupe en suivant le modèle « En tant que…, à la phase…, je constate que… Par conséquent, je dois… et je préviens… ».",
+     "titre": "2. Préparer votre réaction (modèle du tour de table)",
+     "question": "Écrivez la réaction de l'acteur joué par votre groupe en suivant le modèle « En tant que…, à la phase…, je constate que… Par conséquent, je dois… et je préviens… ».",
      "min": 120
     }
    ],
@@ -64,11 +64,11 @@
    "type": "exercice",
    "titre": "Phase 2 — Le passage de témoin : du plan 2D à la maquette 3D",
    "duree": "30 min",
-   "consigne": "Le professeur te montre le même projet en plans PDF puis dans la visionneuse 3D du site. Réponds aux questions.",
+   "consigne": "Le professeur vous montre le même projet en plans PDF puis dans la visionneuse 3D du site. Répondez aux questions.",
    "parties": [
     {
      "type": "vraifaux",
-     "titre": "1. Distingue le vrai du faux",
+     "titre": "1. Distinguer le vrai du faux",
      "items": [
       {
        "texte": "Les plans PRO/DCE sont les documents que l'architecte et le BET transmettent aux entreprises.",
@@ -94,8 +94,8 @@
     },
     {
      "type": "redaction",
-     "titre": "2. Définis le BIM avec tes mots",
-     "question": "Définis avec tes mots à quoi sert le BIM dans un projet de construction.",
+     "titre": "2. Définir le BIM avec vos mots",
+     "question": "Définissez avec vos mots à quoi sert le BIM dans un projet de construction.",
      "min": 60,
      "exemple": "Le BIM sert à éviter que les acteurs se parlent dans le vide et à sécuriser le passage de témoin entre les études (la tête) et le chantier (les mains)."
     }
@@ -107,7 +107,7 @@
    "type": "exercice",
    "titre": "Phase 3 — Évaluation sommative (QCM)",
    "duree": "20 min",
-   "consigne": "Travail individuel, sans tes notes. 15 questions : reconnaissance des acteurs, chronologie des phases et cas pratiques.",
+   "consigne": "Travail individuel, sans vos notes. 15 questions : reconnaissance des acteurs, chronologie des phases et cas pratiques.",
    "parties": [
     {
      "type": "qcm",
@@ -275,7 +275,7 @@
    "parties": [
     {
      "type": "redaction",
-     "question": "Indique l'acteur de la construction dans lequel tu te reconnais le plus, puis explique pourquoi.",
+     "question": "Indiquez l'acteur de la construction dans lequel vous vous reconnaissez le plus, puis expliquez pourquoi.",
      "min": 50
     }
    ],

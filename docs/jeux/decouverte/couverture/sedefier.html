@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Couverture : monte ta toiture</title>
+<title>Couverture : montez votre toiture</title>
 <style>
 :root{--jaune:#F2C200;--jaune-clair:#FFF7D6;--encre:#1F2933;--gris:#5F6B7A;--vert:#1E8E3E;--vert-clair:#E7F5EC;--rouge:#C62828;--rouge-clair:#FDECEA;--bleu:#1F3A68;--ligne:#E1E4E8}
 *{box-sizing:border-box}
@@ -40,15 +40,15 @@ footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><link rel="stylesheet" href="../../../assets/jeux-theme.css"></head>
 <body><nav class="jeux-barre" aria-label="Navigation des jeux"><a class="jeux-retour" href="../../../jeux.html">🏠 La maison des jeux</a><span class="jeux-theme">Couverture et étanchéité</span><span class="jeux-etapes"><a href="decouvrir.html">1 · Découvrir</a><a href="sentrainer.html">2 · S'entraîner</a><a href="sedefier.html" aria-current="page">3 · Se défier</a></span></nav><script>(function(){try{var k="emnb-jeux-vus",v=JSON.parse(localStorage.getItem(k)||"[]");if(v.indexOf("couverture/sedefier")<0){v.push("couverture/sedefier");localStorage.setItem(k,JSON.stringify(v))}}catch(e){}})()</script>
 <div class="cadre">
-<header><h1>Couverture et étanchéité · Se défier : monte ta toiture</h1><div class="badges"><span class="badge">Découverte libre</span><span class="badge">2de EMNB</span></div></header>
+<header><h1>Couverture et étanchéité · Se défier : montez votre toiture</h1><div class="badges"><span class="badge">Découverte libre</span><span class="badge">2de EMNB</span></div></header>
 <main>
-<p class="consigne">Remets les couches de chaque toiture dans l'ordre : <strong>en haut la couche extérieure</strong>, en bas la couche intérieure (ou le support). Utilise les flèches ou le glisser-déposer, puis clique sur <strong>Vérifier</strong>. Trois complexes à reconstituer.</p>
+<p class="consigne">Remettez les couches de chaque toiture dans l'ordre : <strong>en haut la couche extérieure</strong>, en bas la couche intérieure (ou le support). Utilisez les flèches ou le glisser-déposer, puis cliquez sur <strong>Vérifier</strong>. Trois complexes à reconstituer.</p>
 <h2 id="titreR" style="font-size:1.05rem;color:#1F3A68;margin:0 0 10px"></h2>
 <ol id="liste"></ol>
 <div id="msg"></div>
 <div id="actions"></div>
 </main>
-<footer>Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Tu découvres : technologie de la couverture et de l'étanchéité, dispositions constructives associées.</footer>
+<footer>Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Vous découvrez :technologie de la couverture et de l'étanchéité, dispositions constructives associées.</footer>
 </div>
 <script>
 const ROUNDS=[{"t": "Complexe 1 / 3 — Toiture en tuiles, combles aménagés", "items": [{"rang": 1, "t": "Tuiles", "lot": "Couverture", "d": "Elles assurent l'étanchéité à l'eau par recouvrement."}, {"rang": 2, "t": "Liteaux", "lot": "Support des tuiles", "d": "Les tuiles s'y accrochent ; leur espacement correspond au pureau."}, {"rang": 3, "t": "Contre-liteaux", "lot": "Lame d'air ventilée", "d": "Posés dans le sens de la pente, ils créent la ventilation sous les liteaux."}, {"rang": 4, "t": "Écran sous toiture HPV", "lot": "Protection secondaire", "d": "Il recueille les infiltrations et laisse sortir la vapeur d'eau."}, {"rang": 5, "t": "Isolant entre et sous chevrons", "lot": "Isolation", "d": "Il suit la pente du toit, puisque les combles sont habitables."}, {"rang": 6, "t": "Pare-vapeur", "lot": "Étanchéité à l'air et à la vapeur", "d": "Côté chaud, il empêche la vapeur intérieure de mouiller l'isolant."}, {"rang": 7, "t": "Plaque de plâtre", "lot": "Parement intérieur", "d": "Elle ferme le rampant côté pièce."}]}, {"t": "Complexe 2 / 3 — Toiture-terrasse classique (chaude)", "items": [{"rang": 1, "t": "Protection (gravillons ou dalles sur plots)", "lot": "Protection", "d": "Elle protège l'étanchéité des UV et des chocs, et la lest."}, {"rang": 2, "t": "Revêtement d'étanchéité (bitume ou PVC)", "lot": "Étanchéité", "d": "Posé sur l'isolant, il rend la toiture étanche (DTU 43.1)."}, {"rang": 3, "t": "Isolant rigide", "lot": "Isolation", "d": "Il doit résister à la compression sous l'étanchéité et la protection."}, {"rang": 4, "t": "Pare-vapeur", "lot": "Barrière à la vapeur", "d": "Sous l'isolant, côté chaud, il évite la condensation dans l'isolant."}, {"rang": 5, "t": "Dalle béton", "lot": "Élément porteur", "d": "Elle porte l'ensemble du complexe."}]}, {"t": "Complexe 3 / 3 — Toiture-terrasse inversée", "items": [{"rang": 1, "t": "Protection lourde (gravillons ou dalles sur plots)", "lot": "Lestage et protection", "d": "Elle empêche l'isolant de flotter ou de s'envoler."}, {"rang": 2, "t": "Non-tissé de séparation", "lot": "Filtre", "d": "Il empêche les fines de la protection de passer entre les panneaux isolants."}, {"rang": 3, "t": "Isolant en polystyrène extrudé", "lot": "Isolation", "d": "Placé au-dessus de l'étanchéité, il doit supporter l'eau : on utilise du polystyrène extrudé (XPS)."}, {"rang": 4, "t": "Revêtement d'étanchéité", "lot": "Étanchéité", "d": "Protégé par l'isolant, il subit moins les écarts de température et le soleil."}, {"rang": 5, "t": "Dalle béton", "lot": "Élément porteur", "d": "Ici, l'étanchéité est posée directement sur la dalle : elle sert aussi de pare-vapeur."}]}];
@@ -68,8 +68,8 @@ ul.addEventListener('dragstart',e=>{const li=e.target.closest('li');if(li)src=+l
 ul.addEventListener('dragover',e=>{if(etat==='jeu')e.preventDefault()});
 ul.addEventListener('drop',e=>{e.preventDefault();const li=e.target.closest('li');if(!li||src===null||etat!=='jeu')return;const [m]=liste.splice(src,1);liste.splice(+li.dataset.i,0,m);src=null;rendre()});
 function verifier(){essais++;etat='verif';rendre();const n=liste.filter((it,i)=>it.rang===i+1).length;
- if(n===liste.length){msg.innerHTML=`<div class="feedback ok"><strong>Bravo, tout est dans le bon ordre${essais>1?' (en '+essais+' essais)':''}.</strong> ${ri<ROUNDS.length-1?FIN_OK:'Tu as reconstitué les trois complexes. Retiens : le pare-vapeur se place toujours côté chaud, et en toiture inversée l\'isolant passe au-dessus de l\'étanchéité.'}</div>`;boutons('fini')}
- else{msg.innerHTML=`<div class="feedback ko"><strong>${n} carte${n>1?'s':''} sur ${liste.length} bien placée${n>1?'s':''}.</strong> Les cartes vertes sont à la bonne place et affichent leur explication. Corrige les cartes rouges, puis vérifie à nouveau.</div>`;boutons('verif')}}
+ if(n===liste.length){msg.innerHTML=`<div class="feedback ok"><strong>Bravo, tout est dans le bon ordre${essais>1?' (en '+essais+' essais)':''}.</strong> ${ri<ROUNDS.length-1?FIN_OK:'Vous avez reconstitué les trois complexes. Retenez : le pare-vapeur se place toujours côté chaud, et en toiture inversée l\'isolant passe au-dessus de l\'étanchéité.'}</div>`;boutons('fini')}
+ else{msg.innerHTML=`<div class="feedback ko"><strong>${n} carte${n>1?'s':''} sur ${liste.length} bien placée${n>1?'s':''}.</strong> Les cartes vertes sont à la bonne place et affichent leur explication. Corrigez les cartes rouges, puis vérifiez à nouveau.</div>`;boutons('verif')}}
 function boutons(e){const a=document.getElementById('actions');
  if(e==='jeu')a.innerHTML='<button class="btn" id="bv">Vérifier mon ordre</button>';
  else if(e==='verif')a.innerHTML='<button class="btn" id="bc">Corriger mon ordre</button><button id="bs">Afficher la solution</button>';
@@ -77,7 +77,7 @@ function boutons(e){const a=document.getElementById('actions');
  const g=id=>document.getElementById(id);
  if(g('bv'))g('bv').onclick=verifier;
  if(g('bc'))g('bc').onclick=()=>{etat='jeu';msg.innerHTML='';rendre();boutons('jeu')};
- if(g('bs'))g('bs').onclick=()=>{liste.sort((a,b)=>a.rang-b.rang);etat='sol';rendre();msg.innerHTML='<div class="feedback ok"><strong>Voici la solution.</strong> Relis l\'explication de chaque étape, puis rejoue pour te tester à nouveau.</div>';boutons('fini')};
+ if(g('bs'))g('bs').onclick=()=>{liste.sort((a,b)=>a.rang-b.rang);etat='sol';rendre();msg.innerHTML='<div class="feedback ok"><strong>Voici la solution.</strong> Relisez l\'explication de chaque étape, puis rejouez pour vous tester à nouveau.</div>';boutons('fini')};
  if(g('br'))g('br').onclick=init;
  if(g('bq'))g('bq').onclick=phase2}
 document.getElementById('titreR').textContent=ROUNDS[0].t;

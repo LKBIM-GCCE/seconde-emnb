@@ -2,8 +2,8 @@
  "id": "seq02-s4",
  "sequence": "seq02",
  "seance": "s4",
- "titre": "Analyse de l'évolution des plans : de l'esquisse à l'APD",
- "intro": "Un plan d'esquisse et un plan de permis de construire, c'est la même chose ? Tu vas comparer la maquette APS et les plans APD de la Villa Camacho, puis faire le bilan de la séquence.",
+ "titre": "Analyser de l'évolution des plans : de l'esquisse à l'APD",
+ "intro": "Un plan d'esquisse et un plan de permis de construire, c'est la même chose ? Vous allez comparer la maquette APS et les plans APD de la Villa Camacho, puis faire le bilan de la séquence.",
  "blocs": [
   {
    "id": "cours",
@@ -17,7 +17,7 @@
    "type": "exercice",
    "titre": "Activité 1 — À quelle phase appartient ce plan ?",
    "duree": "10 min",
-   "consigne": "Identifie la phase de chaque plan décrit, à partir de son niveau de détail.",
+   "consigne": "Identifiez la phase de chaque plan décrit, à partir de son niveau de détail.",
    "parties": [
     {
      "type": "indices",
@@ -81,7 +81,7 @@
    "type": "exercice",
    "titre": "Activité 2 — Étude 01 : APS ou APD ?",
    "duree": "30 min",
-   "consigne": "Le maître d'œuvre te remet la maquette APS de la Villa Camacho et les plans APD. Compare-les, puis indique quelles évolutions ont réellement eu lieu. (Le TP noté reste à faire sur papier, avec DR1 et DR2.)",
+   "consigne": "Le maître d'œuvre vous remet la maquette APS de la Villa Camacho et les plans APD. Comparez-les, puis indiquez quelles évolutions ont réellement eu lieu. (Le TP noté reste à faire sur papier, avec DR1 et DR2.)",
    "parties": [
     {
      "type": "image",
@@ -97,7 +97,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "1. Compare l'APS et l'APD : ces évolutions ont-elles eu lieu ?",
+     "titre": "1. Comparer l'APS et l'APD : ces évolutions ont-elles eu lieu ?",
      "items": [
       {
        "texte": "L'emplacement de la cave du garage a été modifié.",
@@ -148,7 +148,7 @@
     },
     {
      "type": "qcm",
-     "titre": "2. Explique ces évolutions",
+     "titre": "2. Expliquer ces évolutions",
      "questions": [
       {
        "q": "Entre l'APS et l'APD, les différences entre les plans sont…",
@@ -188,7 +188,7 @@
    "type": "exercice",
    "titre": "Bilan — Quiz de la séquence 02",
    "duree": "15 min",
-   "consigne": "Fais le point sur toute la séquence : situation, masse, niveaux, façades, coupes, échelles et phases.",
+   "consigne": "Faites le point sur toute la séquence : situation, masse, niveaux, façades, coupes, échelles et phases.",
    "parties": [
     {
      "type": "qcm",
@@ -326,7 +326,7 @@
    "parties": [
     {
      "type": "redaction",
-     "question": "Cite la chose la plus importante que tu as apprise dans cette séquence sur la lecture de plans, puis explique pourquoi.",
+     "question": "Citez la chose la plus importante que vous avez apprise dans cette séquence sur la lecture de plans, puis expliquez pourquoi.",
      "min": 50
     }
    ],

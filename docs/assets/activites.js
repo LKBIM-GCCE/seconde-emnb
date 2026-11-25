@@ -56,17 +56,17 @@
   const lireProjet = () => { try { return localStorage.getItem("emnb-projet") || ""; } catch (e) { return ""; } };
   P.projet = (p, d, fini) => {
     const choix = p.choix;
-    const sel = h("select", { class: "sel sel-projet" }, h("option", { value: "" }, "— choisir le projet de ton groupe —"),
+    const sel = h("select", { class: "sel sel-projet" }, h("option", { value: "" }, "— choisir le projet de votre groupe —"),
       ...choix.map(c => { const o = h("option", { value: c.id }, c.nom); if (c.id === lireProjet()) o.selected = true; return o; }));
     sel.disabled = fini;
     sel.onchange = () => { try { localStorage.setItem("emnb-projet", sel.value); } catch (e) {} ; ouvrir(courant, false); };
     const c = choix.find(x => x.id === lireProjet());
-    return { el: h("div", { class: "choix-projet" }, h("label", {}, h("b", {}, "Projet de ton groupe : "), sel), c && c.desc ? h("p", { class: "aide" }, c.desc) : null),
-      manque: () => lireProjet() ? null : "Choisis d'abord le projet de ton groupe.", score: () => [0, 0] };
+    return { el: h("div", { class: "choix-projet" }, h("label", {}, h("b", {}, "Projet de votre groupe : "), sel), c && c.desc ? h("p", { class: "aide" }, c.desc) : null),
+      manque: () => lireProjet() ? null : "Choisissez d'abord le projet de votre groupe.", score: () => [0, 0] };
   };
   P.visionneuse = (p) => {
     const ids = p.maquettes || [lireProjet()].filter(Boolean);
-    if (!ids.length) return { el: h("p", { class: "aide" }, "Choisis le projet de ton groupe pour afficher sa maquette."), manque: () => null, score: () => [0, 0] };
+    if (!ids.length) return { el: h("p", { class: "aide" }, "Choisissez le projet de votre groupe pour afficher sa maquette."), manque: () => null, score: () => [0, 0] };
     const div = h("div", { class: "visionneuse", "data-maquettes": ids.join(","), "data-base": "../" });
     setTimeout(() => window.EMNB_visionneuse && window.EMNB_visionneuse(div), 0);
     const pdf = p.plans !== false && ids.length === 1 && A.plans && A.plans[ids[0]];
@@ -80,7 +80,7 @@
         const f = fr.requestFullscreen || fr.webkitRequestFullscreen;
         if (f) f.call(fr); else fr.scrollIntoView({ behavior: "smooth" });
       });
-      return h("div", { class: "jeu" }, h("div", { class: "jeu-barre" }, bt, h("span", { class: "aide" }, "Ta progression est conservée. Touche Échap pour revenir à la page.")), fr);
+      return h("div", { class: "jeu" }, h("div", { class: "jeu-barre" }, bt, h("span", { class: "aide" }, "Votre progression est conservée. Touche Échap pour revenir à la page.")), fr);
     })(),
     manque: () => null, score: () => [0, 0]
   });
@@ -107,7 +107,7 @@
       });
     }
     dessiner();
-    return { el, manque: () => d.place.includes(null) ? "Place toutes les cartes." : null, score: () => [d.place.filter((ci, k) => ci === k).length, n] };
+    return { el, manque: () => d.place.includes(null) ? "Placez toutes les cartes." : null, score: () => [d.place.filter((ci, k) => ci === k).length, n] };
   };
 
   P.indices = (p, d, fini) => {
@@ -122,8 +122,8 @@
         CORR && dos.explication ? h("small", { class: "expl" }, dos.explication) : null));
     });
     return {
-      el: h("div", {}, p.surligner === false ? null : h("p", { class: "aide" }, "Clique sur l'indice qui te permet d'être sûr : il sera surligné."), el),
-      manque: () => { for (let i = 0; i < p.dossiers.length; i++) if (!d.ph[i] || (p.surligner !== false && d.ind[i] == null)) return `${p.titreDossier || "Dossier n° "}${i + 1} : choisis la réponse${p.surligner === false ? "" : " et clique sur ton indice déterminant"}.`; return null; },
+      el: h("div", {}, p.surligner === false ? null : h("p", { class: "aide" }, "Cliquez sur l'indice qui vous permet d'être sûr : il sera surligné."), el),
+      manque: () => { for (let i = 0; i < p.dossiers.length; i++) if (!d.ph[i] || (p.surligner !== false && d.ind[i] == null)) return `${p.titreDossier || "Dossier n° "}${i + 1} : choisissez la réponse${p.surligner === false ? "" : " et cliquez sur votre indice déterminant"}.`; return null; },
       score: () => [p.dossiers.filter((x, i) => accepte(x.reponse, d.ph[i])).length, p.dossiers.length]
     };
   };
@@ -155,7 +155,7 @@
     }
     el.append(ol);
     return {
-      el, manque: () => p.items.some((_, i) => !d.v[i]) ? "Réponds à chaque ligne." : null,
+      el, manque: () => p.items.some((_, i) => !d.v[i]) ? "Répondez à chaque ligne." : null,
       score: () => [p.items.filter((it, i) => accepte(it.reponse, d.v[i])).length, p.items.length]
     };
   };
@@ -193,7 +193,7 @@
       ol.append(h("li", { class: cls(fini, d.v[i] === it.reponse) }, h("span", {}, it.texte), g,
         CORR ? h("small", { class: "expl" }, (it.reponse ? "Vrai. " : "Faux. ") + (it.explication || "")) : null));
     });
-    return { el: ol, manque: () => p.items.some((_, i) => d.v[i] == null) ? "Réponds Vrai ou Faux à chaque affirmation." : null, score: () => [p.items.filter((x, i) => d.v[i] === x.reponse).length, p.items.length] };
+    return { el: ol, manque: () => p.items.some((_, i) => d.v[i] == null) ? "Répondez Vrai ou Faux à chaque affirmation." : null, score: () => [p.items.filter((x, i) => d.v[i] === x.reponse).length, p.items.length] };
   };
 
   P.qcm = (p, d, fini, g) => {
@@ -208,7 +208,7 @@
       ol.append(h("li", { class: cls(fini, d.v[i] === q.r) }, q.image ? h("img", { class: "q-img", src: q.image, alt: "" }) : null, h("p", { class: "q" }, q.q), opts,
         CORR && q.explication ? h("small", { class: "expl" }, q.explication) : null));
     });
-    return { el: ol, manque: () => { const m = p.questions.findIndex((_, i) => d.v[i] == null); return m >= 0 ? `Réponds à la question ${m + 1}.` : null; }, score: () => [p.questions.filter((q, i) => d.v[i] === q.r).length, p.questions.length] };
+    return { el: ol, manque: () => { const m = p.questions.findIndex((_, i) => d.v[i] == null); return m >= 0 ? `Répondez à la question ${m + 1}.` : null; }, score: () => [p.questions.filter((q, i) => d.v[i] === q.r).length, p.questions.length] };
   };
 
   // saisie : texte libre corrigé par mots-clés — motscles = [["maitre"], ["ouvrage"]] : chaque groupe doit être présent
@@ -221,7 +221,7 @@
       inp.oninput = () => d.v[i] = inp.value;
       ol.append(h("li", { class: cls(fini, ok(i)) }, h("label", {}, h("b", {}, it.texte), inp), CORR && !ok(i) ? h("small", { class: "corr" }, "→ " + it.reponse) : null));
     });
-    return { el: ol, manque: () => p.items.some((_, i) => !String(d.v[i] || "").trim()) ? "Complète chaque champ." : null, score: () => [p.items.filter((_, i) => ok(i)).length, p.items.length] };
+    return { el: ol, manque: () => p.items.some((_, i) => !String(d.v[i] || "").trim()) ? "Complétez chaque champ." : null, score: () => [p.items.filter((_, i) => ok(i)).length, p.items.length] };
   };
 
   // nombre : valeur numérique avec tolérance
@@ -237,16 +237,16 @@
         CORR && !ok(i) ? h("small", { class: "corr" }, `→ ${String(it.valeur).replace(".", ",")} ${it.unite || ""}`) : null,
         CORR && it.explication ? h("small", { class: "expl" }, it.explication) : null));
     });
-    return { el: ol, manque: () => p.items.some((_, i) => isNaN(val(i))) ? "Écris un nombre dans chaque case (ex : 2,50)." : null, score: () => [p.items.filter((_, i) => ok(i)).length, p.items.length] };
+    return { el: ol, manque: () => p.items.some((_, i) => isNaN(val(i))) ? "Écrivez un nombre dans chaque case (ex : 2,50)." : null, score: () => [p.items.filter((_, i) => ok(i)).length, p.items.length] };
   };
 
   // redaction : réponse personnelle, non notée, reprise sur le certificat
   P.redaction = (p, d, fini) => {
-    const ta = h("textarea", { class: "champ zone-texte", rows: "4", maxlength: "400", disabled: fini, placeholder: "Rédige ta réponse en phrases complètes…" });
+    const ta = h("textarea", { class: "champ zone-texte", rows: "4", maxlength: "400", disabled: fini, placeholder: "Rédigez votre réponse en phrases complètes…" });
     ta.value = d.t || ""; ta.oninput = () => d.t = ta.value;
     return {
       el: h("div", {}, h("p", { class: "q" }, p.question), ta, fini && p.exemple ? h("small", { class: "expl" }, "Exemple de réponse : " + p.exemple) : null),
-      manque: () => (d.t || "").trim().length < (p.min || 40) ? `Rédige une réponse d'au moins ${p.min || 40} caractères.` : null,
+      manque: () => (d.t || "").trim().length < (p.min || 40) ? `Rédigez une réponse d'au moins ${p.min || 40} caractères.` : null,
       score: () => [0, 0], texte: () => (d.t || "").trim()
     };
   };
@@ -288,8 +288,8 @@
       const restants = d.o.filter(e => d.v[e] == null);
       if (!fini) restants.forEach(e => pool.append(h("button", { class: "pill" + (actif === e ? " on" : ""), onclick: () => { actif = actif === e ? null : e; dessiner(); } }, e)));
       const nIntrus = (p.intrus || []).length;
-      aide.textContent = fini ? "Ta synthèse corrigée : ✓ bien placé · ✗ mal placé (la bonne branche est indiquée) · en pointillés : ce qu'il manquait."
-        : `Chaque branche pose une question. Clique sur une réponse, puis sur la question à laquelle elle répond. Clique sur une réponse placée pour la remettre dans la réserve. Attention : ${nIntrus} réponse${nIntrus > 1 ? "s sont des pièges" : " est un piège"} et ${nIntrus > 1 ? "restent" : "reste"} dans la réserve.`;
+      aide.textContent = fini ? "Votre synthèse corrigée : ✓ bien placé · ✗ mal placé (la bonne branche est indiquée) · en pointillés : ce qu'il manquait."
+        : `Chaque branche pose une question. Cliquez sur une réponse, puis sur la question à laquelle elle répond. Cliquez sur une réponse placée pour la remettre dans la réserve. Attention : ${nIntrus} réponse${nIntrus > 1 ? "s sont des pièges" : " est un piège"} et ${nIntrus > 1 ? "restent" : "reste"} dans la réserve.`;
       p.branches.forEach((b, i) => {
         const el = cartes[i]; el.innerHTML = "";
         el.classList.toggle("cible", !!actif && !fini);
@@ -328,7 +328,7 @@
       inp.oninput = () => d.v[i] = inp.value;
       ol.append(h("li", {}, h("label", {}, h("b", {}, lib), inp)));
     });
-    return { el: ol, manque: () => p.cases.some((_, i) => String(d.v[i] || "").trim().length < 3) ? "Écris quelque chose dans chacune des 3 cases (étape 1)." : null, score: () => [0, 0] };
+    return { el: ol, manque: () => p.cases.some((_, i) => String(d.v[i] || "").trim().length < 3) ? "Écrivez quelque chose dans chacune des 3 cases (étape 1)." : null, score: () => [0, 0] };
   };
 
   // coche : points clés de la fiche synthèse, « je l'avais trouvé » ou non, non noté
@@ -342,7 +342,7 @@
         onclick: () => { d.v[i] = v; [...g.children].forEach(x => x.classList.toggle("on", x.textContent === lib)); } }, lib)));
       ol.append(h("li", { class: fini ? (d.v[i] ? "trouve" : "a-revoir") : "" }, h("span", {}, t), g));
     });
-    return { el: ol, manque: () => p.items.some((_, i) => d.v[i] == null) ? "Pour chaque point clé de la fiche, indique si tu l'avais trouvé (étape 3)." : null, score: () => [0, 0] };
+    return { el: ol, manque: () => p.items.some((_, i) => d.v[i] == null) ? "Pour chaque point clé de la fiche, indiquez si vous l'aviez trouvé (étape 3)." : null, score: () => [0, 0] };
   };
 
   // schema : cases positionnées sur une grille ; on clique une étiquette puis une case
@@ -362,8 +362,8 @@
     }
     dessiner();
     return {
-      el: h("div", {}, !fini ? h("p", { class: "aide" }, "Clique sur un acteur, puis sur la case où il doit aller. Clique sur une case remplie pour la vider.") : null, pool, sch),
-      manque: () => p.cases.some(c => !d.c[c.id]) ? "Place un acteur dans chaque case du schéma." : null,
+      el: h("div", {}, !fini ? h("p", { class: "aide" }, "Cliquez sur un acteur, puis sur la case où il doit aller. Cliquez sur une case remplie pour la vider.") : null, pool, sch),
+      manque: () => p.cases.some(c => !d.c[c.id]) ? "Placez un acteur dans chaque case du schéma." : null,
       score: () => [p.cases.filter(ok).length, p.cases.length]
     };
   };
@@ -429,7 +429,7 @@
       if (res.max) pied.append(h("p", { class: "score " + (res.pts / res.max >= .7 ? "ok" : "ko") }, `Résultat : ${res.pts} / ${res.max}`));
       const prem = etat.prem[b.id];
       if (res.max && prem && (etat.essais[b.id] || 1) > 1) pied.append(h("p", { class: "aide" }, `Score retenu (1er essai) : ${prem.pts} / ${prem.max}`));
-      if (res.max && !CORR && res.pts < res.max) pied.append(h("p", { class: "aide" }, "Les réponses en rouge sont fausses. Corrige-les : la bonne réponse s'affichera seulement après ton 2e essai. Seul ton 1er essai compte dans ton certificat."));
+      if (res.max && !CORR && res.pts < res.max) pied.append(h("p", { class: "aide" }, "Les réponses en rouge sont fausses. Corrigez-les : la bonne réponse s'affichera seulement après votre 2e essai. Seul votre 1er essai compte dans votre certificat."));
       pied.append(h("button", { class: "btn sec", onclick: () => { etat.brou = etat.brou || {}; etat.brou[b.id] = res.detail; delete etat.res[b.id]; sauver(); ouvrir(courant, false); } }, res.max && res.pts < res.max ? "✎ Corriger mes réponses" : "↺ Recommencer"),
         h("button", { class: "btn", onclick: () => ouvrir(courant + 1) }, courant + 1 < blocs.length - 1 ? "Activité suivante →" : "Mon certificat →"));
     } else {
@@ -464,11 +464,11 @@
     const faits = notes.filter(b => etat.res[b.id]);
     const champ = h("input", { type: "text", class: "nom", placeholder: "Prénom + initiale du nom (ex : Léa M.)", value: etat.nom, maxlength: "40" });
     champ.oninput = () => { etat.nom = champ.value.trim(); sauver(); };
-    zone.append(h("label", { class: "lab-nom" }, "Ton prénom et l'initiale de ton nom : ", champ));
+    zone.append(h("label", { class: "lab-nom" }, "Votre prénom et l'initiale de votre nom : ", champ));
     const cible = h("div");
     zone.append(h("div", { class: "pied-bloc" }, h("button", { class: "btn", onclick: () => {
-      if (!etat.nom || etat.nom.length < 2) return alerte("Écris ton prénom et l'initiale de ton nom.");
-      if (faits.length < notes.length) return alerte(`Il te reste ${notes.length - faits.length} activité(s) à valider avant d'obtenir ton certificat.`);
+      if (!etat.nom || etat.nom.length < 2) return alerte("Écrivez votre prénom et l'initiale de votre nom.");
+      if (faits.length < notes.length) return alerte(`Il vous reste ${notes.length - faits.length} activité(s) à valider avant d'obtenir votre certificat.`);
       const now = new Date(), date = now.toLocaleDateString("fr-FR"), heure = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
       const notees = faits.filter(b => etat.res[b.id].max);
       const R1 = b => etat.prem[b.id] || etat.res[b.id]; // D : le score retenu est celui du 1er essai
@@ -509,7 +509,7 @@
         h("p", { class: "certif-pied" }, `${date} à ${heure} · Code de contrôle : `, h("b", {}, c))),
         h("div", { class: "pied-bloc" }, h("button", { class: "btn", onclick: ev => dossierPDF({ lignes, textes, total, pied: `${date} à ${heure}`, code: c }, ev.currentTarget) }, "⬇ Télécharger mon dossier de séance (PDF)"),
           h("button", { class: "btn sec", onclick: () => imageCertificat({ lignes, textes, total, pied: `${date} à ${heure}`, code: c }) }, "Certificat seul (image)"),
-          h("span", { class: "aide" }, "Garde-le : ton professeur te dira comment le lui transmettre.")));
+          h("span", { class: "aide" }, "Gardez-le : votre professeur vous dira comment le lui transmettre.")));
     } }, "Afficher mon certificat")), cible);
   }
 
@@ -692,7 +692,7 @@
       const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
       pages.forEach((pg, k) => { if (k) pdf.addPage(); pdf.addImage(pg.toDataURL("image/jpeg", 0.9), "JPEG", 0, 0, 210, 297); });
       pdf.save(`dossier_${A.id}_${norm(etat.nom).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.pdf`);
-    } catch (e) { console.error(e); alerte("Le PDF n'a pas pu être créé. Télécharge le certificat (image) à la place."); }
+    } catch (e) { console.error(e); alerte("Le PDF n'a pas pu être créé. Téléchargez le certificat (image) à la place."); }
     bouton.disabled = false; bouton.textContent = lib;
   }
 
@@ -701,6 +701,6 @@
     a.textContent = msg; a.classList.add("vu"); clearTimeout(a._t); a._t = setTimeout(() => a.classList.remove("vu"), 3500);
   }
 
-  $("#raz").onclick = () => { if (confirm("Effacer toutes tes réponses de cette séance ?")) { etat = { nom: "", res: {}, essais: {}, prem: {} }; sauver(); ouvrir(0); } };
+  $("#raz").onclick = () => { if (confirm("Effacer toutes vos réponses de cette séance ?")) { etat = { nom: "", res: {}, essais: {}, prem: {} }; sauver(); ouvrir(0); } };
   ouvrir(0, false);
 })();

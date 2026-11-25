@@ -3,7 +3,7 @@
  "sequence": "seq03",
  "seance": "s3",
  "titre": "Répondre à l'économiste : tickets quantitatifs",
- "intro": "L'économiste de l'agence a besoin de quantités sur ton projet. Tu vas compter, relever des surfaces avec leur unité, et choisir la bonne forme de réponse : un tableau de valeurs ou une capture annotée.",
+ "intro": "L'économiste de l'agence a besoin de quantités sur votre projet. Vous allez compter, relever des surfaces avec leur unité, et choisir la bonne forme de réponse : un tableau de valeurs ou une capture annotée.",
  "blocs": [
   {
    "id": "defi",
@@ -49,7 +49,7 @@
    "type": "exercice",
    "titre": "Mission — Les tickets quantitatifs",
    "duree": "45 min",
-   "consigne": "Choisis ton projet, puis relève les valeurs demandées avec leur unité.",
+   "consigne": "Choisissez votre projet, puis relevez les valeurs demandées avec leur unité.",
    "parties": [
     {
      "type": "projet",
@@ -84,7 +84,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
+     "titre": "1. Compter les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -105,10 +105,10 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "2. Relève les quantités",
+     "titre": "2. Relever les quantités",
      "items": [
       {
-       "texte": "Surface de le séjour (active « Pièces » et clique dessus)",
+       "texte": "Surface de le séjour (active « Pièces » et cliquez dessus)",
        "valeur": 40.27,
        "tolerance": 0.06,
        "unite": "m²"
@@ -127,7 +127,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
+     "titre": "1. Compter les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -148,10 +148,10 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "2. Relève les quantités",
+     "titre": "2. Relever les quantités",
      "items": [
       {
-       "texte": "Surface de la pièce n° 10 (active « Pièces » et clique dessus)",
+       "texte": "Surface de la pièce n° 10 (active « Pièces » et cliquez dessus)",
        "valeur": 25.36,
        "tolerance": 0.06,
        "unite": "m²"
@@ -170,7 +170,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
+     "titre": "1. Compter les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de poteaux (IfcColumn)",
@@ -191,10 +191,10 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "2. Relève les quantités",
+     "titre": "2. Relever les quantités",
      "items": [
       {
-       "texte": "Surface de la salle polyvalente 2 (active « Pièces » et clique dessus)",
+       "texte": "Surface de la salle polyvalente 2 (active « Pièces » et cliquez dessus)",
        "valeur": 66.28,
        "tolerance": 0.06,
        "unite": "m²"
@@ -213,7 +213,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "1. Compte les objets (Arborescence › Par type d'objet)",
+     "titre": "1. Compter les objets (Arborescence › Par type d'objet)",
      "items": [
       {
        "texte": "Nombre de fenêtres (IfcWindow)",
@@ -234,10 +234,10 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "2. Relève les quantités",
+     "titre": "2. Relever les quantités",
      "items": [
       {
-       "texte": "Surface de l'accueil (active « Pièces » et clique dessus)",
+       "texte": "Surface de l'accueil (active « Pièces » et cliquez dessus)",
        "valeur": 14.46,
        "tolerance": 0.06,
        "unite": "m²"
@@ -259,7 +259,7 @@
    "type": "exercice",
    "titre": "Mission — Plan ou maquette ?",
    "duree": "15 min",
-   "consigne": "Compare une surface lue sur le plan PDF avec la même surface dans la maquette.",
+   "consigne": "Comparez une surface lue sur le plan PDF avec la même surface dans la maquette.",
    "parties": [
     {
      "type": "qcm",
@@ -285,7 +285,7 @@
        "explication": ""
       },
       {
-       "q": "Le plan et la maquette donnent deux valeurs très différentes. Que fais-tu ?",
+       "q": "Le plan et la maquette donnent deux valeurs très différentes. Que faites-vous ?",
        "choix": [
         "Je choisis au hasard",
         "Je note les deux valeurs, leur source, et je signale l'écart",
@@ -304,7 +304,7 @@
    "type": "exercice",
    "titre": "Mission — La capture annotée",
    "duree": "15 min",
-   "consigne": "Ticket du conducteur de travaux : « Montre-moi où se trouvent les portes du RDC. » Dans la visionneuse : choisis le niveau RDC, descends la coupe, clique sur une porte, puis clique sur « 📷 Capture ». Annote l'image (Paint, ou l'outil Capture de Windows) et transmets-la à ton professeur.",
+   "consigne": "Ticket du conducteur de travaux : « Montrez-moi où se trouvent les portes du RDC. » Dans la visionneuse : choisissez le niveau RDC, descendez la coupe, cliquez sur une porte, puis cliquez sur « 📷 Capture ». Annotez l'image (Paint, ou l'outil Capture de Windows) et transmettez-la à votre professeur.",
    "parties": [
     {
      "type": "projet",
@@ -336,8 +336,8 @@
     },
     {
      "type": "redaction",
-     "titre": "Explique ton choix",
-     "question": "Explique en une ou deux phrases pourquoi une capture annotée est la bonne forme de réponse pour ce ticket.",
+     "titre": "Expliquer votre choix",
+     "question": "Expliquez en une ou deux phrases pourquoi une capture annotée est la bonne forme de réponse pour ce ticket.",
      "min": 40,
      "exemple": "Le conducteur de travaux doit voir où sont les portes : une image annotée se comprend sans moi, plus vite qu'une liste."
     }

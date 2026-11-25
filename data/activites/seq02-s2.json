@@ -3,14 +3,14 @@
  "sequence": "seq02",
  "seance": "s2",
  "titre": "Plans de niveaux et façades",
- "intro": "Le chef de projet te demande de vérifier les plans de la Villa Camacho : nom des pièces, murs, dimensions, ouvertures, puis lecture des 4 façades.",
+ "intro": "Le chef de projet vous demande de vérifier les plans de la Villa Camacho : nom des pièces, murs, dimensions, ouvertures, puis lecture des 4 façades.",
  "blocs": [
   {
    "id": "defi",
    "type": "exercice",
-   "titre": "Défi — Tu viens d'emménager !",
+   "titre": "Défi — Vous venez d'emménager !",
    "duree": "10 min",
-   "consigne": "Tu viens d'emménager dans la Villa Camacho. Pour chaque situation, localise la pièce du rez-de-chaussée où tu te trouves.",
+   "consigne": "Vous venez d'emménager dans la Villa Camacho. Pour chaque situation, localisez la pièce du rez-de-chaussée où vous vous trouvez.",
    "parties": [
     {
      "type": "image",
@@ -59,11 +59,11 @@
    "type": "exercice",
    "titre": "Activité A — Lire les plans de niveaux",
    "duree": "25 min",
-   "consigne": "Sur les plans ci-dessous, les noms des pièces ont été effacés. Retrouve chaque pièce repérée par un numéro, puis lis les informations du plan.",
+   "consigne": "Sur les plans ci-dessous, les noms des pièces ont été effacés. Retrouvez chaque pièce repérée par un numéro, puis lisez les informations du plan.",
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Rez-de-chaussée : identifie et nomme les pièces",
+     "titre": "1. Rez-de-chaussée : identifier et nommer les pièces",
      "image": "../media/seq02/rdc-masque.png",
      "alt": "Plan RDC sans les noms de pièces",
      "choix": [
@@ -151,7 +151,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Étage : identifie et nomme les pièces",
+     "titre": "2. Étage : identifier et nommer les pièces",
      "image": "../media/seq02/etage-masque.png",
      "alt": "Plan étage sans les noms de pièces",
      "choix": [
@@ -200,11 +200,11 @@
      "type": "image",
      "src": "../media/seq02/rdc.png",
      "alt": "Plan du rez-de-chaussée complet",
-     "legende": "Plan RDC complet : sers-t'en pour la suite"
+     "legende": "Plan RDC complet : servez-vous-en pour la suite"
     },
     {
      "type": "nombre",
-     "titre": "3. Relève les informations du plan RDC",
+     "titre": "3. Relever les informations du plan RDC",
      "items": [
       {
        "texte": "Surface du séjour",
@@ -329,7 +329,7 @@
    "type": "exercice",
    "titre": "Activité B — Lire les façades",
    "duree": "20 min",
-   "consigne": "Observe les 4 façades de la Villa Camacho, puis fais le lien avec le plan du RDC.",
+   "consigne": "Observez les 4 façades de la Villa Camacho, puis faites le lien avec le plan du RDC.",
    "parties": [
     {
      "type": "image",
@@ -429,8 +429,8 @@
     },
     {
      "type": "redaction",
-     "titre": "Explique la différence entre plan et façade",
-     "question": "Explique à quelqu'un qui n'a jamais vu de plans la différence entre un plan RDC et une façade.",
+     "titre": "Expliquer la différence entre plan et façade",
+     "question": "Expliquez à quelqu'un qui n'a jamais vu de plans la différence entre un plan RDC et une façade.",
      "min": 60,
      "exemple": "Le plan RDC est une vue de dessus du bâtiment coupé à 1 m : il montre les pièces. La façade est une vue de l'extérieur : elle montre les ouvertures, les matériaux et les hauteurs."
     }

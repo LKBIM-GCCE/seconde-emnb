@@ -44,6 +44,7 @@ POLICES = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel
 
 
 def tutoyer(t):
+    return t  # le site vouvoie les élèves : on garde le vouvoiement des jeux d'origine
     for a, b in TU:
         t = re.sub(r"(?<![\wÀ-ÿ])" + re.escape(a) + r"(?![\wÀ-ÿ])", b, t)
     return t
@@ -66,12 +67,13 @@ for dossier, (slug, nom) in THEMES.items():
         # bandeau
         t = t.replace('<span class="badge">Entraînement · Découverte</span>', '<span class="badge">Découverte libre</span>')
         t = t.replace('<span class="badge">TP TEBDP</span>', '<span class="badge">2de EMNB</span>')
+        t = t.replace("monte ta toiture", "montez votre toiture")
         # pied de page
         def pied(m):
             txt = m.group(1)
             savoirs = re.search(r"Connaissances mobilisées : (.*?)(?: \((?:CP\d+(?: · CP\d+)*)\))?\.(.*)$", txt)
             if savoirs:
-                txt = f"Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Tu découvres : {savoirs.group(1)}.{savoirs.group(2)}"
+                txt = f"Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Vous découvrez :{savoirs.group(1)}.{savoirs.group(2)}"
             return f"<footer>{txt}</footer>"
         t = re.sub(r"<footer>(.*?)</footer>", pied, t, flags=re.S)
         t = tutoyer(t)

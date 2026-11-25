@@ -3,7 +3,7 @@
  "sequence": "seq03",
  "seance": "s2",
  "titre": "Lire la maquette du projet",
- "intro": "L'agence confie un vrai projet à ton groupe. Tu vas prendre en main la maquette dans la visionneuse, remplir la fiche d'identité du projet, puis traiter les tickets du maître d'ouvrage et du conducteur de travaux.",
+ "intro": "L'agence confie un vrai projet à votre groupe. Vous allez prendre en main la maquette dans la visionneuse, remplir la fiche d'identité du projet, puis traiter les tickets du maître d'ouvrage et du conducteur de travaux.",
  "blocs": [
   {
    "id": "flash",
@@ -55,7 +55,7 @@
    "type": "exercice",
    "titre": "Prise en main de la visionneuse",
    "duree": "15 min",
-   "consigne": "Choisis le projet de ton groupe. Fais tourner la maquette, choisis un niveau, déplace le curseur « Coupe » pour voir à l'intérieur, active « Pièces », clique sur des objets. Ouvre l'onglet Arborescence.",
+   "consigne": "Choisissez le projet de votre groupe. Faites tourner la maquette, choisissez un niveau, déplacez le curseur « Coupe » pour voir à l'intérieur, active « Pièces », cliquez sur des objets. Ouvrez l'onglet Arborescence.",
    "parties": [
     {
      "type": "projet",
@@ -87,7 +87,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "Identifie les gestes de base",
+     "titre": "Identifier les gestes de base",
      "items": [
       {
        "texte": "Le curseur « Coupe » permet de voir l'intérieur du bâtiment, comme un plan de niveau.",
@@ -106,7 +106,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Examine ta maquette : vrai ou faux ?",
+     "titre": "Examiner votre maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette a un niveau « R+1 » (un étage).",
@@ -116,7 +116,7 @@
       {
        "texte": "La maquette contient des meubles (IfcFurnishingElement).",
        "reponse": true,
-       "explication": "17 meubles : regarde l'onglet Arborescence."
+       "explication": "17 meubles : regardez l'onglet Arborescence."
       },
       {
        "texte": "Les fondations sont rangées sur un niveau à part, sous le RDC.",
@@ -130,12 +130,12 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Examine ta maquette : vrai ou faux ?",
+     "titre": "Examiner votre maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette a un niveau « SOU SOL » sous le RDC.",
        "reponse": true,
-       "explication": "Choisis le niveau SOU SOL dans le menu Niveau."
+       "explication": "Choisissez le niveau SOU SOL dans le menu Niveau."
       },
       {
        "texte": "Il n'y a aucun poteau (IfcColumn) dans la maquette.",
@@ -154,12 +154,12 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Examine ta maquette : vrai ou faux ?",
+     "titre": "Examiner votre maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette contient des poteaux (IfcColumn).",
        "reponse": true,
-       "explication": "7 poteaux : regarde l'onglet Arborescence."
+       "explication": "7 poteaux : regardez l'onglet Arborescence."
       },
       {
        "texte": "La maquette contient des meubles (IfcFurnishingElement).",
@@ -178,12 +178,12 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "Examine ta maquette : vrai ou faux ?",
+     "titre": "Examiner votre maquette : vrai ou faux ?",
      "items": [
       {
        "texte": "La maquette a un niveau « R+1 » avec des pièces.",
        "reponse": true,
-       "explication": "Choisis R+1 dans le menu Niveau et active « Pièces »."
+       "explication": "Choisissez R+1 dans le menu Niveau et active « Pièces »."
       },
       {
        "texte": "La maquette contient des meubles (IfcFurnishingElement).",
@@ -205,7 +205,7 @@
    "type": "exercice",
    "titre": "Mission — La fiche d'identité du projet",
    "duree": "25 min",
-   "consigne": "Complète la fiche d'identité de ton projet : certaines réponses sont dans la maquette, d'autres seulement dans le dossier de plans PDF. Saisis les valeurs que tu lis : seul ton 1er essai compte.",
+   "consigne": "Complétez la fiche d'identité de votre projet : certaines réponses sont dans la maquette, d'autres seulement dans le dossier de plans PDF. Saisissez les valeurs que vous lisez : seul votre 1er essai compte.",
    "parties": [
     {
      "type": "projet",
@@ -240,7 +240,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "1. Identifie le projet",
+     "titre": "1. Identifier le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -262,7 +262,7 @@
         "Toiture en bac acier"
        ],
        "r": 0,
-       "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
+       "explication": "Regardez la toiture en 3D, puis cliquez dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
        "q": "Le bâtiment a-t-il un escalier ?",
@@ -271,7 +271,7 @@
         "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 1,
-       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
+       "explication": "Regardez la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -280,7 +280,7 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relever les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -304,8 +304,8 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
-     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "titre": "3. Relever les informations du plan PDF (ouvrir le PDF du projet)",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherchez-les sur le plan PDF.",
      "items": [
       {
        "texte": "Longueur totale de la maison (cote du plan RDC)",
@@ -349,7 +349,7 @@
     },
     {
      "type": "nombre",
-     "titre": "4. Maquette ou plan : compare la surface du séjour",
+     "titre": "4. Maquette ou plan : comparer la surface du séjour",
      "items": [
       {
        "texte": "Surface du séjour sur le plan",
@@ -391,7 +391,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "1. Identifie le projet",
+     "titre": "1. Identifier le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -413,7 +413,7 @@
         "Toiture en bac acier"
        ],
        "r": 0,
-       "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
+       "explication": "Regardez la toiture en 3D, puis cliquez dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
        "q": "Le bâtiment a-t-il un escalier ?",
@@ -422,7 +422,7 @@
         "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 0,
-       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
+       "explication": "Regardez la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -431,7 +431,7 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relever les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -455,8 +455,8 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
-     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "titre": "3. Relever les informations du plan PDF (ouvrir le PDF du projet)",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherchez-les sur le plan PDF.",
      "items": [
       {
        "texte": "Longueur totale de la maison (cote verticale, à gauche du plan RDC)",
@@ -503,7 +503,7 @@
     },
     {
      "type": "qcm",
-     "titre": "4. Maquette ou plan : compare",
+     "titre": "4. Maquette ou plan : comparer",
      "questions": [
       {
        "q": "Comment sont nommées les pièces ?",
@@ -517,7 +517,7 @@
        "explication": "Le plan RDC ne porte aucun nom de pièce et la maquette les appelle toutes « Surface »."
       },
       {
-       "q": "Le cartouche indique « Nom du projet » et « Sans nom ». Que fais-tu ?",
+       "q": "Le cartouche indique « Nom du projet » et « Sans nom ». Que faites-vous ?",
        "choix": [
         "Je le signale : le cartouche n'a pas été rempli",
         "Rien, ce n'est pas important",
@@ -536,7 +536,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "1. Identifie le projet",
+     "titre": "1. Identifier le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -558,7 +558,7 @@
         "Toiture en bac acier"
        ],
        "r": 2,
-       "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
+       "explication": "Regardez la toiture en 3D, puis cliquez dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
        "q": "Le bâtiment a-t-il un escalier ?",
@@ -567,7 +567,7 @@
         "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 1,
-       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
+       "explication": "Regardez la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -576,7 +576,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relever les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -600,8 +600,8 @@
     },
     {
      "type": "saisie",
-     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
-     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "titre": "3. Relever les informations du plan PDF (ouvrir le PDF du projet)",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherchez-les sur le plan PDF.",
      "items": [
       {
        "texte": "Échelle du plan « Repérage sol »",
@@ -644,7 +644,7 @@
     },
     {
      "type": "nombre",
-     "titre": "4. Maquette ou plan : compare",
+     "titre": "4. Maquette ou plan : comparer",
      "items": [
       {
        "texte": "Surface de la salle polyvalente 2 sur le plan",
@@ -681,7 +681,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "1. Identifie le projet",
+     "titre": "1. Identifier le projet",
      "questions": [
       {
        "q": "Quel est l'usage du bâtiment ?",
@@ -703,7 +703,7 @@
         "Toiture en bac acier"
        ],
        "r": 1,
-       "explication": "Regarde la toiture en 3D, puis clique dessus : son type et son matériau sont dans l'inspecteur."
+       "explication": "Regardez la toiture en 3D, puis cliquez dessus : son type et son matériau sont dans l'inspecteur."
       },
       {
        "q": "Le bâtiment a-t-il un escalier ?",
@@ -712,7 +712,7 @@
         "Non : il n'y a pas d'escalier dans la maquette"
        ],
        "r": 0,
-       "explication": "Regarde la classe IfcStair dans l'onglet Arborescence."
+       "explication": "Regardez la classe IfcStair dans l'onglet Arborescence."
       }
      ]
     },
@@ -721,7 +721,7 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "2. Relève les chiffres clés (onglet Arborescence)",
+     "titre": "2. Relever les chiffres clés (onglet Arborescence)",
      "items": [
       {
        "texte": "Nombre d'objets IfcSpace (pièces)",
@@ -745,8 +745,8 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Relève les informations du plan PDF (ouvre le PDF du projet)",
-     "consigne": "Ces réponses ne sont pas dans la maquette : cherche-les sur le plan PDF.",
+     "titre": "3. Relever les informations du plan PDF (ouvrir le PDF du projet)",
+     "consigne": "Ces réponses ne sont pas dans la maquette : cherchez-les sur le plan PDF.",
      "items": [
       {
        "texte": "Longueur du bâtiment (cote du plan RDC)",
@@ -794,7 +794,7 @@
     },
     {
      "type": "nombre",
-     "titre": "4. Maquette ou plan : compare la surface du Bureau 11",
+     "titre": "4. Maquette ou plan : comparer la surface du Bureau 11",
      "items": [
       {
        "texte": "Surface du Bureau 11 sur le plan",
@@ -846,7 +846,7 @@
    "type": "exercice",
    "titre": "Mission — Les tickets « information »",
    "duree": "20 min",
-   "consigne": "Pour chaque ticket : identifie la donnée nécessaire, trouve la réponse dans la maquette, puis indique ta source.",
+   "consigne": "Pour chaque ticket : identifiez la donnée nécessaire, trouvez la réponse dans la maquette, puis indiquez votre source.",
    "parties": [
     {
      "type": "projet",
@@ -942,10 +942,10 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Indique tes sources",
+     "titre": "Indiquer vos sources",
      "questions": [
       {
-       "q": "Ticket 1 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 1 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -958,7 +958,7 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 2 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -971,7 +971,7 @@
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
-       "q": "Ticket 3 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 3 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1006,10 +1006,10 @@
      "pour": [
       "villa-sabonnere"
      ],
-     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
+     "titre": "Ticket 5 — Repérer la donnée fausse (vigilance)",
      "questions": [
       {
-       "q": "Clique sur une cloison intérieure (plaque de plâtre). Sa propriété IsExternal (élément extérieur ?) vaut Oui. Que fais-tu ?",
+       "q": "Cliquez sur une cloison intérieure (plaque de plâtre). Sa propriété IsExternal (élément extérieur ?) vaut Oui. Que faites-vous ?",
        "choix": [
         "Je réponds au client que c'est un mur de façade",
         "La donnée est fausse (mauvais réglage à l'export) : je vérifie sur le plan et je le signale",
@@ -1086,10 +1086,10 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Indique tes sources",
+     "titre": "Indiquer vos sources",
      "questions": [
       {
-       "q": "Ticket 1 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 1 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1102,7 +1102,7 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 2 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1115,7 +1115,7 @@
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
-       "q": "Ticket 3 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 3 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1150,10 +1150,10 @@
      "pour": [
       "villa-goyrans"
      ],
-     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
+     "titre": "Ticket 5 — Repérer la donnée fausse (vigilance)",
      "questions": [
       {
-       "q": "Active « Pièces » et clique sur une pièce : elles s'appellent toutes « Surface ». Le client te demande la surface de la cuisine. Que fais-tu ?",
+       "q": "Activez « Pièces » et cliquez sur une pièce : elles s'appellent toutes « Surface ». Le client vous demande la surface de la cuisine. Que faites-vous ?",
        "choix": [
         "Je donne une surface au hasard",
         "Je repère la cuisine sur le plan PDF, je retrouve son numéro dans la maquette, puis je signale que les pièces ne sont pas nommées",
@@ -1231,10 +1231,10 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Indique tes sources",
+     "titre": "Indiquer vos sources",
      "questions": [
       {
-       "q": "Ticket 1 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 1 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1247,7 +1247,7 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 2 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1260,7 +1260,7 @@
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
-       "q": "Ticket 3 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 3 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1295,7 +1295,7 @@
      "pour": [
       "maison-quartier"
      ],
-     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
+     "titre": "Ticket 5 — Repérer la donnée fausse (vigilance)",
      "questions": [
       {
        "q": "Le MOA demande combien de fenêtres compte le bâtiment. L'arborescence n'affiche aucun IfcWindow. Pourquoi ?",
@@ -1377,10 +1377,10 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "Indique tes sources",
+     "titre": "Indiquer vos sources",
      "questions": [
       {
-       "q": "Ticket 1 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 1 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1393,7 +1393,7 @@
        "explication": "Les matériaux d'un objet sont rangés dans ses propriétés (bloc Matériaux de l'inspecteur)."
       },
       {
-       "q": "Ticket 2 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 2 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1406,7 +1406,7 @@
        "explication": "Le nom du type de porte contient ses dimensions (largeur × hauteur)."
       },
       {
-       "q": "Ticket 3 — Où as-tu trouvé cette information ?",
+       "q": "Ticket 3 — Où avez-vous trouvé cette information ?",
        "choix": [
         "La classe de l'objet",
         "L'arborescence (le niveau)",
@@ -1441,10 +1441,10 @@
      "pour": [
       "siege-social"
      ],
-     "titre": "Ticket 5 — Repère la donnée fausse (vigilance)",
+     "titre": "Ticket 5 — Repérer la donnée fausse (vigilance)",
      "questions": [
       {
-       "q": "Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Le client te demande la surface des sanitaires. Que fais-tu ?",
+       "q": "Au R+1, les WC homme et femme font chacun 15,03 m², autant qu'un bureau. Le client vous demande la surface des sanitaires. Que faites-vous ?",
        "choix": [
         "Je donne 30,06 m² sans rien dire",
         "C'est suspect : je compare avec le plan PDF et je signale la donnée au chef de projet",

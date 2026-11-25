@@ -3,14 +3,14 @@
  "sequence": "seq03",
  "seance": "s1",
  "titre": "Pourquoi l'IFC ? Jeu Mission IFC",
- "intro": "Bienvenue à la cellule BIM Desk de l'agence Atelier Équerre ! Un partenaire n'arrive pas à ouvrir notre fichier Revit… Découvre pourquoi on échange les maquettes en IFC, puis joue à Mission IFC.",
+ "intro": "Bienvenue à la cellule BIM Desk de l'agence Atelier Équerre ! Un partenaire n'arrive pas à ouvrir notre fichier Revit… Découvre pourquoi on échange les maquettes en IFC, puis jouez à Mission IFC.",
  "blocs": [
   {
    "id": "lancement",
    "type": "exercice",
    "titre": "Lancement — Le fichier illisible",
    "duree": "10 min",
-   "consigne": "Le gérant de l'agence t'écrit : « Le bureau d'études n'arrive pas à ouvrir notre maquette .rvt, il n'a pas Revit. Comment lui envoyer le projet ? » Donne ton avis avant de lire le cours.",
+   "consigne": "Le gérant de l'agence vous écrit : « Le bureau d'études n'arrive pas à ouvrir notre maquette .rvt, il n'a pas Revit. Comment lui envoyer le projet ? » Donne votre avis avant de lire le cours.",
    "parties": [
     {
      "type": "qcm",
@@ -27,7 +27,7 @@
        "explication": "Un fichier natif ne s'ouvre qu'avec le logiciel qui l'a créé."
       },
       {
-       "q": "Quelle solution te paraît la meilleure ?",
+       "q": "Quelle solution vous paraît la meilleure ?",
        "choix": [
         "Imprimer tous les plans",
         "Lui acheter Revit",
@@ -41,8 +41,8 @@
     },
     {
      "type": "redaction",
-     "titre": "Explique ton hypothèse",
-     "question": "Explique avec tes mots comment envoyer une maquette à quelqu'un qui n'a pas Revit.",
+     "titre": "Expliquer votre hypothèse",
+     "question": "Expliquez avec vos mots comment envoyer une maquette à quelqu'un qui n'a pas Revit.",
      "min": 30
     }
    ],
@@ -60,7 +60,7 @@
    "type": "exercice",
    "titre": "Mission IFC — Le jeu",
    "duree": "30 min",
-   "consigne": "Joue les 4 missions : Explorer, Chasse aux objets, Arborescence, Propriétés. À la fin du jeu, recopie ton score ci-dessous.",
+   "consigne": "Jouez les 4 missions : Explorer, Chasse aux objets, Arborescence, Propriétés. À la fin du jeu, recopiez votre score ci-dessous.",
    "parties": [
     {
      "type": "jeu",
@@ -69,8 +69,8 @@
     },
     {
      "type": "redaction",
-     "titre": "Indique ton résultat",
-     "question": "Indique ton score final et ton titre (ex. : 260 pts — Modeleur junior IFC).",
+     "titre": "Indiquer votre résultat",
+     "question": "Indiquez votre score final et votre titre (ex. : 260 pts — Modeleur junior IFC).",
      "min": 3
     }
    ],
@@ -81,11 +81,11 @@
    "type": "exercice",
    "titre": "Du plan à la maquette",
    "duree": "20 min",
-   "consigne": "Voici les plans de la maison du jeu. Sur un plan, un objet est dessiné avec un symbole ; dans la maquette, c'est un objet IFC avec une classe. Pour chaque repère, retrouve l'objet (rouvre le jeu si besoin) et donne sa classe IFC.",
+   "consigne": "Voici les plans de la maison du jeu. Sur un plan, un objet est dessiné avec un symbole ; dans la maquette, c'est un objet IFC avec une classe. Pour chaque repère, retrouvez l'objet (rouvrez le jeu si besoin) et donne sa classe IFC.",
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Rez-de-chaussée : identifie la classe IFC de chaque repère",
+     "titre": "1. Rez-de-chaussée : identifier la classe IFC de chaque repère",
      "image": "../media/seq03/maison-jeu-rdc.png",
      "alt": "Plan du rez-de-chaussée de la maison du jeu avec 7 repères",
      "choix": [
@@ -101,49 +101,49 @@
      "vide": "— quelle classe ? —",
      "items": [
       {
-       "texte": "Repère n° 1",
+       "texte": "Repérez n° 1",
        "reponse": "IfcWall",
        "explication": "Le mur extérieur Nord : un trait épais hachuré, c'est un mur.",
        "x": 27.6,
        "y": 17.8
       },
       {
-       "texte": "Repère n° 2",
+       "texte": "Repérez n° 2",
        "reponse": "IfcWall",
        "explication": "Le mur de refend entre la cuisine et le séjour.",
        "x": 57.5,
        "y": 33.6
       },
       {
-       "texte": "Repère n° 3",
+       "texte": "Repérez n° 3",
        "reponse": "IfcDoor",
        "explication": "La porte d'entrée : on voit le battant et son arc d'ouverture.",
        "x": 38.4,
        "y": 71.2
       },
       {
-       "texte": "Repère n° 4",
+       "texte": "Repérez n° 4",
        "reponse": "IfcWindow",
        "explication": "La baie vitrée du séjour : 3 traits fins dans le mur.",
        "x": 72.4,
        "y": 71.2
       },
       {
-       "texte": "Repère n° 5",
+       "texte": "Repérez n° 5",
        "reponse": "IfcStair",
        "explication": "L'escalier : les marches et la flèche « monte ».",
        "x": 18.7,
        "y": 48.6
       },
       {
-       "texte": "Repère n° 6",
+       "texte": "Repérez n° 6",
        "reponse": "IfcColumn",
        "explication": "Un poteau de la terrasse : petit carré plein.",
        "x": 85.1,
        "y": 86.3
       },
       {
-       "texte": "Repère n° 7",
+       "texte": "Repérez n° 7",
        "reponse": "IfcSlab",
        "explication": "La dalle de terrasse.",
        "x": 69.4,
@@ -153,7 +153,7 @@
     },
     {
      "type": "associer",
-     "titre": "2. Étage : identifie la classe IFC de chaque repère",
+     "titre": "2. Étage : identifier la classe IFC de chaque repère",
      "image": "../media/seq03/maison-jeu-r1.png",
      "alt": "Plan de l'étage de la maison du jeu avec 5 repères",
      "choix": [
@@ -169,35 +169,35 @@
      "vide": "— quelle classe ? —",
      "items": [
       {
-       "texte": "Repère n° 1",
+       "texte": "Repérez n° 1",
        "reponse": "IfcWall",
        "explication": "La cloison entre les chambres : un IfcWall, même si elle est fine et non porteuse.",
        "x": 53.6,
        "y": 49.1
       },
       {
-       "texte": "Repère n° 2",
+       "texte": "Repérez n° 2",
        "reponse": "IfcWindow",
        "explication": "La fenêtre de la chambre 2.",
        "x": 67.9,
        "y": 89.7
       },
       {
-       "texte": "Repère n° 3",
+       "texte": "Repérez n° 3",
        "reponse": "IfcWindow",
        "explication": "La fenêtre de la salle de bains.",
        "x": 69.4,
        "y": 22.4
       },
       {
-       "texte": "Repère n° 4",
+       "texte": "Repérez n° 4",
        "reponse": "IfcSlab",
        "explication": "Le sol de l'étage est le plancher : une dalle (IfcSlab) rangée au R+1.",
        "x": 38.1,
        "y": 75.0
       },
       {
-       "texte": "Repère n° 5",
+       "texte": "Repérez n° 5",
        "reponse": "IfcWall",
        "explication": "Le mur extérieur Est de l'étage.",
        "x": 86.6,
@@ -207,7 +207,7 @@
     },
     {
      "type": "associer",
-     "titre": "3. Indique le niveau où la maquette range ces objets",
+     "titre": "3. Indiquer le niveau où la maquette range ces objets",
      "choix": [
       "RDC",
       "R+1"
@@ -240,7 +240,7 @@
     },
     {
      "type": "qcm",
-     "titre": "4. Compare le plan et la maquette",
+     "titre": "4. Comparer le plan et la maquette",
      "questions": [
       {
        "q": "Sur le plan, la porte d'entrée est cotée 0,90. Dans la maquette, quelle propriété le confirme ?",
@@ -254,7 +254,7 @@
        "explication": "La largeur d'une porte est dans Qto_DoorBaseQuantities › OverallWidth."
       },
       {
-       "q": "Sur le plan, le repère 2 du RDC est un mur. Que t'apprend la maquette en plus ?",
+       "q": "Sur le plan, le repère 2 du RDC est un mur. Que vous apprend la maquette en plus ?",
        "choix": [
         "Qu'il est porteur (LoadBearing = Oui)",
         "Que c'est une fenêtre",
@@ -265,7 +265,7 @@
        "explication": "Le plan montre la forme ; la maquette ajoute des informations : porteur, matériau, résistance au feu."
       },
       {
-       "q": "Quelle information trouves-tu dans la maquette mais pas sur le plan ?",
+       "q": "Quelle information trouvez-vous dans la maquette mais pas sur le plan ?",
        "choix": [
         "Le coefficient Uw de la baie vitrée",
         "La largeur de la maison",
@@ -285,11 +285,11 @@
    "type": "exercice",
    "titre": "Mise en commun — Les 3 notions",
    "duree": "10 min",
-   "consigne": "Vérifie que tu as compris les trois notions vues dans le jeu.",
+   "consigne": "Vérifiez que vous avez compris les trois notions vues dans le jeu.",
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Classe chaque information : classe, niveau ou propriété ?",
+     "titre": "1. Classer chaque information : classe, niveau ou propriété ?",
      "choix": [
       "La classe (quel objet ?)",
       "Le niveau (où est-il rangé ?)",
@@ -331,7 +331,7 @@
     },
     {
      "type": "ordre",
-     "titre": "2. Ordonne l'arborescence IFC",
+     "titre": "2. Ordonner l'arborescence IFC",
      "titreFrise": "Du plus grand au plus petit",
      "cartes": [
       {
@@ -353,7 +353,7 @@
     },
     {
      "type": "qcm",
-     "titre": "3. Localise les propriétés",
+     "titre": "3. Localiser les propriétés",
      "questions": [
       {
        "q": "Où lit-on si une fenêtre est en façade (extérieure) ?",

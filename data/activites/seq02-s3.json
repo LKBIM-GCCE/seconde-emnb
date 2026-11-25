@@ -3,7 +3,7 @@
  "sequence": "seq02",
  "seance": "s3",
  "titre": "Les coupes et les échelles",
- "intro": "Comment connaît-on la hauteur d'un bâtiment ? Tu vas lire les coupes de la Villa Camacho, relever les hauteurs, puis apprendre à utiliser les échelles.",
+ "intro": "Comment connaît-on la hauteur d'un bâtiment ? Vous allez lire les coupes de la Villa Camacho, relever les hauteurs, puis apprendre à utiliser les échelles.",
  "blocs": [
   {
    "id": "cours",
@@ -17,7 +17,7 @@
    "type": "exercice",
    "titre": "Activité 1 — Les traits de coupe",
    "duree": "15 min",
-   "consigne": "Localise sur les plans les traits de coupe A-A et B-B.",
+   "consigne": "Localisez sur les plans les traits de coupe A-A et B-B.",
    "parties": [
     {
      "type": "image",
@@ -86,7 +86,7 @@
     },
     {
      "type": "redaction",
-     "question": "Explique en une phrase à quoi servent les traits de coupe sur un plan.",
+     "question": "Expliquez en une phrase à quoi servent les traits de coupe sur un plan.",
      "min": 30,
      "exemple": "Ils indiquent où le bâtiment est coupé et dans quel sens on regarde la coupe."
     }
@@ -98,7 +98,7 @@
    "type": "exercice",
    "titre": "Activité 2 — Lire la coupe A-A",
    "duree": "20 min",
-   "consigne": "Identifie chaque élément repéré sur la coupe A-A.",
+   "consigne": "Identifiez chaque élément repéré sur la coupe A-A.",
    "parties": [
     {
      "type": "associer",
@@ -116,43 +116,43 @@
      "vide": "— quel élément ? —",
      "items": [
       {
-       "texte": "Repère n° 1",
+       "texte": "Repérez n° 1",
        "reponse": "Toiture (charpente et couverture)",
        "x": 57.7,
        "y": 36.5
       },
       {
-       "texte": "Repère n° 2",
+       "texte": "Repérez n° 2",
        "reponse": "Plancher de l'étage",
        "x": 60.4,
        "y": 49.3
       },
       {
-       "texte": "Repère n° 3",
+       "texte": "Repérez n° 3",
        "reponse": "Plancher bas du RDC (dallage)",
        "x": 57.7,
        "y": 61.5
       },
       {
-       "texte": "Repère n° 4",
+       "texte": "Repérez n° 4",
        "reponse": "Fondation",
        "x": 73.4,
        "y": 65.3
       },
       {
-       "texte": "Repère n° 5",
+       "texte": "Repérez n° 5",
        "reponse": "Toiture terrasse végétalisée",
        "x": 32.4,
        "y": 44.3
       },
       {
-       "texte": "Repère n° 6",
+       "texte": "Repérez n° 6",
        "reponse": "Escalier",
        "x": 49.7,
        "y": 55.9
       },
       {
-       "texte": "Repère n° 7",
+       "texte": "Repérez n° 7",
        "reponse": "Niveau de référence ±0,00",
        "x": 65.7,
        "y": 58.8
@@ -181,7 +181,7 @@
    "type": "exercice",
    "titre": "Activité 3 — Relever les hauteurs",
    "duree": "20 min",
-   "consigne": "Relève les cotes de hauteur sur la coupe A-A. Les cotes sont en centimètres : convertis les valeurs en mètres.",
+   "consigne": "Relevez les cotes de hauteur sur la coupe A-A. Les cotes sont en centimètres : convertissez les valeurs en mètres.",
    "parties": [
     {
      "type": "image",
@@ -267,11 +267,11 @@
    "type": "exercice",
    "titre": "Activité 4 — Les échelles",
    "duree": "20 min",
-   "consigne": "Associe chaque plan à son échelle habituelle, puis calcule. Rappel : mesure réelle = mesure plan × dénominateur ; mesure plan = mesure réelle ÷ dénominateur.",
+   "consigne": "Associez chaque plan à son échelle habituelle, puis calculez. Rappel : mesure réelle = mesure plan × dénominateur ; mesure plan = mesure réelle ÷ dénominateur.",
    "parties": [
     {
      "type": "associer",
-     "titre": "1. Associe chaque plan à son échelle",
+     "titre": "1. Associer chaque plan à son échelle",
      "choix": [
       "1/5 000",
       "1/500",
@@ -305,7 +305,7 @@
     },
     {
      "type": "nombre",
-     "titre": "2. Calcule : du réel vers le plan",
+     "titre": "2. Calculer : du réel vers le plan",
      "items": [
       {
        "texte": "6,00 m dessinés à 1/100 →",
@@ -332,7 +332,7 @@
     },
     {
      "type": "nombre",
-     "titre": "3. Calcule : du plan vers le réel",
+     "titre": "3. Calculer : du plan vers le réel",
      "items": [
       {
        "texte": "4,8 cm mesurés sur un plan à 1/100 →",

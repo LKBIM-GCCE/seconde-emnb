@@ -109,7 +109,7 @@
           $(".v-charge").hidden = true;
           root.dispatchEvent(new CustomEvent("maquette-chargee", { detail: D }));
         })
-        .catch(() => { $(".v-charge").textContent = "Impossible de charger la maquette. Vérifie ta connexion puis recharge la page."; });
+        .catch(() => { $(".v-charge").textContent = "Impossible de charger la maquette. Vérifiez votre connexion puis rechargez la page."; });
     }
 
     function visibilite() {
@@ -133,7 +133,7 @@
 
     function inspecteur() {
       const z = $(".v-insp");
-      if (!sel) { z.innerHTML = `<p class="v-vide">Clique sur un objet de la maquette pour lire ses informations IFC.</p>`; return; }
+      if (!sel) { z.innerHTML = `<p class="v-vide">Cliquez sur un objet de la maquette pour lire ses informations IFC.</p>`; return; }
       const e = D.parId[sel];
       const chemin = [D.arbo.Projet, D.arbo.Site, D.arbo["Bâtiment"], e.niveau || "—", nomCls(e.cls)];
       let h = `<p class="v-classe"><b>${esc(e.ifc)}</b> ${esc(nomCls(e.ifc.replace("StandardCase", "")))}</p>${e.partie_de ? `<p class="v-partie">fait partie de <b>${esc(e.partie_de)}</b> (${esc(nomCls(e.partie_de))})</p>` : ""}

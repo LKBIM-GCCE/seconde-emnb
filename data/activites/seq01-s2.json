@@ -3,7 +3,7 @@
  "sequence": "seq01",
  "seance": "s2",
  "titre": "Les phases de l'acte de construire",
- "intro": "Travaille dans l'ordre : lis le cours, puis fais les 4 activités. Chaque activité est corrigée tout de suite. À la fin, télécharge ton certificat et transmets-le à ton professeur.",
+ "intro": "Travaillez dans l'ordre : lisez le cours, puis faites les 4 activités. Chaque activité est corrigée tout de suite. À la fin, téléchargez votre certificat et transmettez-le à votre professeur.",
  "blocs": [
   {
    "id": "cours",
@@ -15,16 +15,16 @@
   {
    "id": "td04",
    "type": "exercice",
-   "titre": "TD 04 — Remets les phases dans l'ordre",
+   "titre": "TD 04 — Remettre les phases dans l'ordre",
    "duree": "25 min",
-   "consigne": "Lis chaque carte, puis clique sur les cartes dans l'ordre chronologique du projet, de la première à la dernière phase. Pour corriger une erreur avant de valider, clique sur une case de la frise pour la vider.",
+   "consigne": "Lisez chaque carte, puis cliquez sur les cartes dans l'ordre chronologique du projet, de la première à la dernière phase. Pour corriger une erreur avant de valider, cliquez sur une case de la frise pour la vider.",
    "parties": [
     {
      "type": "ordre",
      "cartes": [
       {
        "nom": "Faisabilité",
-       "texte": "Le MOA analyse le site, étudie les besoins et vérifie si le projet est techniquement et financièrement réalisable.",
+       "texte": "Le MOA analyse le site, étudie les besoins et vérifiez si le projet est techniquement et financièrement réalisable.",
        "acteur": "MOA (+ AMO)"
       },
       {
@@ -72,11 +72,11 @@
    "type": "exercice",
    "titre": "TD 05 — À quelle phase sommes-nous ?",
    "duree": "20 min",
-   "consigne": "Pour chaque dossier, lis les 3 indices, choisis la phase correspondante et clique sur l'indice le plus déterminant (celui qui te permet d'être sûr).",
+   "consigne": "Pour chaque dossier, lisez les 3 indices, choisissez la phase correspondante et cliquez sur l'indice le plus déterminant (celui qui vous permet d'être sûr).",
    "parties": [
     {
      "type": "indices",
-     "titre": "Exercice 1 — Identifie la phase de chacun des 8 dossiers",
+     "titre": "Exercice 1 — Identifier la phase de chacun des 8 dossiers",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -139,7 +139,7 @@
       {
        "indices": [
         "Les entreprises reçoivent un dossier comprenant les plans, le CCTP et le DPGF.",
-        "Le MOE analyse et compare les offres remises par les soumissionnaires.",
+        "Le MOE analyse et comparez les offres remises par les soumissionnaires.",
         "Le règlement de consultation fixe une date limite de remise des plis."
        ],
        "reponse": "DCE / ACT"
@@ -156,7 +156,7 @@
     },
     {
      "type": "associer",
-     "titre": "Exercice 2 — Associe chaque document à la phase où il est produit",
+     "titre": "Exercice 2 — Associer chaque document à la phase où il est produit",
      "choix": [
       "Faisabilité",
       "Programme",
@@ -211,11 +211,11 @@
    "type": "exercice",
    "titre": "TD 06 — Croiser acteurs et phases",
    "duree": "20 min",
-   "consigne": "Le chef de projet te demande de récapituler qui intervient à chaque phase, afin que l'équipe sache à qui s'adresser à chaque étape.",
+   "consigne": "Le chef de projet vous demande de récapituler qui intervient à chaque phase, afin que l'équipe sache à qui s'adresser à chaque étape.",
    "parties": [
     {
      "type": "grille",
-     "titre": "Partie 1 — Complète le tableau : coche chaque case où l'acteur intervient",
+     "titre": "Partie 1 — Compléter le tableau : cocher chaque case où l'acteur intervient",
      "aide": "Les cases où l'acteur n'intervient que ponctuellement sont acceptées cochées ou non.",
      "colonnes": [
       "FAIS.",
@@ -260,7 +260,7 @@
     },
     {
      "type": "associer",
-     "titre": "Partie 2 — Identifie l'acteur décrit",
+     "titre": "Partie 2 — Identifier l'acteur décrit",
      "choix": [
       "MOA",
       "AMO",
@@ -314,7 +314,7 @@
     },
     {
      "type": "vraifaux",
-     "titre": "Partie 3 — Distingue le vrai du faux",
+     "titre": "Partie 3 — Distinguer le vrai du faux",
      "items": [
       {
        "texte": "Le MOA conçoit lui-même les plans architecturaux de son bâtiment.",
@@ -356,7 +356,7 @@
    "type": "exercice",
    "titre": "Quiz formatif — 12 questions",
    "duree": "15 min",
-   "consigne": "Réponds seul, sans le cours. Pas de note : c'est pour savoir où tu en es.",
+   "consigne": "Répondez seul, sans le cours. Pas de note : c'est pour savoir où vous en êtes.",
    "parties": [
     {
      "type": "qcm",

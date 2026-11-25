@@ -63,7 +63,7 @@ footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid 
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap"><link rel="stylesheet" href="../../../assets/jeux-theme.css"></head><body><nav class="jeux-barre" aria-label="Navigation des jeux"><a class="jeux-retour" href="../../../jeux.html">🏠 La maison des jeux</a><span class="jeux-theme">Couverture et étanchéité</span><span class="jeux-etapes"><a href="decouvrir.html" aria-current="page">1 · Découvrir</a><a href="sentrainer.html">2 · S'entraîner</a><a href="sedefier.html">3 · Se défier</a></span></nav><script>(function(){try{var k="emnb-jeux-vus",v=JSON.parse(localStorage.getItem(k)||"[]");if(v.indexOf("couverture/decouvrir")<0){v.push("couverture/decouvrir");localStorage.setItem(k,JSON.stringify(v))}}catch(e){}})()</script><div class="cadre">
 <header><h1>Couverture et étanchéité · Découvrir</h1><div class="badges"><span class="badge">Découverte libre</span><span class="badge">2de EMNB</span></div></header>
 <main>
-<p class="consigne">Trois planches pour comprendre les toitures : vue d'ensemble, couverture en tuiles et toiture-terrasse. <strong>Découvrir</strong> : choisis une planche, puis clique sur chaque élément. <strong>Défi</strong> : retrouve les éléments demandés, toutes planches confondues.</p>
+<p class="consigne">Trois planches pour comprendre les toitures : vue d'ensemble, couverture en tuiles et toiture-terrasse. <strong>Découvrir</strong> : choisissez une planche, puis cliquez sur chaque élément. <strong>Défi</strong> : retrouvez les éléments demandés, toutes planches confondues.</p>
 <div class="onglets"><button id="oExp" class="actif">1. Découvrir</button><button id="oDef">2. Défi (12 questions)</button></div>
 <div class="grille"><div><div class="planches" id="planches"></div><svg class="planche" data-p="toiture" viewBox="0 0 800 460" role="img" aria-label="Toiture à croupes vue en façade"><defs><pattern id="pMac" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E2DDD5"/><line x1="0" y1="0" x2="0" y2="8" stroke="#9A9185" stroke-width="1.2"/></pattern><pattern id="pBeton" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C9CDD3"/><circle cx="3" cy="3" r="1" fill="#7F858E"/><circle cx="8" cy="7" r=".8" fill="#7F858E"/></pattern><pattern id="pIsol" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="#FBE7A1"/><path d="M0 5 Q4 0 8 5 T16 5" fill="none" stroke="#D9A400" stroke-width="1"/></pattern><pattern id="pTerre" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#E3D3B4"/><path d="M2 12 L6 8 M8 13 L12 9" stroke="#B89F76" stroke-width="1"/></pattern><pattern id="pGrav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#DCD6CA"/><circle cx="3" cy="4" r="2.4" fill="#A49B8B"/><circle cx="9" cy="9" r="2" fill="#A49B8B"/></pattern><marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#1F3A68"/></marker></defs>
 <rect x="0" y="420" width="800" height="40" fill="#EADFC8"/>
@@ -107,7 +107,7 @@ footer{font-size:.75rem;color:var(--gris);padding:8px 14px;border-top:1px solid 
 <text x="300" y="215" font-size="12" text-anchor="middle" fill="#5F6B7A">pente → évacuation</text>
 </svg></div><div id="panneau"></div></div>
 </main>
-<footer>Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Tu découvres : technologie de la couverture et de l'étanchéité, dispositions constructives associées.</footer>
+<footer>Seconde EMNB · Découverte libre, pour le plaisir d'apprendre · Vous découvrez :technologie de la couverture et de l'étanchéité, dispositions constructives associées.</footer>
 </div>
 <script>
 const PL=[["toiture", "Toiture en façade"], ["coupe_tuiles", "Coupe couverture tuiles"], ["acrotere", "Coupe toiture-terrasse"]];
@@ -127,22 +127,22 @@ zones.forEach(z=>z.addEventListener('click',()=>mode==='exp'?explorer(z.dataset.
 function onglets(){oExp.classList.toggle('actif',mode==='exp');oDef.classList.toggle('actif',mode==='def')}
 function vueExplorer(){mode='exp';onglets();montrer(cur);
  const ids=IDS.filter(i=>EL[i].p===cur);
- panneau.innerHTML=`<p class="aide">Clique sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
+ panneau.innerHTML=`<p class="aide">Cliquez sur un élément de la planche ou sur une étiquette ci-dessous.</p><div id="fiche"></div><p class="compteur" id="cpt"></p><div class="puces">${ids.map(id=>`<button class="puce" data-id="${id}">${EL[id].n}</button>`).join('')}</div>`;
  panneau.querySelectorAll('.puce').forEach(b=>b.onclick=()=>explorer(b.dataset.id));compteur()}
 function explorer(id){nettoyer();zone(id).classList.add('sel');vus.add(id);const e=EL[id];
  document.getElementById('fiche').innerHTML=`<div class="fiche"><h2>${e.n}</h2><p>${e.r}</p><p class="savoir"><strong>À savoir :</strong> ${e.s}</p></div>`;compteur()}
 function compteur(){const c=document.getElementById('cpt');if(!c)return;
- c.textContent=`Éléments découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — tu es prêt(e) pour le défi.':'');
+ c.textContent=`Éléments découverts : ${vus.size} / ${IDS.length}`+(vus.size===IDS.length?' — vous êtes prêt(e) pour le défi.':'');
  panneau.querySelectorAll('.puce').forEach(b=>b.classList.toggle('vu',vus.has(b.dataset.id)))}
 function vueDefi(){mode='def';onglets();defi={liste:shuffle(IDS).slice(0,NBD),i:0,score:0,fait:false};question()}
 function question(){nettoyer();const d=defi;d.fait=false;const id=d.liste[d.i];montrer(EL[id].p);
- panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Clique sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
+ panneau.innerHTML=`<div class="progression"><span>Question ${d.i+1} / ${d.liste.length}</span><span>Score : ${d.score}</span></div><div class="barre"><div style="width:${d.i/d.liste.length*100}%"></div></div><p class="question">Cliquez sur la planche : ${EL[id].n}</p><div id="fb"></div>`}
 function repondre(id){const d=defi;if(!d||d.fait)return;d.fait=true;const c=d.liste[d.i],ok=id===c;if(ok)d.score++;
  zone(c).classList.add('vrai');if(!ok)zone(id).classList.add('erreur');
- document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Tu as désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
+ document.getElementById('fb').innerHTML=`<div class="feedback ${ok?'ok':'ko'}"><strong>${ok?'Exact.':'Pas tout à fait.'}</strong> ${ok?'':'Vous avez désigné : '+EL[id].n+'. L\'élément demandé est entouré en vert. '}${EL[c].r}</div><button class="btn" id="suiv">${d.i<d.liste.length-1?'Question suivante':'Voir mon résultat'}</button>`;
  document.getElementById('suiv').onclick=()=>{d.i++;d.i<d.liste.length?question():finDefi()}}
 function finDefi(){nettoyer();const d=defi,p=d.score/d.liste.length;
- panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?'Excellent : tu sais lire une toiture et ses points singuliers.':p>=.5?'Bon début. Reviens en mode Découvrir pour revoir les éléments manqués.':'Prends le temps d\'explorer les trois planches, puis retente le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
+ panneau.innerHTML=`<div class="resultat"><p class="note">${d.score} / ${d.liste.length}</p><p>${p>=.8?'Excellent : vous savez lire une toiture et ses points singuliers.':p>=.5?'Bon début. Revenez en mode Découvrir pour revoir les éléments manqués.':'Prenez le temps d\'explorer les trois planches, puis retentez le défi.'}</p><button class="btn" id="rej">Rejouer le défi</button> <button id="ret">Revenir à la découverte</button></div>`;
  document.getElementById('rej').onclick=vueDefi;document.getElementById('ret').onclick=()=>{mode='exp';vueExplorer()}}
 const oExp=document.getElementById('oExp'),oDef=document.getElementById('oDef');
 oExp.onclick=()=>{nettoyer();vueExplorer()};oDef.onclick=vueDefi;

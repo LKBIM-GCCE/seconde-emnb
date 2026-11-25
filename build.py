@@ -28,13 +28,13 @@ for a in ACTS.values():
         continue
     a["blocs"].append({
         "id": "synthese", "type": "exercice", "titre": "Synthèse de la séance", "duree": "10 min", "verbe": "Résumer",
-        "consigne": "Non notée. Tu construis toi-même la synthèse de la séance, en 3 temps, au rythme de ton professeur.",
+        "consigne": "Non notée. Vous construisez vous-même la synthèse de la séance, en 3 temps, au rythme de votre professeur.",
         "parties": [
-            {"type": "carte", "titre": "1. Carte mentale · 4 min — Construis la carte mentale de la séance",
+            {"type": "carte", "titre": "1. Carte mentale · 4 min — Construire la carte mentale de la séance",
              "centre": sy["centre"], "branches": sy["branches"], "intrus": sy.get("intrus", [])},
-            {"type": "texte", "html": '<div class="synth-ensemble"><b>2. Tous ensemble · 4 min</b><p>Ton professeur projette la carte. Pour chaque question, la classe propose sa réponse et <b>justifie</b> son choix. Tu peux déplacer tes réponses pendant la mise en commun.</p></div>'},
-            {"type": "texte", "html": '<div class="synth-ensemble"><b>3. Valide · 2 min</b><p>Clique sur « Valider » : la carte corrigée s\'affiche, c\'est <b>ta synthèse</b>. '
-             + ("Compare-la avec la fiche synthèse que te donne ton professeur." if sy["fiche"] else "Garde-la : elle reprend l'essentiel de la séance.") + '</p></div>'},
+            {"type": "texte", "html": '<div class="synth-ensemble"><b>2. Tous ensemble · 4 min</b><p>Votre professeur projette la carte. Pour chaque question, la classe propose sa réponse et <b>justifiez</b> son choix. Vous pouvez déplacer vos réponses pendant la mise en commun.</p></div>'},
+            {"type": "texte", "html": '<div class="synth-ensemble"><b>3. Validez · 2 min</b><p>Cliquez sur « Valider » : la carte corrigée s\'affiche, c\'est <b>votre synthèse</b>. '
+             + ("Comparez-la avec la fiche synthèse que vous donne votre professeur." if sy["fiche"] else "Gardez-la : elle reprend l'essentiel de la séance.") + '</p></div>'},
         ],
     })
 
@@ -138,7 +138,7 @@ def accueil():
 <section class="hero">
   <div class="hero-texte">
     <h1>Lire un plan, modéliser un bâtiment, le chiffrer.</h1>
-    <p>Bienvenue en Seconde EMNB. Ici tu retrouves toutes les séances de l'année : tu peux les faire en ligne, vérifier tes réponses et télécharger ta fiche synthèse.</p>
+    <p>Bienvenue en Seconde EMNB. Ici vous retrouvez toutes les séances de l'année : vous pouvez les faire en ligne, vérifier vos réponses et télécharger votre fiche synthèse.</p>
     <a class="btn-grand" href="seq01/index.html">Commencer par la séquence 1</a>
   </div>
   <figure class="hero-photo">
@@ -151,12 +151,12 @@ def accueil():
   </figure>
 </section>
 <section class="parcours">
-  <h2 class="titre-section">Ton parcours de l'année {cote("5 séquences")}</h2>
+  <h2 class="titre-section">Votre parcours de l'année {cote("5 séquences")}</h2>
   <ol class="route">{etapes}</ol>
 </section>
 <section class="projets-annee">
-  <h2 class="titre-section">Les projets que tu vas étudier {cote("des bâtiments réels")}</h2>
-  <p class="chapo">Toute l'année, tu travailles sur de vrais projets, comme dans un bureau d'études.</p>
+  <h2 class="titre-section">Les projets que vous allez étudier {cote("des bâtiments réels")}</h2>
+  <p class="chapo">Toute l'année, vous travaillez sur de vrais projets, comme dans un bureau d'études.</p>
   <article class="projet-carte">
     <header><span class="projet-seq">SEQ02 · La lecture de plans</span><h3>La Villa Camacho</h3>
       <p>Une maison individuelle réelle, suivie de la maquette à la livraison.</p></header>
@@ -180,12 +180,12 @@ def accueil():
 </section>
 <section class="comp-minute">
   <h2 class="titre-section">Les compétences en 1 minute {cote("ce qu'on évalue")}</h2>
-  <p class="chapo">Une compétence, c'est un savoir-faire du métier que tu montres en situation. Elles sont rangées en 4 familles :</p>
+  <p class="chapo">Une compétence, c'est un savoir-faire du métier que vous montrez en situation. Elles sont rangées en 4 familles :</p>
   <ul class="familles">{fam_html}</ul>
   <a class="btn-lien" href="competences.html">Comprendre les compétences →</a>
 </section>
 <section>
-  <a class="accueil-jeux" href="jeux.html"><span class="aj-emo" aria-hidden="true">🏠</span><div><b>La maison des jeux</b><span>Explore une maison et découvre les métiers du bâtiment en jouant. Libre, sans note.</span></div><span class="aj-go">Entrer →</span></a>
+  <a class="accueil-jeux" href="jeux.html"><span class="aj-emo" aria-hidden="true">🏠</span><div><b>La maison des jeux</b><span>Explorez une maison et découvrez les métiers du bâtiment en jouant. Libre, sans note.</span></div><span class="aj-go">Entrer →</span></a>
 </section>''', classe="p-accueil")
 
 
@@ -202,7 +202,7 @@ def page_sequence(s):
   <div class="illu grande">{ILLUS.get(s["id"], "")}</div>
 </section>
 <section class="bulle"><h2>Problématique liée au métier :</h2><p>{e(s["problematique"])}</p></section>
-<section class="mission"><h2>Ta mission</h2><p>{e(s["contexte"])}</p></section>
+<section class="mission"><h2>Votre mission</h2><p>{e(s["contexte"])}</p></section>
 <section><h2 class="titre-section">Les séances {cote(f'{len(s["seances"])} × 110 min')}</h2><ol class="chemin">{lignes}</ol></section>
 ''', prof=1, fil=[("Accueil", "index.html"), (s["numero"], None)])
 
@@ -251,7 +251,7 @@ def page_seance(s, i):
     if act:
         nb = sum(1 for b in act["blocs"] if b["type"] != "cours")
         cta = f'''<a class="cta-seance" href="{x["id"]}-en-ligne.html"><span class="cta-play" aria-hidden="true">▶</span>
-<span><b>Faire la séance en ligne</b><small>{nb} activités corrigées tout de suite, puis ton certificat de fin de séance</small></span>
+<span><b>Faire la séance en ligne</b><small>{nb} activités corrigées tout de suite, puis votre certificat de fin de séance</small></span>
 <span class="pas-etat" data-act="{act["id"]}" data-nb="{nb}"></span></a>'''
     prec = s["seances"][i - 1] if i > 0 else None
     suiv = s["seances"][i + 1] if i + 1 < len(s["seances"]) else None
@@ -291,14 +291,14 @@ def page_competences():
     niveaux = "".join(f'<li class="niv-{c}"><b>{e(a)}</b><span>{e(n)}</span><small>{e(d)}</small></li>' for a, n, d, c in NIVEAUX)
     return page("Compétences", f"""
 <section class="titre-seance"><h1>Les compétences de l'année</h1>
-<p class="chapo">Ce que tu apprends à faire en Seconde EMNB, comme un professionnel des études du bâtiment.</p></section>
+<p class="chapo">Ce que vous apprenez à faire en Seconde EMNB, comme un professionnel des études du bâtiment.</p></section>
 
 <section class="bloc comp-intro">
   <h2>C'est quoi une compétence ?</h2>
   <div class="trois-cartes">
     <div><b>🛠 Un savoir-faire du métier</b><p>Pas seulement « savoir », mais <b>savoir faire</b> : lire un plan, trouver une donnée dans une maquette, choisir comment répondre.</p></div>
-    <div><b>🎯 Montrée en situation</b><p>Tu la montres pendant une mission : un ticket à traiter, un dossier à analyser, une présentation au client.</p></div>
-    <div><b>📈 Elle progresse</b><p>La même compétence revient dans plusieurs séquences : à chaque fois, tu vas un peu plus loin.</p></div>
+    <div><b>🎯 Montrée en situation</b><p>Vous la montrez pendant une mission : un ticket à traiter, un dossier à analyser, une présentation au client.</p></div>
+    <div><b>📈 Elle progresse</b><p>La même compétence revient dans plusieurs séquences : à chaque fois, vous allez un peu plus loin.</p></div>
   </div>
 </section>
 
@@ -321,9 +321,9 @@ def page_competences():
 
 <section class="bloc">
   <h2>Comment je suis évalué(e) ?</h2>
-  <p>Pour chaque compétence, ton professeur note ton niveau sur une grille de suivi :</p>
+  <p>Pour chaque compétence, votre professeur note votre niveau sur une grille de suivi :</p>
   <ul class="niveaux">{niveaux}</ul>
-  <p class="aide">Les certificats des séances en ligne montrent ton travail ; la note vient de la grille, du travail rendu et de l'oral.</p>
+  <p class="aide">Les certificats des séances en ligne montrent votre travail ; la note vient de la grille, du travail rendu et de l'oral.</p>
 </section>
 
 <section class="bloc tableau">
@@ -356,7 +356,7 @@ def page_en_ligne(s, i, a):
 
 def page_verifier():
     contenu = '''
-<section class="titre-seance"><h1>Vérifier un certificat</h1><p class="chapo">Page réservée à l'enseignant : recopie les informations lues sur le certificat.</p></section>
+<section class="titre-seance"><h1>Vérifier un certificat</h1><p class="chapo">Page réservée à l'enseignant : recopiez les informations lues sur le certificat.</p></section>
 <section class="bloc"><form id="v" class="verif">
 <label>Séance <select name="act">ACTS_OPTIONS</select></label>
 <label>Nom tel qu'écrit <input name="nom" required></label>
@@ -417,14 +417,14 @@ var c=document.querySelector('.mj-compteur');if(c){c.querySelector('b').textCont
 </script>"""
     return page("La maison des jeux", f"""
 <section class="titre-seance mj-tete"><h1>La maison des jeux</h1>
-<p class="chapo">Explore la maison : clique sur une partie du bâtiment pour découvrir le métier qui la construit. Pas de note, pas de stress : tu joues autant que tu veux, dans l'ordre que tu veux.</p>
+<p class="chapo">Explorez la maison : cliquez sur une partie du bâtiment pour découvrir le métier qui la construit. Pas de note, pas de stress : vous jouez autant que vous voulez, dans l'ordre que vous voulez.</p>
 <div class="mj-compteur" aria-live="polite"><span>Pièces explorées : <b>0 / 11</b></span><span class="mj-jauge"><i></i></span></div></section>
 <figure class="mj-maison"><svg viewBox="0 0 1000 640" role="img" aria-labelledby="mj-titre"><title id="mj-titre">Coupe d'une maison : chaque partie ouvre un jeu</title>{DECOR}{zones}</svg>
-<figcaption><span class="mj-maison-hint">👆 Touche une pastille jaune, ou choisis un jeu dans la liste plus bas.</span>Astuce : chaque jeu a jusqu'à 3 étapes — <b>Découvrir</b> (explorer les planches), <b>S'entraîner</b> (questions qui changent à chaque partie), <b>Se défier</b> (un défi pour aller plus loin).</figcaption></figure>
+<figcaption><span class="mj-maison-hint">👆 Touche une pastille jaune, ou choisissez un jeu dans la liste plus bas.</span>Astuce : chaque jeu a jusqu'à 3 étapes — <b>Découvrir</b> (explorer les planches), <b>S'entraîner</b> (questions qui changent à chaque partie), <b>Se défier</b> (un défi pour aller plus loin).</figcaption></figure>
 <section><h2 class="titre-section">Tous les jeux {cote(f"{len(entrees)} thèmes")}</h2><ul class="mj-cartes">{cartes}</ul></section>
-<section class="mj-bonus"><h2 class="titre-section">En plus : prépare ton stage {cote("soutien au parcours")}</h2>
+<section class="mj-bonus"><h2 class="titre-section">En plus : préparez votre stage {cote("soutien au parcours")}</h2>
 <a class="mj-bonus-carte" href="jeux/orientation/cible-ton-stage.html"><span class="mj-emo" aria-hidden="true">🎯</span>
-<div><h3>Cible ton stage</h3><p>Où travaille un technicien d'études du bâtiment ? Trie les structures, conseille des élèves, puis trouve les 3 types d'entreprises à démarcher pour ta PFMP.</p>
+<div><h3>Cible votre stage</h3><p>Où travaille un technicien d'études du bâtiment ? Triez les structures, conseille des élèves, puis trouvez les 3 types d'entreprises à démarcher pour votre PFMP.</p>
 <span class="mj-etape">▶ Jouer · 3 planches</span></div></a></section>
 {script}""", fil=[("Accueil", "index.html"), ("Jeux", None)], classe="p-accueil")
 

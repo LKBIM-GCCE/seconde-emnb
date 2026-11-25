@@ -30,7 +30,7 @@ for a in ACTS.values():
         "id": "synthese", "type": "exercice", "titre": "Synthèse de la séance", "duree": "10 min",
         "consigne": "Non notée. Tu construis toi-même la synthèse de la séance, en 3 temps, au rythme de ton professeur.",
         "parties": [
-            {"type": "carte", "titre": "1. En binôme · 4 min — Construis la carte mentale de la séance",
+            {"type": "carte", "titre": "1. Carte mentale · 4 min — Construis la carte mentale de la séance",
              "centre": sy["centre"], "branches": sy["branches"], "intrus": sy.get("intrus", [])},
             {"type": "texte", "html": '<div class="synth-ensemble"><b>2. Tous ensemble · 4 min</b><p>Ton professeur projette la carte. Pour chaque question, la classe propose sa réponse et <b>justifie</b> son choix. Tu peux déplacer tes réponses pendant la mise en commun.</p></div>'},
             {"type": "texte", "html": '<div class="synth-ensemble"><b>3. Valide · 2 min</b><p>Clique sur « Valider » : la carte corrigée s\'affiche, c\'est <b>ta synthèse</b>. '
